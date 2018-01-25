@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33503890982150690}
   - component: {fileID: 136357025670687860}
   - component: {fileID: 23401823882721982}
+  - component: {fileID: 114003703852387250}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Player
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1798428227115628}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114003703852387250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798428227115628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46651374f6c88e4faa34dc5beb20844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0.2
 --- !u!136 &136357025670687860
 CapsuleCollider:
   m_ObjectHideFlags: 1
