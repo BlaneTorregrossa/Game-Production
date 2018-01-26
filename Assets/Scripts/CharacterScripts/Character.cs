@@ -15,4 +15,5 @@ public class Character : ScriptableObject
     //public ???? leftArm;
     //public ???? legs;
     //public ???? head;
+    
 }
