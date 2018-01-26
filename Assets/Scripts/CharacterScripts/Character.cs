@@ -6,9 +6,9 @@ public class Character : ScriptableObject
 {
     public string Name;
     public int Heath;
-    public int dashCharges;
-    public float speed;
-    public float dashSpeed;
+    public int DashCharges;
+    public float Speed;
+    public float DashSpeed;
 
     //Placeholders for potential variables
     //public ???? rightArm;
