@@ -8,8 +8,8 @@ public class MovementBehaviour : MonoBehaviour
     public float dashSpeed;
     public int dashcharges;
     public bool dash;
-    public Vector3 _direction;
-    public Vector3 _dashDirection;
+    public Vector3 direction;
+    public Vector3 dashDirection;
 
     private float _acceleration;
     private float _velocity;
@@ -17,17 +17,16 @@ public class MovementBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        speed = 0.2f;
-        dashSpeed = 3.0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        _direction.x = Input.GetAxis("Horizontal") * speed;
-        _direction.z = Input.GetAxis("Vertical") * speed;
-        _dashDirection.x = Input.GetAxis("Horizontal") * dashSpeed;
-        _dashDirection.z = Input.GetAxis("Vertical") * dashSpeed;
+        direction.x = Input.GetAxis("Horizontal") * speed;
+        direction.z = Input.GetAxis("Vertical") * speed;
+        dashDirection.x = Input.GetAxis("Horizontal") * dashSpeed;
+        dashDirection.z = Input.GetAxis("Vertical") * dashSpeed;
         if (Input.GetKeyDown("space"))
         {
             dash = true;
@@ -38,17 +37,16 @@ public class MovementBehaviour : MonoBehaviour
         }
         if (dash)
         {
-            BasicMove(_dashDirection);
+            BasicMove(dashDirection);
         }
         else
         {
-            BasicMove(_direction);
+            BasicMove(direction);
         }
     }
 
     void BasicMove(Vector3 d)
     {
-
         transform.position += d;
     }
 }
