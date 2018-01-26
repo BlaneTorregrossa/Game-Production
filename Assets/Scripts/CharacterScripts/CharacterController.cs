@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterControls : MonoBehaviour {
-
+public class CharacterController : MonoBehaviour
+{
+    public Character CharacterConfig;
+    
+    
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
+    
 }
