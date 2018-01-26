@@ -5,9 +5,12 @@ using UnityEngine;
 public class MovementBehaviour : MonoBehaviour
 {
     public float speed;
+    public float dashSpeed;
+    public int dashcharges;
     public bool dash;
+    public Vector3 _direction;
+    public Vector3 _dashDirection;
 
-    private Vector3 _direction;
     private float _acceleration;
     private float _velocity;
 
@@ -15,6 +18,7 @@ public class MovementBehaviour : MonoBehaviour
     void Start()
     {
         speed = 0.2f;
+        dashSpeed = 3.0f;
     }
 
     // Update is called once per frame
@@ -22,23 +26,29 @@ public class MovementBehaviour : MonoBehaviour
     {
         _direction.x = Input.GetAxis("Horizontal") * speed;
         _direction.z = Input.GetAxis("Vertical") * speed;
+        _dashDirection.x = Input.GetAxis("Horizontal") * dashSpeed;
+        _dashDirection.z = Input.GetAxis("Vertical") * dashSpeed;
         if (Input.GetKeyDown("space"))
         {
             dash = true;
         }
-        BasicMove(_direction);
-
+        if (Input.GetKeyUp("space"))
+        {
+            dash = false;
+        }
+        if (dash)
+        {
+            BasicMove(_dashDirection);
+        }
+        else
+        {
+            BasicMove(_direction);
+        }
     }
 
     void BasicMove(Vector3 d)
     {
-        if (dash)
-        {
-            
-        }
-        else
-        {
-            
-        }
+
+        transform.position += d;
     }
 }
