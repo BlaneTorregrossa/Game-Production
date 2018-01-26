@@ -32,14 +32,14 @@ public class CameraBehaviour : MonoBehaviour
         transform.rotation = camRotation;
 
 
-        if (horizontalZoom > 20)
+        if (horizontalZoom > 0)
         {
-            focusAdjustX = camCenter.transform.position.x + 20;
+            focusAdjustX = camCenter.transform.position.x;
             focusAdjustY = 30;
         }
-        else if (horizontalZoom < -20)
+        else if (horizontalZoom < 0)
         {
-            focusAdjustX = camCenter.transform.position.x - 20;
+            focusAdjustX = camCenter.transform.position.x;
             focusAdjustY = 30;
         }
         else
@@ -48,12 +48,11 @@ public class CameraBehaviour : MonoBehaviour
             focusAdjustY = 30;
         }
 
-        if (verticalZoom >= 0 || verticalZoom <= 0)
+        if (verticalZoom != 0)
         {
             focusAdjustZ = camCenter.transform.position.z - 50;
             focusAdjustY = camCenter.transform.position.y + 75;
         }
-
         else
         {
             focusAdjustZ = 0;
