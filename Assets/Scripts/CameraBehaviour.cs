@@ -1,24 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraBehaviour : MonoBehaviour
 {
 
-    public float zoom;
-
-    public GameObject CharacterA;
-    public GameObject CharacterB;
-
-    public GameObject camCenter;
-
+    public float zoom, verticalZoom, horizontalZoom;
+    public GameObject CharacterA, CharacterB, camCenter;
+    public float focusAdjustX, focusAdjustY, focusAdjustZ;
 
     private Quaternion camRotation = new Quaternion();
     private float zoomlock;
 
     void Start()
     {
-        transform.rotation = new Quaternion();
     }
 
     void Update()
@@ -28,31 +24,43 @@ public class CameraBehaviour : MonoBehaviour
 
     public void CamZoom()
     {
-        #region W/O CineMachine
-        //if (camCenter.transform.position.x >= 0)
-        //{
-        //    Quaternion camRotation = new Quaternion();
-        //    camRotation.eulerAngles = new Vector3(45, 0, 0);
-
-        //    transform.rotation = camRotation;
-        //}
-
-        //if (camCenter.transform.position.x <= 0)
-        //{
-        //    Quaternion camRotation = new Quaternion();
-        //    camRotation.eulerAngles = new Vector3(45, 180, 0);
-
-        //    transform.rotation = camRotation;
-        //}
-
-        #endregion
-
-        // Need this in to work with cineMachine
-        zoom = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);
-
-        camRotation.eulerAngles = new Vector3(35, 0, 0);
+        camRotation.eulerAngles = new Vector3(70, 0, 0);
         transform.rotation = camRotation;
-        transform.position = new Vector3(camCenter.transform.position.x, transform.position.y + zoom, camCenter.transform.position.z);
+        zoom = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);
+        horizontalZoom = CharacterA.transform.position.x - CharacterB.transform.position.x;
+        verticalZoom = CharacterA.transform.position.z - CharacterB.transform.position.z;
+        transform.rotation = camRotation;
+
+
+        if (horizontalZoom > 20)
+        {
+            focusAdjustX = camCenter.transform.position.x + 20;
+            focusAdjustY = 30;
+        }
+        else if (horizontalZoom < -20)
+        {
+            focusAdjustX = camCenter.transform.position.x - 20;
+            focusAdjustY = 30;
+        }
+        else
+        {
+            focusAdjustX = 0;
+            focusAdjustY = 30;
+        }
+
+        if (verticalZoom >= 0 || verticalZoom <= 0)
+        {
+            focusAdjustZ = camCenter.transform.position.z - 50;
+            focusAdjustY = camCenter.transform.position.y + 75;
+        }
+
+        else
+        {
+            focusAdjustZ = 0;
+            focusAdjustY = 30;
+        }
+
+        transform.position = new Vector3(focusAdjustX, zoom + focusAdjustY, focusAdjustZ);
 
     }
 

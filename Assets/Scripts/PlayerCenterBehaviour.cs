@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerCenterBehaviour : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerCenterBehaviour : MonoBehaviour
         }
 
         zoomScale = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);
-        transform.position = objectPosDelta + new Vector3(0 , zoomScale / 2, 0);
+        transform.position = objectPosDelta;
         return objectPosDelta;
     }
 }
