@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Character")]
 public class Character : ScriptableObject
 {
+
+    public Arm left;
+    public Arm Right;
     public string Name;
     public int Heath;
     public int DashCharges;
