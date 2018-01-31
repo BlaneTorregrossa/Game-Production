@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
     public Character CharacterConfig;
 
     private MovementBehaviour _movement;
+    private Vector3 _direction;
     
 	// Use this for initialization
 	void Start ()
@@ -22,7 +23,7 @@ public class CharacterController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+        ApplyMovement();
 	}
 
     void ApplyMovement()
