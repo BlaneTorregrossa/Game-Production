@@ -14,4 +14,6 @@ public class Arm : ScriptableObject
     public float meleeAttackSpeed;
     public int projectileDamage;
     public int projectileSpeed;
+
+    public Vector3 armPos;
 }

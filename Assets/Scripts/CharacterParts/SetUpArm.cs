@@ -21,12 +21,16 @@ public class SetUpArm : MonoBehaviour
     public GameObject LegsObject;
     #endregion
 
+    // Not clear if we need this
     #region Head
     public Head setHead;
     public Head currentHead;
 
     public GameObject HeadObject;
     #endregion
+
+    // Very Temporary
+    public GameObject currentProjectileObject;
 
     private List<GameObject> bodyPartList = new List<GameObject>();
     private Quaternion currentRotationSet;
@@ -58,22 +62,24 @@ public class SetUpArm : MonoBehaviour
 
             ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             ArmObject.transform.SetParent(transform);
-            ArmObject.transform.localScale = new Vector3(.5f, .5f, .5f);
+            ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
 
 
             if (currentArm.isLeft)
             {
-                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
-                ArmObject.transform.position = transform.position + new Vector3(-1, 0, 0);
+                currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
+                ArmObject.transform.position = transform.position + new Vector3(-3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
+                currentArm.armPos = ArmObject.transform.position;
                 bodyPartList.Add(ArmObject);
             }
 
             else if (currentArm.isRight)
             {
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-                ArmObject.transform.position = transform.position + new Vector3(1, 0, 0);
+                ArmObject.transform.position = transform.position + new Vector3(3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
+                currentArm.armPos = ArmObject.transform.position;
                 bodyPartList.Add(ArmObject);
             }
         }
@@ -87,7 +93,7 @@ public class SetUpArm : MonoBehaviour
         LegsObject.transform.SetParent(transform);
         LegsObject.transform.localScale = new Vector3(.75f, .75f, .75f);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-        LegsObject.transform.position = transform.position + new Vector3(0, -1f, 0);
+        LegsObject.transform.position = transform.position + new Vector3(0, -3f, 0);
         LegsObject.transform.rotation = currentRotationSet;
         bodyPartList.Add(LegsObject);
     }
@@ -100,7 +106,7 @@ public class SetUpArm : MonoBehaviour
         HeadObject.transform.SetParent(transform);
         HeadObject.transform.localScale = new Vector3(.5f, .5f, .5f);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-        HeadObject.transform.position = transform.position + new Vector3(0, 1f, 0);
+        HeadObject.transform.position = transform.position + new Vector3(0, 3f, 0);
         HeadObject.transform.rotation = currentRotationSet;
         bodyPartList.Add(HeadObject);
 
@@ -113,30 +119,52 @@ public class SetUpArm : MonoBehaviour
         {
             if (leftArm.isMelee == true)
             {
-                bodyPartList[0].transform.position = transform.position + new Vector3(-1, 0, 2.5f);
+                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
+                bodyPartList[0].transform.rotation = currentRotationSet;
+                bodyPartList[0].transform.position = transform.position + new Vector3(-3, 0, 2.5f);
             }
 
             if (leftArm.isRanged)
             {
-
+                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
+                bodyPartList[0].transform.rotation = currentRotationSet;
+                GameObject newProjectile = Instantiate(currentProjectileObject, leftArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
+                ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
+                pb.character = this;
             }
         }
         else if (Input.GetKeyUp(KeyCode.Q) && leftArm.isLeft == true)
         {
-            bodyPartList[0].transform.position = transform.position + new Vector3(-1, 0, 0);
+            bodyPartList[0].transform.position = transform.position + new Vector3(-3, 0, 0);
+            currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
+            bodyPartList[0].transform.rotation = currentRotationSet; 
         }
 
         if (Input.GetKeyDown(KeyCode.E) && rightArm.isRight == true)
         {
             if (rightArm.isMelee == true)
             {
-                bodyPartList[1].transform.position = transform.position + new Vector3(1, 0, 2.5f);
+                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
+                bodyPartList[1].transform.rotation = currentRotationSet;
+                bodyPartList[1].transform.position = transform.position + new Vector3(3, 0, 2.5f);
             }
 
             if (rightArm.isRanged)
             {
-                
+                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
+                bodyPartList[1].transform.rotation = currentRotationSet;
+                GameObject newProjectile = Instantiate(currentProjectileObject, rightArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
+                ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
+                pb.character = this;
             }
         }
+        else if (Input.GetKeyUp(KeyCode.E) && rightArm.isRight == true)
+        {
+            currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
+            bodyPartList[1].transform.rotation = currentRotationSet;
+            bodyPartList[1].transform.position = transform.position + new Vector3(3, 0, 0);
+        }
     }
+
+
 }
