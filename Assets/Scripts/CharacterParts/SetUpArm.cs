@@ -62,13 +62,13 @@ public class SetUpArm : MonoBehaviour
 
             ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             ArmObject.transform.SetParent(transform);
-            ArmObject.transform.localScale = new Vector3(.5f, .5f, .5f);
+            ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
 
 
             if (currentArm.isLeft)
             {
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-                ArmObject.transform.position = transform.position + new Vector3(-1, 0, 0);
+                ArmObject.transform.position = transform.position + new Vector3(-3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
                 currentArm.armPos = ArmObject.transform.position;
                 bodyPartList.Add(ArmObject);
@@ -77,7 +77,7 @@ public class SetUpArm : MonoBehaviour
             else if (currentArm.isRight)
             {
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-                ArmObject.transform.position = transform.position + new Vector3(1, 0, 0);
+                ArmObject.transform.position = transform.position + new Vector3(3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
                 currentArm.armPos = ArmObject.transform.position;
                 bodyPartList.Add(ArmObject);
@@ -93,7 +93,7 @@ public class SetUpArm : MonoBehaviour
         LegsObject.transform.SetParent(transform);
         LegsObject.transform.localScale = new Vector3(.75f, .75f, .75f);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-        LegsObject.transform.position = transform.position + new Vector3(0, -1f, 0);
+        LegsObject.transform.position = transform.position + new Vector3(0, -3f, 0);
         LegsObject.transform.rotation = currentRotationSet;
         bodyPartList.Add(LegsObject);
     }
@@ -106,7 +106,7 @@ public class SetUpArm : MonoBehaviour
         HeadObject.transform.SetParent(transform);
         HeadObject.transform.localScale = new Vector3(.5f, .5f, .5f);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-        HeadObject.transform.position = transform.position + new Vector3(0, 1f, 0);
+        HeadObject.transform.position = transform.position + new Vector3(0, 3f, 0);
         HeadObject.transform.rotation = currentRotationSet;
         bodyPartList.Add(HeadObject);
 
@@ -121,7 +121,7 @@ public class SetUpArm : MonoBehaviour
             {
                 currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
                 bodyPartList[0].transform.rotation = currentRotationSet;
-                bodyPartList[0].transform.position = transform.position + new Vector3(-1, 0, 2.5f);
+                bodyPartList[0].transform.position = transform.position + new Vector3(-3, 0, 2.5f);
             }
 
             if (leftArm.isRanged)
@@ -135,7 +135,7 @@ public class SetUpArm : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Q) && leftArm.isLeft == true)
         {
-            bodyPartList[0].transform.position = transform.position + new Vector3(-1, 0, 0);
+            bodyPartList[0].transform.position = transform.position + new Vector3(-3, 0, 0);
             currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
             bodyPartList[0].transform.rotation = currentRotationSet; 
         }
@@ -146,7 +146,7 @@ public class SetUpArm : MonoBehaviour
             {
                 currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
                 bodyPartList[1].transform.rotation = currentRotationSet;
-                bodyPartList[1].transform.position = transform.position + new Vector3(1, 0, 2.5f);
+                bodyPartList[1].transform.position = transform.position + new Vector3(3, 0, 2.5f);
             }
 
             if (rightArm.isRanged)
@@ -162,7 +162,7 @@ public class SetUpArm : MonoBehaviour
         {
             currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
             bodyPartList[1].transform.rotation = currentRotationSet;
-            bodyPartList[1].transform.position = transform.position + new Vector3(1, 0, 0);
+            bodyPartList[1].transform.position = transform.position + new Vector3(3, 0, 0);
         }
     }
 

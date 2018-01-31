@@ -24,7 +24,7 @@ public class CameraBehaviour : MonoBehaviour
 
     public void CamZoom()
     {
-        camRotation.eulerAngles = new Vector3(70, 0, 0);
+        camRotation.eulerAngles = new Vector3(60, 0, 0);
         transform.rotation = camRotation;
         zoom = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);
         horizontalZoom = CharacterA.transform.position.x - CharacterB.transform.position.x;
@@ -37,11 +37,6 @@ public class CameraBehaviour : MonoBehaviour
             focusAdjustX = camCenter.transform.position.x;
             focusAdjustY = 30;
         }
-        else if (horizontalZoom < 0)
-        {
-            focusAdjustX = camCenter.transform.position.x;
-            focusAdjustY = 30;
-        }
         else
         {
             focusAdjustX = 0;
@@ -50,8 +45,8 @@ public class CameraBehaviour : MonoBehaviour
 
         if (verticalZoom != 0)
         {
-            focusAdjustZ = camCenter.transform.position.z - 50;
-            focusAdjustY = camCenter.transform.position.y + 75;
+            focusAdjustZ = camCenter.transform.position.z - 75;
+            focusAdjustY = camCenter.transform.position.y + 70;
         }
         else
         {
