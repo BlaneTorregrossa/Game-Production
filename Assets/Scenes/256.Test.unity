@@ -505,6 +505,8 @@ MonoBehaviour:
   setHead: {fileID: 0}
   currentHead: {fileID: 0}
   HeadObject: {fileID: 0}
+  currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,
+    type: 2}
 --- !u!1 &1635221278
 GameObject:
   m_ObjectHideFlags: 0
