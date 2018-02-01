@@ -23,18 +23,6 @@ public class MovementBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction.x = Input.GetAxis("Horizontal") * speed;
-        direction.z = Input.GetAxis("Vertical") * speed;
-        dashDirection.x = Input.GetAxis("Horizontal") * dashSpeed;
-        dashDirection.z = Input.GetAxis("Vertical") * dashSpeed;
-        if (Input.GetKeyDown("space"))
-        {
-            dash = true;
-        }
-        if (Input.GetKeyUp("space"))
-        {
-            dash = false;
-        }
         if (dash)
         {
             BasicMove(dashDirection);
@@ -44,7 +32,7 @@ public class MovementBehaviour : MonoBehaviour
             BasicMove(direction);
         }
     }
-
+    
     void BasicMove(Vector3 d)
     {
         transform.position += d;

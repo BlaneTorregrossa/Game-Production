@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterControls : MonoBehaviour
 {
     public Character CharacterConfig;
 
@@ -23,11 +23,11 @@ public class CharacterController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        ApplyMovement();
+        var x = Input.GetAxis("Horizontal") * _movement.speed;
+        var z = Input.GetAxis("Vertical")  * _movement.speed;
+        var ox = Input.GetAxis("Horizontal");
+        var oz = Input.GetAxis("Vertical");
+        _movement.direction = new Vector3(x, 0, z);
 	}
-
-    void ApplyMovement()
-    {
-
-    }
+    
 }
