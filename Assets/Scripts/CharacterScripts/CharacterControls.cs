@@ -7,7 +7,7 @@ public class CharacterControls : MonoBehaviour
     public Character CharacterConfig;
 
     private MovementBehaviour _movement;
-    private Vector3 _direction;
+    private Vector3 _lookdirection;
     
 	// Use this for initialization
 	void Start ()
@@ -25,9 +25,13 @@ public class CharacterControls : MonoBehaviour
     {
         var x = Input.GetAxis("Horizontal") * _movement.speed;
         var z = Input.GetAxis("Vertical")  * _movement.speed;
-        var ox = Input.GetAxis("Horizontal");
-        var oz = Input.GetAxis("Vertical");
+        Look();
         _movement.direction = new Vector3(x, 0, z);
 	}
-    
+    public void Look()
+    {
+        var lx = Input.GetAxis("LookHorizontal");
+        var lz = Input.GetAxis("LookVertical");
+        _lookdirection = new Vector3(lx, 0, lz);
+    }
 }

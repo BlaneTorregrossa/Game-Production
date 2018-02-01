@@ -23,18 +23,12 @@ public class MovementBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dash)
-        {
-            BasicMove(dashDirection);
-        }
-        else
-        {
             BasicMove(direction);
-        }
     }
     
     void BasicMove(Vector3 d)
     {
-        transform.position += d;
+        var move = d * Time.deltaTime;
+        transform.position += move;
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   left: {fileID: 0}
   Right: {fileID: 0}
   Name: 
-  Heath: 0
-  DashCharges: 0
-  Speed: 0
-  DashSpeed: 0
+  Heath: 100
+  DashCharges: 3
+  Speed: 0.2
+  DashSpeed: 5
