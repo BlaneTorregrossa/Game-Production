@@ -7,7 +7,7 @@ InputManager:
   m_Axes:
   - serializedVersion: 3
     m_Name: Horizontal
-    descriptiveName: 
+    descriptiveName: Xbox Left Joystick Horizontal
     descriptiveNegativeName: 
     negativeButton: left
     positiveButton: right
@@ -23,7 +23,7 @@ InputManager:
     joyNum: 8
   - serializedVersion: 3
     m_Name: Vertical
-    descriptiveName: 
+    descriptiveName: Xbox Left Joystick Vertical
     descriptiveNegativeName: 
     negativeButton: down
     positiveButton: up
@@ -151,7 +151,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: LookHorizontal
-    descriptiveName: 
+    descriptiveName: Xbox Right Joystick Horizontal
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -167,7 +167,7 @@ InputManager:
     joyNum: 9
   - serializedVersion: 3
     m_Name: LookVertical
-    descriptiveName: 
+    descriptiveName: Xbox Right Joystick Vertical
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
