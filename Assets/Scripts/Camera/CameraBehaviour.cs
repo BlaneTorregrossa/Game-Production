@@ -115,13 +115,13 @@ public class CameraBehaviour : MonoBehaviour
         // For camera to be behind Target A
         if (subTargetA.transform.position.z > subTargetB.transform.position.z)
         {
-            if(subTargetA.transform.position.x > centerTarget.transform.position.x
+            if (subTargetA.transform.position.x > centerTarget.transform.position.x
                 && subTargetB.transform.position.x < centerTarget.transform.position.x)
             {
                 rotY = subTargetA.transform.position.x - centerTarget.transform.position.x;
             }
 
-            if(subTargetA.transform.position.x < centerTarget.transform.position.x
+            if (subTargetA.transform.position.x < centerTarget.transform.position.x
                 && subTargetB.transform.position.x > centerTarget.transform.position.x)
             {
                 rotY = subTargetA.transform.position.x - centerTarget.transform.position.x;
@@ -131,7 +131,10 @@ public class CameraBehaviour : MonoBehaviour
         // For camera to be behind Target B
         if (subTargetB.transform.position.z > subTargetA.transform.position.z)
         {
-            
+            if (subTargetA.transform.position.z > centerTarget.transform.position.z)
+            {
+                
+            }
         }
 
 

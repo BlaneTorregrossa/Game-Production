@@ -42,6 +42,7 @@ public class SetUpArm : MonoBehaviour
     void Start()
     {
         this.tag = "Character";
+        currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
 
         setArm1 = currentCharacter.left;
         setArm2 = currentCharacter.Right;
@@ -129,7 +130,7 @@ public class SetUpArm : MonoBehaviour
     }
 
     // Very Temporary needs to be in player controller 
-    // THIS SHOULD NOT BE HERE
+    // THIS SHOULD NOT BE HERE ON FINAL BUILD
     public void Attack(Arm leftArm, Arm rightArm)
     {
         if (Input.GetKeyDown(KeyCode.Q) && leftArm.isLeft == true)
