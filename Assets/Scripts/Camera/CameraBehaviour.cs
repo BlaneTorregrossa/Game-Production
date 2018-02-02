@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-//  Good For now might need adjustments given what arena the characters are to be placed in
 public class CameraBehaviour : MonoBehaviour
 {
+    public float fovLock;   // To clock Field of view when needed
+    public float zoom, verticalZoom, horizontalZoom;    // Help determine camera position
+    public GameObject CharacterA, CharacterB, camCenter;    // Objects involved
+    public float focusAdjustX, focusAdjustY, focusAdjustZ;  // variables for scaling zoom
+    public Camera cam;  // to refer to the camera properties
 
-    public float zoom, verticalZoom, horizontalZoom;
-    public GameObject CharacterA, CharacterB, camCenter;
-    public float focusAdjustX, focusAdjustY, focusAdjustZ;
-    public Camera cam;
-
-    private Quaternion camRotation = new Quaternion();
-    private float zoomlock;
+    private Quaternion camRotation = new Quaternion();  // Rotation of camera
 
     void Start()
     {
+        fovLock = 0;
     }
 
     void Update()
@@ -27,17 +26,16 @@ public class CameraBehaviour : MonoBehaviour
     //  Moves and updates the camera position based on the center of two given objects. Field of view eventually changes the further the distance between objects.
     public void CamZoom()
     {
-        camRotation.eulerAngles = new Vector3(60, 0, 0);
-        transform.rotation = camRotation;
-        zoom = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);
-        horizontalZoom = CharacterA.transform.position.x - CharacterB.transform.position.x;
-        verticalZoom = CharacterA.transform.position.z - CharacterB.transform.position.z;
-        transform.rotation = camRotation;
+        camRotation.eulerAngles = new Vector3(60, 0, 0);    // starting rotation
+        transform.rotation = camRotation;   // set the rotation
+        zoom = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);  // To get the distacne of two main objects to help determine scaling for the camera
+        horizontalZoom = CharacterA.transform.position.x - CharacterB.transform.position.x; // X axis/Horizontal
+        verticalZoom = CharacterA.transform.position.z - CharacterB.transform.position.z;   // Z axis/Vertical
 
-        //  Zoom based on x position
+        //  Cam position based on x position
         if (horizontalZoom > 0)
         {
-            focusAdjustX = camCenter.transform.position.x;
+            //focusAdjustX = camCenter.transform.position.x;
             focusAdjustY = 30;
         }
         else
@@ -46,7 +44,7 @@ public class CameraBehaviour : MonoBehaviour
             focusAdjustY = 30;
         }
 
-        //  Zoom based on z position
+        //  Cam Position based on z position
         if (verticalZoom != 0)
         {
             focusAdjustZ = camCenter.transform.position.z - 75;
@@ -58,11 +56,87 @@ public class CameraBehaviour : MonoBehaviour
             focusAdjustY = 30;
         }
 
-        if (zoom > 75)
+        // Small zoom out for when players get further
+        if (zoom > 75 && zoom < 90)
             cam.fieldOfView = zoom / 2;
 
-        transform.position = new Vector3(focusAdjustX, zoom + focusAdjustY, focusAdjustZ);
+        fovLock = cam.fieldOfView;  // Set lock for FOV
 
+        // Prevent fov from getting any bigger
+        if (zoom >= 90)
+            cam.fieldOfView = fovLock;
+
+
+        // Set camera position
+        transform.position = new Vector3(focusAdjustX, zoom + focusAdjustY, focusAdjustZ) + PosLineUp(CharacterA, CharacterB, camCenter);
+        transform.rotation = RotationLineUp(CharacterA, CharacterB, camCenter);
+    }
+
+    // Needs adjustments once rotation is finished
+    public Vector3 PosLineUp(GameObject subTargetA, GameObject subTargetB, GameObject centerTarget)
+    {
+        float newX = 0, newY = 0, newZ = 0;
+
+        #region Set X
+        if (subTargetA.transform.position.x > centerTarget.transform.position.x
+            && subTargetB.transform.position.x < centerTarget.transform.position.x)
+        {
+            newX = subTargetA.transform.position.x - centerTarget.transform.position.x;
+        }
+        if (subTargetA.transform.position.x < centerTarget.transform.position.x
+            && subTargetB.transform.position.x > centerTarget.transform.position.x)
+        {
+            newX = subTargetA.transform.position.x - centerTarget.transform.position.x;
+        }
+        #endregion
+
+        #region Set Y
+        if (subTargetA.transform.position.z > centerTarget.transform.position.z
+            && subTargetB.transform.position.z < centerTarget.transform.position.z)
+        {
+            newZ = -(subTargetA.transform.position.z - centerTarget.transform.position.z);
+        }
+        if (subTargetA.transform.position.z < centerTarget.transform.position.z
+            && subTargetB.transform.position.z > centerTarget.transform.position.z)
+        {
+            newZ = -(subTargetB.transform.position.z - centerTarget.transform.position.z);
+        }
+        #endregion
+
+        return new Vector3(newX, newY, newZ);
+    }
+
+    // ***
+    public Quaternion RotationLineUp(GameObject subTargetA, GameObject subTargetB, GameObject centerTarget)
+    {
+        Quaternion newRotation = new Quaternion();
+        float rotX = 0, rotY = 0, rotZ = 0;
+
+        // For camera to be behind Target A
+        if (subTargetA.transform.position.z > subTargetB.transform.position.z)
+        {
+            if(subTargetA.transform.position.x > centerTarget.transform.position.x
+                && subTargetB.transform.position.x < centerTarget.transform.position.x)
+            {
+                rotY = subTargetA.transform.position.x - centerTarget.transform.position.x;
+            }
+
+            if(subTargetA.transform.position.x < centerTarget.transform.position.x
+                && subTargetB.transform.position.x > centerTarget.transform.position.x)
+            {
+                rotY = subTargetA.transform.position.x - centerTarget.transform.position.x;
+            }
+        }
+
+        // For camera to be behind Target B
+        if (subTargetB.transform.position.z > subTargetA.transform.position.z)
+        {
+            
+        }
+
+
+        newRotation.eulerAngles = new Vector3(60, rotY, rotZ); // What's returned
+        return newRotation;
     }
 
 }

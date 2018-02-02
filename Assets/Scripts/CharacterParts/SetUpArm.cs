@@ -69,13 +69,12 @@ public class SetUpArm : MonoBehaviour
         {
             currentArm = characterArmList[i];
 
-            ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-            ArmObject.transform.SetParent(transform);
-            ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
-
-
             if (currentArm.isLeft)
             {
+                ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                ArmObject.transform.SetParent(transform);
+                ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
+                ArmObject.GetComponent<CapsuleCollider>().height = 2.5f;
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
                 ArmObject.transform.position = transform.position + new Vector3(-3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
@@ -86,6 +85,10 @@ public class SetUpArm : MonoBehaviour
 
             else if (currentArm.isRight)
             {
+                ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                ArmObject.transform.SetParent(transform);
+                ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
+                ArmObject.GetComponent<CapsuleCollider>().height = 2.5f;
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
                 ArmObject.transform.position = transform.position + new Vector3(3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;

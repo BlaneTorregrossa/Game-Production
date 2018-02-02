@@ -9,8 +9,6 @@ public class PlayerCenterBehaviour : MonoBehaviour
     public GameObject CharacterA;
     public GameObject CharacterB;
 
-    public float zoomScale;
-
     private Vector3 objectPosDelta;
 
     void Update()
@@ -27,7 +25,6 @@ public class PlayerCenterBehaviour : MonoBehaviour
             objectPosDelta = CharacterB.transform.position + (CharacterA.transform.position - CharacterB.transform.position) / 2;   // Center area
         }
 
-        zoomScale = Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position);
         transform.position = objectPosDelta;
         return objectPosDelta;
     }
