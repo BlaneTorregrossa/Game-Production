@@ -23,12 +23,14 @@ public class MovementBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            BasicMove(direction);
+
     }
     
-    void BasicMove(Vector3 d)
+    void BasicMove(float h, float v)
     {
-        var move = d * Time.deltaTime;
-        transform.position += move;
+        var x = h * speed;
+        var z = v * speed;
+        var d = new Vector3(h, 0, v);
+        transform.position += d * Time.deltaTime;
     }
 }
