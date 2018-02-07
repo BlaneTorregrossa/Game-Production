@@ -2,36 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterControls : MonoBehaviour
+[CreateAssetMenu(menuName = "CharacterControls")]
+public class CharacterControls : ScriptableObject
 {
-    public Character CharacterConfig;
-
-    private MovementBehaviour _movement;
-    private Vector3 _lookdirection;
+    public Character characterConfig;
+    public MovementBehaviour movement;
+    public int gamePadNum;
+    public Vector3 moveDirection;
+    public Vector3 lookDirection;
     
-	// Use this for initialization
-	void Start ()
+    public void Move()
     {
-        var go = new GameObject();
-        go.name = "Movement";
-        _movement = go.AddComponent<MovementBehaviour>();
-        _movement.speed = CharacterConfig.Speed;
-        _movement.dashSpeed = CharacterConfig.DashSpeed;
-        _movement.dashcharges = CharacterConfig.DashCharges;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        var x = Input.GetAxis("LeftStickX") * characterConfig.speed;
+        var z = Input.GetAxis("LeftStickY") * characterConfig.speed;
+    }
+
+    public void Dash()
     {
-        var x = Input.GetAxis("Horizontal") * _movement.speed;
-        var z = Input.GetAxis("Vertical")  * _movement.speed;
-        Look();
-        _movement.direction = new Vector3(x, 0, z);
-	}
+
+    }
+
     public void Look()
     {
-        var lx = Input.GetAxis("LookHorizontal");
-        var lz = Input.GetAxis("LookVertical");
-        _lookdirection = new Vector3(lx, 0, lz);
+
     }
 }

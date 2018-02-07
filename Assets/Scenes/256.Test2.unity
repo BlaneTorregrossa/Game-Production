@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46651374f6c88e4faa34dc5beb20844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 0.2
 --- !u!114 &823703796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterConfig: {fileID: 11400000, guid: aa817361032f7bd468e7b1e38c4898da, type: 2}
+  _movement: {fileID: 0}
+  _lookdirection: {x: 0, y: 0, z: 0}
 --- !u!1001 &998016390
 Prefab:
   m_ObjectHideFlags: 0

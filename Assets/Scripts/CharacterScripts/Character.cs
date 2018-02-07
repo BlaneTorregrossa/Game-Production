@@ -8,12 +8,12 @@ public class Character : ScriptableObject
 {
 
     public Arm left;
-    public Arm Right;
-    public string Name;
-    public int Heath;
-    public int DashCharges;
-    public float Speed;
-    public float DashSpeed;
+    public Arm right;
+    public string name;
+    public int heath;
+    public int dashCharges;
+    public float speed;
+    public float dashSpeed;
 
     //Placeholders for potential variables
     //public ???? rightArm;

@@ -8,13 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e52fa15540cb546bd39045380fcc79, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: c85c8209fccf30a47a77e6a0dfc4c349, type: 3}
+  m_Name: Player1Controls
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  Right: {fileID: 0}
-  Name: 
-  Heath: 100
-  DashCharges: 3
-  Speed: 0.2
-  DashSpeed: 5
+  CharacterConfig: {fileID: 0}
+  _movement: {fileID: 0}
