@@ -198,9 +198,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 570288043}
+  - component: {fileID: 570288046}
   - component: {fileID: 570288042}
   - component: {fileID: 570288041}
   - component: {fileID: 570288040}
+  - component: {fileID: 570288045}
+  - component: {fileID: 570288044}
   m_Layer: 0
   m_Name: Opponent
   m_TagString: Character
@@ -266,12 +269,68 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 570288039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &570288044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570288039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a53c8caa02799714ea1c30249cba0211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setupInstance: {fileID: 570288045}
+  currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,
+    type: 2}
+  Health: 0
+--- !u!114 &570288045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570288039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a0e5231df254a4f92b12198af98d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setArm1: {fileID: 0}
+  setArm2: {fileID: 0}
+  characterArmList: []
+  currentArm: {fileID: 0}
+  ArmObject: {fileID: 0}
+  setLegs: {fileID: 11400000, guid: f681fd0b9f4b5ff4f9029f3b79d0081c, type: 2}
+  currentLegs: {fileID: 0}
+  LegsObject: {fileID: 0}
+  setHead: {fileID: 11400000, guid: befd195ba94e63249b8bce8b3696601a, type: 2}
+  currentHead: {fileID: 0}
+  HeadObject: {fileID: 0}
+  currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,
+    type: 2}
+  currentCharacter: {fileID: 11400000, guid: b24a51e7a9a38e3438df0f9b75e7e4cd, type: 2}
+  bodyPartList: []
+--- !u!54 &570288046
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570288039}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &795208002
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,13 +414,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 795208002}
-  m_LocalRotation: {x: 0.2794556, y: -0.3023599, z: 0.10442968, w: 0.90530527}
-  m_LocalPosition: {x: 173, y: 148.3, z: -240}
+  m_LocalRotation: {x: 0.28144732, y: -0.3270105, z: 0.113981, w: 0.8949078}
+  m_LocalPosition: {x: 173.00002, y: 148.3, z: -240.00002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 34.69, y: -36.5, z: 1.4}
+  m_LocalEulerAnglesHint: {x: 35.33, y: -39.7, z: 1.4}
 --- !u!114 &795208008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +451,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 877864726}
+  - component: {fileID: 877864730}
   - component: {fileID: 877864725}
   - component: {fileID: 877864724}
   - component: {fileID: 877864723}
@@ -505,12 +565,13 @@ MonoBehaviour:
   setLegs: {fileID: 11400000, guid: f681fd0b9f4b5ff4f9029f3b79d0081c, type: 2}
   currentLegs: {fileID: 0}
   LegsObject: {fileID: 0}
-  setHead: {fileID: 0}
+  setHead: {fileID: 11400000, guid: befd195ba94e63249b8bce8b3696601a, type: 2}
   currentHead: {fileID: 0}
   HeadObject: {fileID: 0}
   currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,
     type: 2}
   currentCharacter: {fileID: 11400000, guid: 2132e7c27a3591d45a4a1f1aa522160c, type: 2}
+  bodyPartList: []
 --- !u!114 &877864729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +584,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setupInstance: {fileID: 877864728}
+  currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,
+    type: 2}
+  Health: 0
+--- !u!54 &877864730
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 877864722}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1635221278
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,4 +777,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterA: {fileID: 877864722}
   CharacterB: {fileID: 570288039}
-  zoomScale: 0
