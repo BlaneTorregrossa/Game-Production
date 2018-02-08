@@ -22,7 +22,6 @@ public class SetUpArm : MonoBehaviour
     public GameObject LegsObject;
     #endregion
 
-    // Not clear if we need this
     #region Head
     public Head setHead;
     public Head currentHead;
@@ -33,11 +32,10 @@ public class SetUpArm : MonoBehaviour
 
     //Very Temporary 
     public GameObject currentProjectileObject;
-
-    // Very Temporary
     public Character currentCharacter;
 
     public List<GameObject> bodyPartList = new List<GameObject>();
+
     private Quaternion currentRotationSet;
 
     void Start()
@@ -55,7 +53,7 @@ public class SetUpArm : MonoBehaviour
 
     void Update()
     {
-        Attack(characterArmList[0], characterArmList[1]);
+
     }
 
     public void PositionCharacterParts()
@@ -129,69 +127,5 @@ public class SetUpArm : MonoBehaviour
         bodyPartList.Add(HeadObject);
 
     }
-
-    // Very Temporary needs to be in player controller 
-    // THIS SHOULD NOT BE HERE ON FINAL BUILD
-    public void Attack(Arm leftArm, Arm rightArm)
-    {
-        if (Input.GetKeyDown(KeyCode.Q) && leftArm.isLeft == true)
-        {
-            if (leftArm.isMelee == true)
-            {
-                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
-                bodyPartList[0].transform.rotation = currentRotationSet;
-                bodyPartList[0].transform.position = transform.position + new Vector3(-3, 0, 2.5f);
-                bodyPartList[0].tag = "MeleeArm";
-            }
-
-            if (leftArm.isRanged)
-            {
-                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
-                bodyPartList[0].transform.rotation = currentRotationSet;
-                bodyPartList[0].tag = "RangedArm";
-                GameObject newProjectile = Instantiate(currentProjectileObject, leftArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
-                ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
-                pb.character = this;
-                newProjectile.tag = "Bullet";
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.Q) && leftArm.isLeft == true)
-        {
-            bodyPartList[0].transform.position = transform.position + new Vector3(-3, 0, 0);
-            currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-            bodyPartList[0].transform.rotation = currentRotationSet;
-            bodyPartList[0].tag = "Character";
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && rightArm.isRight == true)
-        {
-            if (rightArm.isMelee == true)
-            {
-                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
-                bodyPartList[1].transform.rotation = currentRotationSet;
-                bodyPartList[1].transform.position = transform.position + new Vector3(3, 0, 2.5f);
-                bodyPartList[1].tag = "MeleeArm";
-            }
-
-            if (rightArm.isRanged)
-            {
-                currentRotationSet.eulerAngles = new Vector3(90, 0, 0);
-                bodyPartList[1].transform.rotation = currentRotationSet;
-                bodyPartList[1].tag = "RangedArm";
-                GameObject newProjectile = Instantiate(currentProjectileObject, rightArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
-                ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
-                pb.character = this;
-                newProjectile.tag = "Bullet";
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.E) && rightArm.isRight == true)
-        {
-            currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
-            bodyPartList[1].transform.rotation = currentRotationSet;
-            bodyPartList[1].transform.position = transform.position + new Vector3(3, 0, 0);
-            bodyPartList[1].tag = "Character";
-        }
-    }
-
 
 }
