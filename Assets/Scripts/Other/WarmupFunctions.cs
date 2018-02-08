@@ -11,18 +11,22 @@ public class WarmupFunctions : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-		
-	}
+        _object = new GameObject();
+        _object.name = "Test";
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        if (Input.GetKeyDown("space"))
+        {
+            addobjecttoList(_object);
+        }
+    }
 
     public void addobjecttoList(GameObject g)
     {
         objects.Add(g);
-        Debug.Log("Object was added")
+        Debug.Log("Object was added");
     }
 }
