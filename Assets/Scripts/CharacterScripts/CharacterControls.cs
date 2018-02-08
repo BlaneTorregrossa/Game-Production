@@ -13,8 +13,8 @@ public class CharacterControls : ScriptableObject
     
     public void Move()
     {
-        var x = Input.GetAxis("LeftStickX") * characterConfig.speed;
-        var z = Input.GetAxis("LeftStickY") * characterConfig.speed;
+        var x = Input.GetAxis("LeftStickX") * characterConfig.Speed;
+        var z = Input.GetAxis("LeftStickY") * characterConfig.Speed;
     }
 
     public void Dash()
