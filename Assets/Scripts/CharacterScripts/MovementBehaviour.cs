@@ -26,11 +26,11 @@ public class MovementBehaviour : MonoBehaviour
 
     }
     
-    void BasicMove(float h, float v)
+    Vector3 BasicMove(float h, float v)
     {
         var x = h * speed;
         var z = v * speed;
         var d = new Vector3(h, 0, v);
-        transform.position += d * Time.deltaTime;
+        return d;
     }
 }

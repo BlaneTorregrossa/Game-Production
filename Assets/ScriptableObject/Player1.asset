@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e52fa15540cb546bd39045380fcc79, type: 3}
   m_Name: Player1
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
+  Left: {fileID: 0}
   Right: {fileID: 0}
   Name: 
-  Heath: 0
-  DashCharges: 0
-  Speed: 0
-  DashSpeed: 0
+  Heath: 100
+  DashCharges: 3
+  Push: 3
+  Speed: 0.5
+  DashSpeed: 2
