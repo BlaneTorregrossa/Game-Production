@@ -7,13 +7,13 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
 
-    public Arm left;
-    public Arm right;
-    public string name;
-    public int heath;
-    public int dashCharges;
-    public float speed;
-    public float dashSpeed;
+    public Arm Left;
+    public Arm Right;
+    public string Name;
+    public int Heath;
+    public int DashCharges;
+    public float Speed;
+    public float DashSpeed;
 
     //Placeholders for potential variables
     //public ???? rightArm;
