@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class MovementBehaviour : MonoBehaviour
 {
-    public float speed;
-    public float dashSpeed;
-    public int dashcharges;
-    public bool dash;
     public Vector3 direction;
     public Vector3 dashDirection;
 
@@ -26,11 +22,9 @@ public class MovementBehaviour : MonoBehaviour
 
     }
     
-    Vector3 BasicMove(float h, float v)
+    public Vector3 BasicMove(Vector3 d, float s)
     {
-        var x = h * speed;
-        var z = v * speed;
-        var d = new Vector3(h, 0, v);
-        return d;
+        var m = d * s;
+        return m;
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterControls")]
 public class CharacterControls : ScriptableObject
 {
-    public Character characterConfig;
-    public MovementBehaviour movement;
     public int gamePadNum;
     public Vector3 moveDirection;
     public Vector3 dashDirection;
@@ -14,15 +12,15 @@ public class CharacterControls : ScriptableObject
     
     public void Move()
     {
-        var x = Input.GetAxis("Horizontal") * characterConfig.Speed;
-        var z = Input.GetAxis("Vertical") * characterConfig.Speed;
+        var x = Input.GetAxis("Horizontal");
+        var z = Input.GetAxis("Vertical");
         moveDirection = new Vector3(x, 0, z);
     }
 
     public void Dash()
     {
-        var x = Input.GetAxis("Horizontal") * characterConfig.DashSpeed;
-        var z = Input.GetAxis("Vertical") * characterConfig.DashSpeed;
+        var x = Input.GetAxis("Horizontal");
+        var z = Input.GetAxis("Vertical");
     }
 
     public void Look()
