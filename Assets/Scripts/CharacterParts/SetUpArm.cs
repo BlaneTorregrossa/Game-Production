@@ -30,20 +30,22 @@ public class SetUpArm : MonoBehaviour
     public GameObject HeadObject;
     #endregion
 
-    // Very Temporary
+
+    //Very Temporary 
     public GameObject currentProjectileObject;
 
     // Very Temporary
     public Character currentCharacter;
 
-    private List<GameObject> bodyPartList = new List<GameObject>();
+    public List<GameObject> bodyPartList = new List<GameObject>();
     private Quaternion currentRotationSet;
 
     void Start()
     {
         this.tag = "Character";
+        currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
 
-        setArm1 = currentCharacter.left;
+        setArm1 = currentCharacter.Left;
         setArm2 = currentCharacter.Right;
 
         characterArmList.Add(setArm1);
@@ -129,7 +131,7 @@ public class SetUpArm : MonoBehaviour
     }
 
     // Very Temporary needs to be in player controller 
-    // THIS SHOULD NOT BE HERE
+    // THIS SHOULD NOT BE HERE ON FINAL BUILD
     public void Attack(Arm leftArm, Arm rightArm)
     {
         if (Input.GetKeyDown(KeyCode.Q) && leftArm.isLeft == true)
@@ -150,7 +152,7 @@ public class SetUpArm : MonoBehaviour
                 GameObject newProjectile = Instantiate(currentProjectileObject, leftArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
                 ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
                 pb.character = this;
-                newProjectile.tag = "Projectile";
+                newProjectile.tag = "Bullet";
             }
         }
         else if (Input.GetKeyUp(KeyCode.Q) && leftArm.isLeft == true)
@@ -179,7 +181,7 @@ public class SetUpArm : MonoBehaviour
                 GameObject newProjectile = Instantiate(currentProjectileObject, rightArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
                 ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
                 pb.character = this;
-                newProjectile.tag = "Projectile";
+                newProjectile.tag = "Bullet";
             }
         }
         else if (Input.GetKeyUp(KeyCode.E) && rightArm.isRight == true)

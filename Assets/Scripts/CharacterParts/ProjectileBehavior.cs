@@ -14,7 +14,8 @@ public class ProjectileBehavior : MonoBehaviour
     {
         projectileInstance = new Projectile();
         projectileInstance.position = character.ArmObject.transform.position;
-        projectileInstance.position += transform.forward;
+        projectileInstance.position += transform.forward * 4;
+        tag = "Bullet";
     }
 
     void Update()
