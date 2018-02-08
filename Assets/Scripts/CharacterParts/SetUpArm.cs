@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Need a different class name
+// Whole class may need to be redone due to setup   ***
 public class SetUpArm : MonoBehaviour
 {
 
@@ -30,24 +31,24 @@ public class SetUpArm : MonoBehaviour
     #endregion
 
 
-    //Very Temporary 
-    public GameObject currentProjectileObject;
     public Character currentCharacter;
-
     public List<GameObject> bodyPartList = new List<GameObject>();
 
     private Quaternion currentRotationSet;
 
     void Start()
     {
-        this.tag = "Character";
+        tag = "Character";
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
 
         setArm1 = currentCharacter.Left;
         setArm2 = currentCharacter.Right;
+        setLegs = currentCharacter.LegSet;
+        setHead = currentCharacter.HeadPiece;
 
         characterArmList.Add(setArm1);
         characterArmList.Add(setArm2);
+
         PositionCharacterParts();
     }
 
@@ -63,6 +64,8 @@ public class SetUpArm : MonoBehaviour
         PositionHead();
     }
 
+
+    // Position arms based on Arm objects given
     public void PositionArm()
     {
         for (int i = 0; i < 2; i++)
@@ -99,6 +102,7 @@ public class SetUpArm : MonoBehaviour
         }
     }
 
+    //  Position Legs based on given Legs object
     public void PositionLegs()
     {
         currentLegs = setLegs;
@@ -113,6 +117,7 @@ public class SetUpArm : MonoBehaviour
         bodyPartList.Add(LegsObject);
     }
 
+    //  Position head based on given Head object
     public void PositionHead()
     {
         currentHead = setHead;

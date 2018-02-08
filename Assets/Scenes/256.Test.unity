@@ -306,10 +306,10 @@ MonoBehaviour:
   characterArmList: []
   currentArm: {fileID: 0}
   ArmObject: {fileID: 0}
-  setLegs: {fileID: 11400000, guid: f681fd0b9f4b5ff4f9029f3b79d0081c, type: 2}
+  setLegs: {fileID: 0}
   currentLegs: {fileID: 0}
   LegsObject: {fileID: 0}
-  setHead: {fileID: 11400000, guid: befd195ba94e63249b8bce8b3696601a, type: 2}
+  setHead: {fileID: 0}
   currentHead: {fileID: 0}
   HeadObject: {fileID: 0}
   currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,
@@ -562,10 +562,10 @@ MonoBehaviour:
   characterArmList: []
   currentArm: {fileID: 0}
   ArmObject: {fileID: 0}
-  setLegs: {fileID: 11400000, guid: f681fd0b9f4b5ff4f9029f3b79d0081c, type: 2}
+  setLegs: {fileID: 0}
   currentLegs: {fileID: 0}
   LegsObject: {fileID: 0}
-  setHead: {fileID: 11400000, guid: befd195ba94e63249b8bce8b3696601a, type: 2}
+  setHead: {fileID: 0}
   currentHead: {fileID: 0}
   HeadObject: {fileID: 0}
   currentProjectileObject: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d,

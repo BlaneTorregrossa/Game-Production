@@ -9,6 +9,8 @@ public class Character : ScriptableObject
 
     public Arm Left;
     public Arm Right;
+    public Legs LegSet;
+    public Head HeadPiece;
     public string Name;
     public int Heath;
     public int DashCharges;

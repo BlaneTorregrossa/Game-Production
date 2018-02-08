@@ -61,13 +61,12 @@ public class CharacterBehaviour : MonoBehaviour
         ActiveProjectiles.Add(newProjectile);
     }
 
-    // Would change once we have actual animation
     public void BasicMelee()
     {
         GameObject attackBox = new GameObject();
         BoxCollider bc = attackBox.AddComponent<BoxCollider>();
-        attackBox.transform.parent = this.transform;
-        bc.transform.position = attackBox.transform.position + (transform.forward * 2);
+        attackBox.transform.parent = transform;
+        bc.transform.position = attackBox.transform.position + (transform.forward * 3);
         bc.transform.localScale = new Vector3(4.5f, 3f, 1f);
         ListBC.Add(bc);
     }
