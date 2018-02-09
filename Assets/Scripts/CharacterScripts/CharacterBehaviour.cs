@@ -7,10 +7,11 @@ public class CharacterBehaviour : MonoBehaviour
 
     public SetUpArm setupInstance;
     public GameObject currentProjectileObject;
+    public GameObject emptyAttackBox;
     public int Health;
 
-    private List<BoxCollider> ListBC;
-
+    // Very Temporary
+    private List<GameObject> attackObjectList = new List<GameObject>();
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class CharacterBehaviour : MonoBehaviour
         // for testing
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            BasicMelee();
+            BasicMelee(setupInstance.currentCharacter.Left);
         }
 
         // for testing
@@ -40,12 +41,15 @@ public class CharacterBehaviour : MonoBehaviour
 
         }
 
-        // for testing
+        // for testing 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            for (int i = 0; i < ListBC.Count; i++)
+            if(attackObjectList.Count > 0)
             {
-                Destroy(ListBC[i]);
+                for (int i = 0; i < attackObjectList.Count; i++)
+                {
+                    Destroy(attackObjectList[i]);
+                }
             }
         }
         #endregion
@@ -60,15 +64,15 @@ public class CharacterBehaviour : MonoBehaviour
         newProjectile.tag = "Bullet";
         ActiveProjectiles.Add(newProjectile);
     }
-
-    public void BasicMelee()
+    
+    public void BasicMelee(Arm currentArm)
     {
-        GameObject attackBox = new GameObject();
-        BoxCollider bc = attackBox.AddComponent<BoxCollider>();
-        attackBox.transform.parent = transform;
-        bc.transform.position = attackBox.transform.position + (transform.forward * 3);
-        bc.transform.localScale = new Vector3(4.5f, 3f, 1f);
-        ListBC.Add(bc);
+        GameObject newAttackBox = Instantiate(emptyAttackBox, currentArm.armPos + transform.forward * 2, transform.rotation);
+        BoxCollider newBoxCollider = newAttackBox.AddComponent<BoxCollider>();
+        newBoxCollider.size = new Vector3(3.5f, 4f, 2f);
+        newAttackBox.transform.parent = transform;
+        newAttackBox.tag = "Melee";
+        attackObjectList.Add(newAttackBox);
     }
 
     public void TakeDamage()
