@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// =*=
 public class CharacterBehaviour : MonoBehaviour
 {
-
-    public SetUpArm setupInstance;
+    public SetUpCharacter setupInstance;
     public GameObject currentProjectileObject;
     public GameObject emptyAttackBox;
     public int Health;
@@ -15,12 +16,12 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Start()
     {
-        setupInstance.currentCharacter.Heath = 100;
+        setupInstance.currentCharacter.Heatlh = 100;
     }
 
     void Update()
     {
-        Health = setupInstance.currentCharacter.Heath;
+        Health = setupInstance.currentCharacter.Heatlh;
 
         #region For Testing Attack Behaviors
         // for testing
@@ -42,7 +43,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
 
         // for testing 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             if(attackObjectList.Count > 0)
             {
@@ -65,11 +66,14 @@ public class CharacterBehaviour : MonoBehaviour
         ActiveProjectiles.Add(newProjectile);
     }
     
+    //  Changes once animations are given
+    //  Attack would stick with the animation
     public void BasicMelee(Arm currentArm)
     {
-        GameObject newAttackBox = Instantiate(emptyAttackBox, currentArm.armPos + transform.forward * 2, transform.rotation);
+        GameObject newAttackBox = Instantiate(emptyAttackBox, transform.position + transform.forward * 5, transform.rotation);
         BoxCollider newBoxCollider = newAttackBox.AddComponent<BoxCollider>();
-        newBoxCollider.size = new Vector3(3.5f, 4f, 2f);
+        newBoxCollider.size = new Vector3(7.5f, 4f, 2f);
+        newBoxCollider.isTrigger = true;
         newAttackBox.transform.parent = transform;
         newAttackBox.tag = "Melee";
         attackObjectList.Add(newAttackBox);
@@ -77,7 +81,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void TakeDamage()
     {
-        setupInstance.currentCharacter.Heath -= 10;
+        setupInstance.currentCharacter.Heatlh -= 10;
     }
 
     public void OnTriggerEnter(Collider other)

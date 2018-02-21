@@ -9,11 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54e52fa15540cb546bd39045380fcc79, type: 3}
-  m_Name: Player
+  m_Name: Opponent
   m_EditorClassIdentifier: 
   Left: {fileID: 11400000, guid: 8670d4074b1341e4d8609f6ac83795d0, type: 2}
-  Right: {fileID: 11400000, guid: 4598877384f346c4b8decbb9db36a2a7, type: 2}
-  Name: Player
+  Right: {fileID: 11400000, guid: d1f7c5090ad447e4e946d62f1f03d279, type: 2}
+  LegSet: {fileID: 0}
+  HeadPiece: {fileID: 0}
+  Name: Opponent
   Heath: 100
   DashCharges: 0
   Push: 3

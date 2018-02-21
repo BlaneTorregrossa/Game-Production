@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// =*=
 public class ProjectileBehavior : MonoBehaviour
 {
 
     public Projectile projectileInstance;
 
     // Very Temporary
-    public SetUpArm character;
+    public SetUpCharacter character;
 
     void Start()
     {

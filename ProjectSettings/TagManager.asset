@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - RangedArm
   - MeleeArm
+  - Projectile
+  - Melee
   layers:
   - Default
   - TransparentFX

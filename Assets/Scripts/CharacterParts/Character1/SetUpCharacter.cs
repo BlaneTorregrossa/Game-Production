@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Need a different class name
-// Whole class may need to be redone due to setup   ***
-public class SetUpArm : MonoBehaviour
+// =*=
+// Class may need to be redone a bit  ***
+public class SetUpCharacter : MonoBehaviour
 {
 
     #region Arms
@@ -50,6 +50,8 @@ public class SetUpArm : MonoBehaviour
         characterArmList.Add(setArm2);
 
         PositionCharacterParts();
+        if (currentCharacter.Display != true)
+            transform.position = new Vector3(0, 5, transform.position.z);
     }
 
     void Update()
