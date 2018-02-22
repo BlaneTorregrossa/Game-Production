@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a6a8a57cac86bd48abe8c8e6cad4bde, type: 3}
-  m_Name: Head1
+  m_Name: Head2
   m_EditorClassIdentifier: 
-  partName: Head A
-  description: This One uses a Sheild
+  partName: Head B
+  description: This one also uses a sheild. AMAZING!
   canUseSheild: 1
   createSheild: 0

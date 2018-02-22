@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Arm : ScriptableObject
 {
+    public string partName;
+    public string description;
     public bool isLeft;
     public bool isRight;
     public bool isMelee;

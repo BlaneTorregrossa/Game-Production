@@ -7,6 +7,8 @@ using UnityEngine;
 public class Legs : ScriptableObject
 {
 
+    public string partName;
+    public string description;
     public bool isBoost;
 
     public int DashCharges;

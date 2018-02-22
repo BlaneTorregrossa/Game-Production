@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a163c4e3d719a5428057a70541f0e37, type: 3}
+  m_Name: RightArm3
+  m_EditorClassIdentifier: 
+  partName: Melee Arm 2
+  description: Arm meant for slower, but stronger, punches.
+  isLeft: 0
+  isRight: 1
+  isMelee: 1
+  isRanged: 0
+  meleeDamage: 50
+  meleeAttackSpeed: 0.5
+  projectileDamage: 0
+  projectileSpeed: 0
+  armPos: {x: 0, y: 0, z: 0}
