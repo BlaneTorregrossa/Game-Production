@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 136357025670687860}
   - component: {fileID: 23401823882721982}
   - component: {fileID: 114273559811835574}
+  - component: {fileID: 114185924366421262}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Player
@@ -169,13 +170,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114273559811835574
+--- !u!114 &114185924366421262
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1798428227115628}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733a0ce972e0d74419a690514c7ecbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
+  Controller: {fileID: 11400000, guid: 81eea18735449e84093e815a87a566f9, type: 2}
+  Movement: {fileID: 0}
+--- !u!114 &114273559811835574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798428227115628}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d46651374f6c88e4faa34dc5beb20844, type: 3}
   m_Name: 

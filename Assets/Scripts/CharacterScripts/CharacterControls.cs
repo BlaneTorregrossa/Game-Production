@@ -10,23 +10,18 @@ public class CharacterControls : ScriptableObject
     public Vector3 dashDirection;
     public Vector3 lookDirection;
     
-    public void Move()
+    public void Move(float x, float z)
     {
-        var x = Input.GetAxis("Horizontal");
-        var z = Input.GetAxis("Vertical");
         moveDirection = new Vector3(x, 0, z);
     }
 
-    public void Dash()
+    public void Dash(float x, float z)
     {
-        var x = Input.GetAxis("Horizontal");
-        var z = Input.GetAxis("Vertical");
+        dashDirection = new Vector3(x, 0, z);
     }
 
-    public void Look()
+    public void Look(float x, float z)
     {
-        var x = Input.GetAxis("LookHorizontal");
-        var z = Input.GetAxis("LookVertical");
         lookDirection = new Vector3(x, 0, z);
     }
 }

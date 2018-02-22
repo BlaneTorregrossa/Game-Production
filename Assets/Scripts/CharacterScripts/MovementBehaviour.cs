@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MovementBehaviour : MonoBehaviour
 {
-    public Vector3 direction;
-    public Vector3 dashDirection;
-
     private float _acceleration;
     private float _velocity;
 
@@ -19,12 +16,18 @@ public class MovementBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     
     public Vector3 BasicMove(Vector3 d, float s)
     {
-        var m = d * s;
+        Vector3 m = d * s;
+        return m;
+    }
+
+    public Vector3 DashMove(Vector3 d, float ds)
+    {
+        Vector3 m = d * ds;
         return m;
     }
 }
