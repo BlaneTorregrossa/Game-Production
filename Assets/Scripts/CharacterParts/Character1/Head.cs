@@ -11,4 +11,6 @@ public class Head : ScriptableObject
     public bool canUseSheild;
 
     public bool createSheild;
+
+    public GameObject prefab;
 }

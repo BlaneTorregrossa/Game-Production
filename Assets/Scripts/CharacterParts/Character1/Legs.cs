@@ -14,5 +14,6 @@ public class Legs : ScriptableObject
     public int DashCharges;
     public float Speed;
     public float DashSpeed;
-	
+
+    public GameObject prefab;
 }

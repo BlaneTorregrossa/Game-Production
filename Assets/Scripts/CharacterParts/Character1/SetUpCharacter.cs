@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// =*=
-// Class may need to be redone a bit  ***
+// Class may need to be redone a bit
 public class SetUpCharacter : MonoBehaviour
 {
 
@@ -33,6 +32,7 @@ public class SetUpCharacter : MonoBehaviour
 
     public Character currentCharacter;
     public List<GameObject> bodyPartList = new List<GameObject>();
+    public List<GameObject> savedCharacter = new List<GameObject>();
 
     private Quaternion currentRotationSet;
 
@@ -46,17 +46,16 @@ public class SetUpCharacter : MonoBehaviour
         setLegs = currentCharacter.LegSet;
         setHead = currentCharacter.HeadPiece;
 
-        characterArmList.Add(setArm1);
-        characterArmList.Add(setArm2);
-
         PositionCharacterParts();
+
         if (currentCharacter.Display != true)
             transform.position = new Vector3(0, 5, transform.position.z);
+
     }
 
     void Update()
     {
-
+        
     }
 
     public void PositionCharacterParts()
@@ -64,6 +63,7 @@ public class SetUpCharacter : MonoBehaviour
         PositionArm();
         PositionLegs();
         PositionHead();
+        KeepCharacterSetup();
     }
 
 
@@ -76,10 +76,10 @@ public class SetUpCharacter : MonoBehaviour
 
             if (currentArm.isLeft)
             {
-                ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                GameObject LeftArm = Instantiate(currentArm.prefab);
                 ArmObject.transform.SetParent(transform);
-                ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
-                ArmObject.GetComponent<CapsuleCollider>().height = 2.5f;
+                ArmObject.transform.localScale = new Vector3(1, 1, 1);
+                ArmObject.GetComponent<CapsuleCollider>().height = 1;
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
                 ArmObject.transform.position = transform.position + new Vector3(-3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
@@ -90,10 +90,10 @@ public class SetUpCharacter : MonoBehaviour
 
             else if (currentArm.isRight)
             {
-                ArmObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                GameObject RightArm = Instantiate(currentArm.prefab);
                 ArmObject.transform.SetParent(transform);
-                ArmObject.transform.localScale = new Vector3(.75f, .75f, .75f);
-                ArmObject.GetComponent<CapsuleCollider>().height = 2.5f;
+                ArmObject.transform.localScale = new Vector3(1, 1, 1);
+                ArmObject.GetComponent<CapsuleCollider>().height = 1;
                 currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
                 ArmObject.transform.position = transform.position + new Vector3(3, 0, 0);
                 ArmObject.transform.rotation = currentRotationSet;
@@ -109,9 +109,9 @@ public class SetUpCharacter : MonoBehaviour
     {
         currentLegs = setLegs;
 
-        LegsObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameObject LegSet = Instantiate(currentLegs.prefab);
         LegsObject.transform.SetParent(transform);
-        LegsObject.transform.localScale = new Vector3(.75f, .75f, .75f);
+        LegsObject.transform.localScale = new Vector3(1, 1, 1);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
         LegsObject.transform.position = transform.position + new Vector3(0, -3f, 0);
         LegsObject.transform.rotation = currentRotationSet;
@@ -124,15 +124,29 @@ public class SetUpCharacter : MonoBehaviour
     {
         currentHead = setHead;
 
-        HeadObject = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+        GameObject HeadPiece = Instantiate(currentHead.prefab);
         HeadObject.transform.SetParent(transform);
-        HeadObject.transform.localScale = new Vector3(.5f, .5f, .5f);
+        HeadObject.transform.localScale = new Vector3(1, 1, 1);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
         HeadObject.transform.position = transform.position + new Vector3(0, 3f, 0);
         HeadObject.transform.rotation = currentRotationSet;
         LegsObject.tag = "Character";
         bodyPartList.Add(HeadObject);
-
     }
 
+    public void DestroyParts()
+    {
+        for (int i = 4; i >= bodyPartList.Count; i--)
+        {
+            Destroy(bodyPartList[i]);
+        }
+    }
+
+    // Keeping selected character for scene transition
+    public void KeepCharacterSetup()
+    {
+        DontDestroyOnLoad(this);
+        for (int i = 0; i < savedCharacter.Count; i++)
+            DontDestroyOnLoad(savedCharacter[i]);
+    }
 }
