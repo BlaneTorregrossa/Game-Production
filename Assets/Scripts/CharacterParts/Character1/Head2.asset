@@ -15,3 +15,4 @@ MonoBehaviour:
   description: This one also uses a sheild. AMAZING!
   canUseSheild: 1
   createSheild: 0
+  prefab: {fileID: 1318892551593166, guid: ca03db5559f09cf4389e8c0010a2ec3a, type: 2}

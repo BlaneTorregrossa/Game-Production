@@ -20,9 +20,6 @@ public class CharacterCustomization : MonoBehaviour
     public List<Arm> UnlockedRightArms;
     public List<Legs> UnlockedLegs;
     public List<Head> UnlockedHeads;
-    public List<Material> ArmTextureList;
-    public List<Material> HeadTextureList;
-    public List<Material> LegsTextureList; 
 
     private int LeftArmNum;
     private int RightArmNum;
@@ -79,6 +76,7 @@ public class CharacterCustomization : MonoBehaviour
 
     }
 
+    // Description is only being updated on each Button Click *
     #region Buttons
     public void NextLeftArm()
     {

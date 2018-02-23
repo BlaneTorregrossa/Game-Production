@@ -34,7 +34,7 @@ public class SetUpCharacter : MonoBehaviour
     public List<GameObject> bodyPartList = new List<GameObject>();
     public List<GameObject> savedCharacter = new List<GameObject>();
 
-    private Quaternion currentRotationSet;
+    private Quaternion currentRotationSet = new Quaternion(0, 0, 0, 0);
 
     void Start()
     {
@@ -58,6 +58,7 @@ public class SetUpCharacter : MonoBehaviour
         
     }
 
+    // Issues with the functions called here *
     public void PositionCharacterParts()
     {
         PositionArm();
@@ -76,7 +77,7 @@ public class SetUpCharacter : MonoBehaviour
 
             if (currentArm.isLeft)
             {
-                GameObject LeftArm = Instantiate(currentArm.prefab);
+                ArmObject = Instantiate(currentArm.prefab);
                 ArmObject.transform.SetParent(transform);
                 ArmObject.transform.localScale = new Vector3(1, 1, 1);
                 ArmObject.GetComponent<CapsuleCollider>().height = 1;
@@ -90,7 +91,7 @@ public class SetUpCharacter : MonoBehaviour
 
             else if (currentArm.isRight)
             {
-                GameObject RightArm = Instantiate(currentArm.prefab);
+                ArmObject = Instantiate(currentArm.prefab);
                 ArmObject.transform.SetParent(transform);
                 ArmObject.transform.localScale = new Vector3(1, 1, 1);
                 ArmObject.GetComponent<CapsuleCollider>().height = 1;
@@ -109,7 +110,7 @@ public class SetUpCharacter : MonoBehaviour
     {
         currentLegs = setLegs;
 
-        GameObject LegSet = Instantiate(currentLegs.prefab);
+        LegsObject = Instantiate(currentLegs.prefab);
         LegsObject.transform.SetParent(transform);
         LegsObject.transform.localScale = new Vector3(1, 1, 1);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
@@ -124,7 +125,7 @@ public class SetUpCharacter : MonoBehaviour
     {
         currentHead = setHead;
 
-        GameObject HeadPiece = Instantiate(currentHead.prefab);
+        HeadObject = Instantiate(currentHead.prefab);
         HeadObject.transform.SetParent(transform);
         HeadObject.transform.localScale = new Vector3(1, 1, 1);
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
