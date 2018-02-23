@@ -13,8 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Left: {fileID: 0}
   Right: {fileID: 0}
+  LegSet: {fileID: 0}
+  HeadPiece: {fileID: 0}
+  Display: 0
   Name: 
-  Heath: 100
+  Heatlh: 100
   DashCharges: 3
   Push: 3
   Speed: 0.5
