@@ -2107,7 +2107,7 @@ MonoBehaviour:
   setHead: {fileID: 0}
   currentHead: {fileID: 0}
   HeadObject: {fileID: 0}
-  currentCharacter: {fileID: 11400000, guid: 2132e7c27a3591d45a4a1f1aa522160c, type: 2}
+  currentCharacter: {fileID: 0}
   bodyPartList: []
 --- !u!23 &1373141832
 MeshRenderer:
@@ -3385,12 +3385,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e694052d1a2a2e4d8059c039aad6654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customizedCharacter: {fileID: 0}
+  CharacterA: {fileID: 1373141828}
   CurrentLeftArmText: {fileID: 1805424430}
   CurrentRightArmText: {fileID: 1773664297}
   CurrentLegsText: {fileID: 491237833}
   CurrentHeadText: {fileID: 182120676}
   PartDescriptionText: {fileID: 2005520019}
+  customizedCharacter: {fileID: 0}
   UnlockedLeftArms:
   - {fileID: 11400000, guid: eb807acb890ba554784b609ca408748f, type: 2}
   - {fileID: 11400000, guid: c664103e26f02b445807e489646b9b8a, type: 2}
@@ -3406,4 +3407,3 @@ MonoBehaviour:
   UnlockedHeads:
   - {fileID: 11400000, guid: 6aa1ddc824b2aa54bbee6227b175e366, type: 2}
   - {fileID: 11400000, guid: ce71dee3b189ad24f9fc636d4dc87611, type: 2}
-  CharacterA: {fileID: 1373141828}

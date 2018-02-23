@@ -8,19 +8,19 @@ public class CharacterCustomization : MonoBehaviour
 
     public static SetUpCharacter setupInstance;
 
-    public Character customizedCharacter = setupInstance.currentCharacter;
+    public GameObject CharacterA;
     public Text CurrentLeftArmText;
     public Text CurrentRightArmText;
     public Text CurrentLegsText;
     public Text CurrentHeadText;
     public Text PartDescriptionText;
+    public Character customizedCharacter = new Character();
 
     public List<Arm> UnlockedLeftArms = new List<Arm>();
     public List<Arm> UnlockedRightArms = new List<Arm>();
     public List<Legs> UnlockedLegs = new List<Legs>();
     public List<Head> UnlockedHeads = new List<Head>();
 
-    public GameObject CharacterA;
 
     private int LeftArmNum;
     private int RightArmNum;
