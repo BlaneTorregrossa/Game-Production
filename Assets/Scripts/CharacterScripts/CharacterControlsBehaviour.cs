@@ -8,7 +8,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public CharacterControls Controller;
 
     private GameObject _object;
-    private float _look;
     private bool _dashing;
 
 	// Use this for initialization
@@ -20,7 +19,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        
         if(!_dashing)
         {
             transform.position += Move() * Character.Speed;
@@ -29,6 +27,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         {
             transform.position += Dash() * Character.DashSpeed;
         }
+        transform.rotation = new Quaternion(0, Look(), 0, 1);
 	}
 
     Vector3 Move()
@@ -45,8 +44,12 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var d = new Vector3(x, 0, z);
         return d;
     }
-    float Look(float x, float z)
-    {
 
+    float Look()
+    {
+        var x = Input.GetAxis("LookHorizontal");
+        var z = Input.GetAxis("LookVertical");
+        var y = x + z;
+        return y;
     }
 }
