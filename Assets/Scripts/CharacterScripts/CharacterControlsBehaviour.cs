@@ -8,7 +8,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public CharacterControls Controller;
 
     private GameObject _object;
-    private Vector3 _look;
+    private float _look;
     private bool _dashing;
 
 	// Use this for initialization
@@ -45,5 +45,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var d = new Vector3(x, 0, z);
         return d;
     }
+    float Look(float x, float z)
+    {
 
+    }
 }
