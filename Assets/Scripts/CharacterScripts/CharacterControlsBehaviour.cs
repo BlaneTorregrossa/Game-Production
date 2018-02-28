@@ -25,7 +25,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         }
         else
         {
-            transform.position += Dash() * Character.DashSpeed;
+            transform.position += Move() * Character.DashSpeed;
         }
         transform.rotation = new Quaternion(0, Look(), 0, 1);
 	}
@@ -37,13 +37,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var m = new Vector3(x, 0, z);
         return m;
     }
-    Vector3 Dash()
-    {
-        var x = Input.GetAxis("Horizontal");
-        var z = Input.GetAxis("Vertical");
-        var d = new Vector3(x, 0, z);
-        return d;
-    }
 
     float Look()
     {
@@ -51,5 +44,20 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var z = Input.GetAxis("LookVertical");
         var y = x + z;
         return y;
+    }
+
+    void LeftArmAttack()
+    {
+
+    }
+
+    void RightArmAttack()
+    {
+
+    }
+
+    void HeadActivate()
+    {
+
     }
 }
