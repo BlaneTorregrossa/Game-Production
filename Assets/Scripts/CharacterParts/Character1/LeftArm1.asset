@@ -21,4 +21,5 @@ MonoBehaviour:
   meleeAttackSpeed: 1
   projectileDamage: 0
   projectileSpeed: 0
-  armPos: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 1408647308746066, guid: e13e1b6d84c6ecb44b9b75fd8177ab3f, type: 2}
+  armPos: {x: 4997, y: 0, z: -4981.44}

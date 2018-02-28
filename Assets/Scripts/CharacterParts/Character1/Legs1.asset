@@ -17,3 +17,4 @@ MonoBehaviour:
   DashCharges: 5
   Speed: 1
   DashSpeed: 3
+  prefab: {fileID: 1155747172809066, guid: dc156127dd0583f438586cacc0dd5742, type: 2}

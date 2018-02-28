@@ -18,5 +18,6 @@ public class Arm : ScriptableObject
     public int projectileDamage;
     public int projectileSpeed;
 
+    public GameObject prefab;
     public Vector3 armPos;
 }

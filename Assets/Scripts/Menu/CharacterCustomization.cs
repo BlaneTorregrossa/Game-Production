@@ -14,13 +14,12 @@ public class CharacterCustomization : MonoBehaviour
     public Text CurrentLegsText;
     public Text CurrentHeadText;
     public Text PartDescriptionText;
-    public Character customizedCharacter = new Character();
+    public Character customizedCharacter;
 
-    public List<Arm> UnlockedLeftArms = new List<Arm>();
-    public List<Arm> UnlockedRightArms = new List<Arm>();
-    public List<Legs> UnlockedLegs = new List<Legs>();
-    public List<Head> UnlockedHeads = new List<Head>();
-
+    public List<Arm> UnlockedLeftArms;
+    public List<Arm> UnlockedRightArms;
+    public List<Legs> UnlockedLegs;
+    public List<Head> UnlockedHeads;
 
     private int LeftArmNum;
     private int RightArmNum;
@@ -29,17 +28,26 @@ public class CharacterCustomization : MonoBehaviour
 
     void Start()
     {
+        setupInstance = CharacterA.AddComponent<SetUpCharacter>();
+
+        customizedCharacter = new Character
+        {
+            name = "Character A",
+            Name = "Character A",
+            Display = true
+        };
+
+        PartDescriptionText.text = "";
         LeftArmNum = 0;
         RightArmNum = 0;
         LegsNum = 0;
         HeadNum = 0;
-        customizedCharacter.Display = true;
-        setupInstance = CharacterA.AddComponent<SetUpCharacter>();
+        SetParts();
     }
 
     void Update()
     {
-        UpdateCharacter();
+        DontDestroyOnLoad(CharacterA);
     }
 
     public void SetParts()
@@ -49,24 +57,37 @@ public class CharacterCustomization : MonoBehaviour
         customizedCharacter.LegSet = UnlockedLegs[LegsNum];
         customizedCharacter.HeadPiece = UnlockedHeads[HeadNum];
         setupInstance.currentCharacter = customizedCharacter;
+
+        setupInstance.setArm1 = UnlockedLeftArms[LeftArmNum];
+        setupInstance.setArm2 = UnlockedRightArms[RightArmNum];
+        setupInstance.setLegs = UnlockedLegs[LegsNum];
+        setupInstance.setHead = UnlockedHeads[HeadNum];
+
+        if (setupInstance.characterArmList.Count <= 0)
+        {
+            setupInstance.characterArmList.Add(setupInstance.setArm1);
+            setupInstance.characterArmList.Add(setupInstance.setArm2);
+        }
+
+        CurrentLeftArmText.text = UnlockedLeftArms[LeftArmNum].partName;
+        CurrentRightArmText.text = UnlockedRightArms[RightArmNum].partName;
+        CurrentHeadText.text = UnlockedHeads[HeadNum].partName;
+        CurrentLegsText.text = UnlockedLegs[LegsNum].partName;
+
     }
 
-    public void UpdateCharacter()
-    {
-        SetParts();
-        setupInstance.PositionCharacterParts();
-
-    }
-
-
+    // Description is only being updated on each Button Click *
     #region Buttons
     public void NextLeftArm()
     {
-        if (LeftArmNum < UnlockedLeftArms.Count)
+        if (LeftArmNum <= UnlockedLeftArms.Count)
         {
             LeftArmNum++;
         }
         PartDescriptionText.text = UnlockedLeftArms[LeftArmNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void PrevLeftArm()
@@ -76,15 +97,21 @@ public class CharacterCustomization : MonoBehaviour
             LeftArmNum--;
         }
         PartDescriptionText.text = UnlockedLeftArms[LeftArmNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void NextRightArm()
     {
-        if (RightArmNum < UnlockedRightArms.Count)
+        if (RightArmNum <= UnlockedRightArms.Count)
         {
             RightArmNum++;
         }
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void PrevRightArm()
@@ -94,15 +121,21 @@ public class CharacterCustomization : MonoBehaviour
             RightArmNum--;
         }
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void NextLegs()
     {
-        if (LegsNum < UnlockedLegs.Count)
+        if (LegsNum <= UnlockedLegs.Count)
         {
             LegsNum++;
         }
         PartDescriptionText.text = UnlockedLegs[LegsNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void PrevLegs()
@@ -112,15 +145,21 @@ public class CharacterCustomization : MonoBehaviour
             LegsNum--;
         }
         PartDescriptionText.text = UnlockedLegs[LegsNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void NextHead()
     {
-        if (HeadNum < UnlockedHeads.Count)
+        if (HeadNum <= UnlockedHeads.Count)
         {
             HeadNum++;
         }
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
 
     public void PrevHead()
@@ -130,7 +169,9 @@ public class CharacterCustomization : MonoBehaviour
             HeadNum--;
         }
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
+        setupInstance.DestroyParts();
+        SetParts();
+        setupInstance.PositionCharacterParts();
     }
-
     #endregion
 }
