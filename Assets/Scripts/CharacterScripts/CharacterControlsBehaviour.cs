@@ -19,15 +19,25 @@ public class CharacterControlsBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if(!_dashing)
+        if(Input.GetButtonDown("LeftArm"))
         {
-            transform.position += Move() * Character.Speed;
+            LeftArmAttack();
         }
-        else
+        if(Input.GetButtonDown("RightArm"))
+        {
+            RightArmAttack();
+        }
+
+        if(_dashing)
         {
             transform.position += Move() * Character.DashSpeed;
         }
+        else
+        {
+            transform.position += Move() * Character.Speed;
+        }
         transform.rotation = new Quaternion(0, Look(), 0, 1);
+
 	}
 
     Vector3 Move()
@@ -48,16 +58,16 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     void LeftArmAttack()
     {
-
+        Debug.Log("Attacked with Left Arm!");
     }
 
     void RightArmAttack()
     {
-
+        Debug.Log("Attacked with Right Arm!");
     }
 
     void HeadActivate()
     {
-
+        Debug.Log("Used Head Ability!");
     }
 }
