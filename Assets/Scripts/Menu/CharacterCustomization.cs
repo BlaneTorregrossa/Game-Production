@@ -79,11 +79,10 @@ public class CharacterCustomization : MonoBehaviour
     #region Buttons
     public void NextLeftArm()
     {
-        if (LeftArmNum < UnlockedLeftArms.Count)
+        if (LeftArmNum < UnlockedLeftArms.Count - 1)
         {
             LeftArmNum++;
-            if (LeftArmNum > UnlockedLeftArms.Count)
-                LeftArmNum = UnlockedLeftArms.Count;
+            Debug.Log("LeftArmNum: " + LeftArmNum);
             setupInstance.characterArmList[0] = UnlockedLeftArms[LeftArmNum];
             SetParts();
             setupInstance.PositionCharacterParts();
@@ -98,8 +97,7 @@ public class CharacterCustomization : MonoBehaviour
         if (LeftArmNum > 0)
         {
             LeftArmNum--;
-            if (LeftArmNum < 0)
-                LeftArmNum = 0;
+            Debug.Log("LeftArmNum: " + LeftArmNum);
             setupInstance.characterArmList[0] = UnlockedLeftArms[LeftArmNum];
             SetParts();
             setupInstance.PositionCharacterParts();
@@ -111,11 +109,10 @@ public class CharacterCustomization : MonoBehaviour
 
     public void NextRightArm()
     {
-        if (RightArmNum < UnlockedRightArms.Count)
+        if (RightArmNum < UnlockedRightArms.Count - 1)
         {
             RightArmNum++;
-            if (RightArmNum > UnlockedRightArms.Count)
-                RightArmNum--;
+            Debug.Log("RightArmNum: " + RightArmNum);
             setupInstance.characterArmList[1] = UnlockedRightArms[RightArmNum];
             SetParts();
             setupInstance.PositionCharacterParts();
@@ -130,9 +127,7 @@ public class CharacterCustomization : MonoBehaviour
         if (RightArmNum > 0)
         {
             RightArmNum--;
-            if (RightArmNum < 0)
-                RightArmNum = 0;
-
+            Debug.Log("RightArmNum: " + RightArmNum);
             setupInstance.characterArmList[1] = UnlockedRightArms[RightArmNum];
             SetParts();
             setupInstance.PositionCharacterParts();
@@ -144,11 +139,10 @@ public class CharacterCustomization : MonoBehaviour
 
     public void NextLegs()
     {
-        if (LegsNum < UnlockedLegs.Count)
+        if (LegsNum < UnlockedLegs.Count - 1)
         {
             LegsNum++;
-            if (LegsNum > UnlockedLegs.Count)
-                LegsNum = UnlockedLegs.Count;
+            Debug.Log("LevsNum: " + LegsNum);
             SetParts();
             setupInstance.PositionCharacterParts();
         }
@@ -162,8 +156,7 @@ public class CharacterCustomization : MonoBehaviour
         if (LegsNum > 0)
         {
             LegsNum--;
-            if (LegsNum < 0)
-                LegsNum = 0;
+            Debug.Log("LegsNum: " + LegsNum);
             SetParts();
             setupInstance.PositionCharacterParts();
         }
@@ -174,11 +167,10 @@ public class CharacterCustomization : MonoBehaviour
 
     public void NextHead()
     {
-        if (HeadNum < UnlockedHeads.Count)
+        if (HeadNum < UnlockedHeads.Count - 1)
         {
             HeadNum++;
-            if (HeadNum > UnlockedHeads.Count)
-                LegsNum = UnlockedHeads.Count;
+            Debug.Log("HeadNum: " + HeadNum);
             SetParts();
             setupInstance.PositionCharacterParts();
         }
@@ -191,8 +183,7 @@ public class CharacterCustomization : MonoBehaviour
         if (HeadNum > 0)
         {
             HeadNum--;
-            if (HeadNum < 0)
-                HeadNum = 0;
+            Debug.Log("HeadNum: " + HeadNum);
             SetParts();
             setupInstance.PositionCharacterParts();
         }
