@@ -8,12 +8,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public CharacterControls Controllerconfig;
 
     private GameObject _object;
-    private bool _dashing;
+    public bool _dashing;
+    public int _dashtime;
 
 	// Use this for initialization
 	void Start ()
     {
-        _dashing = false;
+        _dashing = true;
+        _dashtime = 0;
 	}
     
     // Update is called once per frame
@@ -42,10 +44,15 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if(_dashing)
         {
             transform.position += Move() * Characterconfig.DashSpeed;
-            Debug.Log("Dashing");
+            Debug.Log("Dashed!");
+            _dashtime += 1;
+            if (_dashtime >= 60)
+            {
+                _dashing = false;
+                _dashtime = 0;
+            }
         }
-
-        else
+        if(!_dashing)
         {
             transform.position += Move() * Characterconfig.Speed;
         }
@@ -65,7 +72,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
     //Returns a float that is meant to represent the Y rotation of the character
     float Look()
     {
-        //Currently only looks in 180 degrees
+        //Problem: Currently only looks in 180 degrees
+        //Likely Cause: y most like always equal a total that brings it to the 180 degree range that it's currently looking in.
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
         var y = x + z;
