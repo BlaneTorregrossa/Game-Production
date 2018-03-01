@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23780695016592958}
   m_Layer: 0
   m_Name: TempArm3
-  m_TagString: Character
+  m_TagString: Character Part
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

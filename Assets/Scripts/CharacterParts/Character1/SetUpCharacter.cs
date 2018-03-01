@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 // Class may need to be redone a bit
 public class SetUpCharacter : MonoBehaviour
@@ -34,27 +35,37 @@ public class SetUpCharacter : MonoBehaviour
     #endregion
 
 
+    public static GetSpawn SpawnInstance;
+
     public Character currentCharacter;
     public Character savedCharacter = null;
     public List<GameObject> bodyPartList = new List<GameObject>();
     public List<GameObject> savedCharacterParts = null;
+    public GameObject CurrentCharacterBody;
+    public GameObject SavedCharacterBody = null;
+
 
     private Quaternion currentRotationSet = new Quaternion(0, 0, 0, 0);
     private GameObject blank;
 
     void Start()
     {
+        CurrentCharacterBody = new GameObject();
+        SpawnInstance = GetComponent<GetSpawn>();
 
-        // do not remove
+        #region Bad
         for (int b = 0; b < 4; b++)
             bodyPartList.Add(blank);
 
-        // do not remove
+
         for (int t = 0; t < 4; t++)
             Destroy(bodyPartList[t]);
+        #endregion
 
         if (savedCharacter != null && savedCharacterParts != null)
         {
+            SpawnInstance.MoveSpawnToArena();
+            SpawnInstance.moveToSpawn();
             currentCharacter = savedCharacter;
             bodyPartList = savedCharacterParts;
             currentCharacter.name = "Character A";
@@ -62,6 +73,8 @@ public class SetUpCharacter : MonoBehaviour
 
         else
         {
+            SpawnInstance.MoveSpawnToCustomization();
+            SpawnInstance.moveToSpawn();
             tag = "Character";
             currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
 
@@ -81,7 +94,7 @@ public class SetUpCharacter : MonoBehaviour
 
     void Update()
     {
-
+        CurrentCharacterBody = gameObject;
     }
 
     // Attach points (center) for customizable parts
@@ -118,7 +131,7 @@ public class SetUpCharacter : MonoBehaviour
         PositionArm();
         PositionLegs();
         PositionHead();
-        KeepCharacterSetup();   // Not Tested
+        KeepCharacterSetup();
     }
 
 
@@ -139,7 +152,7 @@ public class SetUpCharacter : MonoBehaviour
                 ArmObject.transform.position = ArmAttachLeft.transform.position;
                 ArmObject.transform.rotation = currentRotationSet;
                 currentArm.armPos = ArmObject.transform.position;
-                ArmObject.tag = "Character";
+                ArmObject.tag = "Character Part";
                 if (bodyPartList[0] != null)
                 {
                     Destroy(bodyPartList[0]);
@@ -161,7 +174,7 @@ public class SetUpCharacter : MonoBehaviour
                 ArmObject.transform.position = ArmAttachRight.transform.position;
                 ArmObject.transform.rotation = currentRotationSet;
                 currentArm.armPos = ArmObject.transform.position;
-                ArmObject.tag = "Character";
+                ArmObject.tag = "Character Part";
                 if (bodyPartList[1] != null)
                 {
                     Destroy(bodyPartList[1]);
@@ -186,7 +199,7 @@ public class SetUpCharacter : MonoBehaviour
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
         LegsObject.transform.position = LegsAttach.transform.position;
         LegsObject.transform.rotation = currentRotationSet;
-        LegsObject.tag = "Character";
+        LegsObject.tag = "Character Part";
         if (bodyPartList[2] != null)
         {
             Destroy(bodyPartList[2]);
@@ -210,7 +223,7 @@ public class SetUpCharacter : MonoBehaviour
         currentRotationSet.eulerAngles = new Vector3(0, 0, 0);
         HeadObject.transform.position = HeadAttach.transform.position;
         HeadObject.transform.rotation = currentRotationSet;
-        LegsObject.tag = "Character";
+        HeadObject.tag = "Character Part";
         if (bodyPartList[3] != null)
         {
             Destroy(bodyPartList[3]);
@@ -223,9 +236,12 @@ public class SetUpCharacter : MonoBehaviour
 
     }
 
-    // Keeping selected character for scene transition  (Not Tested)
+    // Keeping selected character for scene transition
     public void KeepCharacterSetup()
     {
+        SavedCharacterBody = PrefabUtility.CreatePrefab(
+            "Assets/Prefabs/SavedCharacters/CharacterA.prefab",
+            CurrentCharacterBody);
         savedCharacter = currentCharacter;
         savedCharacterParts = bodyPartList;
 
@@ -233,5 +249,7 @@ public class SetUpCharacter : MonoBehaviour
         DontDestroyOnLoad(savedCharacter);
         for (int i = 0; i < savedCharacterParts.Count; i++)
             DontDestroyOnLoad(savedCharacterParts[i]);
+
+
     }
 }

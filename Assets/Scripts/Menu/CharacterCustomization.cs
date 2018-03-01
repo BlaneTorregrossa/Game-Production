@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterCustomization : MonoBehaviour
 {
@@ -72,11 +73,10 @@ public class CharacterCustomization : MonoBehaviour
         CurrentRightArmText.text = UnlockedRightArms[RightArmNum].partName;
         CurrentHeadText.text = UnlockedHeads[HeadNum].partName;
         CurrentLegsText.text = UnlockedLegs[LegsNum].partName;
-
     }
 
     // Buttons for switching parts + changes description
-    #region Buttons
+        #region Buttons
     public void NextLeftArm()
     {
         if (LeftArmNum < UnlockedLeftArms.Count - 1)
@@ -102,7 +102,7 @@ public class CharacterCustomization : MonoBehaviour
             SetParts();
             setupInstance.PositionCharacterParts();
         }
-
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedLeftArms[LeftArmNum].description;
 
     }
@@ -117,7 +117,7 @@ public class CharacterCustomization : MonoBehaviour
             SetParts();
             setupInstance.PositionCharacterParts();
         }
-
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
 
     }
@@ -132,7 +132,7 @@ public class CharacterCustomization : MonoBehaviour
             SetParts();
             setupInstance.PositionCharacterParts();
         }
-
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
 
     }
@@ -146,7 +146,7 @@ public class CharacterCustomization : MonoBehaviour
             SetParts();
             setupInstance.PositionCharacterParts();
         }
-
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedLegs[LegsNum].description;
 
     }
@@ -160,7 +160,7 @@ public class CharacterCustomization : MonoBehaviour
             SetParts();
             setupInstance.PositionCharacterParts();
         }
-
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedLegs[LegsNum].description;
 
     }
@@ -175,6 +175,7 @@ public class CharacterCustomization : MonoBehaviour
             setupInstance.PositionCharacterParts();
         }
 
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
     }
 
@@ -187,8 +188,14 @@ public class CharacterCustomization : MonoBehaviour
             SetParts();
             setupInstance.PositionCharacterParts();
         }
-
+        setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
+    }
+
+    public void SwitchScene()
+    {
+        setupInstance.KeepCharacterSetup();
+        SceneManager.LoadScene("258.TransitionTest");
     }
     #endregion
 
