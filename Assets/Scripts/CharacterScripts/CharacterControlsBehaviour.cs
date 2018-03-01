@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CharacterControlsBehaviour : MonoBehaviour
 {
-    public Character Character;
-    public CharacterControls Controller;
+    public Character Characterconfig;
+    public CharacterControls Controllerconfig;
 
     private GameObject _object;
     private bool _dashing;
@@ -23,25 +23,36 @@ public class CharacterControlsBehaviour : MonoBehaviour
         {
             LeftArmAttack();
         }
+
         if(Input.GetButtonDown("RightArm"))
         {
             RightArmAttack();
         }
+
         if(Input.GetButtonDown("Head"))
         {
             HeadActivate();
         }
+
+        if(Input.GetButtonDown("Dash"))
+        {
+            _dashing = true;
+        }
+
         if(_dashing)
         {
-            transform.position += Move() * Character.DashSpeed;
+            transform.position += Move() * Characterconfig.DashSpeed;
         }
+
         else
         {
-            transform.position += Move() * Character.Speed;
+            transform.position += Move() * Characterconfig.Speed;
         }
+
         transform.rotation = new Quaternion(0, Look(), 0, 1);
 	}
 
+    //Returns a 3D Vector based axis returned by the analog stick/WASD keys
     Vector3 Move()
     {
         var x = Input.GetAxis("Horizontal");
@@ -50,24 +61,29 @@ public class CharacterControlsBehaviour : MonoBehaviour
         return m;
     }
 
+    //Returns a float that is meant to represent the Y rotation of the character
     float Look()
     {
+        //Currently only looks in 180 degrees
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
         var y = x + z;
         return y;
     }
 
+    //Performs the Left Arm Attack when called
     void LeftArmAttack()
     {
         Debug.Log("Attacked with Left Arm!");
     }
 
+    //Performs the Right Arm Attack when called
     void RightArmAttack()
     {
         Debug.Log("Attacked with Right Arm!");
     }
 
+    //Performs the Head ability when called
     void HeadActivate()
     {
         Debug.Log("Used Head Ability!");
