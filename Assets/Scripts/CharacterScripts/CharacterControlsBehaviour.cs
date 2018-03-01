@@ -42,6 +42,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if(_dashing)
         {
             transform.position += Move() * Characterconfig.DashSpeed;
+            Debug.Log("Dashing");
         }
 
         else
