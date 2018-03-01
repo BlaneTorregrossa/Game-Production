@@ -45,11 +45,11 @@ public class SetUpCharacter : MonoBehaviour
     void Start()
     {
 
-        // why
+        // do not remove
         for (int b = 0; b < 4; b++)
             bodyPartList.Add(blank);
 
-        // why
+        // do not remove
         for (int t = 0; t < 4; t++)
             Destroy(bodyPartList[t]);
 
@@ -84,7 +84,7 @@ public class SetUpCharacter : MonoBehaviour
 
     }
 
-    // Temporary until models are ready
+    // Attach points (center) for customizable parts
     public void setUpTempAttachPoints()
     {
         ArmAttachLeft = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -112,13 +112,13 @@ public class SetUpCharacter : MonoBehaviour
         Destroy(HeadAttach.GetComponent<BoxCollider>());
     }
 
-    // Issues with the functions called here *
+    // Issues with the functions called here
     public void PositionCharacterParts()
     {
         PositionArm();
         PositionLegs();
         PositionHead();
-        KeepCharacterSetup();
+        KeepCharacterSetup();   // Not Tested
     }
 
 
@@ -223,11 +223,12 @@ public class SetUpCharacter : MonoBehaviour
 
     }
 
-    // Keeping selected character for scene transition
+    // Keeping selected character for scene transition  (Not Tested)
     public void KeepCharacterSetup()
     {
         savedCharacter = currentCharacter;
         savedCharacterParts = bodyPartList;
+
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(savedCharacter);
         for (int i = 0; i < savedCharacterParts.Count; i++)
