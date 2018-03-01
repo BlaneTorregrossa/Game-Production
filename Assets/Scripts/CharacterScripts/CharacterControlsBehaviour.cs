@@ -27,7 +27,10 @@ public class CharacterControlsBehaviour : MonoBehaviour
         {
             RightArmAttack();
         }
-
+        if(Input.GetButtonDown("Head"))
+        {
+            HeadActivate();
+        }
         if(_dashing)
         {
             transform.position += Move() * Character.DashSpeed;
@@ -37,7 +40,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
             transform.position += Move() * Character.Speed;
         }
         transform.rotation = new Quaternion(0, Look(), 0, 1);
-
 	}
 
     Vector3 Move()
