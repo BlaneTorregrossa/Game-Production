@@ -14,7 +14,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        _dashing = true;
+        _dashing = false;
         _dashtime = 0;
 	}
     
@@ -44,13 +44,13 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if(_dashing)
         {
             transform.position += Move() * Characterconfig.DashSpeed;
-            Debug.Log("Dashed!");
-            _dashtime += 1;
-            if (_dashtime >= 60)
-            {
-                _dashing = false;
-                _dashtime = 0;
-            }
+            //Debug.Log("Dashed!");
+            //_dashtime += 1;
+            //if (_dashtime >= 60)
+            //{
+            //    _dashing = false;
+            //    _dashtime = 0;
+            //}
         }
         if(!_dashing)
         {

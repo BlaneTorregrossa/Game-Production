@@ -180,8 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733a0ce972e0d74419a690514c7ecbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Character: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
-  Controller: {fileID: 11400000, guid: 81eea18735449e84093e815a87a566f9, type: 2}
+  Characterconfig: {fileID: 11400000, guid: 2132e7c27a3591d45a4a1f1aa522160c, type: 2}
+  Controllerconfig: {fileID: 11400000, guid: 81eea18735449e84093e815a87a566f9, type: 2}
+  _dashing: 0
+  _dashtime: 0
 --- !u!136 &136357025670687860
 CapsuleCollider:
   m_ObjectHideFlags: 1
