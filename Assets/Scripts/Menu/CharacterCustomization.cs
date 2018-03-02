@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// * is for potential refactor
+
 public class CharacterCustomization : MonoBehaviour
 {
 
@@ -75,7 +77,8 @@ public class CharacterCustomization : MonoBehaviour
         CurrentLegsText.text = UnlockedLegs[LegsNum].partName;
     }
 
-    // Buttons for switching parts + changes description
+    //  *
+    //  Buttons for switching parts + changing description
         #region Buttons
     public void NextLeftArm()
     {
@@ -190,12 +193,6 @@ public class CharacterCustomization : MonoBehaviour
         }
         setupInstance.KeepCharacterSetup();
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
-    }
-
-    public void SwitchScene()
-    {
-        setupInstance.KeepCharacterSetup();
-        SceneManager.LoadScene("258.TransitionTest");
     }
     #endregion
 

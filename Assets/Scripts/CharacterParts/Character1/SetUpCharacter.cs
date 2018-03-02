@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// * = suspected to be refactored
+
 // Class may need to be redone a bit
 public class SetUpCharacter : MonoBehaviour
 {
@@ -35,7 +37,7 @@ public class SetUpCharacter : MonoBehaviour
     #endregion
 
 
-    public static GetSpawn SpawnInstance;
+    public static GetSpawn SpawnInstance;   // *
 
     public Character currentCharacter;
     public Character savedCharacter = null;
@@ -46,21 +48,20 @@ public class SetUpCharacter : MonoBehaviour
 
 
     private Quaternion currentRotationSet = new Quaternion(0, 0, 0, 0);
-    private GameObject blank;
+    private GameObject blank;   //  *
 
     void Start()
     {
         CurrentCharacterBody = new GameObject();
         SpawnInstance = GetComponent<GetSpawn>();
 
-        #region Bad
+        //  *
         for (int b = 0; b < 4; b++)
             bodyPartList.Add(blank);
 
-
+        //  *
         for (int t = 0; t < 4; t++)
             Destroy(bodyPartList[t]);
-        #endregion
 
         if (savedCharacter != null && savedCharacterParts != null)
         {
@@ -86,6 +87,7 @@ public class SetUpCharacter : MonoBehaviour
             setUpTempAttachPoints();
             PositionCharacterParts();
 
+            // *
             if (currentCharacter.Display != true)
                 transform.position = new Vector3(0, 5, transform.position.z);
         }
@@ -97,7 +99,8 @@ public class SetUpCharacter : MonoBehaviour
         CurrentCharacterBody = gameObject;
     }
 
-    // Attach points (center) for customizable parts
+    //  *
+    // Attach points for customizable parts
     public void setUpTempAttachPoints()
     {
         ArmAttachLeft = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -125,6 +128,7 @@ public class SetUpCharacter : MonoBehaviour
         Destroy(HeadAttach.GetComponent<BoxCollider>());
     }
 
+    //  *
     // Issues with the functions called here
     public void PositionCharacterParts()
     {
@@ -135,6 +139,7 @@ public class SetUpCharacter : MonoBehaviour
     }
 
 
+    //  *
     // Position arms based on Arm objects given
     public void PositionArm()
     {
@@ -188,6 +193,7 @@ public class SetUpCharacter : MonoBehaviour
         }
     }
 
+    //  *
     //  Position Legs based on given Legs object
     public void PositionLegs()
     {
@@ -212,6 +218,7 @@ public class SetUpCharacter : MonoBehaviour
 
     }
 
+    //  *
     //  Position head based on given Head object
     public void PositionHead()
     {
@@ -236,7 +243,8 @@ public class SetUpCharacter : MonoBehaviour
 
     }
 
-    // Keeping selected character for scene transition
+    //  *
+    //  Keeping selected character for scene transition
     public void KeepCharacterSetup()
     {
         SavedCharacterBody = PrefabUtility.CreatePrefab(

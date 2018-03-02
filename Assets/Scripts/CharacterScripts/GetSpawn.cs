@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// whole class needs a refactor
 public class GetSpawn : MonoBehaviour
 {
     public GameObject SpawnPoint;
