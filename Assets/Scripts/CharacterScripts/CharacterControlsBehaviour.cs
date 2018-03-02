@@ -45,12 +45,12 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if (_dashing)
         {
             transform.position += Move(Characterconfig.DashSpeed);
-            Debug.Log("Dashed!");
             _dashtime += 1;
-            if (_dashtime >= 60)
+            if (_dashtime >= 30)
             {
                 _dashing = false;
                 _dashtime = 0;
+                Debug.Log("Stopped Dashing!");
             }
         }
         transform.position += Move(Characterconfig.Speed);
