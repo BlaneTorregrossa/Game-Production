@@ -11,61 +11,58 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public bool _dashing;
     public int _dashtime;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         _dashing = false;
         _dashtime = 0;
-	}
-    
+    }
+
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if(Input.GetButtonDown("LeftArm"))
+        if (Input.GetButtonDown("LeftArm"))
         {
             LeftArmAttack();
         }
 
-        if(Input.GetButtonDown("RightArm"))
+        if (Input.GetButtonDown("RightArm"))
         {
             RightArmAttack();
         }
 
-        if(Input.GetButtonDown("Head"))
+        if (Input.GetButtonDown("Head"))
         {
             HeadActivate();
         }
 
-        if(Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash"))
         {
             _dashing = true;
+            Debug.Log("Dash!");
         }
 
-        if(_dashing)
+        if (_dashing)
         {
-            transform.position += Move() * Characterconfig.DashSpeed;
-            //Debug.Log("Dashed!");
-            //_dashtime += 1;
-            //if (_dashtime >= 60)
-            //{
-            //    _dashing = false;
-            //    _dashtime = 0;
-            //}
+            transform.position += Move(Characterconfig.DashSpeed);
+            Debug.Log("Dashed!");
+            _dashtime += 1;
+            if (_dashtime >= 60)
+            {
+                _dashing = false;
+                _dashtime = 0;
+            }
         }
-        if(!_dashing)
-        {
-            transform.position += Move() * Characterconfig.Speed;
-        }
-
+        transform.position += Move(Characterconfig.Speed);
         transform.rotation = new Quaternion(0, Look(), 0, 1);
-	}
+    }
 
     //Returns a 3D Vector based axis returned by the analog stick/WASD keys
-    Vector3 Move()
+    Vector3 Move(float s)
     {
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
-        var m = new Vector3(x, 0, z);
+        var m = new Vector3(x, 0, z) * s;
         return m;
     }
 
