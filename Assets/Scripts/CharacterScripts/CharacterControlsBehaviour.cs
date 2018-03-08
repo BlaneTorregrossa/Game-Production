@@ -73,7 +73,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         //Likely Cause: y most like always equal a total that brings it to the 180 degree range that it's currently looking in.
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
-        var y = x + z;
+        var y = ;
         
         //y = 0;
         return y;
