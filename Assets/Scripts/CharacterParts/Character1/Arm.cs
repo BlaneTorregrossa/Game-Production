@@ -20,4 +20,5 @@ public class Arm : ScriptableObject
 
     public GameObject prefab;
     public Vector3 armPos;
+    public Quaternion armRotation;
 }

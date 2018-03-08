@@ -13,4 +13,6 @@ public class Head : ScriptableObject
     public bool createSheild;
 
     public GameObject prefab;
+    public GameObject headPos;
+    public Quaternion headRotation;
 }

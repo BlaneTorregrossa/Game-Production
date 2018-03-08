@@ -6,7 +6,7 @@ using UnityEngine;
 // =*=
 public class CharacterBehaviour : MonoBehaviour
 {
-    public SetUpCharacter setupInstance;
+    public SetUpCharacterBehaviour setupInstance;
     public GameObject currentProjectileObject;
     public GameObject emptyAttackBox;
     public int Health;
@@ -16,24 +16,24 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Start()
     {
-        setupInstance.currentCharacter.Heatlh = 100;
+        setupInstance.CurrentCharacter.Heatlh = 100;
     }
 
     void Update()
     {
-        Health = setupInstance.currentCharacter.Heatlh;
+        Health = setupInstance.CurrentCharacter.Heatlh;
 
         #region For Testing Attack Behaviors
         // for testing
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ShootBasicProjectile(setupInstance.currentCharacter.Right);
+            ShootBasicProjectile(setupInstance.CurrentCharacter.Right);
         }
 
         // for testing
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            BasicMelee(setupInstance.currentCharacter.Left);
+            BasicMelee(setupInstance.CurrentCharacter.Left);
         }
 
         // for testing
@@ -81,7 +81,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void TakeDamage()
     {
-        setupInstance.currentCharacter.Heatlh -= 10;
+        setupInstance.CurrentCharacter.Heatlh -= 10;
     }
 
     public void OnTriggerEnter(Collider other)
