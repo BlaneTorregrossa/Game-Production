@@ -18,4 +18,5 @@ public class Legs : ScriptableObject
     public GameObject prefab;
     public Vector3 legsPos;
     public Quaternion legsRotation;
+    public SetUpCharacterBehaviour.RobotParts partType;
 }

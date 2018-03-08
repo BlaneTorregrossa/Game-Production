@@ -18,3 +18,6 @@ MonoBehaviour:
   Speed: 1.5
   DashSpeed: 1
   prefab: {fileID: 1155747172809066, guid: b3400dce3a7c85e47b1233c6ad0cd795, type: 2}
+  legsPos: {x: 0, y: 0, z: 0}
+  legsRotation: {x: 0, y: 0, z: 0, w: 0}
+  partType: 2

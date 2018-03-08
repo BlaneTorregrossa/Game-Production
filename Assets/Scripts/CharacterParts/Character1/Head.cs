@@ -15,4 +15,5 @@ public class Head : ScriptableObject
     public GameObject prefab;
     public GameObject headPos;
     public Quaternion headRotation;
+    public SetUpCharacterBehaviour.RobotParts partType;
 }

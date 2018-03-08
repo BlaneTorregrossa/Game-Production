@@ -23,3 +23,5 @@ MonoBehaviour:
   projectileSpeed: 2
   prefab: {fileID: 1408647308746066, guid: c526edc392dcccd4da376fc8931b7d0c, type: 2}
   armPos: {x: 0, y: 0, z: 0}
+  armRotation: {x: 0, y: 0, z: 0, w: 0}
+  partType: 1
