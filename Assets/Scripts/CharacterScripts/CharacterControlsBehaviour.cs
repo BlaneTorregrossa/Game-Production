@@ -74,6 +74,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
         var y = x + z;
+        
+        //y = 0;
         return y;
     }
 
