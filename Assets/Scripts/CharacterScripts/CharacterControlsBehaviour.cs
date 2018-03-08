@@ -54,7 +54,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
         }
         transform.position += Move(Characterconfig.Speed);
-        transform.rotation = new Quaternion(0, Look(), 0, 1);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(Look()), Time.deltaTime);
     }
 
     //Returns a 3D Vector based axis returned by the analog stick/WASD keys
@@ -67,16 +67,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
     }
 
     //Returns a float that is meant to represent the Y rotation of the character
-    float Look()
+    Vector3 Look()
     {
         //Problem: Currently only looks in 180 degrees
         //Likely Cause: y most like always equal a total that brings it to the 180 degree range that it's currently looking in.
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
-        var y = ;
-        
-        //y = 0;
-        return y;
+        var r = new Vector3(x, 0, z);
+        return r.normalized;
     }
 
     //Performs the Left Arm Attack when called
