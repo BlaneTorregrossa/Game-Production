@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//  build the parts in the robot space. 
+//  Take the character scriptable and build the robot by referencing the individual objects.
+
 public class CharacterCustomizationBehaviour : MonoBehaviour
 {
     public static SetUpCharacterBehaviour SetupInstance;    //  Instance of character setup
@@ -76,7 +79,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             HeadNum++;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetHead, SetupInstance.SetHead.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.HeadAttach.transform.position, SetUpCharacterBehaviour.RobotParts.HEAD);
+                SetupInstance.HeadAttach.transform.localPosition, SetUpCharacterBehaviour.RobotParts.HEAD);
         }
         
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
@@ -91,7 +94,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             HeadNum--;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetHead, SetupInstance.SetHead.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.HeadAttach.transform.position, SetUpCharacterBehaviour.RobotParts.HEAD);
+                SetupInstance.HeadAttach.transform.localPosition, SetUpCharacterBehaviour.RobotParts.HEAD);
         }
         
         PartDescriptionText.text = UnlockedHeads[HeadNum].description;
@@ -106,7 +109,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             LeftArmNum++;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetArmA, SetupInstance.SetArmA.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.ArmAttachLeft.transform.position, SetUpCharacterBehaviour.RobotParts.LEFTARM);
+                SetupInstance.ArmAttachLeft.transform.localPosition, SetUpCharacterBehaviour.RobotParts.LEFTARM);
         }
         
         PartDescriptionText.text = UnlockedLeftArms[LeftArmNum].description;
@@ -121,7 +124,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             LeftArmNum--;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetArmA ,SetupInstance.SetArmA.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.ArmAttachLeft.transform.position, SetUpCharacterBehaviour.RobotParts.LEFTARM);
+                SetupInstance.ArmAttachLeft.transform.localPosition, SetUpCharacterBehaviour.RobotParts.LEFTARM);
         }
         
         PartDescriptionText.text = UnlockedLeftArms[LeftArmNum].description;
@@ -136,7 +139,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             LegsNum++;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetLegs, SetupInstance.SetLegs.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.LegsAttach.transform.position, SetUpCharacterBehaviour.RobotParts.LEGS);
+                SetupInstance.LegsAttach.transform.localPosition, SetUpCharacterBehaviour.RobotParts.LEGS);
         }
         
         PartDescriptionText.text = UnlockedLegs[LegsNum].description;
@@ -151,7 +154,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             LegsNum--;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetLegs, SetupInstance.SetLegs.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.LegsAttach.transform.position, SetUpCharacterBehaviour.RobotParts.LEGS);
+                SetupInstance.LegsAttach.transform.localPosition, SetUpCharacterBehaviour.RobotParts.LEGS);
         }
         
         PartDescriptionText.text = UnlockedLegs[LegsNum].description;
@@ -165,7 +168,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             RightArmNum++;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetArmB, SetupInstance.SetArmB.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.ArmAttachRight.transform.position, SetUpCharacterBehaviour.RobotParts.RIGHTARM);
+                SetupInstance.ArmAttachRight.transform.localPosition, SetUpCharacterBehaviour.RobotParts.RIGHTARM);
         }
         
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
@@ -180,12 +183,19 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
             RightArmNum--;
             SetParts();
             SetupInstance.GetPart(SetupInstance.SetArmB, SetupInstance.SetArmB.prefab, Vector3.one, Vector3.zero,
-                SetupInstance.ArmAttachRight.transform.position, SetUpCharacterBehaviour.RobotParts.RIGHTARM);
+                SetupInstance.ArmAttachRight.transform.localPosition, SetUpCharacterBehaviour.RobotParts.RIGHTARM);
         }
         
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
         CurrentRightArmText.text = UnlockedRightArms[RightArmNum].partName;
         SetupInstance.CheckParts();
+    }
+
+    //  ***
+    // For bringing the character given to the "target range" area
+    public void BringToTargetRange()
+    {
+
     }
     #endregion
 }

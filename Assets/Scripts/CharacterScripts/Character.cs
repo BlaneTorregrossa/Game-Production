@@ -10,11 +10,10 @@ public class Character : ScriptableObject
     public Part Right;
     public Part LegSet;
     public Part HeadPiece;
-    public bool Display;
+    public List<Part> CharacterParts;
     public string Name;
     public int Heatlh;
     public int DashCharges;
-    public int Push;
     public float Speed;
     public float DashSpeed;
 }
