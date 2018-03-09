@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+
 
 public class SetUpCharacterBehaviour : MonoBehaviour
 {
@@ -15,38 +15,37 @@ public class SetUpCharacterBehaviour : MonoBehaviour
         RIGHTARM = 3
     }
 
-    #region Arms
+    #region Parts
     public Arm SetArmA;  // Arm 
     public Arm SetArmB;  // Arm 
+    public Legs SetLegs;    // Legs scriptable object for character
+    public Head SetHead;    // Head scriptable object for character
     public GameObject ArmAttachLeft;    // Gameobject for left arm attachment point
     public GameObject ArmAttachRight;   // Gameobject for right arm attachment point
-    #endregion
-    #region Legs
-    public Legs SetLegs;    // Legs scriptable object for character
     public GameObject LegsAttach;   // Attach point for the legs gameobject
-    #endregion
-    #region Head
-    public Head SetHead;    // Head scriptable object for character
     public GameObject HeadAttach;   // Attachpoint for head
     #endregion
 
-    [HideInInspector]
-    public List<GameObject> RobotPartList;
+    public List<GameObject> RobotPartObjectList;
     public Character CurrentCharacter;  //  Character Scriptable object
-    public GameObject SavedCharacterBody;   //  Prefab to be saved once character is selected 
 
+    private List<Part> RobotPartList;
     private Quaternion CurrentRotationSet;  //  Setting rotation for parts
     private GameObject PlaceholderGO;
+    private Part PlaceHolderP;
 
     void Start()
     {
-        RobotPartList = new List<GameObject>();
+        RobotPartObjectList = new List<GameObject>();
+        RobotPartList = new List<Part>();
         CurrentRotationSet = new Quaternion(0, 0, 0, 0);    //  For setting rotation of parts
 
         //  *
         for (int i = 0; i < 4; i++)
         {
-            RobotPartList.Add(PlaceholderGO);
+            RobotPartObjectList.Add(PlaceholderGO);
+            RobotPartList.Add(PlaceHolderP);
+            Destroy(RobotPartObjectList[i]);
             Destroy(RobotPartList[i]);
         }
 
@@ -55,12 +54,12 @@ public class SetUpCharacterBehaviour : MonoBehaviour
         ArmAttachLeft = SetupAttachPoints(Vector3.left);
         ArmAttachRight = SetupAttachPoints(Vector3.right);
 
-        GetPart(SetHead.prefab, Vector3.one, Vector3.zero, HeadAttach.transform.position, SetHead.partType);
-        GetPart(SetLegs.prefab, Vector3.one, Vector3.zero, LegsAttach.transform.position, SetLegs.partType);
-        GetPart(SetArmA.prefab, Vector3.one, Vector3.zero, ArmAttachLeft.transform.position, SetArmA.partType);
-        GetPart(SetArmB.prefab, Vector3.one, Vector3.zero, ArmAttachRight.transform.position, SetArmB.partType);
+        GetPart(SetHead, SetHead.prefab, Vector3.one, Vector3.zero, HeadAttach.transform.position, SetHead.partType);
+        GetPart(SetArmA, SetArmA.prefab, Vector3.one, Vector3.zero, ArmAttachLeft.transform.position, SetArmA.partType);
+        GetPart(SetLegs, SetLegs.prefab, Vector3.one, Vector3.zero, LegsAttach.transform.position, SetLegs.partType);
+        GetPart(SetArmB, SetArmB.prefab, Vector3.one, Vector3.zero, ArmAttachRight.transform.position, SetArmB.partType);
 
-        KeepCharacterSetup();
+        CheckParts();
     }
 
     public GameObject SetupAttachPoints(Vector3 offset)
@@ -76,25 +75,62 @@ public class SetUpCharacterBehaviour : MonoBehaviour
 
     //  ***
     //  Position arms based on Arm objects given
-    public void GetPart(GameObject part, Vector3 scale, Vector3 rotation, Vector3 offset, RobotParts piece)
+    public void GetPart(Part part, GameObject partObject, Vector3 scale, Vector3 rotation, Vector3 offset, RobotParts piece)
     {
         int pieceNum = (int)piece;       //  get int value from given enum
-        var go = Instantiate(part);  //  Instantiates arm gameobject as assigned prefab
+        var go = Instantiate(partObject);  //  Instantiates arm gameobject as assigned prefab
         go.transform.SetParent(transform);  //  Set part as child to player gameobject
         go.transform.localScale = scale;
         CurrentRotationSet.eulerAngles = rotation;
         go.transform.rotation = CurrentRotationSet; //  Setting rotation
         go.transform.position = offset; //  Set Part position
-        Destroy(RobotPartList[pieceNum]);
-        RobotPartList[pieceNum] = go;   //  Places game object in list and in the right order
+        part.partPos = go.transform.position;
+        Destroy(RobotPartObjectList[pieceNum]);
+        RobotPartObjectList[pieceNum] = go;   //  Places game object in list and in the right order
+        RobotPartList[pieceNum] = part;
     }
 
-    //  Saving character as a prefab
-    public void KeepCharacterSetup()
+
+    //  Checks parts to make sure they are in the correct order
+    public void CheckParts()
     {
-        //  Saves Character Object as a prefab
-        SavedCharacterBody = PrefabUtility.CreatePrefab(
-            "Assets/Prefabs/SavedCharacters/CharacterA.prefab",
-            gameObject);
+        bool check = false;
+        int size = 0;
+        Vector3 partPos = Vector3.zero;
+
+        // Checks if parts are in the correct position
+        for (int i = 0; i < RobotPartList.Count; i++)
+        {
+            if (RobotPartList.Count == RobotPartObjectList.Count &&
+                RobotPartList[0].partType == RobotParts.HEAD && RobotPartList[1].partType == RobotParts.LEFTARM &&
+                RobotPartList[2].partType == RobotParts.LEGS && RobotPartList[3].partType == RobotParts.RIGHTARM)
+            {
+                check = true;
+                size = RobotPartObjectList.Count;
+            }
+            else
+            {
+                Destroy(RobotPartObjectList[i]);
+                Debug.Log("This part is in the wrong order: " + RobotPartList[i]);
+                check = false;
+                return;
+            }
+        }
+
+        //  Replace parts if they are in the correct position
+        for (int j = 0; j < size; j++)
+        {
+            if (check == true)
+            {
+                partPos = RobotPartList[j].partPos;
+                Destroy(RobotPartObjectList[j]);
+                GetPart(RobotPartList[j], RobotPartList[j].prefab, Vector3.one, Vector3.zero, partPos, RobotPartList[j].partType);
+            }
+            else
+                return;
+        }
+
     }
+
+    
 }

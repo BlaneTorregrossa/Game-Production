@@ -6,10 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Character")]
 public class Character : ScriptableObject
 {
-    public Arm Left;
-    public Arm Right;
-    public Legs LegSet;
-    public Head HeadPiece;
+    public Part Left;
+    public Part Right;
+    public Part LegSet;
+    public Part HeadPiece;
     public bool Display;
     public string Name;
     public int Heatlh;

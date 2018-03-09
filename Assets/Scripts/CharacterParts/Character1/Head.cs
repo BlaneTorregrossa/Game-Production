@@ -2,18 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// =*= 
-[CreateAssetMenu]
-public class Head : ScriptableObject
+// =*=
+[CreateAssetMenu(menuName = "Parts/Head")]
+public class Head : Part
 {
-    public string partName;
-    public string description;
-    public bool canUseSheild;
-
-    public bool createSheild;
-
-    public GameObject prefab;
-    public GameObject headPos;
-    public Quaternion headRotation;
-    public SetUpCharacterBehaviour.RobotParts partType;
 }

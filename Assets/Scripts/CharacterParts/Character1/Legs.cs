@@ -3,20 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // =*=
-[CreateAssetMenu]
-public class Legs : ScriptableObject
+[CreateAssetMenu(menuName = "Parts/Legs")]
+public class Legs : Part
 {
-
-    public string partName;
-    public string description;
     public bool isBoost;
-
     public int DashCharges;
     public float Speed;
     public float DashSpeed;
-
-    public GameObject prefab;
-    public Vector3 legsPos;
-    public Quaternion legsRotation;
-    public SetUpCharacterBehaviour.RobotParts partType;
 }

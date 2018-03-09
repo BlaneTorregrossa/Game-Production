@@ -8,20 +8,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a163c4e3d719a5428057a70541f0e37, type: 3}
+  m_Script: {fileID: 11500000, guid: f130207f2486ece4b8a6812f3426d517, type: 3}
   m_Name: RightArm1
   m_EditorClassIdentifier: 
   partName: Melee Arm 1
-  description: Basic arm for a good ol' punch.
-  isLeft: 0
-  isRight: 1
+  description: Basic Melee Tpype
+  prefab: {fileID: 1408647308746066, guid: e13e1b6d84c6ecb44b9b75fd8177ab3f, type: 2}
+  partPos: {x: 0, y: 0, z: 0}
+  partType: 3
+  isLeft: 1
+  isRight: 0
   isMelee: 1
   isRanged: 0
-  meleeDamage: 20
+  meleeDamage: 10
   meleeAttackSpeed: 1
   projectileDamage: 0
   projectileSpeed: 0
-  prefab: {fileID: 1408647308746066, guid: e13e1b6d84c6ecb44b9b75fd8177ab3f, type: 2}
-  armPos: {x: 5003, y: 0, z: -4981.44}
-  armRotation: {x: 0, y: 0, z: 0, w: 0}
-  partType: 3

@@ -8,17 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 874c07986fca9954ba3f07e5e3d254d5, type: 3}
+  m_Script: {fileID: 11500000, guid: bb2d0c0097c730844b49193fff8389c5, type: 3}
   m_Name: Legs2
   m_EditorClassIdentifier: 
-  partName: Legs 2
-  description: Basic movement with a lot of boosts but little for movement using said
-    boosts.
+  partName: Boost Legs
+  description: Reduced speed, more boosts
+  prefab: {fileID: 1155747172809066, guid: 78838d6ab9fd4af488a198dfa7b8e09a, type: 2}
+  partPos: {x: 0, y: 0, z: 0}
+  partType: 2
   isBoost: 1
   DashCharges: 10
-  Speed: 1
-  DashSpeed: 1.5
-  prefab: {fileID: 1155747172809066, guid: 78838d6ab9fd4af488a198dfa7b8e09a, type: 2}
-  legsPos: {x: 0, y: 0, z: 0}
-  legsRotation: {x: 0, y: 0, z: 0, w: 0}
-  partType: 2
+  Speed: 0.5
+  DashSpeed: 2.5

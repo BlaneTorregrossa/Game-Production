@@ -56,10 +56,10 @@ public class CharacterBehaviour : MonoBehaviour
         #endregion
     }
 
-    public void ShootBasicProjectile(Arm currentArm)
+    public void ShootBasicProjectile(Part currentArm)
     {
         List<GameObject> ActiveProjectiles = new List<GameObject>();
-        GameObject newProjectile = Instantiate(currentProjectileObject, currentArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
+        GameObject newProjectile = Instantiate(currentProjectileObject, currentArm.partPos + transform.forward, currentProjectileObject.transform.rotation);
         ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
         pb.character = setupInstance;
         newProjectile.tag = "Bullet";
@@ -68,7 +68,7 @@ public class CharacterBehaviour : MonoBehaviour
     
     //  Changes once animations are given
     //  Attack would stick with the animation
-    public void BasicMelee(Arm currentArm)
+    public void BasicMelee(Part currentArm)
     {
         GameObject newAttackBox = Instantiate(emptyAttackBox, transform.position + transform.forward * 5, transform.rotation);
         BoxCollider newBoxCollider = newAttackBox.AddComponent<BoxCollider>();

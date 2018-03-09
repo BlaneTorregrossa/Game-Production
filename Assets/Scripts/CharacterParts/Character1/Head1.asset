@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a8a57cac86bd48abe8c8e6cad4bde, type: 3}
+  m_Script: {fileID: 11500000, guid: bcba06f7ca1a4cc4490a604b4446fe5b, type: 3}
   m_Name: Head1
   m_EditorClassIdentifier: 
-  partName: Head A
-  description: This One uses a Sheild
-  canUseSheild: 1
-  createSheild: 0
+  partName: Head 1
+  description: Summons a sheild
   prefab: {fileID: 1318892551593166, guid: ba60dc34fa6e4244a8758d50f5e7dc85, type: 2}
+  partPos: {x: 0, y: 0, z: 0}
+  partType: 0
