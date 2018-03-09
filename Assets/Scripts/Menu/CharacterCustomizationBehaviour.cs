@@ -78,7 +78,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             HeadNum++;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetHead.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetHead.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.HeadAttach.transform.position, SetUpCharacterBehaviour.RobotParts.HEAD);
         }
         SetupInstance.KeepCharacterSetup();
@@ -92,7 +92,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             HeadNum--;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetHead.prefab, Vector3.one, Vector3.zero, 
+            SetupInstance.GetPart(SetupInstance.SetHead.prefab, Vector3.one, Vector3.zero, 
                 SetupInstance.HeadAttach.transform.position, SetUpCharacterBehaviour.RobotParts.HEAD);
         }
         SetupInstance.KeepCharacterSetup();
@@ -106,7 +106,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             LeftArmNum++;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetArmA.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetArmA.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.ArmAttachLeft.transform.position, SetUpCharacterBehaviour.RobotParts.LEFTARM);
         }
         SetupInstance.KeepCharacterSetup();
@@ -120,7 +120,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             LeftArmNum--;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetArmA.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetArmA.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.ArmAttachLeft.transform.position, SetUpCharacterBehaviour.RobotParts.LEFTARM);
         }
         SetupInstance.KeepCharacterSetup();
@@ -134,7 +134,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             LegsNum++;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetLegs.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetLegs.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.LegsAttach.transform.position, SetUpCharacterBehaviour.RobotParts.LEGS);
         }
         SetupInstance.KeepCharacterSetup();
@@ -148,7 +148,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             LegsNum--;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetLegs.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetLegs.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.LegsAttach.transform.position, SetUpCharacterBehaviour.RobotParts.LEGS);
         }
         SetupInstance.KeepCharacterSetup();
@@ -161,7 +161,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             RightArmNum++;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetArmB.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetArmB.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.ArmAttachRight.transform.position, SetUpCharacterBehaviour.RobotParts.RIGHTARM);
         }
         SetupInstance.KeepCharacterSetup();
@@ -175,7 +175,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         {
             RightArmNum--;
             SetParts();
-            SetupInstance.PositionPart(SetupInstance.SetArmB.prefab, Vector3.one, Vector3.zero,
+            SetupInstance.GetPart(SetupInstance.SetArmB.prefab, Vector3.one, Vector3.zero,
                 SetupInstance.ArmAttachRight.transform.position, SetUpCharacterBehaviour.RobotParts.RIGHTARM);
         }
         SetupInstance.KeepCharacterSetup();
