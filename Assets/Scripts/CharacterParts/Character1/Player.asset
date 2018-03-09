@@ -20,5 +20,5 @@ MonoBehaviour:
   Heatlh: 100
   DashCharges: 0
   Push: 3
-  Speed: 0
-  DashSpeed: 0
+  Speed: 0.2
+  DashSpeed: 1
