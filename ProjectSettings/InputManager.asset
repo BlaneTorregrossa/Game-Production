@@ -177,7 +177,7 @@ InputManager:
     dead: 0.19
     sensitivity: 5
     snap: 1
-    invert: 0
+    invert: 1
     type: 2
     axis: 3
     joyNum: 0
