@@ -57,7 +57,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(Look()), Time.deltaTime);
     }
 
-    //Returns a 3D Vector based axis returned by the analog stick/WASD keys
+    //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
     Vector3 Move(float s)
     {
         var x = Input.GetAxis("Horizontal");
@@ -66,11 +66,9 @@ public class CharacterControlsBehaviour : MonoBehaviour
         return m;
     }
 
-    //Returns a float that is meant to represent the Y rotation of the character
+    //Returns a normalized 3D Vector based off the axis produced by the right analog stick/arrow keys
     Vector3 Look()
     {
-        //Problem: Currently only looks in 180 degrees
-        //Likely Cause: y most like always equal a total that brings it to the 180 degree range that it's currently looking in.
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
         var r = new Vector3(x, 0, z);
