@@ -10,7 +10,6 @@ public class Character : ScriptableObject
     public Part Right;
     public Part LegSet;
     public Part HeadPiece;
-    public List<Part> CharacterParts;
     public string Name;
     public int Heatlh;
     public int DashCharges;

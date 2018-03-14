@@ -12,8 +12,8 @@ public class Arm : Part
     public bool isRight;
     public bool isMelee;
     public bool isRanged;
-    public int meleeDamage;
+    public float meleeDamage;
     public float meleeAttackSpeed;
-    public int projectileDamage;
-    public int projectileSpeed;
+    public float projectileDamage;
+    public float projectileSpeed;
 }

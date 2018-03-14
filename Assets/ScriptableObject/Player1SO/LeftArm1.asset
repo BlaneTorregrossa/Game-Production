@@ -20,7 +20,7 @@ MonoBehaviour:
   isRight: 0
   isMelee: 1
   isRanged: 0
-  meleeDamage: 10
+  meleeDamage: 1
   meleeAttackSpeed: 1
   projectileDamage: 0
   projectileSpeed: 0

@@ -9,18 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f130207f2486ece4b8a6812f3426d517, type: 3}
-  m_Name: LeftArm4
+  m_Name: LeftArm3
   m_EditorClassIdentifier: 
-  partName: Ranged Arm 2
-  description: Special Ranged Type
-  prefab: {fileID: 1408647308746066, guid: 3e8cd172debf4f94ba9210fc35af2290, type: 2}
-  partPos: {x: 0, y: 0, z: 0}
+  partName: Melee Arm 2
+  description: Special Melee Type
+  prefab: {fileID: 1408647308746066, guid: 042bd6cf929c6484d9f47f4a055dd27d, type: 2}
+  partPos: {x: -1, y: 0, z: 0}
   partType: 1
   isLeft: 1
   isRight: 0
-  isMelee: 0
-  isRanged: 1
-  meleeDamage: 0
-  meleeAttackSpeed: 0
-  projectileDamage: 25
-  projectileSpeed: 1
+  isMelee: 1
+  isRanged: 0
+  meleeDamage: 2
+  meleeAttackSpeed: 0.25
+  projectileDamage: 0
+  projectileSpeed: 0

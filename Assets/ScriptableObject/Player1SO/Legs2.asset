@@ -9,14 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb2d0c0097c730844b49193fff8389c5, type: 3}
-  m_Name: Legs3
+  m_Name: Legs2
   m_EditorClassIdentifier: 
-  partName: Speed Legs
-  description: Faster Speed, No Boosts
-  prefab: {fileID: 1155747172809066, guid: b3400dce3a7c85e47b1233c6ad0cd795, type: 2}
-  partPos: {x: 0, y: 0, z: 0}
+  partName: Boost Legs
+  description: Reduced speed, more boosts
+  prefab: {fileID: 1155747172809066, guid: 78838d6ab9fd4af488a198dfa7b8e09a, type: 2}
+  partPos: {x: 0, y: -1, z: 0}
   partType: 2
-  isBoost: 0
-  DashCharges: 0
-  Speed: 1.25
-  DashSpeed: 0
+  DashCharges: 10
+  Speed: 0.5
+  DashSpeed: 2.5
