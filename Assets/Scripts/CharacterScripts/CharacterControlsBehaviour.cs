@@ -56,7 +56,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         transform.position += Move(Characterconfig.Speed);
         /*Determines the rotation of the Character in regards to the result of the direction
         that the arrow keys/right analog stick ar being held*/
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.LookRotation(Look()), Time.deltaTime);
+        transform.localRotation = Quaternion.LookRotation(Look());
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
@@ -68,7 +68,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         return m;
     }
 
-    //Create a Dash Function that takes away the player's control and makes them
+    //Create a Dash Function that takes away the player's control and changes their position based off the direction their control stick is being pushed in
 
     /*Returns a normalized 3D Vector based off the axis produced by the 
     right analog stick/arrow keys*/
@@ -78,7 +78,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
         var r = new Vector3(x, 0, z);
-        return r.normalized;
+        //var t = new Quaternion()
+        return r;
     }
 
     //Performs the Left Arm Attack when called
