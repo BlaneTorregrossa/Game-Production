@@ -56,7 +56,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         transform.position += Move(Characterconfig.Speed);
         /*Determines the rotation of the Character in regards to the result of the direction
         that the arrow keys/right analog stick ar being held*/
-        transform.localRotation = Quaternion.LookRotation(Look());
+        transform.localRotation = Quaternion.LookRotation(Look(), Vector3.up);
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
@@ -78,8 +78,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         var x = Input.GetAxis("LookHorizontal");
         var z = Input.GetAxis("LookVertical");
         var r = new Vector3(x, 0, z);
-        //var t = new Quaternion()
-        return r;
+        return r.normalized;
     }
 
     //Performs the Left Arm Attack when called
