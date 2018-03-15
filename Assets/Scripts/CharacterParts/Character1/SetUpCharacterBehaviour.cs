@@ -37,11 +37,18 @@ public class SetUpCharacterBehaviour : MonoBehaviour
 
     void Start()
     {
-        RobotPartObjectList = new List<GameObject>();
-        RobotPartList = new List<Part>();
-        CurrentRotationSet = new Quaternion(0, 0, 0, 0);    //  For setting rotation of parts
-        CurrentCharacter.Heatlh = 100;  //  Set Health for "Character"
 
+        //  ***
+        if (CurrentCharacter == null)
+            CurrentCharacter = ScriptableObject.CreateInstance<Character>();
+        if (RobotPartObjectList == null)
+            RobotPartObjectList = new List<GameObject>();
+        if (RobotPartList == null)
+            RobotPartList = new List<Part>();
+        if (CurrentRotationSet == null)
+            CurrentRotationSet = new Quaternion(0, 0, 0, 0);
+
+        //  ??? ***
         for (int i = 0; i < 4; i++)
         {
             RobotPartObjectList.Add(PlaceholderGO);
@@ -50,16 +57,34 @@ public class SetUpCharacterBehaviour : MonoBehaviour
             Destroy(RobotPartList[i]);
         }
 
-        HeadAttach = SetupAttachPoints(Vector3.up);
-        LegsAttach = SetupAttachPoints(Vector3.down);
-        ArmAttachLeft = SetupAttachPoints(Vector3.left);
-        ArmAttachRight = SetupAttachPoints(Vector3.right);
+        //  ***
+        if (HeadAttach == null || LegsAttach == null || ArmAttachLeft == null || ArmAttachRight == null)
+        {
+            HeadAttach = SetupAttachPoints(Vector3.up);
+            ArmAttachLeft = SetupAttachPoints(Vector3.left);
+            LegsAttach = SetupAttachPoints(Vector3.down);
+            ArmAttachRight = SetupAttachPoints(Vector3.right);
+        }
 
-        //Parts for the start of the scene
-        GetPart(SetHead, SetHead.prefab, Vector3.one, Vector3.zero, HeadAttach.transform.localPosition, SetHead.partType);
-        GetPart(SetArmLeft, SetArmLeft.prefab, Vector3.one, Vector3.zero, ArmAttachLeft.transform.localPosition, SetArmLeft.partType);
-        GetPart(SetLegs, SetLegs.prefab, Vector3.one, Vector3.zero, LegsAttach.transform.localPosition, SetLegs.partType);
-        GetPart(SetArmRight, SetArmRight.prefab, Vector3.one, Vector3.zero, ArmAttachRight.transform.localPosition, SetArmRight.partType);
+        //  Current Issue: Setup issues prevent this and the functions called near the end of start to not work ***
+        SetHead = CurrentCharacter.HeadPiece;
+        SetArmLeft = CurrentCharacter.Left;
+        SetLegs = CurrentCharacter.LegSet;
+        SetArmRight = CurrentCharacter.Right;
+
+        if (SetHead != null || SetArmLeft != null || SetLegs != null || SetArmRight != null)
+        {
+            //  Parts for the start of the scene
+            GetPart(SetHead, SetHead.prefab, Vector3.one, Vector3.zero, HeadAttach.transform.localPosition, SetHead.partType);
+            GetPart(SetArmLeft, SetArmLeft.prefab, Vector3.one, Vector3.zero, ArmAttachLeft.transform.localPosition, SetArmLeft.partType);
+            GetPart(SetLegs, SetLegs.prefab, Vector3.one, Vector3.zero, LegsAttach.transform.localPosition, SetLegs.partType);
+            GetPart(SetArmRight, SetArmRight.prefab, Vector3.one, Vector3.zero, ArmAttachRight.transform.localPosition, SetArmRight.partType);
+        }
+
+        else
+        {
+            Debug.Log("Parts were not retrived");
+        }
     }
 
     // Expected points for the parts to be placed
@@ -71,7 +96,7 @@ public class SetUpCharacterBehaviour : MonoBehaviour
         go.transform.SetParent(transform);  //  Sets attach point's parent
         go.transform.localPosition = offset;    //  Set offset of attachpoint in relation to it's parent
         Destroy(go.GetComponent<BoxCollider>());    //  Removes box collider
-        return go;  //  Returns go
+        return go;
     }
 
     //  Position parts based on the part given

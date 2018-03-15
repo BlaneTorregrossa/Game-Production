@@ -64,6 +64,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         #endregion
     }
 
+    //  ***
     public void SetParts()  //  Set Parts on character object based off current index of list
     {
         CustomizedCharacter.Left = UnlockedLeftArms[LeftArmNum];    //  Sets selected part to be the same part of current index of list
@@ -196,14 +197,14 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
     // For bringing the character given to the "target range" area
     public void BringToTargetRange()
     {
-        DontDestroyOnLoad(SetupInstance.CurrentCharacter);
+        SetupInstance.CurrentCharacter = CustomizedCharacter;   //   Update Character
+        DontDestroyOnLoad(SetupInstance.CurrentCharacter);  //
+
         SceneManager.LoadScene("1.TargetRange");    // Switches to named scene
         //  NOTE: Anything called after will be applied to this scene and not the new scene.
-        SceneManager.UnloadSceneAsync("257.CharacterSelectTest");   //  Unloads (resets) named scene
+        Scene TargetRange = SceneManager.GetSceneByName("1.TargetRange");   //  ***
+        SceneManager.MoveGameObjectToScene(gameObject, TargetRange);    //  ***
 
-        //  ------------------------Destroy Later-------------------------------
-        SceneManager.LoadScene("257.CharacterSelectTest");
-        SceneManager.UnloadSceneAsync("1.TargetRange");
     }
     #endregion
 }

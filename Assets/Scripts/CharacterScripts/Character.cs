@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // =*=
-[CreateAssetMenu(menuName ="Character")]
+[CreateAssetMenu(menuName = "Character")]
 public class Character : ScriptableObject
 {
-    public Part Left;
-    public Part Right;
-    public Part LegSet;
-    public Part HeadPiece;
+    public Head HeadPiece;
+    public Arm Left;
+    public Legs LegSet;
+    public Arm Right;
     public string Name;
     public int Heatlh;
     public int DashCharges;
