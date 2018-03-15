@@ -199,19 +199,5 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         PartDescriptionText.text = UnlockedRightArms[RightArmNum].description;
         CurrentRightArmText.text = UnlockedRightArms[RightArmNum].partName;
     }
-
-    // Current Issue: Needs to set up a new scene once the button is clicked    ***
-    // For bringing the character given to the "target range" area
-    public void BringToTargetRange()
-    {
-        DontDestroyOnLoad(SetupInstance.CurrentCharacter);
-        SceneManager.LoadScene("1.TargetRange");    // Switches to named scene
-        ////  NOTE: Anything called after will be applied to this scene and not the new scene.
-        //SceneManager.UnloadSceneAsync("257.CharacterSelectTest");   //  Unloads (resets) named scene
-
-        ////  ------------------------Destroy Later-------------------------------
-        //SceneManager.LoadScene("257.CharacterSelectTest");
-        //SceneManager.UnloadSceneAsync("1.TargetRange");
-    }
     #endregion
 }
