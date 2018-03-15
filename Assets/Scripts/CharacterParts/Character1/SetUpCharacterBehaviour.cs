@@ -18,31 +18,41 @@ public class SetUpCharacterBehaviour : MonoBehaviour
     }
 
     #region Parts
-    public Arm SetArmLeft;  // Arm 
-    public Arm SetArmRight;  // Arm 
+    [HideInInspector]
+    public Arm SetArmLeft;  // Arm Scriptableobject for character
+    [HideInInspector]
+    public Arm SetArmRight;  // Arm ScriptableObject for character
+    [HideInInspector]
     public Legs SetLegs;    // Legs scriptable object for character
+    [HideInInspector]
     public Head SetHead;    // Head scriptable object for character
+    [HideInInspector]
     public GameObject ArmAttachLeft;    // Gameobject for left arm attachment point
+    [HideInInspector]
     public GameObject ArmAttachRight;   // Gameobject for right arm attachment point
+    [HideInInspector]
     public GameObject LegsAttach;   // Attach point for the legs gameobject
+    [HideInInspector]
     public GameObject HeadAttach;   // Attachpoint for head
     #endregion
-    public List<Part> RobotPartList;
-    public List<GameObject> RobotPartObjectList;
+    public List<Part> RobotPartList;    //  List of Parts for the character, Sorted in set order (MAY NEED CHANGES)  ***
+    public List<GameObject> RobotPartObjectList;    //  List of GameObjects attached to Character GameObject, Sorted in set order (MAY NEED CHANGE)  ***
     public Character CurrentCharacter;  //  Character Scriptable object
 
-    private Quaternion CurrentRotationSet;  //  Setting rotation for parts
-    private GameObject PlaceholderGO;
-    private Part PlaceHolderP;
+    private Quaternion CurrentRotationSet;  //  Setting rotation for parts and character  (Is this needed?) ***
+    private GameObject PlaceholderGO;   //  REMOVE  ***
+    private Part PlaceHolderP;  //  REMOVE  ***
 
     void Start()
     {
         RobotPartObjectList = new List<GameObject>();
         RobotPartList = new List<Part>();
         CurrentRotationSet = new Quaternion(0, 0, 0, 0);    //  For setting rotation of parts
-        CurrentCharacter.Health = 100;  //  Set Health for "Character"
+        CurrentCharacter.Health = 100;  //  Set Health for Character
+        CurrentCharacter.Name = "P1";  //  Set Name for Character
 
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < 4; i++) //  REMOVE    ***
         {
             RobotPartObjectList.Add(PlaceholderGO);
             RobotPartList.Add(PlaceHolderP);
@@ -50,10 +60,10 @@ public class SetUpCharacterBehaviour : MonoBehaviour
             Destroy(RobotPartList[i]);
         }
 
-        HeadAttach = SetupAttachPoints(Vector3.up);
-        LegsAttach = SetupAttachPoints(Vector3.down);
-        ArmAttachLeft = SetupAttachPoints(Vector3.left);
-        ArmAttachRight = SetupAttachPoints(Vector3.right);
+        HeadAttach = SetupAttachPoints(Vector3.up); //  Set up attach points for instantiated prefabs (Head)
+        LegsAttach = SetupAttachPoints(Vector3.down); //  Set up attach points for instantiated prefabs (Legs)
+        ArmAttachLeft = SetupAttachPoints(Vector3.left); //  Set up attach points for instantiated prefabs (Left Arm)
+        ArmAttachRight = SetupAttachPoints(Vector3.right); //  Set up attach points for instantiated prefabs (Right Arm)
 
         //Parts for the start of the scene
         GetPart(SetHead, SetHead.prefab, Vector3.one, Vector3.zero, HeadAttach.transform.localPosition, SetHead.partType);
@@ -65,13 +75,14 @@ public class SetUpCharacterBehaviour : MonoBehaviour
     // Expected points for the parts to be placed
     public GameObject SetupAttachPoints(Vector3 offset)
     {
-        var quarterScale = new Vector3(.25f, .25f, .25f);   //  Setting scale of the attach point
+        var quarterScale = new Vector3(.1f, .1f, .1f);   //  Setting scale of the attach point
         var go = GameObject.CreatePrimitive(PrimitiveType.Cube);    //  GameObject representation of point
+        go.name = "Attach Point";   //  To label as attach point in inspector
         go.transform.localScale = quarterScale; //  Assigning sacle of the attach point
         go.transform.SetParent(transform);  //  Sets attach point's parent
         go.transform.localPosition = offset;    //  Set offset of attachpoint in relation to it's parent
         Destroy(go.GetComponent<BoxCollider>());    //  Removes box collider
-        return go;  //  Returns go
+        return go;  // Return
     }
 
     //  Position parts based on the part given

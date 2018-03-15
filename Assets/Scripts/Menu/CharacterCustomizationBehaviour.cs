@@ -41,10 +41,9 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
 
     void Start()
     {
-        SetupInstance = transform.gameObject.AddComponent<SetUpCharacterBehaviour>();  // adding component for setting up the character
-        CustomizedCharacter = ScriptableObject.CreateInstance<Character>(); // Changing character object name 
-        CustomizedCharacter.name = "Character A";   //  Object Name
-        CustomizedCharacter.Name = "Character A";   //  Object variable for Name
+        //  Current Issue: Calling a new Behaviour and creating an instance of the character are causing  small minor issues. Fix this and issues this change would make    ***
+        SetupInstance = transform.gameObject.AddComponent<SetUpCharacterBehaviour>();  // adding component for setting up the character (Is this needed?)
+        CustomizedCharacter = ScriptableObject.CreateInstance<Character>(); // Changing character object name   (Is this needed?)
 
         #region SortingTroughLists
         LeftArmNum = 0;
@@ -70,7 +69,7 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         CustomizedCharacter.Right = UnlockedRightArms[RightArmNum]; //  Sets selected part to be the same part of current index of list
         CustomizedCharacter.LegSet = UnlockedLegs[LegsNum]; //  Sets selected part to be the same part of current index of list
         CustomizedCharacter.HeadPiece = UnlockedHeads[HeadNum]; //  Sets selected part to be the same part of current index of list
-        CustomizedCharacter.parts = new List<Part>() {            
+        CustomizedCharacter.parts = new List<Part>() {       // List of Parts (LeftArm, RightArm, LegSet, HeadPiece)     
             CustomizedCharacter.Left,
             CustomizedCharacter.Right,
             CustomizedCharacter.LegSet,
