@@ -6,10 +6,13 @@ public class CharacterControlsBehaviour : MonoBehaviour
 {
     public Character Characterconfig;
     public CharacterControls Controllerconfig;
-
-    private GameObject _object;
     public bool _dashing;
     public int _dashtime;
+
+    private Vector3 _movedirection;
+    private Vector3 _lookdirection;
+    private Quaternion _currentrot;
+    private GameObject _object;
 
     // Use this for initialization
     void Start()
@@ -18,15 +21,20 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _dashtime = 0;
     }
 
+    private void FixedUpdate()
+    {
+        _lookdirection = new Vector3 (Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("LeftArm"))
+        if (Input.GetAxis("LeftArm") > 0)
         {
             LeftArmAttack();
         }
 
-        if (Input.GetButtonDown("RightArm"))
+        if (Input.GetAxis("RightArm") > 0)
         {
             RightArmAttack();
         }
@@ -44,18 +52,11 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
         if (_dashing)
         {
-            transform.position += Move(Characterconfig.DashSpeed);
-            _dashtime += 1;
-            if (_dashtime >= 30)
-            {
-                _dashing = false;
-                _dashtime = 0;
-                Debug.Log("Stopped Dashing!");
-            }
+            Dash(Characterconfig.DashSpeed, _movedirection);
         }
         transform.position += Move(Characterconfig.Speed);
-        //Currently turns far more responsibly
-        transform.localRotation = Look(transform.localRotation, Vector3.left);
+        //transform.rotation = Look(transform.localRotation, _lookdirection);
+        transform.rotation = Look(transform.rotation, _lookdirection, 5);
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
@@ -67,24 +68,26 @@ public class CharacterControlsBehaviour : MonoBehaviour
         return m;
     }
 
-    //Create a Dash Function that takes away the player's control and changes their position based off the direction their control stick is being pushed in
-
-    /*Returns a normalized 3D Vector based off the axis produced by the 
-    right analog stick/arrow keys*/
-    Quaternion Look(Quaternion l, Vector3 v)
-    {
-        if (v == Vector3.zero)
-        {
-            return new Quaternion(0,0,0,1);
-        }
-        Quaternion look = Quaternion.LookRotation(v);
-        Quaternion r = Quaternion.Slerp(l, look, Time.deltaTime * 5);
-        return r;
-    }
-
     void Dash(float speed, Vector3 Direction)
     {
 
+    }
+
+    Quaternion Look(Quaternion l, Vector3 v, float s)
+    {
+        if (v == Vector3.zero)
+        {
+            return _currentrot;
+        }
+        Quaternion look = Quaternion.LookRotation(v);
+        Quaternion r = Quaternion.Slerp(l, look, Time.deltaTime * s);
+        _currentrot = r;
+        return r;
+
+        //var x = Input.GetAxis("LookHorizontal");
+        //var z = Input.GetAxis("LookVertical");
+        //var m = new Vector3(x, 0, z);
+        //return m.normalized;
     }
 
     //Performs the Left Arm Attack when called
