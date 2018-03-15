@@ -391,6 +391,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1936575175}
+        m_MethodName: Handoff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &160481545
@@ -513,7 +524,6 @@ GameObject:
   - component: {fileID: 239442141}
   - component: {fileID: 239442140}
   - component: {fileID: 239442139}
-  - component: {fileID: 239442138}
   m_Layer: 0
   m_Name: Character B Cam
   m_TagString: MainCamera
@@ -521,13 +531,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &239442138
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 239442137}
-  m_Enabled: 1
 --- !u!124 &239442139
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1212,7 +1215,6 @@ GameObject:
   - component: {fileID: 629710545}
   - component: {fileID: 629710544}
   - component: {fileID: 629710543}
-  - component: {fileID: 629710542}
   m_Layer: 0
   m_Name: Character A Cam
   m_TagString: MainCamera
@@ -1220,13 +1222,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &629710542
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 629710541}
-  m_Enabled: 1
 --- !u!124 &629710543
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2346,12 +2341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e694052d1a2a2e4d8059c039aad6654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetupInstance: {fileID: 0}
   CurrentLeftArmText: {fileID: 1805424430}
   CurrentRightArmText: {fileID: 1773664297}
   CurrentLegsText: {fileID: 491237833}
   CurrentHeadText: {fileID: 182120676}
   PartDescriptionText: {fileID: 2005520019}
-  CustomizedCharacter: {fileID: 0}
   UnlockedLeftArms:
   - {fileID: 11400000, guid: d5b933a9184adf947a581ba066639552, type: 2}
   - {fileID: 11400000, guid: a9803625a06a9e84880b4b87857e05ac, type: 2}
@@ -2369,6 +2364,8 @@ MonoBehaviour:
   UnlockedHeads:
   - {fileID: 11400000, guid: cc5fff2f19c6d744a96c196888c57611, type: 2}
   - {fileID: 11400000, guid: 9643098ae1ca30e4081def41c15bdaf4, type: 2}
+  CustomizedCharacter: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e,
+    type: 2}
 --- !u!23 &1373141832
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2459,7 +2456,6 @@ GameObject:
   - component: {fileID: 1414028936}
   - component: {fileID: 1414028935}
   - component: {fileID: 1414028934}
-  - component: {fileID: 1414028933}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2467,13 +2463,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1414028933
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1414028932}
-  m_Enabled: 1
 --- !u!124 &1414028934
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2960,6 +2949,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1805424428}
+--- !u!1 &1936575174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1936575176}
+  - component: {fileID: 1936575175}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1936575175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1936575174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcc482826bef7f43b4d1e98913eb6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterConfig: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
+  ccb: {fileID: 1373141829}
+--- !u!4 &1936575176
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1936575174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5000.5, y: 4, z: -4981.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2005520017
 GameObject:
   m_ObjectHideFlags: 0
