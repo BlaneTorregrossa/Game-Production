@@ -70,12 +70,20 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         CustomizedCharacter.Right = UnlockedRightArms[RightArmNum]; //  Sets selected part to be the same part of current index of list
         CustomizedCharacter.LegSet = UnlockedLegs[LegsNum]; //  Sets selected part to be the same part of current index of list
         CustomizedCharacter.HeadPiece = UnlockedHeads[HeadNum]; //  Sets selected part to be the same part of current index of list
+        CustomizedCharacter.parts = new List<Part>() {            
+            CustomizedCharacter.Left,
+            CustomizedCharacter.Right,
+            CustomizedCharacter.LegSet,
+            CustomizedCharacter.HeadPiece,
+        };
+
         SetupInstance.CurrentCharacter = CustomizedCharacter;   //  Applies changes in setup
 
         SetupInstance.SetArmLeft = UnlockedLeftArms[LeftArmNum];   //  Gives selected part to setup instance
         SetupInstance.SetArmRight = UnlockedRightArms[RightArmNum];     //  Gives selected part to setup instance
         SetupInstance.SetLegs = UnlockedLegs[LegsNum];  //  Gives selected part to setup instance
         SetupInstance.SetHead = UnlockedHeads[HeadNum]; //  Gives selected part to setup instance
+        
     }
 
     //  Buttons for switching parts + changing description
@@ -198,12 +206,12 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
     {
         DontDestroyOnLoad(SetupInstance.CurrentCharacter);
         SceneManager.LoadScene("1.TargetRange");    // Switches to named scene
-        //  NOTE: Anything called after will be applied to this scene and not the new scene.
-        SceneManager.UnloadSceneAsync("257.CharacterSelectTest");   //  Unloads (resets) named scene
+        ////  NOTE: Anything called after will be applied to this scene and not the new scene.
+        //SceneManager.UnloadSceneAsync("257.CharacterSelectTest");   //  Unloads (resets) named scene
 
-        //  ------------------------Destroy Later-------------------------------
-        SceneManager.LoadScene("257.CharacterSelectTest");
-        SceneManager.UnloadSceneAsync("1.TargetRange");
+        ////  ------------------------Destroy Later-------------------------------
+        //SceneManager.LoadScene("257.CharacterSelectTest");
+        //SceneManager.UnloadSceneAsync("1.TargetRange");
     }
     #endregion
 }
