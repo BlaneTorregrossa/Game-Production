@@ -24,6 +24,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         _lookdirection = new Vector3 (Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
+        Move(Characterconfig.Speed);
+        transform.rotation = Look(transform.rotation, _lookdirection, 5);
     }
 
     // Update is called once per frame
@@ -54,18 +56,16 @@ public class CharacterControlsBehaviour : MonoBehaviour
         {
             Dash(Characterconfig.DashSpeed, _movedirection);
         }
-        transform.position += Move(Characterconfig.Speed);
-        //transform.rotation = Look(transform.localRotation, _lookdirection);
-        transform.rotation = Look(transform.rotation, _lookdirection, 5);
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
-    Vector3 Move(float s)
+    void Move(float s)
     {
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
-        var m = new Vector3(x, 0, z) * s;
-        return m;
+        _movedirection = new Vector3(x, 0, z);
+        var m = _movedirection * s;
+        transform.position += m;
     }
 
     void Dash(float speed, Vector3 Direction)
