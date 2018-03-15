@@ -16,12 +16,12 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Start()
     {
-        setupInstance.CurrentCharacter.Heatlh = 100;
+        setupInstance.CurrentCharacter.Health = 100;
     }
 
     void Update()
     {
-        Health = setupInstance.CurrentCharacter.Heatlh;
+        Health = setupInstance.CurrentCharacter.Health;
 
         #region For Testing Attack Behaviors
         // for testing
@@ -81,7 +81,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void TakeDamage()
     {
-        setupInstance.CurrentCharacter.Heatlh -= 10;
+        setupInstance.CurrentCharacter.Health -= 10;
     }
 
     public void OnTriggerEnter(Collider other)
