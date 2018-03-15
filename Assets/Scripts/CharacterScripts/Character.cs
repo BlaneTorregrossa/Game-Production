@@ -6,15 +6,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Character")]
 public class Character : ScriptableObject
 {
-    public Arm Left;
-    public Arm Right;
-    public Legs LegSet;
-    public Head HeadPiece;
-    public bool Display;
+    public List<Part> parts;
+    void OnEnable()
+    {
+        parts = new List<Part>() { Left, Right, LegSet, HeadPiece };
+    }
+
+    public Part Left;
+    public Part Right;
+    public Part LegSet;
+    public Part HeadPiece;
     public string Name;
-    public int Heatlh;
+    public int Health;
     public int DashCharges;
-    public int Push;
     public float Speed;
     public float DashSpeed;
 }
