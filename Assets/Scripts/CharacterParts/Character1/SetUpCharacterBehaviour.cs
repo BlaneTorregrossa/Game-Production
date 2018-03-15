@@ -40,7 +40,7 @@ public class SetUpCharacterBehaviour : MonoBehaviour
         RobotPartObjectList = new List<GameObject>();
         RobotPartList = new List<Part>();
         CurrentRotationSet = new Quaternion(0, 0, 0, 0);    //  For setting rotation of parts
-        CurrentCharacter.Heatlh = 100;  //  Set Health for "Character"
+        CurrentCharacter.Health = 100;  //  Set Health for "Character"
 
         for (int i = 0; i < 4; i++)
         {
