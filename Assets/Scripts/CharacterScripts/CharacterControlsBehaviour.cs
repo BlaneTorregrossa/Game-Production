@@ -54,9 +54,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
         }
         transform.position += Move(Characterconfig.Speed);
-        /*Determines the rotation of the Character in regards to the result of the direction
-        that the arrow keys/right analog stick ar being held*/
-        transform.localRotation = Quaternion.LookRotation(Look(), Vector3.up);
+        //Currently turns far more responsibly
+        transform.localRotation = Look(transform.localRotation, Vector3.left);
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
@@ -72,13 +71,20 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     /*Returns a normalized 3D Vector based off the axis produced by the 
     right analog stick/arrow keys*/
-    Vector3 Look()
+    Quaternion Look(Quaternion l, Vector3 v)
     {
-        //Currently only turns slowly. Need to change it so that the player snaps to the given direction.
-        var x = Input.GetAxis("LookHorizontal");
-        var z = Input.GetAxis("LookVertical");
-        var r = new Vector3(x, 0, z);
-        return r.normalized;
+        if (v == Vector3.zero)
+        {
+            return new Quaternion(0,0,0,1);
+        }
+        Quaternion look = Quaternion.LookRotation(v);
+        Quaternion r = Quaternion.Slerp(l, look, Time.deltaTime * 5);
+        return r;
+    }
+
+    void Dash(float speed, Vector3 Direction)
+    {
+
     }
 
     //Performs the Left Arm Attack when called
