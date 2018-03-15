@@ -6,7 +6,7 @@ using UnityEngine;
 // =*=
 public class CharacterBehaviour : MonoBehaviour
 {
-    public SetUpCharacter setupInstance;
+    public SetUpCharacterBehaviour setupInstance;
     public GameObject currentProjectileObject;
     public GameObject emptyAttackBox;
     public int Health;
@@ -16,24 +16,24 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Start()
     {
-        setupInstance.currentCharacter.Heatlh = 100;
+        setupInstance.CurrentCharacter.Health = 100;
     }
 
     void Update()
     {
-        Health = setupInstance.currentCharacter.Heatlh;
+        Health = setupInstance.CurrentCharacter.Health;
 
         #region For Testing Attack Behaviors
         // for testing
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ShootBasicProjectile(setupInstance.currentCharacter.Right);
+            ShootBasicProjectile(setupInstance.CurrentCharacter.Right);
         }
 
         // for testing
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            BasicMelee(setupInstance.currentCharacter.Left);
+            BasicMelee(setupInstance.CurrentCharacter.Left);
         }
 
         // for testing
@@ -56,10 +56,10 @@ public class CharacterBehaviour : MonoBehaviour
         #endregion
     }
 
-    public void ShootBasicProjectile(Arm currentArm)
+    public void ShootBasicProjectile(Part currentArm)
     {
         List<GameObject> ActiveProjectiles = new List<GameObject>();
-        GameObject newProjectile = Instantiate(currentProjectileObject, currentArm.armPos + transform.forward, currentProjectileObject.transform.rotation);
+        GameObject newProjectile = Instantiate(currentProjectileObject, currentArm.partPos + transform.forward, currentProjectileObject.transform.rotation);
         ProjectileBehavior pb = newProjectile.AddComponent<ProjectileBehavior>();
         pb.character = setupInstance;
         newProjectile.tag = "Bullet";
@@ -68,7 +68,7 @@ public class CharacterBehaviour : MonoBehaviour
     
     //  Changes once animations are given
     //  Attack would stick with the animation
-    public void BasicMelee(Arm currentArm)
+    public void BasicMelee(Part currentArm)
     {
         GameObject newAttackBox = Instantiate(emptyAttackBox, transform.position + transform.forward * 5, transform.rotation);
         BoxCollider newBoxCollider = newAttackBox.AddComponent<BoxCollider>();
@@ -81,7 +81,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void TakeDamage()
     {
-        setupInstance.currentCharacter.Heatlh -= 10;
+        setupInstance.CurrentCharacter.Health -= 10;
     }
 
     public void OnTriggerEnter(Collider other)
