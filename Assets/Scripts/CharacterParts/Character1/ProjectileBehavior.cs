@@ -10,12 +10,12 @@ public class ProjectileBehavior : MonoBehaviour
     public Projectile projectileInstance;
 
     // Very Temporary
-    public SetUpCharacter character;
+    public SetUpCharacterBehaviour character;
 
     void Start()
     {
         projectileInstance = new Projectile();
-        projectileInstance.position = character.ArmObject.transform.position;
+        projectileInstance.position = character.ArmAttachLeft.transform.position;
         projectileInstance.position += transform.forward * 4;
         tag = "Bullet";
     }
