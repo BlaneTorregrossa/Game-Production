@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Name: Player1
   m_EditorClassIdentifier: 
   parts:
-  - {fileID: 11400000, guid: f1de37927fbaf18449abfbcfb5899ecc, type: 2}
+  - {fileID: 11400000, guid: ad5def863dd272e478752e4fa6c03880, type: 2}
   - {fileID: 11400000, guid: 074f0434be1576948ac4a4d1e260eb53, type: 2}
-  - {fileID: 11400000, guid: b7f4553133ec49c43a39b9e355521f27, type: 2}
   - {fileID: 11400000, guid: cc5fff2f19c6d744a96c196888c57611, type: 2}
-  Left: {fileID: 0}
-  Right: {fileID: 0}
-  LegSet: {fileID: 0}
-  HeadPiece: {fileID: 0}
+  - {fileID: 11400000, guid: b7f4553133ec49c43a39b9e355521f27, type: 2}
+  Left: {fileID: 11400000, guid: ad5def863dd272e478752e4fa6c03880, type: 2}
+  Right: {fileID: 11400000, guid: 074f0434be1576948ac4a4d1e260eb53, type: 2}
+  LegSet: {fileID: 11400000, guid: b7f4553133ec49c43a39b9e355521f27, type: 2}
+  HeadPiece: {fileID: 11400000, guid: cc5fff2f19c6d744a96c196888c57611, type: 2}
   Name: 
   Health: 0
   DashCharges: 3

@@ -16,14 +16,6 @@ public class SetUpCharacterBehaviour : MonoBehaviour
 
     #region Parts
     [HideInInspector]
-    public Arm SetArmLeft;  // Arm Scriptableobject for character
-    [HideInInspector]
-    public Arm SetArmRight;  // Arm ScriptableObject for character
-    [HideInInspector]
-    public Legs SetLegs;    // Legs scriptable object for character
-    [HideInInspector]
-    public Head SetHead;    // Head scriptable object for character
-    [HideInInspector]
     public GameObject ArmAttachLeft;    // Gameobject for left arm attachment point
     [HideInInspector]
     public GameObject ArmAttachRight;   // Gameobject for right arm attachment point

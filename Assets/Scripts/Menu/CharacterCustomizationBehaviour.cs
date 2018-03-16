@@ -52,10 +52,10 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
 
         #region StartText
         PartDescriptionText.text = "SELECT YOUR CHARACTER PARTS!";  //  Default Description text
-        CurrentHeadText.text = SetupInstance.SetHead.partName;  //  Displays PartName of selected Head Object
-        CurrentLeftArmText.text = SetupInstance.SetArmLeft.partName;    //  Displays PartName of selected LeftArm Object
-        CurrentLegsText.text = SetupInstance.SetLegs.partName;  //  Displays PartName of selected Legs Object
-        CurrentRightArmText.text = SetupInstance.SetArmRight.partName;  //  Displays PartName of selected RightArm Object
+        CurrentHeadText.text = SetupInstance.CurrentCharacter.HeadPiece.partName;  //  Displays PartName of selected Head Object
+        CurrentLeftArmText.text = SetupInstance.CurrentCharacter.Left.partName;    //  Displays PartName of selected LeftArm Object
+        CurrentLegsText.text = SetupInstance.CurrentCharacter.LegSet.partName;  //  Displays PartName of selected Legs Object
+        CurrentRightArmText.text = SetupInstance.CurrentCharacter.Right.partName;  //  Displays PartName of selected RightArm Object
         #endregion
     }
 
@@ -65,11 +65,11 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
         CustomizedCharacter.Right = UnlockedRightArms[RightArmNum]; //  Sets selected part to be the same part of current index of the RightArm list
         CustomizedCharacter.LegSet = UnlockedLegs[LegsNum]; //  Sets selected part to be the same part of current index of the Legs list
         CustomizedCharacter.HeadPiece = UnlockedHeads[HeadNum]; //  Sets selected part to be the same part of current index of the Heads list
-        CustomizedCharacter.parts = new List<Part>() {       // List of Parts (LeftArm, RightArm, LegSet, HeadPiece)     
-            CustomizedCharacter.HeadPiece,   //  0
-            CustomizedCharacter.Left,  //  1
-            CustomizedCharacter.LegSet, //  2
-            CustomizedCharacter.Right,  //  3
+        CustomizedCharacter.parts = new List<Part>() {       // List of Parts (LeftArm, RightArm, LegSet, HeadPiece) Order brought into scene     
+            CustomizedCharacter.Left,  //  0
+            CustomizedCharacter.Right,  //  1
+            CustomizedCharacter.HeadPiece,   //  2
+            CustomizedCharacter.LegSet, //  3
         };
 
         if (AttachSet == false) //  If false, attach points are added to the character gameObject
@@ -83,17 +83,48 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
 
         SetupInstance.CurrentCharacter = CustomizedCharacter;   //  Applies changes in setup
 
-        SetupInstance.SetArmLeft = UnlockedLeftArms[LeftArmNum];   //  Gives selected part to setup instance
-        SetupInstance.SetArmRight = UnlockedRightArms[RightArmNum];     //  Gives selected part to setup instance
-        SetupInstance.SetLegs = UnlockedLegs[LegsNum];  //  Gives selected part to setup instance
-        SetupInstance.SetHead = UnlockedHeads[HeadNum]; //  Gives selected part to setup instance
+        //  Current Issue: Needs to sort list for when parts are in wrong position, Should also try to make less redunant  ***
+        //  Note: I Found that one list of objects aren't organized correctlly, but the gameobject list is organized in the right order
+        for (int i = 0; i < SetupInstance.CurrentCharacter.parts.Count; i++)    //  Brings given parts into scene based on the character part list. Trying to get this to check order.
+        {
 
-        //  Adds Parts given based off set object
-        SetupInstance.GetPart(SetupInstance.SetHead, SetupInstance.SetHead.prefab, Vector3.one, SetupInstance.HeadAttach.transform.localPosition, SetupInstance.SetHead.partType);  //  New Head
-        SetupInstance.GetPart(SetupInstance.SetArmLeft, SetupInstance.SetArmLeft.prefab, Vector3.one, SetupInstance.ArmAttachLeft.transform.localPosition, SetupInstance.SetArmLeft.partType);  //  New Left Arm
-        SetupInstance.GetPart(SetupInstance.SetLegs, SetupInstance.SetLegs.prefab, Vector3.one, SetupInstance.LegsAttach.transform.localPosition, SetupInstance.SetLegs.partType);  //  New Legs
-        SetupInstance.GetPart(SetupInstance.SetArmRight, SetupInstance.SetArmRight.prefab, Vector3.one, SetupInstance.ArmAttachRight.transform.localPosition, SetupInstance.SetArmRight.partType);  //  New Right Arm
+            var temp = SetupInstance.CurrentCharacter.parts[i]; //  For switching   ***
 
+            if (SetupInstance.CurrentCharacter.parts[i].partType == SetUpCharacterBehaviour.RobotParts.HEAD)    //  0
+            {
+                SetupInstance.GetPart(SetupInstance.CurrentCharacter.parts[i],  //  Current Part
+                    SetupInstance.CurrentCharacter.parts[i].prefab, //  Prefab assigned to Current Part
+                    Vector3.one, SetupInstance.HeadAttach.transform.localPosition,  //  Scale and offset
+                    SetupInstance.CurrentCharacter.parts[i].partType);  //  Part Type
+            }
+            else if (SetupInstance.CurrentCharacter.parts[i].partType == SetUpCharacterBehaviour.RobotParts.LEFTARM)    //  1
+            {
+                SetupInstance.GetPart(SetupInstance.CurrentCharacter.parts[i],  //  Current Part
+                    SetupInstance.CurrentCharacter.parts[i].prefab, //  Prefab assigned to Current Part
+                    Vector3.one, SetupInstance.ArmAttachLeft.transform.localPosition, //  Scale and offse
+                    SetupInstance.CurrentCharacter.parts[i].partType);  //  Part Type
+            }
+            else if (SetupInstance.CurrentCharacter.parts[i].partType == SetUpCharacterBehaviour.RobotParts.LEGS)   //  2
+            {
+                SetupInstance.GetPart(SetupInstance.CurrentCharacter.parts[i],  //  Current Part
+                    SetupInstance.CurrentCharacter.parts[i].prefab, //  Prefab assigned to Current Part
+                    Vector3.one, SetupInstance.LegsAttach.transform.localPosition,  //  Scale and offse
+                    SetupInstance.CurrentCharacter.parts[i].partType);  //  Part Type
+            }
+            else if (SetupInstance.CurrentCharacter.parts[i].partType == SetUpCharacterBehaviour.RobotParts.RIGHTARM)   //  3
+            {
+                SetupInstance.GetPart(SetupInstance.CurrentCharacter.parts[i],  //  Current Part
+                    SetupInstance.CurrentCharacter.parts[i].prefab, //  Prefab assigned to Current Part
+                    Vector3.one, SetupInstance.ArmAttachRight.transform.localPosition,  //  Scale and offse
+                    SetupInstance.CurrentCharacter.parts[i].partType);  //  Part Type
+            }
+
+            else // If a known part type is not given
+            {
+                Debug.Log("Part of unkown type or in wrong position in Character parts list: " + SetupInstance.CurrentCharacter.parts[i]);
+                break;
+            }
+        }
     }
 
     //  Buttons for switching parts + changing description
