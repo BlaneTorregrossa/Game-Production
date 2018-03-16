@@ -9,12 +9,13 @@ public class GlobalGameManager : ScriptableObject
     {
         Debug.Log(i);
     }
-    public void GoToScene(string name)
+
+    public void GoToScene(string name)  //  Switching scene by scene name
     {
         SceneManager.LoadScene(name);
     }
 
-    public void GoToScene(int index)
+    public void GoToScene(int index)    // Switching scene by index from set scene order
     {
         SceneManager.LoadScene(index);
     }
