@@ -10,6 +10,7 @@ TagManager:
   - MeleeArm
   - Projectile
   - Melee
+  - Character Part
   layers:
   - Default
   - TransparentFX
