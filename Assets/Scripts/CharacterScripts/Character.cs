@@ -16,7 +16,7 @@ public class Character : ScriptableObject
     public Part LegSet; //  Legs Part
     public Part HeadPiece;  //  Head Part
     public string Name; //  Name for character (EX: Player 1 or P1)
-    public int Health;  //  Set health for character
+    public float Health;  //  Set health for character
     public int DashCharges; //  Dashes avalible for character
     public float Speed; //  Default speed for the character
     public float DashSpeed; //  Default dash speed for the character
