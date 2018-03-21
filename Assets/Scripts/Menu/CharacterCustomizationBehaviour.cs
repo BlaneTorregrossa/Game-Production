@@ -83,12 +83,10 @@ public class CharacterCustomizationBehaviour : MonoBehaviour
 
         SetupInstance.CurrentCharacter = CustomizedCharacter;   //  Applies changes in setup
 
-        //  Current Issue: Needs to sort list for when parts are in wrong position, Should also try to make less redunant  ***
         //  Note: I Found that one list of objects aren't organized correctlly, but the gameobject list is organized in the right order
         for (int i = 0; i < SetupInstance.CurrentCharacter.parts.Count; i++)    //  Brings given parts into scene based on the character part list. Trying to get this to check order.
         {
 
-            var temp = SetupInstance.CurrentCharacter.parts[i]; //  For switching   ***
 
             if (SetupInstance.CurrentCharacter.parts[i].partType == SetUpCharacterBehaviour.RobotParts.HEAD)    //  0
             {
