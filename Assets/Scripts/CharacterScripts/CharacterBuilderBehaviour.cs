@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CharacterBuilderBehaviour : MonoBehaviour {
 
-    public Character characterConfig;
-    public GameObject playerController;
+    public Character characterConfig;   //  Instance of the character
+    public GameObject playerController; //  Controller used for character
     
     void Start()
     {
         foreach(Part p in characterConfig.parts)
         {
-            var part = Instantiate(p.prefab, playerController.transform) as GameObject;
-            part.transform.localPosition = p.partPos;
+            var part = Instantiate(p.prefab, playerController.transform) as GameObject; // instantiate parts and set parent for the part
+            part.transform.localPosition = p.partPos;   //  Set offset
 
         }
             
