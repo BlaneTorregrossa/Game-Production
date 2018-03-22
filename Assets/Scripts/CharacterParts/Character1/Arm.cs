@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//  build the parts in the robot space. 
-//  Take the character scriptable and build the robot by referencing the individual objects.
-
 [CreateAssetMenu(menuName = "Parts/Arm")]
 public class Arm : Part
 {
-    public bool isLeft;
-    public bool isRight;
-    public bool isMelee;
-    public bool isRanged;
-    public float meleeDamage;
-    public float meleeAttackSpeed;
-    public float projectileDamage;
-    public float projectileSpeed;
+    public bool isLeft; //  Check fir if arm belongs on left side of character
+    public bool isRight;    //  Check for if arm belongs on right side of character
+    public bool isMelee;    //  Check for if arm has melee styled attacks
+    public bool isRanged;   //  Check for if arm has ranged styled attacks
+    public float meleeDamage;   // Melee Damage Modifier
+    public float meleeAttackSpeed;  //  Melee Attack Speed Modifier
+    public float projectileDamage;  //  Projectile Damage Modifier
+    public float projectileSpeed;   //  Projectile Speed Modifier
 }
