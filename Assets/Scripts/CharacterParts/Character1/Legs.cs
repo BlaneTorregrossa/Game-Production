@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// =*=
-[CreateAssetMenu]
-public class Legs : ScriptableObject
+[CreateAssetMenu(menuName = "Parts/Legs")]
+public class Legs : Part
 {
-
-    public string partName;
-    public string description;
-    public bool isBoost;
-
-    public int DashCharges;
-    public float Speed;
-    public float DashSpeed;
-
-    public GameObject prefab;
+    public int DashCharges; // Dash Charges given
+    public float Speed; //  Speed Modifier
+    public float DashSpeed; //  DashSpeed Modifier
 }
