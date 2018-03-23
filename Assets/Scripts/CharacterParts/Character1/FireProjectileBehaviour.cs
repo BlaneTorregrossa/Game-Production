@@ -7,15 +7,11 @@ public class FireProjectileBehaviour : MonoBehaviour
     public GameObject projectileObject;
     public Transform location;
     public MachineGunBulletBehaviour machineGunBulletBehaviour;
+    public float speed;
 
     [HideInInspector]
     public GameObject firedProjectile;
-
-    private void Start()
-    {
-        machineGunBulletBehaviour = projectileObject.AddComponent<MachineGunBulletBehaviour>();
-    }
-
+    
     private void Update()
     {
         if(Input.GetKeyDown("q"))
@@ -28,7 +24,7 @@ public class FireProjectileBehaviour : MonoBehaviour
     {
         firedProjectile = Instantiate(projectileObject, location.position, transform.localRotation);
         firedProjectile.GetComponent<MachineGunBulletBehaviour>();
-
+        //firedProjectile.GetComponent<Rigidbody>().velocity += location.forward * speed;
         Destroy(firedProjectile, 5f);
     }
 }

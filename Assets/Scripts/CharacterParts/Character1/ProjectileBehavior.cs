@@ -6,6 +6,8 @@ using UnityEngine;
 // =*=
 public class ProjectileBehavior : MonoBehaviour
 {
+    public Projectile projectileConfig;
+    
     private Character _shooter;
     private bool _hit;
     
@@ -33,6 +35,6 @@ public class ProjectileBehavior : MonoBehaviour
     }
     public void InflictDamage(Character character)
     {
-
+        character.Health -= projectileConfig.damage;
     }
 }
