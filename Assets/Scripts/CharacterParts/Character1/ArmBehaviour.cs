@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArmBehaviour : MonoBehaviour
 {
     public Arm ArmConfig;
+    public FireProjectileBehaviour BulletShooter;
 
     // Update is called once per frame
     void Update()
@@ -52,6 +53,7 @@ public class ArmBehaviour : MonoBehaviour
 
     private void BulletAttack()
     {
+
         Debug.Log("Performed Bullet Attack");
     }
 }

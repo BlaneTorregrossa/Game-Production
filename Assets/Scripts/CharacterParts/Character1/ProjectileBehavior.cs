@@ -8,21 +8,46 @@ public class ProjectileBehavior : MonoBehaviour
 {
     public Projectile projectileInstance;
 
-    // Very Temporary
-    public SetUpCharacterBehaviour character;
+    private Character _shooter;
+    private bool _hit;
 
     void Start()
     {
-        projectileInstance = new Projectile();
-        projectileInstance.position = character.ArmAttachLeft.transform.position;
-        projectileInstance.position += transform.forward * 4;
-        tag = "Bullet";
+        
     }
 
     void Update()
     {
-        transform.position = projectileInstance.position;
-        projectileInstance.position += transform.forward;
+        _hit = CheckforHit(projectileInstance.tag);
+        if(_hit)
+        {
+            InflictDamage();
+            Destroy(gameObject);
+        }
+    }
+    public void SetOwner(Character owner)
+    {
+        _shooter = owner;
     }
 
+    public bool CheckforHit(string inputTag)
+    {
+        return false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_shooter = null)
+        {
+            return;
+        }
+        if (other.tag == "Character")
+        {
+            InflictDamage(other.GetComponent<CharacterBehaviour>().character);
+        }
+    }
+    public void InflictDamage(Character character)
+    {
+
+    }
 }
