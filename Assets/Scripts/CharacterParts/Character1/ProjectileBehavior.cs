@@ -6,7 +6,6 @@ using UnityEngine;
 // =*=
 public class ProjectileBehavior : MonoBehaviour
 {
-
     public Projectile projectileInstance;
 
     // Very Temporary
