@@ -6,25 +6,9 @@ using UnityEngine;
 // =*=
 public class ProjectileBehavior : MonoBehaviour
 {
-    public Projectile projectileInstance;
-
     private Character _shooter;
     private bool _hit;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        _hit = CheckforHit(projectileInstance.tag);
-        if(_hit)
-        {
-            InflictDamage();
-            Destroy(gameObject);
-        }
-    }
+    
     public void SetOwner(Character owner)
     {
         _shooter = owner;
@@ -44,6 +28,7 @@ public class ProjectileBehavior : MonoBehaviour
         if (other.tag == "Character")
         {
             InflictDamage(other.GetComponent<CharacterBehaviour>().character);
+            Destroy(gameObject);
         }
     }
     public void InflictDamage(Character character)

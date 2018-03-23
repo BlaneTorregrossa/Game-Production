@@ -16,6 +16,14 @@ public class FireProjectileBehaviour : MonoBehaviour
         machineGunBulletBehaviour = projectileObject.AddComponent<MachineGunBulletBehaviour>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown("q"))
+        {
+            FireProjectile(machineGunBulletBehaviour);
+        }
+    }
+
     public void FireProjectile(Behaviour bulletBehaviour)
     {
         firedProjectile = Instantiate(projectileObject, location.position, transform.localRotation);
