@@ -17,9 +17,7 @@ public class TargetRangeBehaviour : MonoBehaviour
     [SerializeField]
     private Text Timer;
     private bool Paused;
-    private float TargetRangeTime;
-    private float NewTime;
-    private float PausedTime;
+    private bool Reload;
 
     void Start()
     {
@@ -33,30 +31,28 @@ public class TargetRangeBehaviour : MonoBehaviour
             GameManagerInstance.GoToScene("257.CharacterSelectTest");
         }
 
-        PausedTime = 1;
+
+
+
     }
 
     void Update()
     {
-
+        #region Time
         if (Paused == false)
         {
-            if (PausedTime <= 1)
-                NewTime = (Time.timeSinceLevelLoad * Time.deltaTime) * (PausedTime);
-            else
-                NewTime = (Time.timeSinceLevelLoad * Time.deltaTime) * (PausedTime * 2);
-            TargetRangeTime = NewTime - (NewTime / 2.5f);
-            Timer.text = "Time: " + TargetRangeTime;
+            Time.timeScale = 1;
+            Timer.text = "Time: " + Time.timeSinceLevelLoad;
         }
-        if (Paused == true)
-        {
-            PausedTime = NewTime;
-            TargetRangeTime = PausedTime;
-        }
+
+        else if (Paused == true)
+            Time.timeScale = 0;
+        #endregion
 
         //  Dsiplay buttons if player or all targets are dead, Removes Players and Targets
         if (Targets[0].isDead == true && Targets[1].isDead == true && Targets[2].isDead == true || Character.isDead == true)
         {
+            Paused = true;
             UIChange.SetActive(true);
             CharacterChange.SetActive(false);
         }
