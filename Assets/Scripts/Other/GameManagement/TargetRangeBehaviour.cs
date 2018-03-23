@@ -11,9 +11,15 @@ public class TargetRangeBehaviour : MonoBehaviour
     public GameType CurrentGameMode;
     public CharacterBehaviour Character;
     public List<CharacterBehaviour> Targets;
-
     public GameObject UIChange;
     public GameObject CharacterChange;
+
+    [SerializeField]
+    private Text Timer;
+    private bool Paused;
+    private float TargetRangeTime;
+    private float NewTime;
+    private float PausedTime;
 
     void Start()
     {
@@ -26,17 +32,63 @@ public class TargetRangeBehaviour : MonoBehaviour
             Debug.Log("Incorrect Game Mode set for this scene. What is given: " + CurrentGameMode.Mode);
             GameManagerInstance.GoToScene("257.CharacterSelectTest");
         }
+
+        PausedTime = 1;
     }
-    
+
     void Update()
     {
+
+        if (Paused == false)
+        {
+            if (PausedTime <= 1)
+                NewTime = (Time.timeSinceLevelLoad * Time.deltaTime) * (PausedTime);
+            else
+                NewTime = (Time.timeSinceLevelLoad * Time.deltaTime) * (PausedTime * 2);
+            TargetRangeTime = NewTime - (NewTime / 2.5f);
+            Timer.text = "Time: " + TargetRangeTime;
+        }
+        if (Paused == true)
+        {
+            PausedTime = NewTime;
+            TargetRangeTime = PausedTime;
+        }
+
         //  Dsiplay buttons if player or all targets are dead, Removes Players and Targets
         if (Targets[0].isDead == true && Targets[1].isDead == true && Targets[2].isDead == true || Character.isDead == true)
         {
             UIChange.SetActive(true);
             CharacterChange.SetActive(false);
         }
+
+        // Controller not set to call function yet
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EnablePauseMenu();
+        }
     }
 
+    // A simple Pause menu for user to restart scene, change the character, or quit the game
+    public void EnablePauseMenu()
+    {
+        // Enables pause menu
+        if (Paused == false &&
+            Targets[0].isDead == false && Targets[1].isDead == false && Targets[2].isDead == false
+            && Character.isDead == false)
+        {
+            UIChange.SetActive(true);
+            CharacterChange.SetActive(false);
+            Paused = true;
+        }
 
+        // Disables pause menu
+        else if (Paused == true &&
+            Targets[0].isDead == false && Targets[1].isDead == false && Targets[2].isDead == false
+            && Character.isDead == false)
+        {
+            UIChange.SetActive(false);
+            CharacterChange.SetActive(true);
+            Paused = false;
+        }
+    }
 }

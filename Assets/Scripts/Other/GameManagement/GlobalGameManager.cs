@@ -19,4 +19,10 @@ public class GlobalGameManager : ScriptableObject
     {
         SceneManager.LoadScene(index);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
+    }
 }
