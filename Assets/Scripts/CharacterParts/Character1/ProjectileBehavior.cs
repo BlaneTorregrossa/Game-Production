@@ -33,6 +33,7 @@ public class ProjectileBehavior : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void InflictDamage(Character character)
     {
         character.Health -= projectileConfig.damage;

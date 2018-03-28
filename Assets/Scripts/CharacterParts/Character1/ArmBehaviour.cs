@@ -10,10 +10,10 @@ public class ArmBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("space"))
-        {
+        //if(Input.GetKeyDown("space"))
+        //{
 
-        }
+        //}
     }
 
     public void PerformAttack()
@@ -21,10 +21,6 @@ public class ArmBehaviour : MonoBehaviour
         if(ArmConfig.attackType == Arm.AttackType.FASTMELEE)
         {
             FastMeleeAttack();
-        }
-        if(ArmConfig.attackType == Arm.AttackType.SLOWMELEE)
-        {
-            SlowMeleeAttack();
         }
         if(ArmConfig.attackType == Arm.AttackType.BULLET)
         {
@@ -38,22 +34,17 @@ public class ArmBehaviour : MonoBehaviour
 
     private void FastMeleeAttack()
     {
-        Debug.Log("Performed Fast Melee Attack");
-    }
-
-    private void SlowMeleeAttack()
-    {
-        Debug.Log("Performed Slow Melee Attack");
-    }
-
-    private void GrenadeAttack()
-    {
-        Debug.Log("Performed Grenade Attack");
+        Debug.Log("Performed Melee Attack");
     }
 
     private void BulletAttack()
     {
 
         Debug.Log("Performed Bullet Attack");
+    }
+
+    private void GrenadeAttack()
+    {
+        Debug.Log("Performed Grenade Attack");
     }
 }

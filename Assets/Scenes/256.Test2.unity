@@ -108,28 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &121485514 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1798428227115628, guid: 7a22cc42219d4354596e4e87539986f2,
-    type: 2}
-  m_PrefabInternal: {fileID: 998016390}
---- !u!114 &121485515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 121485514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-    type: 2}
-  location: {fileID: 2108677875}
-  machineGunBulletBehaviour: {fileID: 0}
-  speed: 1
-  firedProjectile: {fileID: 0}
 --- !u!1001 &998016390
 Prefab:
   m_ObjectHideFlags: 0
@@ -169,19 +147,32 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4158912884659000, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
+    - target: {fileID: 114548562790227770, guid: 7a22cc42219d4354596e4e87539986f2,
+        type: 2}
+      propertyPath: location
+      value: 
+      objectReference: {fileID: 2108677875}
+    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
+        type: 2}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
+        type: 2}
+      propertyPath: location
+      value: 
+      objectReference: {fileID: 2108677875}
+    - target: {fileID: 65028153372986808, guid: 7a22cc42219d4354596e4e87539986f2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4158912884659000, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      propertyPath: m_LocalPosition.z
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4158912884659000, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114548562790227770, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1390394899
@@ -394,30 +385,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &2108677874 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1598638526969004, guid: 7a22cc42219d4354596e4e87539986f2,
-    type: 2}
-  m_PrefabInternal: {fileID: 998016390}
 --- !u!4 &2108677875 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4158912884659000, guid: 7a22cc42219d4354596e4e87539986f2,
     type: 2}
   m_PrefabInternal: {fileID: 998016390}
---- !u!114 &2108677879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2108677874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-    type: 2}
-  location: {fileID: 2108677875}
-  machineGunBulletBehaviour: {fileID: 0}
-  speed: 0
-  firedProjectile: {fileID: 0}

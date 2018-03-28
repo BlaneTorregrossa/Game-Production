@@ -17,9 +17,8 @@ public class Arm : Part
     public enum AttackType
     {
         FASTMELEE = 0,
-        SLOWMELEE = 1,
-        GRENADE = 2,
-        BULLET = 3
+        BULLET = 1,
+        GRENADE = 2
     }
     public AttackType attackType;
 }

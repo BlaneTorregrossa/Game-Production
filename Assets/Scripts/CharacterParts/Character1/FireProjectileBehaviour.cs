@@ -5,16 +5,15 @@ using UnityEngine;
 public class FireProjectileBehaviour : MonoBehaviour
 {
     public GameObject projectileObject;
-    public Transform location;
     public MachineGunBulletBehaviour machineGunBulletBehaviour;
-    public float speed;
+    public Transform location;
 
     [HideInInspector]
     public GameObject firedProjectile;
     
     private void Update()
     {
-        if(Input.GetKeyDown("q"))
+        if(Input.GetKey("space"))
         {
             FireProjectile(machineGunBulletBehaviour);
         }
@@ -25,6 +24,7 @@ public class FireProjectileBehaviour : MonoBehaviour
         firedProjectile = Instantiate(projectileObject, location.position, transform.rotation);
         firedProjectile.transform.forward = transform.forward;
         firedProjectile.GetComponent<MachineGunBulletBehaviour>();
+        firedProjectile.GetComponent<Rigidbody>().velocity += gameObject.transform.forward * firedProjectile.GetComponent<MachineGunBulletBehaviour>().BulletConfig.speed;
         Destroy(firedProjectile, 5f);
     }
 }
