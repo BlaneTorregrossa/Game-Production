@@ -17,4 +17,8 @@ public class MachineGunBulletBehaviour : MonoBehaviour
     {
 		
 	}
+    public void SetVelocity()
+    {
+
+    }
 }

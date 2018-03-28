@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33626975549487934}
   - component: {fileID: 65028153372986808}
   - component: {fileID: 23655266844654906}
+  - component: {fileID: 114548562790227770}
   m_Layer: 0
   m_Name: front
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 23401823882721982}
   - component: {fileID: 114185924366421262}
   - component: {fileID: 114818509320977810}
+  - component: {fileID: 114578895054397156}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Player
@@ -185,6 +187,40 @@ MonoBehaviour:
   _dashing: 0
   _dashtime: 0
   _dashduration: 3
+--- !u!114 &114548562790227770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598638526969004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
+    type: 2}
+  location: {fileID: 1598638526969004}
+  machineGunBulletBehaviour: {fileID: 0}
+  speed: 3
+  firedProjectile: {fileID: 0}
+--- !u!114 &114578895054397156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798428227115628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
+    type: 2}
+  location: {fileID: 4158912884659000}
+  machineGunBulletBehaviour: {fileID: 0}
+  speed: 1
+  firedProjectile: {fileID: 0}
 --- !u!114 &114818509320977810
 MonoBehaviour:
   m_ObjectHideFlags: 1

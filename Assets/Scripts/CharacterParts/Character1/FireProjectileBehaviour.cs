@@ -22,9 +22,9 @@ public class FireProjectileBehaviour : MonoBehaviour
 
     public void FireProjectile(Behaviour bulletBehaviour)
     {
-        firedProjectile = Instantiate(projectileObject, location.position, transform.localRotation);
+        firedProjectile = Instantiate(projectileObject, location.position, transform.rotation);
+        firedProjectile.transform.forward = transform.forward;
         firedProjectile.GetComponent<MachineGunBulletBehaviour>();
-        //firedProjectile.GetComponent<Rigidbody>().velocity += location.forward * speed;
         Destroy(firedProjectile, 5f);
     }
 }

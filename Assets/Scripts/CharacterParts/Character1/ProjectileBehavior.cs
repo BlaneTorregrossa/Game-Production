@@ -23,7 +23,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_shooter = null)
+        if (_shooter == null)
         {
             return;
         }
