@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Is this needed   ***
+//  Only 1 Round should exist
+//  Should determine how round is one in this behaviour
+
+// To determine who which character wins the round 
 public class RoundBehaviour : MonoBehaviour
 {
-    public Round givenRound;
 
     void Start()
     {
