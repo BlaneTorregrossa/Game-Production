@@ -6,24 +6,36 @@ using UnityEngine;
 // =*=
 public class ProjectileBehavior : MonoBehaviour
 {
-
-    public Projectile projectileInstance;
-
-    // Very Temporary
-    public SetUpCharacterBehaviour character;
-
-    void Start()
+    public Projectile projectileConfig;
+    
+    private Character _shooter;
+    private bool _hit;
+    
+    public void SetOwner(Character owner)
     {
-        projectileInstance = new Projectile();
-        projectileInstance.position = character.ArmAttachLeft.transform.position;
-        projectileInstance.position += transform.forward * 4;
-        tag = "Bullet";
+        _shooter = owner;
     }
 
-    void Update()
+    public bool CheckforHit(string inputTag)
     {
-        transform.position = projectileInstance.position;
-        projectileInstance.position += transform.forward;
+        return false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_shooter == null)
+        {
+            return;
+        }
+        if (other.tag == "Character")
+        {
+            InflictDamage(other.GetComponent<CharacterBehaviour>());
+        }
+    }
+
+    public void InflictDamage(CharacterBehaviour character)
+    {
+        character.TakeDamage(projectileConfig.damage);
+        Destroy(gameObject);
+    }
 }

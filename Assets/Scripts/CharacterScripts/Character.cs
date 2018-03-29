@@ -20,4 +20,8 @@ public class Character : ScriptableObject
     public int DashCharges; //  Dashes avalible for character
     public float Speed; //  Default speed for the character
     public float DashSpeed; //  Default dash speed for the character
+
+    public ArmBehaviour LeftArmBehaviour;
+    public ArmBehaviour RightArmBehaviour;
+    public HeadBehaviour HeadBehaviour;
 }
