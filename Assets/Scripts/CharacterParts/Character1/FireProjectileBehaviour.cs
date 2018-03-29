@@ -6,7 +6,9 @@ public class FireProjectileBehaviour : MonoBehaviour
 {
     public GameObject projectileObject;
     public MachineGunBulletBehaviour machineGunBulletBehaviour;
+    GrenadeBehaviour grenadeBehaviour;
     public Transform location;
+    public bool rapidFire;
 
     [HideInInspector]
     public GameObject firedProjectile;
