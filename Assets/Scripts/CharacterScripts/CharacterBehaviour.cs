@@ -13,6 +13,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         Health = character.Health;
         isDead = false;
+        SetBehaviour();
     }
 
     void Update()
@@ -35,4 +36,13 @@ public class CharacterBehaviour : MonoBehaviour
         Health -= 5f * moddifier;
     }
 
+    public void SetBehaviour()
+    {
+        character.LeftArmBehaviour = gameObject.AddComponent<ArmBehaviour>();
+        character.RightArmBehaviour = gameObject.AddComponent<ArmBehaviour>();
+        character.HeadBehaviour = gameObject.AddComponent<HeadBehaviour>();
+        character.LeftArmBehaviour.ArmConfig = character.Left as Arm;
+        character.RightArmBehaviour.ArmConfig = character.Right as Arm;
+        character.HeadBehaviour.HeadConfig = character.HeadPiece as Head;
+    }
 }
