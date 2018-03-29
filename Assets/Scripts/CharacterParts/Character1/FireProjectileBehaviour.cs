@@ -13,7 +13,7 @@ public class FireProjectileBehaviour : MonoBehaviour
     [HideInInspector]
     public GameObject firedProjectile;
     
-    private void Update()
+    private void FixedUpdate()
     {
         if(Input.GetKey("space"))
         {
@@ -27,6 +27,6 @@ public class FireProjectileBehaviour : MonoBehaviour
         firedProjectile.transform.forward = transform.forward;
         firedProjectile.GetComponent<MachineGunBulletBehaviour>();
         firedProjectile.GetComponent<Rigidbody>().velocity += gameObject.transform.forward * firedProjectile.GetComponent<MachineGunBulletBehaviour>().BulletConfig.speed;
-        Destroy(firedProjectile, 5f);
+        Destroy(firedProjectile, 2f);
     }
 }

@@ -29,13 +29,13 @@ public class ProjectileBehavior : MonoBehaviour
         }
         if (other.tag == "Character")
         {
-            InflictDamage(other.GetComponent<CharacterBehaviour>().character);
-            Destroy(gameObject);
+            InflictDamage(other.GetComponent<CharacterBehaviour>());
         }
     }
 
-    public void InflictDamage(Character character)
+    public void InflictDamage(CharacterBehaviour character)
     {
-        character.Health -= projectileConfig.damage;
+        character.TakeDamage(projectileConfig.damage);
+        Destroy(gameObject);
     }
 }
