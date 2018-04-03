@@ -21,6 +21,7 @@ public class Character : ScriptableObject
     public float Speed; //  Default speed for the character
     public float DashSpeed; //  Default dash speed for the character
 
+
     public ArmBehaviour LeftArmBehaviour;
     public ArmBehaviour RightArmBehaviour;
     public HeadBehaviour HeadBehaviour;

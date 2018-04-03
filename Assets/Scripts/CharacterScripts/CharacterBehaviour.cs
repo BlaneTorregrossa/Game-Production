@@ -20,9 +20,13 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if (Health <= 0)
             isDead = true;
+        else if (Health > 0)
+            isDead = false;
 
         if (isDead == true)
             gameObject.SetActive(false);
+        else if (isDead == false)
+            gameObject.SetActive(true);
 
         // Temporary Since no proper attacks are added
         if (Input.GetKeyDown(KeyCode.P))
