@@ -13,4 +13,12 @@ public class Arm : Part
     public float meleeAttackSpeed;  //  Melee Attack Speed Modifier
     public float projectileDamage;  //  Projectile Damage Modifier
     public float projectileSpeed;   //  Projectile Speed Modifier
+
+    public enum AttackType
+    {
+        FASTMELEE = 0,
+        BULLET = 1,
+        GRENADE = 2
+    }
+    public AttackType attackType;
 }
