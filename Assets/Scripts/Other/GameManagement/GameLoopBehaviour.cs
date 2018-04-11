@@ -17,7 +17,7 @@ public class GameLoopBehaviour : MonoBehaviour
     public List<CharacterBehaviour> TargetCharacters;    //  List of targets in the Target Range
     public List<Round> Rounds;  //  List of results for each individual round
 
-    private float TimeReset;
+    private float TimeReset;    //  Reset timer for return to 
     [SerializeField]
     private bool Wait;      //  Wait for round to start
     [SerializeField]
@@ -56,7 +56,7 @@ public class GameLoopBehaviour : MonoBehaviour
         #region PVP Start
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
-            TimeReset = 0;
+            TimeReset = 0;  //  Setting this as default value fir the nose Reset
             MenuUI.SetActive(false);    //  Temporary   ***
             CharacterChange.SetActive(true);    //  Temporary   ***
         }
@@ -77,23 +77,29 @@ public class GameLoopBehaviour : MonoBehaviour
         }
         #endregion
 
+        #region Better Timer
         //  Round Time initiated
+        //  RT = (T - PT) - TR
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false)
         {
             RoundTime = (Time.timeSinceLevelLoad - PausedTime) - TimeReset;
         }
 
         //  Wait for new round Timer initiated
+        //  Kinda Redundent ***
+        //  WT = (T - PT) - TR
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false)
         {
             WaitTime = (Time.timeSinceLevelLoad - PausedTime) - TimeReset;
         }
 
         //  Pause screen timer initiated
+        //  PT = (T - (WT + RT)) - TR
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true)
         {
-            PausedTime = (Time.timeSinceLevelLoad - (WaitTime + RoundTime)) - TimeReset; 
+            PausedTime = (Time.timeSinceLevelLoad - (WaitTime + RoundTime)) - TimeReset;
         }
+        #endregion
 
         #region Timer / Abandoned
         ////  Time for the round
@@ -130,25 +136,34 @@ public class GameLoopBehaviour : MonoBehaviour
         //    WaitTime = (WaitTimeMax - Time.timeSinceLevelLoad) - WaitTime;
         #endregion
 
-        //  Should Be Replaced
+        //  Need revision
         //  For if either character isDead
         if (PlayerCharacter.isDead == true || OpponentCharacter.isDead == true || RoundTime >= RoundTimeMax)
         {
             RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
             if (PlayerCharacter.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
-                RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list 
+            {
+                RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
+                TimeReset = RoundTime;
+            }
             else
+            {
                 rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
+                TimeReset = RoundTime;  //  Set Reset for RoundTime, WaitTime, and PausedTime
+            }
+            RoundTime = 0;  //  Reseting Round Time
             ResetCharacters(PlayerCharacter);   //  Reset Player 1
             ResetCharacters(OpponentCharacter); //  Reset Player 2
             Destroy(rb);    //  Destroys Commponent for Round Behaviour object
-            Wait = true;    //  Change  ***
+            Wait = true;    //  For Wait Timer
         }
 
-        //  Change  ***
-        if (WaitTime <= 0 && Wait == true)
+        //  Needs to be changed  ***
+        if (WaitTime >= WaitTimeMax)
         {
             Wait = false;
+            WaitTime = 0;
+            TimeReset += WaitTime;
         }
     }
 
