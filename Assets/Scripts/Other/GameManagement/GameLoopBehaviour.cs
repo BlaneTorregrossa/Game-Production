@@ -17,6 +17,7 @@ public class GameLoopBehaviour : MonoBehaviour
     public List<CharacterBehaviour> TargetCharacters;    //  List of targets in the Target Range
     public List<Round> Rounds;  //  List of results for each individual round
 
+    private bool Wait;      //  Wait for round to start
     private bool Paused;    //  For determining if game is paused
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
@@ -27,11 +28,14 @@ public class GameLoopBehaviour : MonoBehaviour
     [SerializeField]
     private float PausedTime;   //  Time while paused
     [SerializeField]
-    private float PreRoundTime;  //  Time Before the start of the round
+    private float WaitTime;     //  For Pre or Post Round Wait
+    [SerializeField]
+    private float WaitTimeMax;  //  Max for wait time
     [SerializeField]
     private GameObject MenuUI; //  Menu based UI that is made avalible once certain conditions are met
     [SerializeField]
     private GameObject CharacterChange;  //   Character objects in the scene
+
     void Start()
     {
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position;
@@ -70,14 +74,14 @@ public class GameLoopBehaviour : MonoBehaviour
         #region Timer
         //  Timer for when the game isn't paused. Does not tick down while game is paused.
         //  Rt = (St - T) - Pt
-        if (Paused == false && CurrentGameMode == GameType.GameMode.PVP)
+        if (Paused == false && CurrentGameMode == GameType.GameMode.PVP && Wait == false)
         {
             RoundTime = (SetTime - Time.timeSinceLevelLoad) - PausedTime;
         }
 
         //  To not track time while game is "paused".
         //  Pt = (St - T) - Rt
-        if (Paused == true && CurrentGameMode == GameType.GameMode.PVP)
+        if (Paused == true && CurrentGameMode == GameType.GameMode.PVP && Wait == false)
         {
             PausedTime = (SetTime - Time.timeSinceLevelLoad) - RoundTime;
         }
@@ -85,7 +89,7 @@ public class GameLoopBehaviour : MonoBehaviour
 
         //  VERY TEMPORARY  ***
         //  For if either character isDead
-        if (PlayerCharacter.isDead == true || OpponentCharacter.isDead == true)
+        if (PlayerCharacter.isDead == true || OpponentCharacter.isDead == true || RoundTime <= 0)
         {
             RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
             if (PlayerCharacter.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
@@ -95,8 +99,13 @@ public class GameLoopBehaviour : MonoBehaviour
             ResetCharacters(PlayerCharacter);   //  Reset Player 1
             ResetCharacters(OpponentCharacter); //  Reset Player 2
             Destroy(rb);    //  Destroys Commponent for Round Behaviour object
+            RoundTime = SetTime;
+            Wait = true;
+            RoundWait();
         }
 
+        if (Wait == true)
+            RoundWait();
     }
 
     //  Setup Characters for the next round without reseting the scene  ***
@@ -106,6 +115,18 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
+    }
+
+    //  Time for waiting before or after a round    ***
+    public void RoundWait()
+    {
+        if (Wait == true && WaitTime <= 0)
+        {
+            WaitTime = WaitTimeMax;
+        }
+
+        if (WaitTime <= 0)
+            Wait = false;
     }
 
     //  Temporary    ***
