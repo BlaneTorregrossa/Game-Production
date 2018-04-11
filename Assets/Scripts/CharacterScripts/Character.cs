@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Character")]
-public class Character : ScriptableObject
+public class Character : ScriptableObject, IDamageable, IDamager
 {
     public List<Part> parts;    //  List of Character Parts
     void OnEnable() 
@@ -20,9 +20,15 @@ public class Character : ScriptableObject
     public int DashCharges; //  Dashes avalible for character
     public float Speed; //  Default speed for the character
     public float DashSpeed; //  Default dash speed for the character
+    public float Damage; //Damage that will be inflicted to another character
     public Vector3 StartingPos; //  Position Character Starts in a given scene
 
     public ArmBehaviour LeftArmBehaviour;
     public ArmBehaviour RightArmBehaviour;
     public HeadBehaviour HeadBehaviour;
+
+    public void DoDamage(IDamageable damageable)
+    {
+        damageable.Health -= Damage;
+    }
 }
