@@ -5,6 +5,9 @@ using UnityEngine;
 public class GrenadeBehaviour : MonoBehaviour
 {
     public Grenade GrenadeConfig;
+    public GameObject ExplosionObject;
+
+    private float _distanceTraveled;
 
 	// Use this for initialization
 	void Start ()
@@ -20,6 +23,14 @@ public class GrenadeBehaviour : MonoBehaviour
 
     public void Falloff()
     {
-
+        if (_distanceTraveled == GrenadeConfig.Distance)
+        {
+            CreateExplosion();
+        }
+    }
+    
+    public void CreateExplosion()
+    {
+        ExplosionObject.GetComponent<ExplosionBehaviour>().Damage = GrenadeConfig.damage;
     }
 }
