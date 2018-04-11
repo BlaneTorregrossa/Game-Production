@@ -17,21 +17,28 @@ public class GameLoopBehaviour : MonoBehaviour
     public List<CharacterBehaviour> TargetCharacters;    //  List of targets in the Target Range
     public List<Round> Rounds;  //  List of results for each individual round
 
+    private float TimeReset;
+    [SerializeField]
+    private bool Wait;      //  Wait for round to start
+    [SerializeField]
     private bool Paused;    //  For determining if game is paused
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
     [SerializeField]
-    private float SetTime;  //  Starting time for round
+    private float RoundTimeMax;  //  Starting time for round
     [SerializeField]
     private float RoundTime;    //  Time for each Round
     [SerializeField]
     private float PausedTime;   //  Time while paused
     [SerializeField]
-    private float PreRoundTime;  //  Time Before the start of the round
+    private float WaitTimeMax;  //  Max for wait time
+    [SerializeField]
+    private float WaitTime;     //  For Pre or Post Round Wait
     [SerializeField]
     private GameObject MenuUI; //  Menu based UI that is made avalible once certain conditions are met
     [SerializeField]
     private GameObject CharacterChange;  //   Character objects in the scene
+
     void Start()
     {
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position;
@@ -49,6 +56,7 @@ public class GameLoopBehaviour : MonoBehaviour
         #region PVP Start
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
+            TimeReset = 0;
             MenuUI.SetActive(false);    //  Temporary   ***
             CharacterChange.SetActive(true);    //  Temporary   ***
         }
@@ -58,6 +66,8 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Update()
     {
+
+
         //  In place of the lack of a pause button being set on the controller
         //  NOTE:  Remove once Controller is able to call pause function
         #region Temp Pause Menu Input
@@ -67,25 +77,62 @@ public class GameLoopBehaviour : MonoBehaviour
         }
         #endregion
 
-        #region Timer
-        //  Timer for when the game isn't paused. Does not tick down while game is paused.
-        //  Rt = (St - T) - Pt
-        if (Paused == false && CurrentGameMode == GameType.GameMode.PVP)
+        //  Round Time initiated
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false)
         {
-            RoundTime = (SetTime - Time.timeSinceLevelLoad) - PausedTime;
+            RoundTime = (Time.timeSinceLevelLoad - PausedTime) - TimeReset;
         }
 
-        //  To not track time while game is "paused".
-        //  Pt = (St - T) - Rt
-        if (Paused == true && CurrentGameMode == GameType.GameMode.PVP)
+        //  Wait for new round Timer initiated
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false)
         {
-            PausedTime = (SetTime - Time.timeSinceLevelLoad) - RoundTime;
+            WaitTime = (Time.timeSinceLevelLoad - PausedTime) - TimeReset;
         }
-        #endregion        
 
-        //  VERY TEMPORARY  ***
+        //  Pause screen timer initiated
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true)
+        {
+            PausedTime = (Time.timeSinceLevelLoad - (WaitTime + RoundTime)) - TimeReset; 
+        }
+
+        #region Timer / Abandoned
+        ////  Time for the round
+        //if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false)
+        //{
+        //    RoundTime = (RoundTimeMax - Time.timeSinceLevelLoad) - PausedTime;
+        //}
+        ////  Time for the prep for the round
+        //if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false)
+        //{
+        //    WaitTime = (WaitTimeMax - Time.timeSinceLevelLoad) - PausedTime;
+        //}
+        ////  Time for when the game is paused
+        //if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true)
+        //{
+        //    PausedTime = Time.timeSinceLevelLoad - (WaitTime + RoundTime);
+        //}
+        #endregion
+
+        #region Previous Timer / Bad Made Up Math
+        ////  Timer for when the game isn't paused. Does not tick down while game is paused.
+        ////  Rt = (RTM - T) - Pt
+        //if (Paused == false && CurrentGameMode == GameType.GameMode.PVP && Wait == false)
+        //    RoundTime = (RoundTimeMax - Time.timeSinceLevelLoad) - PausedTime;
+
+        ////  To not track time while game is "paused".
+        ////  Pt = (RTM - T) - Rt
+        //if (Paused == true && CurrentGameMode == GameType.GameMode.PVP && Wait == false)
+        //    PausedTime = (RoundTimeMax - Time.timeSinceLevelLoad) - RoundTime;
+
+        ////  Not matter the setup cannot make work   ***
+        ////  Need to Change how PausedTime and RoundTime are tracked ***
+        //if (Paused == false && CurrentGameMode == GameType.GameMode.PVP && Wait == true)
+        //    WaitTime = (WaitTimeMax - Time.timeSinceLevelLoad) - WaitTime;
+        #endregion
+
+        //  Should Be Replaced
         //  For if either character isDead
-        if (PlayerCharacter.isDead == true || OpponentCharacter.isDead == true)
+        if (PlayerCharacter.isDead == true || OpponentCharacter.isDead == true || RoundTime >= RoundTimeMax)
         {
             RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
             if (PlayerCharacter.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
@@ -95,11 +142,17 @@ public class GameLoopBehaviour : MonoBehaviour
             ResetCharacters(PlayerCharacter);   //  Reset Player 1
             ResetCharacters(OpponentCharacter); //  Reset Player 2
             Destroy(rb);    //  Destroys Commponent for Round Behaviour object
+            Wait = true;    //  Change  ***
         }
 
+        //  Change  ***
+        if (WaitTime <= 0 && Wait == true)
+        {
+            Wait = false;
+        }
     }
 
-    //  Setup Characters for the next round without reseting the scene  ***
+    //  Setup Characters for the next round without reseting the scene
     public void ResetCharacters(CharacterBehaviour resetCharacter)
     {
         resetCharacter.Health = resetCharacter.character.Health;    //  Reset Health on the character Behaviour
@@ -108,11 +161,13 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
     }
 
+
+    //  Replace when controller function for pausing is added
     //  Temporary    ***
     public void EnablePause(GameType.GameMode mode)
     {
         // Enables pause menu
-        if (Paused == false)
+        if (Paused == false && Wait == false)
         {
             MenuUI.SetActive(true);
             CharacterChange.SetActive(false);
@@ -120,7 +175,7 @@ public class GameLoopBehaviour : MonoBehaviour
         }
 
         // Disables pause menu
-        else if (Paused == true)
+        else if (Paused == true && Wait == false)
         {
             MenuUI.SetActive(false);
             CharacterChange.SetActive(true);
