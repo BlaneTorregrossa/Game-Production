@@ -11,10 +11,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e52fa15540cb546bd39045380fcc79, type: 3}
   m_Name: Player2
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
+  parts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Left: {fileID: 0}
   Right: {fileID: 0}
+  LegSet: {fileID: 0}
+  HeadPiece: {fileID: 0}
   Name: 
-  Heath: 0
+  Health: 50
   DashCharges: 0
   Speed: 0
   DashSpeed: 0
+  StartingPos: {x: -0.000030517578, y: 0.00000500679, z: -35}
+  LeftArmBehaviour: {fileID: 0}
+  RightArmBehaviour: {fileID: 0}
+  HeadBehaviour: {fileID: 0}

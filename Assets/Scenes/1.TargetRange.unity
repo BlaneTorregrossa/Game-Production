@@ -502,10 +502,14 @@ MonoBehaviour:
   - {fileID: 338182138}
   - {fileID: 1491625687}
   Rounds: []
+  Wait: 0
+  Paused: 0
   RoundMax: 3
-  SetTime: 15
+  RoundTimeMax: 15
   RoundTime: 0
   PausedTime: 0
+  WaitTimeMax: 10
+  WaitTime: 0
   MenuUI: {fileID: 492444110}
   CharacterChange: {fileID: 1224303226}
 --- !u!4 &1003552417
