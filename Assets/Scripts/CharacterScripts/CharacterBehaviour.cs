@@ -6,12 +6,15 @@ using UnityEngine;
 public class CharacterBehaviour : MonoBehaviour
 {
     public Character character;
-    public float characterHealth = 100;
+    public float characterHealth;
     public float leftDamage;
     public float rightDamage;
 
     void Start()
     {
+        {
+            characterHealth = 100;
+        }
         character.Health = characterHealth;
         character.isDead = false;
         SetBehaviour();
