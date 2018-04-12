@@ -6,8 +6,6 @@ public class FireProjectileBehaviour : MonoBehaviour
 {
     public Character characterConfig;
     public GameObject projectileObject;
-    public MachineGunBulletBehaviour machineGunBulletBehaviour;
-    public GrenadeBehaviour grenadeBehaviour;
     public Transform location;
     public bool rapidFire;
 
@@ -16,9 +14,13 @@ public class FireProjectileBehaviour : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if(Input.GetKey("space"))
+        if(Input.GetKey("space") && rapidFire == true)
         {
             FireMachineGunBullet();
+        }
+        if(Input.GetKey("space") && rapidFire == false)
+        {
+            FireGrenade();
         }
     }
 
@@ -29,5 +31,10 @@ public class FireProjectileBehaviour : MonoBehaviour
         firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(characterConfig);
         firedProjectile.GetComponent<Rigidbody>().velocity += gameObject.transform.forward * firedProjectile.GetComponent<MachineGunBulletBehaviour>().BulletConfig.speed;
         Destroy(firedProjectile, 2f);
+    }
+
+    public void FireGrenade()
+    {
+
     }
 }
