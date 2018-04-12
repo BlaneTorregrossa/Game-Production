@@ -17,7 +17,6 @@ public class Character : ScriptableObject, IDamageable, IDamager
     public Part HeadPiece;  //  Head Part
     public string Name; //  Name for character (EX: Player 1 or P1)
     public float Health { get; set; }  //  Set health for character
-    public float MaxHealth; // Max health for the character that dertemines their starting Health
     public int DashCharges; //  Dashes avalible for character
     public float Speed; //  Default speed for the character
     public float DashSpeed; //  Default dash speed for the character
