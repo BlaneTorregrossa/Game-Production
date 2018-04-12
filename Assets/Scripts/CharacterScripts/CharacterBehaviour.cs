@@ -12,6 +12,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Start()
     {
+        if (characterHealth <= 0)
         {
             characterHealth = 100;
         }
