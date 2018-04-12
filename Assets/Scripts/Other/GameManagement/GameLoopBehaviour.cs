@@ -133,6 +133,7 @@ public class GameLoopBehaviour : MonoBehaviour
     //  Setup Characters for the next round without reseting the scene
     public void ResetCharacters(CharacterBehaviour resetCharacter)
     {
+        resetCharacter.character.Health = resetCharacter.characterHealth;    //  Reset Health on the character Behaviour
         resetCharacter.character.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
