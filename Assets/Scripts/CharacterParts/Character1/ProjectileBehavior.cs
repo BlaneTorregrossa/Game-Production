@@ -29,7 +29,8 @@ public class ProjectileBehavior : MonoBehaviour
         }
         if (other.tag == "Character")
         {
-            
+            _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
+            Destroy(gameObject);
         }
     }
     
