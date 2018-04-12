@@ -6,38 +6,31 @@ using UnityEngine;
 public class CharacterBehaviour : MonoBehaviour
 {
     public Character character;
-    public float Health;
-    public bool isDead;
+    public float characterMaxHealth;
+    public float characterHealth;
+    public float leftDamage;
+    public float rightDamage;
 
     void Start()
     {
-        Health = character.Health;
-        isDead = false;
+        character.MaxHealth = characterMaxHealth;
+        character.Health = characterHealth;
+        character.isDead = false;
         SetBehaviour();
     }
 
     void Update()
     {
-        if (Health <= 0)
-            isDead = true;
-        else if (Health > 0)
-            isDead = false;
+        if (character.Health <= 0)
+            character.isDead = true;
+        else if (character.Health > 0)
+            character.isDead = false;
 
-        if (isDead == true)
+        if (character.isDead == true)
             gameObject.SetActive(false);
-        else if (isDead == false)
+        else if (character.isDead == false)
             gameObject.SetActive(true);
-
-        // Temporary Since no proper attacks are added
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TakeDamage(1);
-        }
-    }
-
-    public void TakeDamage(float moddifier)
-    {
-        Health -= 5f * moddifier;
+        
     }
 
     public void SetBehaviour()
@@ -49,4 +42,6 @@ public class CharacterBehaviour : MonoBehaviour
         character.RightArmBehaviour.ArmConfig = character.Right as Arm;
         character.HeadBehaviour.HeadConfig = character.HeadPiece as Head;
     }
+
+
 }

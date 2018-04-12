@@ -31,6 +31,6 @@ public class GrenadeBehaviour : MonoBehaviour
     
     public void CreateExplosion()
     {
-        ExplosionObject.GetComponent<ExplosionBehaviour>().Damage = GrenadeConfig.damage;
+        
     }
 }

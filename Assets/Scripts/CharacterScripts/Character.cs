@@ -16,12 +16,14 @@ public class Character : ScriptableObject, IDamageable, IDamager
     public Part LegSet; //  Legs Part
     public Part HeadPiece;  //  Head Part
     public string Name; //  Name for character (EX: Player 1 or P1)
-    public float Health;  //  Set health for character
+    public float Health { get; set; }  //  Set health for character
+    public float MaxHealth; // Max health for the character that dertemines their starting Health
     public int DashCharges; //  Dashes avalible for character
     public float Speed; //  Default speed for the character
     public float DashSpeed; //  Default dash speed for the character
-    public float Damage; //Damage that will be inflicted to another character
+    public float Damage { get; set; } // Damage that will be inflicted to another character
     public Vector3 StartingPos; //  Position Character Starts in a given scene
+    public bool isDead; // Boolean that determines whether the player is "Dead".
 
     public ArmBehaviour LeftArmBehaviour;
     public ArmBehaviour RightArmBehaviour;
