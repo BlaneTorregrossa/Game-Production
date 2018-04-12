@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-// =*=
 public class ProjectileBehavior : MonoBehaviour
 {
     public Projectile projectileConfig;
