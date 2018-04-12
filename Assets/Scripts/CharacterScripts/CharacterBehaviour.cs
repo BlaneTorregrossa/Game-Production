@@ -6,14 +6,12 @@ using UnityEngine;
 public class CharacterBehaviour : MonoBehaviour
 {
     public Character character;
-    public float characterMaxHealth;
-    public float characterHealth;
+    public float characterHealth = 100;
     public float leftDamage;
     public float rightDamage;
 
     void Start()
     {
-        character.MaxHealth = characterMaxHealth;
         character.Health = characterHealth;
         character.isDead = false;
         SetBehaviour();
