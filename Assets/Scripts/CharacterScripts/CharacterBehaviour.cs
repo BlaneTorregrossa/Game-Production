@@ -30,7 +30,6 @@ public class CharacterBehaviour : MonoBehaviour
             gameObject.SetActive(false);
         else if (character.isDead == false)
             gameObject.SetActive(true);
-        
     }
 
     public void SetBehaviour()
@@ -41,7 +40,19 @@ public class CharacterBehaviour : MonoBehaviour
         character.LeftArmBehaviour.ArmConfig = character.Left as Arm;
         character.RightArmBehaviour.ArmConfig = character.Right as Arm;
         character.HeadBehaviour.HeadConfig = character.HeadPiece as Head;
+        leftDamage = character.LeftArmBehaviour.ArmConfig.damageNum;
+        rightDamage = character.RightArmBehaviour.ArmConfig.damageNum;
     }
-
-
+    
+    public void SetcurrentDamage(bool isright)
+    {
+        if(isright)
+        {
+            character.Damage = rightDamage;
+        }
+        else
+        {
+            character.Damage = leftDamage;
+        }
+    }
 }

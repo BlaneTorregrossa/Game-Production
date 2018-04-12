@@ -9,7 +9,7 @@ public class Arm : Part
     public bool isRight;    //  Check for if arm belongs on right side of character
     public bool isMelee;    //  Check for if arm has melee styled attacks
     public bool isRanged;   //  Check for if arm has ranged styled attacks
-    public float damageNum;   
+    public float damageNum; //  Base Damage of the arm
     public float meleeAttackSpeed;  //  Melee Attack Speed Modifier
     public float projectileSpeed;   //  Projectile Speed Modifier
 
