@@ -962,7 +962,7 @@ MonoBehaviour:
   PausedTime: 0
   PreRoundTime: 0
   RoundMax: 3
-  RoundTimeMax: 99
+  RoundTimeMax: 15
   PreRoundTimeMax: 5
   MenuUI: {fileID: 492444110}
   Characters: {fileID: 1224303226}

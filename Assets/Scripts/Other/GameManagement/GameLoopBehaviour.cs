@@ -70,21 +70,19 @@ public class GameLoopBehaviour : MonoBehaviour
         }
         #endregion
 
-        #region Better Timer
+        //  Timer Broken, Needs Revision, Might make it's own behaviour ***
+        #region Timer
         //  Round timer ***
-        //  RT = RTM - ((T - PT) - TR)
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax)
-            RoundTime = RoundTimeMax - ((Time.timeSinceLevelLoad - PausedTime) - TimeReset);
+            RoundTime = RoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
-        //  Preround timer
-        //  PRT = PRTM - ((T - PT) - TR)
+        //  Preround timer  ***
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax)
-            PreRoundTime = PreRoundTimeMax - ((Time.timeSinceLevelLoad - PausedTime) - TimeReset);
+            PreRoundTime =  PreRoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
         //  Pause screen timer  ***
-        //  PT = (T - (PRT + RT)) - TR
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true && Rounds.Count <= RoundMax)
-            PausedTime = (Time.timeSinceLevelLoad - (PreRoundTime + RoundTime)) - TimeReset;
+            PausedTime = (Time.timeSinceLevelLoad - RoundTime) - TimeReset;
 
         RoundTimerText.text = RoundTime.ToString();
 
@@ -108,7 +106,6 @@ public class GameLoopBehaviour : MonoBehaviour
                 rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
                 TimeReset += RoundTimeMax - RoundTime;  //  Set Reset for RoundTime, WaitTime, and PausedTime
             }
-            //RoundTime = 0;  //  Reseting Round Time
             ResetCharacters(PlayerCharacter);   //  Reset Player 1
             ResetCharacters(OpponentCharacter); //  Reset Player 2
             Destroy(rb);    //  Destroys Commponent for Round Behaviour object
@@ -133,7 +130,7 @@ public class GameLoopBehaviour : MonoBehaviour
     //  Setup Characters for the next round without reseting the scene
     public void ResetCharacters(CharacterBehaviour resetCharacter)
     {
-        resetCharacter.character.Health = resetCharacter.characterHealth;    //  Reset Health on the character Behaviour
+        resetCharacter.character.Health = resetCharacter.characterHealth;    //  Reset Health on the character ScriptableObject
         resetCharacter.character.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
