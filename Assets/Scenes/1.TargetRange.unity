@@ -225,8 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
-  Health: 0
-  isDead: 0
+  characterHealth: 0
+  leftDamage: 0
+  rightDamage: 0
 --- !u!1 &177704322
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: f7f549ade651d964781660a0c3e2aa5c, type: 2}
-  Health: 0
-  isDead: 0
+  characterHealth: 0
+  leftDamage: 0
+  rightDamage: 0
 --- !u!4 &338182140 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
@@ -1001,8 +1003,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: f7f549ade651d964781660a0c3e2aa5c, type: 2}
-  Health: 0
-  isDead: 0
+  characterHealth: 0
+  leftDamage: 0
+  rightDamage: 0
 --- !u!4 &1035261773 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
@@ -1843,8 +1846,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: 0debceb8b6dcdf943bd2600e669de115, type: 2}
-  Health: 0
-  isDead: 0
+  characterHealth: 0
+  leftDamage: 0
+  rightDamage: 0
 --- !u!65 &1435165784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1873,8 +1877,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: f7f549ade651d964781660a0c3e2aa5c, type: 2}
-  Health: 0
-  isDead: 0
+  characterHealth: 0
+  leftDamage: 0
+  rightDamage: 0
 --- !u!4 &1491625689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}

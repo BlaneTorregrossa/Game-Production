@@ -95,10 +95,10 @@ public class GameLoopBehaviour : MonoBehaviour
         #endregion
 
         //  For if either character isDead
-        if (PlayerCharacter.isDead == true || OpponentCharacter.isDead == true || RoundTime < 0)
+        if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || RoundTime < 0)
         {
             RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
-            if (PlayerCharacter.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
+            if (PlayerCharacter.character.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
             {
                 RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
                 TimeReset += RoundTimeMax - RoundTime;
@@ -133,8 +133,7 @@ public class GameLoopBehaviour : MonoBehaviour
     //  Setup Characters for the next round without reseting the scene
     public void ResetCharacters(CharacterBehaviour resetCharacter)
     {
-        resetCharacter.Health = resetCharacter.character.Health;    //  Reset Health on the character Behaviour
-        resetCharacter.isDead = false;  //  Character Death check undone
+        resetCharacter.character.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
     }
