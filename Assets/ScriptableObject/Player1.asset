@@ -23,5 +23,9 @@ MonoBehaviour:
   Name: Player 1
   Health: 100
   DashCharges: 3
-  Speed: 0.5
+  Speed: 0.2
   DashSpeed: 2
+  StartingPos: {x: -0.000030517578, y: 2.000005, z: -30}
+  LeftArmBehaviour: {fileID: 0}
+  RightArmBehaviour: {fileID: 0}
+  HeadBehaviour: {fileID: 0}

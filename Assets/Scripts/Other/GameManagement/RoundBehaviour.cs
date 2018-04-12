@@ -13,13 +13,13 @@ public class RoundBehaviour : MonoBehaviour
             Round tempRound = ScriptableObject.CreateInstance<Round>(); //  The temp round to be added to the round list
             tempRound.name = "Round " + (RoundList.Count + 1).ToString();   //  Naming the round
 
-            if (CharacterA.Health > CharacterB.Health)
+            if (CharacterA.characterHealth > CharacterB.characterHealth)
             {
                 tempRound.Result = Round.RoundResult.CHARACTERAWIN; //  The 1st character Set as winner of round
                 RoundList.Add(tempRound);   //  Add Round to list
             }
 
-            else if (CharacterA.Health < CharacterB.Health)
+            else if (CharacterA.characterHealth < CharacterB.characterHealth)
             {
                 tempRound.Result = Round.RoundResult.CHARACTERBWIN; //  The 2nd character set as winner of round
                 RoundList.Add(tempRound);   //  Added round to list
@@ -38,7 +38,7 @@ public class RoundBehaviour : MonoBehaviour
     public int Tie(CharacterBehaviour CharacterA, CharacterBehaviour CharacterB, List<Round> RoundList, int listSize)
     {
         Round TempRound = ScriptableObject.CreateInstance<Round>();
-        if (CharacterA.Health <= 0 && CharacterB.Health <= 0)
+        if (CharacterA.characterHealth <= 0 && CharacterB.characterHealth <= 0)
         {
             TempRound.Result = Round.RoundResult.DRAW;
             TempRound.name = "Round " + (RoundList.Count + 1).ToString();
@@ -47,7 +47,7 @@ public class RoundBehaviour : MonoBehaviour
         }
         else
         {
-            Debug.Log("Tie Requirments not met. Player1 Health: " + CharacterA.Health.ToString() + " Player2 Health: " + CharacterB.Health.ToString());
+            Debug.Log("Tie Requirments not met. Player1 Health: " + CharacterA.characterHealth.ToString() + " Player2 Health: " + CharacterB.characterHealth.ToString());
             return listSize;
         }
     }
