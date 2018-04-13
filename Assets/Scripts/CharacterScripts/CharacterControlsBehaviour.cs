@@ -12,7 +12,9 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public bool _dashing;
     public int _dashtime;
     public int _dashduration;
-    
+
+    [SerializeField]
+    GameLoopBehaviour GameLoopInstance;
     private Vector3 _movedirection;
     private Vector3 _lookdirection;
     private Vector3 _dashdirection;
@@ -30,51 +32,57 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
-        if (_dashing)
+        if (GameLoopInstance.Wait == false)
         {
-            Dash(Characterconfig.DashSpeed, _dashtime, _dashdirection);
-        }
-        if (_canmove)
-        {
-            Move(Characterconfig.Speed);
-        }
+            _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
+            if (_dashing)
+            {
+                Dash(Characterconfig.DashSpeed, _dashtime, _dashdirection);
+            }
+            if (_canmove)
+            {
+                Move(Characterconfig.Speed);
+            }
 
-        transform.rotation = Look(transform.rotation, _lookdirection, 5);
+            transform.rotation = Look(transform.rotation, _lookdirection, 5);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //May want to make a Switch case for all these 
-        if (Input.GetAxis("LeftArm") > 0)
+        if (GameLoopInstance.Wait == false)
         {
-            LeftArmAttack();
-        }
-        if (Input.GetAxis("RightArm") > 0)
-        {
-            RightArmAttack();
-        }
-        if (Input.GetButtonDown("Head"))
-        {
-            HeadActivate();
-        }
-        if (Input.GetButtonDown("Dash") && _dashing == false)
-        {
-            if (_charges >= 0)
+            //May want to make a Switch case for all these 
+            if (Input.GetAxis("LeftArm") > 0)
             {
-                _dashing = true;
-                _dashtime = _dashduration;
-                _canmove = false;
-                _charges -= 1;
-                Debug.Log("Started Dash, -1 Dash Charge");
+                LeftArmAttack();
             }
-            else
+            if (Input.GetAxis("RightArm") > 0)
             {
-                Debug.Log("Not enough charges");
+                RightArmAttack();
             }
+            if (Input.GetButtonDown("Head"))
+            {
+                HeadActivate();
+            }
+            if (Input.GetButtonDown("Dash") && _dashing == false)
+            {
+                if (_charges >= 0)
+                {
+                    _dashing = true;
+                    _dashtime = _dashduration;
+                    _canmove = false;
+                    _charges -= 1;
+                    Debug.Log("Started Dash, -1 Dash Charge");
+                }
+                else
+                {
+                    Debug.Log("Not enough charges");
+                }
+            }
+            DashRecharge(200, Characterconfig.DashCharges);
         }
-        DashRecharge(200, Characterconfig.DashCharges);
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys

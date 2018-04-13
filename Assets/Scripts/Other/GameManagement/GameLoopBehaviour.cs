@@ -22,6 +22,7 @@ public class GameLoopBehaviour : MonoBehaviour
     [SerializeField]
     private float PreRoundTime;     //  For Pre or Post Round Wait
     private bool Paused;    //  For determining if game is paused
+    private bool FirstStart;
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
     [SerializeField]
@@ -44,6 +45,7 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Start()
     {
+        FirstStart = true;
         Wait = true;
         RoundTime = RoundTimeMax;
         PreRoundTime = PreRoundTimeMax;
@@ -80,16 +82,18 @@ public class GameLoopBehaviour : MonoBehaviour
         //  Timer Broken, Needs Revision, Might make it's own behaviour ***
         #region Timer
         //  Round timer ***
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax)
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax && FirstStart == true)
             RoundTime = RoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
         //  Preround timer  ***
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax)
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax && FirstStart == true)
             PreRoundTime = PreRoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
         //  Pause screen timer  ***
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true && Rounds.Count <= RoundMax)
-            PausedTime = (Time.timeSinceLevelLoad - RoundTime) - TimeReset;
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true && Rounds.Count <= RoundMax && FirstStart == true)
+        {
+            PausedTime = Time.timeSinceLevelLoad - TimeReset;
+        }
 
         RoundTimerText.text = RoundTime.ToString();
 
@@ -161,6 +165,7 @@ public class GameLoopBehaviour : MonoBehaviour
             MenuUI.SetActive(false);
             Characters.SetActive(true);
             Paused = false;
+            TimeReset += PausedTime;
         }
     }
 
