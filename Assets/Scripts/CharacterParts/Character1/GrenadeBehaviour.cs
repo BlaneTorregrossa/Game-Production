@@ -5,9 +5,9 @@ using UnityEngine;
 public class GrenadeBehaviour : MonoBehaviour
 {
     public Grenade GrenadeConfig;
-    public GameObject ExplosionObject;
 
     private float _distanceTraveled;
+    private GameObject _explosionObject;
 
 	// Use this for initialization
 	void Start ()
