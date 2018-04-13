@@ -5,9 +5,12 @@ using UnityEngine;
 public class GrenadeBehaviour : MonoBehaviour
 {
     public Grenade GrenadeConfig;
+    public GameObject
 
     private float _distanceTraveled;
-    private GameObject _explosionObject;
+
+    [HideInInspector]
+    public GameObject _explosionObject;
 
 	// Use this for initialization
 	void Start ()
@@ -26,11 +29,12 @@ public class GrenadeBehaviour : MonoBehaviour
         if (_distanceTraveled == GrenadeConfig.Distance)
         {
             CreateExplosion();
+            Destroy(gameObject);
         }
     }
     
     public void CreateExplosion()
     {
-        
+        _explosionObject = Instantiate<GameObject>()
     }
 }
