@@ -4,35 +4,44 @@ using UnityEngine;
 
 public class GrenadeBehaviour : MonoBehaviour
 {
-    public Grenade GrenadeConfig;
-    public GameObject
+    public Grenade grenadeConfig;
+    public Character characterConfig;
+    public GameObject explosionObject;
     
     [HideInInspector]
     public GameObject _explosionObject;
 
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+    //[SerializeField]
+    //private Vector3 _startingLocation;
 
-    public void Falloff()
-    {
-        if (_distanceTraveled == GrenadeConfig.Distance)
-        {
-            CreateExplosion();
-            Destroy(gameObject);
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Falloff())
+    //    {
+    //        CreateExplosion();
+    //    }
+    //}
+
+    //public bool Falloff()
+    //{
+
+
+    //    return false;
+    //}
     
     public void CreateExplosion()
     {
-        
+        _explosionObject = Instantiate(explosionObject);
+        _explosionObject.transform.localScale = new Vector3(grenadeConfig.Radius, grenadeConfig.Radius, grenadeConfig.Radius);
+        _explosionObject.GetComponent<ExplosionBehaviour>().SetOwner(characterConfig);
+        Destroy(gameObject);
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Character")
+        {
+            CreateExplosion();
+        }
     }
 }

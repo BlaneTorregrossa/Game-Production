@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ExplosionBehaviour : MonoBehaviour
 {
+    private void Update()
+    {
+        Destroy(gameObject, 2f);
+    }
+
     private Character _shooter;
 
     public void OnTriggerEnter(Collider other)
@@ -15,15 +20,10 @@ public class ExplosionBehaviour : MonoBehaviour
         if(other.tag == "Character")
         {
             _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
-            ExplosionEnd();
         }
     }
     public void SetOwner(Character owner)
     {
         _shooter = owner;
-    }
-    public void ExplosionEnd()
-    {
-        Destroy(gameObject);
     }
 }

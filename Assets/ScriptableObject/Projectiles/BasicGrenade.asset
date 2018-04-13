@@ -15,5 +15,5 @@ MonoBehaviour:
   tag: 
   force: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
-  Distance: 5
-  BlastRadius: 3
+  Distance: 2
+  Radius: 5

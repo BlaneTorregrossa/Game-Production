@@ -61,6 +61,10 @@ public class FireProjectileBehaviour : MonoBehaviour
 
     public void FireGrenade()
     {
-
+        firedProjectile = Instantiate(projectileObject, location.position, transform.rotation);
+        firedProjectile.transform.forward = transform.forward;
+        firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(characterConfig);
+        firedProjectile.GetComponent<GrenadeBehaviour>().characterConfig = characterConfig;
+        firedProjectile.GetComponent<Rigidbody>().velocity += gameObject.transform.forward * firedProjectile.GetComponent<GrenadeBehaviour>().grenadeConfig.speed;
     }
 }

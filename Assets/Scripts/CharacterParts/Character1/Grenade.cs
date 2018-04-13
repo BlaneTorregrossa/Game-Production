@@ -6,4 +6,5 @@ using UnityEngine;
 public class Grenade : Projectile
 {
     public float Distance;
+    public float Radius;
 }
