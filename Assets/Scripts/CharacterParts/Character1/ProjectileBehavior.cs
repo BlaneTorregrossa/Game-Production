@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-// =*=
 public class ProjectileBehavior : MonoBehaviour
 {
     public Projectile projectileConfig;
@@ -29,7 +27,8 @@ public class ProjectileBehavior : MonoBehaviour
         }
         if (other.tag == "Character")
         {
-            
+            _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
+            Destroy(gameObject);
         }
     }
     

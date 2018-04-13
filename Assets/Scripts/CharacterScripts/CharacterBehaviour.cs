@@ -18,6 +18,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
         character.Health = characterHealth;
         character.isDead = false;
+        character.Damage = 5;
         SetBehaviour();
     }
 

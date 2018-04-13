@@ -229,7 +229,8 @@ MonoBehaviour:
   projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
     type: 2}
   machineGunBulletBehaviour: {fileID: 0}
-  location: {fileID: 4158912884659000}
+  location: {fileID: 4861083243782904}
+  rapidFire: 0
   firedProjectile: {fileID: 0}
 --- !u!114 &114818509320977810
 MonoBehaviour:
@@ -243,8 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
-  Health: 100
-  isDead: 0
+  characterHealth: 100
+  leftDamage: 0
+  rightDamage: 0
 --- !u!136 &136357025670687860
 CapsuleCollider:
   m_ObjectHideFlags: 1
