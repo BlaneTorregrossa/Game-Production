@@ -10,19 +10,13 @@ public class GameLoopBehaviour : MonoBehaviour
     public GameType.GameMode CurrentGameMode;   //  Current Game mode for given scene
     public CharacterBehaviour PlayerCharacter;   //  Character Behaviour for Player
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
-    public List<CharacterBehaviour> TargetCharacters;    //  List of targets in the Target Range
+    public CharacterBehaviour TargetCharacter;  //  List of targets in the Target Range
     public List<Round> Rounds;  //  List of results for each individual round
 
-    [SerializeField]
     private float TimeReset;    //  Reset timer for return to 
-    [SerializeField]
     private float RoundTime;    //  Time for each Round
-    [SerializeField]
-    private float PausedTime;   //  Time while paused
-    [SerializeField]
     private float PreRoundTime;     //  For Pre or Post Round Wait
     private bool Paused;    //  For determining if game is paused
-    private bool FirstStart;
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
     [SerializeField]
@@ -45,19 +39,22 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Start()
     {
-        FirstStart = true;
+        Paused = false;
         Wait = true;
         RoundTime = RoundTimeMax;
         PreRoundTime = PreRoundTimeMax;
         TimeReset = 0;
-        PausedTime = 0;
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
-        OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
+        if (CurrentGameMode == GameType.GameMode.PVP)
+            OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
 
         MenuUI.SetActive(false);
         Characters.SetActive(true);
         ResultScreen.SetActive(false);
-        CombatUI.SetActive(true);
+        if (CurrentGameMode == GameType.GameMode.PVP)
+            CombatUI.SetActive(true);
+        else
+            CombatUI.SetActive(false);
     }
 
     void Update()
@@ -71,29 +68,20 @@ public class GameLoopBehaviour : MonoBehaviour
             EnablePause(CurrentGameMode);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TempDamage();
-        }
+
         #endregion
 
 
 
         //  Timer Broken, Needs Revision, Might make it's own behaviour ***
         #region Timer
-        //  Round timer ***
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax && FirstStart == true)
+        //  Round timer *** 
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax)
             RoundTime = RoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
         //  Preround timer  ***
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax && FirstStart == true)
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax)
             PreRoundTime = PreRoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
-
-        //  Pause screen timer  ***
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true && Rounds.Count <= RoundMax && FirstStart == true)
-        {
-            PausedTime = Time.timeSinceLevelLoad - TimeReset;
-        }
 
         RoundTimerText.text = RoundTime.ToString();
 
@@ -103,38 +91,56 @@ public class GameLoopBehaviour : MonoBehaviour
             PreRoundTimerText.text = PreRoundTime.ToString();
         #endregion
 
-        //  For if either character isDead
-        if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || RoundTime < 0)
+        if (CurrentGameMode == GameType.GameMode.PVP)
         {
-            RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
-            if (PlayerCharacter.character.isDead == true && OpponentCharacter.character.isDead == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
+            //  For if either character isDead
+            if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || RoundTime < 0)
             {
-                //RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
-                TimeReset += RoundTimeMax - RoundTime;
+                RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
+                if (PlayerCharacter.character.isDead == true && OpponentCharacter.character.isDead == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
+                {
+                    //RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
+                    TimeReset += RoundTimeMax - RoundTime;
+                }
+                else
+                {
+                    rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
+                    TimeReset += RoundTimeMax - RoundTime;  //  Set Reset for RoundTime, WaitTime, and PausedTime
+                }
+                ResetCharacters(PlayerCharacter);   //  Reset Player 1
+                ResetCharacters(OpponentCharacter); //  Reset Player 2
+                Destroy(rb);    //  Destroys Commponent for Round Behaviour object
+                RoundTime = 0;
+                Wait = true;    //  For Wait Timer
             }
+
+            if (Paused == true)
+                Time.timeScale = 0;
             else
+                Time.timeScale = 1;
+
+            if (Rounds.Count >= 3)
             {
-                rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
-                TimeReset += RoundTimeMax - RoundTime;  //  Set Reset for RoundTime, WaitTime, and PausedTime
+                Wait = true;
+                ResultScreen.SetActive(true);
+                CombatUI.SetActive(false);
             }
-            ResetCharacters(PlayerCharacter);   //  Reset Player 1
-            ResetCharacters(OpponentCharacter); //  Reset Player 2
-            Destroy(rb);    //  Destroys Commponent for Round Behaviour object
-            Wait = true;    //  For Wait Timer
+            else if (Rounds.Count < RoundMax && PreRoundTime < 0)
+            {
+                Wait = false;
+                TimeReset += PreRoundTimeMax;
+                PreRoundTime = 0;
+            }
         }
 
-        if (Rounds.Count >= 3)
+        else if (CurrentGameMode == GameType.GameMode.TARGETRANGE)
         {
-            Wait = true;
-            ResultScreen.SetActive(true);
-            CombatUI.SetActive(false);
+            if (TargetCharacter.character.isDead)
+            {
+                ResultScreen.SetActive(true);
+            }
         }
-        else if (Rounds.Count < RoundMax && PreRoundTime < 0)
-        {
-            Wait = false;
-            TimeReset += PreRoundTimeMax;
-            PreRoundTime = 0;
-        }
+
     }
 
     //  Setup Characters for the next round without reseting the scene
@@ -157,6 +163,7 @@ public class GameLoopBehaviour : MonoBehaviour
             MenuUI.SetActive(true);
             Characters.SetActive(false);
             Paused = true;
+            Time.timeScale = 0;
         }
 
         // Disables pause menu
@@ -165,13 +172,7 @@ public class GameLoopBehaviour : MonoBehaviour
             MenuUI.SetActive(false);
             Characters.SetActive(true);
             Paused = false;
-            TimeReset += PausedTime;
         }
-    }
-
-    public void TempDamage()
-    {
-        PlayerCharacter.character.Health -= 50;
     }
 
 }

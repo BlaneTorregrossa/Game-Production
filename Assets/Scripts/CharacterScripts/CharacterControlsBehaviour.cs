@@ -32,7 +32,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameLoopInstance.Wait == false)
+        if (GameLoopInstance.Wait == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP || GameLoopInstance.CurrentGameMode == GameType.GameMode.TARGETRANGE)
         {
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
             if (_dashing)
@@ -51,7 +51,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameLoopInstance.Wait == false)
+        if (GameLoopInstance.Wait == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP || GameLoopInstance.CurrentGameMode == GameType.GameMode.TARGETRANGE)
         {
             //May want to make a Switch case for all these 
             if (Input.GetAxis("LeftArm") > 0)

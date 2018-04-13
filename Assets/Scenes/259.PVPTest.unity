@@ -873,16 +873,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wait: 0
-  CurrentGameMode: 1
+  CurrentGameMode: 2
   PlayerCharacter: {fileID: 109607}
-  OpponentCharacter: {fileID: 0}
-  TargetCharacter: {fileID: 1035261771}
+  OpponentCharacter: {fileID: 1035261771}
+  TargetCharacter: {fileID: 0}
   Rounds: []
-  TimeReset: 0
-  RoundTime: 0
-  PreRoundTime: 0
   RoundMax: 3
-  RoundTimeMax: 10
+  RoundTimeMax: 15
   PreRoundTimeMax: 5
   MenuUI: {fileID: 492444110}
   Characters: {fileID: 1224303226}
@@ -922,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53c8caa02799714ea1c30249cba0211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: f7f549ade651d964781660a0c3e2aa5c, type: 2}
+  character: {fileID: 11400000, guid: 0debceb8b6dcdf943bd2600e669de115, type: 2}
   characterHealth: 0
   leftDamage: 0
   rightDamage: 0
@@ -1297,7 +1294,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -570
+      value: -555
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1305,7 +1302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1329,7 +1326,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_Name
-      value: Target1
+      value: TempOpponent
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalScale.x
