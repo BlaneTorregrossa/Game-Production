@@ -13,16 +13,16 @@ public class RoundBehaviour : MonoBehaviour
             Round tempRound = ScriptableObject.CreateInstance<Round>(); //  The temp round to be added to the round list
             tempRound.name = "Round " + (RoundList.Count + 1).ToString();   //  Naming the round
 
-            if (CharacterA.characterHealth > CharacterB.characterHealth)
+            if (CharacterA.character.Health > CharacterB.character.Health)
             {
                 tempRound.Result = Round.RoundResult.CHARACTERAWIN; //  The 1st character Set as winner of round
-                RoundList.Add(tempRound);   //  Add Round to list
+                RoundList.Add(tempRound);
             }
 
-            else if (CharacterA.characterHealth < CharacterB.characterHealth)
+            else if (CharacterA.character.Health < CharacterB.character.Health)
             {
                 tempRound.Result = Round.RoundResult.CHARACTERBWIN; //  The 2nd character set as winner of round
-                RoundList.Add(tempRound);   //  Added round to list
+                RoundList.Add(tempRound);
             }
             return;
         }
@@ -34,21 +34,22 @@ public class RoundBehaviour : MonoBehaviour
         }
     }
 
-    //  Extends list if there is a tie
-    public int Tie(CharacterBehaviour CharacterA, CharacterBehaviour CharacterB, List<Round> RoundList, int listSize)
-    {
-        Round TempRound = ScriptableObject.CreateInstance<Round>();
-        if (CharacterA.characterHealth <= 0 && CharacterB.characterHealth <= 0)
-        {
-            TempRound.Result = Round.RoundResult.DRAW;
-            TempRound.name = "Round " + (RoundList.Count + 1).ToString();
-            RoundList.Add(TempRound);
-            return listSize + 1;
-        }
-        else
-        {
-            Debug.Log("Tie Requirments not met. Player1 Health: " + CharacterA.characterHealth.ToString() + " Player2 Health: " + CharacterB.characterHealth.ToString());
-            return listSize;
-        }
-    }
+    ////  Extends list if there is a tie
+    //public int Tie(CharacterBehaviour CharacterA, CharacterBehaviour CharacterB, List<Round> RoundList, int listSize)
+    //{
+
+
+    //    Round TempRound = ScriptableObject.CreateInstance<Round>();
+    //    if (CharacterA.character.Health <= 0 && CharacterB.character.Health <= 0)
+    //    {
+    //        TempRound.Result = Round.RoundResult.DRAW;
+    //        TempRound.name = "Round " + (RoundList.Count + 1).ToString();
+    //        return listSize;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Tie Requirments not met. Player1 Health: " + CharacterA.character.Health.ToString() + " Player2 Health: " + CharacterB.character.Health.ToString());
+    //        return listSize;
+    //    }
+    //}
 }
