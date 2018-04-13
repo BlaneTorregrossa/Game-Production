@@ -32,6 +32,7 @@ public class GrenadeBehaviour : MonoBehaviour
     public void CreateExplosion()
     {
         _explosionObject = Instantiate(explosionObject);
+        _explosionObject.transform.position = gameObject.transform.position;
         _explosionObject.transform.localScale = new Vector3(grenadeConfig.Radius, grenadeConfig.Radius, grenadeConfig.Radius);
         _explosionObject.GetComponent<ExplosionBehaviour>().SetOwner(characterConfig);
         Destroy(gameObject);

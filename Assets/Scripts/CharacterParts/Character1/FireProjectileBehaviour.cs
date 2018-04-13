@@ -27,12 +27,12 @@ public class FireProjectileBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey("space") && rapidFire == true)
+        if (Input.GetButtonDown("Submit") && rapidFire == true)
         {
             _shotTime += 1;
             FireMachineGunBullet();
         }
-        if (Input.GetKey("space") && rapidFire == false)
+        if (Input.GetButtonDown("Submit") && rapidFire == false)
         {
             if (_reloadTime == 0)
             {
