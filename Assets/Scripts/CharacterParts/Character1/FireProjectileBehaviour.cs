@@ -9,6 +9,11 @@ public class FireProjectileBehaviour : MonoBehaviour
     public Transform location;
     public bool rapidFire;
 
+    [SerializeField]
+    private int _gapTime;
+    [SerializeField]
+    private int _reloadStart;
+
     private int _reloadTime;
     private int _shotTime;
 
@@ -32,7 +37,7 @@ public class FireProjectileBehaviour : MonoBehaviour
             if (_reloadTime == 0)
             {
                 FireGrenade();
-                _reloadTime = 100;
+                _reloadTime = _reloadStart;
             }
         }
         if(_reloadTime > 0)
@@ -43,7 +48,7 @@ public class FireProjectileBehaviour : MonoBehaviour
 
     public void FireMachineGunBullet()
     {
-        if (_shotTime == 5)
+        if (_shotTime == _gapTime)
         {
             firedProjectile = Instantiate(projectileObject, location.position, transform.rotation);
             firedProjectile.transform.forward = transform.forward;
