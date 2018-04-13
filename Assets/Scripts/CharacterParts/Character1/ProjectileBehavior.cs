@@ -7,16 +7,10 @@ public class ProjectileBehavior : MonoBehaviour
     public Projectile projectileConfig;
     
     private Character _shooter;
-    private bool _hit;
     
     public void SetOwner(Character owner)
     {
         _shooter = owner;
-    }
-
-    public bool CheckforHit(string inputTag)
-    {
-        return false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +21,7 @@ public class ProjectileBehavior : MonoBehaviour
         }
         if (other.tag == "Character")
         {
-            _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
+            
             Destroy(gameObject);
         }
     }

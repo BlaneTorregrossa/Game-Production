@@ -6,9 +6,7 @@ public class GrenadeBehaviour : MonoBehaviour
 {
     public Grenade GrenadeConfig;
     public GameObject
-
-    private float _distanceTraveled;
-
+    
     [HideInInspector]
     public GameObject _explosionObject;
 
@@ -35,6 +33,6 @@ public class GrenadeBehaviour : MonoBehaviour
     
     public void CreateExplosion()
     {
-        _explosionObject = Instantiate<GameObject>()
+        
     }
 }

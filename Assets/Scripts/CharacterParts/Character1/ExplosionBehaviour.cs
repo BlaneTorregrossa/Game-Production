@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class ExplosionBehaviour : MonoBehaviour
 {
-    public float Damage;
+    private Character _shooter;
 
     public void OnTriggerEnter(Collider other)
     {
+        if(_shooter == null)
+        {
+            return;
+        }
         if(other.tag == "Character")
         {
-
+            _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
+            ExplosionEnd();
         }
     }
-
+    public void SetOwner(Character owner)
+    {
+        _shooter = owner;
+    }
     public void ExplosionEnd()
     {
-
+        Destroy(gameObject);
     }
 }
