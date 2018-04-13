@@ -21,7 +21,11 @@ MonoBehaviour:
   LegSet: {fileID: 11400000, guid: b7f4553133ec49c43a39b9e355521f27, type: 2}
   HeadPiece: {fileID: 11400000, guid: cc5fff2f19c6d744a96c196888c57611, type: 2}
   Name: Player 1
-  Health: 100
   DashCharges: 3
-  Speed: 0.5
+  Speed: 0.2
   DashSpeed: 2
+  StartingPos: {x: -0.000030517578, y: 2.000005, z: -30}
+  isDead: 0
+  LeftArmBehaviour: {fileID: 0}
+  RightArmBehaviour: {fileID: 0}
+  HeadBehaviour: {fileID: 0}

@@ -8,7 +8,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928d3b10cb6b91548a930586e12f5629, type: 3}
-  m_Name: TargetRange
+  m_Script: {fileID: 11500000, guid: 7fa1618a699ef75478f900baa989ba32, type: 3}
+  m_Name: BasicGrenade
   m_EditorClassIdentifier: 
-  Mode: 1
+  speed: 8
+  tag: 
+  force: {x: 0, y: 0, z: 0}
+  position: {x: 0, y: 0, z: 0}
+  Distance: 5
+  BlastRadius: 3

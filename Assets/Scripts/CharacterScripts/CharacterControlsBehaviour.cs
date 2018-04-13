@@ -120,19 +120,19 @@ public class CharacterControlsBehaviour : MonoBehaviour
     //Performs the Left Arm Attack when called
     void LeftArmAttack()
     {
-        Debug.Log("Attacked with Left Arm!");
+        Characterconfig.LeftArmBehaviour.PerformAttack();
     }
 
     //Performs the Right Arm Attack when called
     void RightArmAttack()
     {
-        Debug.Log("Attacked with Right Arm!");
+        Characterconfig.RightArmBehaviour.PerformAttack();
     }
 
     //Performs the Head ability when called
     void HeadActivate()
     {
-        Debug.Log("Used Head Ability!");
+        Characterconfig.HeadBehaviour.PerformHeadAbility();
     }
 
     void DashRecharge(int rechargenum, int limit)
