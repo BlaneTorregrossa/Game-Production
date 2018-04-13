@@ -61,30 +61,35 @@ public class GameLoopBehaviour : MonoBehaviour
     void Update()
     {
 
+        #region Temp Inputs
         //  In place of the lack of a pause button being set on the controller
         //  NOTE:  Remove once Controller is able to call pause function
-        #region Temp Pause Menu Input
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             EnablePause(CurrentGameMode);
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TempDamage();
+        }
         #endregion
 
-        #region Better Timer
-        //  Round timer ***
-        //  RT = RTM - ((T - PT) - TR)
-        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax)
-            RoundTime = RoundTimeMax - ((Time.timeSinceLevelLoad - PausedTime) - TimeReset);
 
-        //  Preround timer
-        //  PRT = PRTM - ((T - PT) - TR)
+
+        //  Timer Broken, Needs Revision, Might make it's own behaviour ***
+        #region Timer
+        //  Round timer ***
+        if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == false && Rounds.Count <= RoundMax)
+            RoundTime = RoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
+
+        //  Preround timer  ***
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax)
-            PreRoundTime = PreRoundTimeMax - ((Time.timeSinceLevelLoad - PausedTime) - TimeReset);
+            PreRoundTime = PreRoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
         //  Pause screen timer  ***
-        //  PT = (T - (PRT + RT)) - TR
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true && Rounds.Count <= RoundMax)
-            PausedTime = (Time.timeSinceLevelLoad - (PreRoundTime + RoundTime)) - TimeReset;
+            PausedTime = (Time.timeSinceLevelLoad - RoundTime) - TimeReset;
 
         RoundTimerText.text = RoundTime.ToString();
 
@@ -98,9 +103,9 @@ public class GameLoopBehaviour : MonoBehaviour
         if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || RoundTime < 0)
         {
             RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
-            if (PlayerCharacter.character.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
+            if (PlayerCharacter.character.isDead == true && OpponentCharacter.character.isDead == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
             {
-                RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
+                //RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
                 TimeReset += RoundTimeMax - RoundTime;
             }
             else
@@ -108,7 +113,6 @@ public class GameLoopBehaviour : MonoBehaviour
                 rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
                 TimeReset += RoundTimeMax - RoundTime;  //  Set Reset for RoundTime, WaitTime, and PausedTime
             }
-            //RoundTime = 0;  //  Reseting Round Time
             ResetCharacters(PlayerCharacter);   //  Reset Player 1
             ResetCharacters(OpponentCharacter); //  Reset Player 2
             Destroy(rb);    //  Destroys Commponent for Round Behaviour object
@@ -127,13 +131,12 @@ public class GameLoopBehaviour : MonoBehaviour
             TimeReset += PreRoundTimeMax;
             PreRoundTime = 0;
         }
-
     }
 
     //  Setup Characters for the next round without reseting the scene
     public void ResetCharacters(CharacterBehaviour resetCharacter)
     {
-        resetCharacter.character.Health = resetCharacter.characterHealth;    //  Reset Health on the character Behaviour
+        resetCharacter.character.Health = resetCharacter.characterHealth;    //  Reset Health on the character ScriptableObject
         resetCharacter.character.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
@@ -159,6 +162,11 @@ public class GameLoopBehaviour : MonoBehaviour
             Characters.SetActive(true);
             Paused = false;
         }
+    }
+
+    public void TempDamage()
+    {
+        PlayerCharacter.character.Health -= 50;
     }
 
 }
