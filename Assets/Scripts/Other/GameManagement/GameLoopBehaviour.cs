@@ -61,14 +61,21 @@ public class GameLoopBehaviour : MonoBehaviour
     void Update()
     {
 
+        #region Temp Inputs
         //  In place of the lack of a pause button being set on the controller
         //  NOTE:  Remove once Controller is able to call pause function
-        #region Temp Pause Menu Input
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             EnablePause(CurrentGameMode);
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TempDamage();
+        }
         #endregion
+
+
 
         //  Timer Broken, Needs Revision, Might make it's own behaviour ***
         #region Timer
@@ -78,7 +85,7 @@ public class GameLoopBehaviour : MonoBehaviour
 
         //  Preround timer  ***
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == true && Paused == false && Rounds.Count <= RoundMax)
-            PreRoundTime =  PreRoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
+            PreRoundTime = PreRoundTimeMax - (Time.timeSinceLevelLoad - TimeReset);
 
         //  Pause screen timer  ***
         if (CurrentGameMode == GameType.GameMode.PVP && Wait == false && Paused == true && Rounds.Count <= RoundMax)
@@ -96,9 +103,9 @@ public class GameLoopBehaviour : MonoBehaviour
         if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || RoundTime < 0)
         {
             RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
-            if (PlayerCharacter.character.isDead == true && OpponentCharacter == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
+            if (PlayerCharacter.character.isDead == true && OpponentCharacter.character.isDead == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
             {
-                RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
+                //RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
                 TimeReset += RoundTimeMax - RoundTime;
             }
             else
@@ -124,7 +131,6 @@ public class GameLoopBehaviour : MonoBehaviour
             TimeReset += PreRoundTimeMax;
             PreRoundTime = 0;
         }
-
     }
 
     //  Setup Characters for the next round without reseting the scene
@@ -156,6 +162,11 @@ public class GameLoopBehaviour : MonoBehaviour
             Characters.SetActive(true);
             Paused = false;
         }
+    }
+
+    public void TempDamage()
+    {
+        PlayerCharacter.character.Health -= 50;
     }
 
 }

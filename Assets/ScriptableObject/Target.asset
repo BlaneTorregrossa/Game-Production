@@ -12,16 +12,20 @@ MonoBehaviour:
   m_Name: Target
   m_EditorClassIdentifier: 
   parts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Left: {fileID: 0}
-  Right: {fileID: 0}
-  LegSet: {fileID: 0}
-  HeadPiece: {fileID: 0}
+  - {fileID: 11400000, guid: 78652edb78fed194fa7970d760e11a47, type: 2}
+  - {fileID: 11400000, guid: 54e142c7826828740b802b78fdbb73be, type: 2}
+  - {fileID: 11400000, guid: a7b864223d4a56e46ba42e46467bca80, type: 2}
+  - {fileID: 11400000, guid: 0ba880678c2255b42a53e4ba9064daec, type: 2}
+  Left: {fileID: 11400000, guid: 78652edb78fed194fa7970d760e11a47, type: 2}
+  Right: {fileID: 11400000, guid: 54e142c7826828740b802b78fdbb73be, type: 2}
+  LegSet: {fileID: 11400000, guid: a7b864223d4a56e46ba42e46467bca80, type: 2}
+  HeadPiece: {fileID: 11400000, guid: 0ba880678c2255b42a53e4ba9064daec, type: 2}
   Name: Target
-  Health: 15
   DashCharges: 0
   Speed: 0
   DashSpeed: 0
+  StartingPos: {x: 0, y: 0, z: 0}
+  isDead: 0
+  LeftArmBehaviour: {fileID: 0}
+  RightArmBehaviour: {fileID: 0}
+  HeadBehaviour: {fileID: 0}
