@@ -30,10 +30,11 @@ public class Character : ScriptableObject, IDamageable, IDamager
 
     public void DoDamage(IDamageable damageable)
     {
-        damageable.Health -= Damage;
-        if(damageable.Health <= 0)
-        {
-            Debug.Log("Killshot!");
-        }
+        damageable.TakeDamage(Damage);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        Health -= amount;
     }
 }
