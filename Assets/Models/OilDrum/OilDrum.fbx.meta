@@ -1,29 +1,29 @@
 fileFormatVersion: 2
-guid: 575df55e865895d4fabab430fcf8236c
-timeCreated: 1523638083
+guid: 3a834cbeb9315124fbc9469049bc0c77
+timeCreated: 1524091746
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface359
-    100004: polySurface360
-    100006: polySurface360 1
+    100002: OilDrum
+    100004: polySurface359
+    100006: polySurface360
     100008: polySurface361
     100010: transform340
     100012: transform341
     100014: transform342
     400000: //RootNode
-    400002: polySurface359
-    400004: polySurface360
-    400006: polySurface360 1
+    400002: OilDrum
+    400004: polySurface359
+    400006: polySurface360
     400008: polySurface361
     400010: transform340
     400012: transform341
     400014: transform342
-    2300000: polySurface360
-    3300000: polySurface360
-    4300000: polySurface360
+    2300000: OilDrum
+    3300000: OilDrum
+    4300000: OilDrum
     9500000: //RootNode
   materials:
     importMaterials: 1
