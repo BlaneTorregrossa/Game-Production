@@ -33,14 +33,6 @@ public class FireProjectileBehaviour : MonoBehaviour
             _shotTime += 1;
             FireMachineGunBullet();
         }
-        if (Input.GetButton("TestFire") && rapidFire == false)
-        {
-            if (_reloadTime == 0)
-            {
-                FireGrenade();
-                _reloadTime = _reloadStart;
-            }
-        }
         if(_reloadTime > 0)
         {
             _reloadTime -= 1;
@@ -53,19 +45,9 @@ public class FireProjectileBehaviour : MonoBehaviour
         {
             firedProjectile = Instantiate(projectileObject, location.position, transform.rotation);
             firedProjectile.transform.forward = transform.forward;
-            firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(characterConfig);
-            firedProjectile.GetComponent<Rigidbody>().velocity += gameObject.transform.forward * firedProjectile.GetComponent<MachineGunBulletBehaviour>().BulletConfig.speed;
+            firedProjectile.AddComponent<ProjectileBehavior>().SetOwner(characterConfig);
             Destroy(firedProjectile, 2f);
             _shotTime = 0;
         }
-    }
-
-    public void FireGrenade()
-    {
-        firedProjectile = Instantiate(projectileObject, location.position, transform.rotation);
-        firedProjectile.transform.forward = transform.forward;
-        firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(characterConfig);
-        firedProjectile.GetComponent<GrenadeBehaviour>().characterConfig = characterConfig;
-        firedProjectile.GetComponent<Rigidbody>().velocity += gameObject.transform.forward * firedProjectile.GetComponent<GrenadeBehaviour>().grenadeConfig.speed;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Character")]
-public class Character : ScriptableObject, IDamageable, IDamager
+public class Character : ScriptableObject, IDamageable, IDamager, IShooter
 {
     public List<Part> parts;    //  List of Character Parts
     void OnEnable() 
@@ -36,5 +36,10 @@ public class Character : ScriptableObject, IDamageable, IDamager
     public void TakeDamage(float amount)
     {
         Health -= amount;
+    }
+
+    public void ShootProjectile(IShootable shootable)
+    {
+
     }
 }
