@@ -35,20 +35,21 @@ public class RoundBehaviour : MonoBehaviour
     }
 
     //  Extends list if there is a tie
-    public int Tie(CharacterBehaviour CharacterA, CharacterBehaviour CharacterB, List<Round> RoundList, int listSize)
+    public void Tie(CharacterBehaviour CharacterA, CharacterBehaviour CharacterB, List<Round> RoundList, int listSize)
     {
-
-
-        Round TempRound = ScriptableObject.CreateInstance<Round>();
-        if (CharacterA.character.Health == CharacterB.character.Health || CharacterA.character.Health <= 0 && CharacterB.character.Health <= 0)
+        if (RoundList.Count != listSize)
         {
+            Round TempRound = ScriptableObject.CreateInstance<Round>();
+            TempRound.name = "Round " + (RoundList.Count + 1).ToString();   //  Naming the round
             TempRound.Result = Round.RoundResult.DRAW;
-            return listSize;
+            RoundList.Add(TempRound);
+            return;
         }
+
         else
         {
-            Debug.Log("Tie Requirments not met. Player1 Health: " + CharacterA.character.Health.ToString() + " Player2 Health: " + CharacterB.character.Health.ToString());
-            return listSize;
+            Debug.Log("RoundList is full: " + RoundList.ToString());
+            return;
         }
     }
 }

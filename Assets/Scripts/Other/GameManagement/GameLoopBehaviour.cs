@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using AIEFramework;
 
 public class GameLoopBehaviour : MonoBehaviour
 {
+
     [HideInInspector]
     public bool FreezeControl;      //  For preveinting character control when true
     public GameType.GameMode CurrentGameMode;   //  Current Game mode for given scene
@@ -55,6 +57,7 @@ public class GameLoopBehaviour : MonoBehaviour
             CombatUI.SetActive(true);   //  Timer and Health UI
         else
             CombatUI.SetActive(false);  //  Timer and Health UI
+
     }
 
     void Update()
@@ -88,21 +91,24 @@ public class GameLoopBehaviour : MonoBehaviour
             if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || Clock.TimerObject.MainTime < 0)
             {
                 RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
-                if (PlayerCharacter.character.isDead == true && OpponentCharacter.character.isDead == true)    // if Both PlayerCharacter and OpponnetCharacter are dead
-                {
-                    RoundMax = rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
-                    Clock.TimerObject.TimeReset += Clock.TimerObject.MainTimeMax - Clock.TimerObject.MainTime;  //  Set time reset since round ended
-                }
-                else
+
+                if (PlayerCharacter.character.Health > OpponentCharacter.character.Health || OpponentCharacter.character.Health > PlayerCharacter.character.Health)
                 {
                     rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
                     Clock.TimerObject.TimeReset += Clock.TimerObject.MainTimeMax - Clock.TimerObject.MainTime;   //  Set time reset since round ended
                 }
 
+                else if (PlayerCharacter.character.Health == OpponentCharacter.characterHealth)    // if Both PlayerCharacter and OpponnetCharacter havethe same health
+                {
+                    rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
+                    Debug.Log("Player Health " + PlayerCharacter.character.Health + " Opponent Health " + OpponentCharacter.character.Health);
+                    Clock.TimerObject.TimeReset += Clock.TimerObject.MainTimeMax - Clock.TimerObject.MainTime;  //  Set time reset since round ended
+                }
+
                 ResetCharacters(PlayerCharacter);   //  Reset Player 1
                 ResetCharacters(OpponentCharacter); //  Reset Player 2
                 Destroy(rb);    //  Destroys Commponent for Round Behaviour object
-               
+
                 #region Time
                 Clock.TimerObject.MainTime = 0;  //  Reset Main Timer
                 Clock.TimerObject.Wait = true;    //  For Secondary Timer
