@@ -12,12 +12,13 @@ public class Arm : Part
     public float damageNum; //  Base Damage of the arm
     public float meleeAttackSpeed;  //  Melee Attack Speed Modifier
     public float projectileSpeed;   //  Projectile Speed Modifier
+    public bool isExplosive;
+    public IShootable Projectile;
 
     public enum AttackType
     {
-        FASTMELEE = 0,
-        BULLET = 1,
-        GRENADE = 2
+        BULLET = 0,
+        GRENADE = 1
     }
     public AttackType attackType;
 }

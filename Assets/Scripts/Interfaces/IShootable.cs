@@ -4,12 +4,11 @@ using UnityEngine;
 
 public interface IShootable
 {
-    
+    bool explosivel { get; set; }
 }
 
 public interface IShooter
 {
-    GameObject projectile { get; set; }
     Transform projectileSpawn { get; set; }
     float projectileSpeed { get; set; }
 }

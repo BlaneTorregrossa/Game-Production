@@ -9,6 +9,7 @@ public class CharacterBehaviour : MonoBehaviour
     public float characterHealth;
     public float leftDamage;
     public float rightDamage;
+    public GameObject projectile;
 
     [HideInInspector]
     public GameObject firedProjectile;
@@ -62,9 +63,9 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    public void ShootProjectile(IShootable shootable)
+    public void ShootProjectile()
     {
-        firedProjectile = Instantiate(character.projectile, character.projectileSpawn.position, character.projectileSpawn.rotation);
+        firedProjectile = Instantiate(projectile, character.projectileSpawn.position, character.projectileSpawn.rotation);
         firedProjectile.transform.forward = character.projectileSpawn.forward;
         firedProjectile.AddComponent<ProjectileBehavior>();
         firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(character);

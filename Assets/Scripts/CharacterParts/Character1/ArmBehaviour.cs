@@ -7,44 +7,26 @@ public class ArmBehaviour : MonoBehaviour
     public Arm ArmConfig;
     public FireProjectileBehaviour BulletShooter;
 
+    private void Start()
+    {
+        SetExplosive();
+    }
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if(Input.GetKeyDown("space"))
-        //{
 
-        //}
     }
-
-    public void PerformAttack()
+    
+    private void SetExplosive()
     {
-        if(ArmConfig.attackType == Arm.AttackType.FASTMELEE)
+        if(ArmConfig.isExplosive)
         {
-            FastMeleeAttack();
+            ArmConfig.Projectile.explosive = true;
         }
-        if(ArmConfig.attackType == Arm.AttackType.BULLET)
+        else
         {
-            BulletAttack();
+            ArmConfig.Projectile.explosive = false;
         }
-        if(ArmConfig.attackType == Arm.AttackType.GRENADE)
-        {
-            GrenadeAttack();
-        }
-    }
-
-    private void FastMeleeAttack()
-    {
-        Debug.Log("Performed Melee Attack");
-    }
-
-    private void BulletAttack()
-    {
-
-        Debug.Log("Performed Bullet Attack");
-    }
-
-    private void GrenadeAttack()
-    {
-        Debug.Log("Performed Grenade Attack");
     }
 }

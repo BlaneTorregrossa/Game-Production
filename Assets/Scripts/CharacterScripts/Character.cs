@@ -23,7 +23,6 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
     public float Damage { get; set; } // Damage that will be inflicted to another character
     public Vector3 StartingPos; //  Position Character Starts in a given scene
     public bool isDead; // Boolean that determines whether the player is "Dead".
-    public GameObject projectile { get; set; }
     public float projectileSpeed { get; set; }
     public Transform projectileSpawn { get; set; }
 
