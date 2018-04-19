@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-// =*=
+
+//  Will need modifications to adjust camera look.
 public class PlayerCenterBehaviour : MonoBehaviour
 {
+    public GameObject TargetA;  //  Object A
+    public GameObject TargetB;  //  Object B
 
-    public GameObject CharacterA;
-    public GameObject CharacterB;
+    public float Distance;      //  Distance of Both Objects from each other
 
-    private Vector3 objectPosDelta;
+    private Vector3 objectPosDelta; //  Position of center object in the world
 
     void Update()
     {
         SetCenter();
+        Distance = Vector3.Distance(TargetA.transform.position, TargetB.transform.position);
     }
 
-    public Vector3 SetCenter()
+    //  To set the position in the wrold of this gameobject between two other given objects
+    public void SetCenter()
     {
-
-        // To get the center of the two players
-        if (Vector3.Distance(CharacterA.transform.position, CharacterB.transform.position) > 1)
+        // To get the center of the two objects
+        if (Vector3.Distance(TargetA.transform.position, TargetB.transform.position) > 0.5f)
         {
-            objectPosDelta = CharacterB.transform.position + (CharacterA.transform.position - CharacterB.transform.position) / 2;   // Center area
+            objectPosDelta = TargetB.transform.position + (TargetA.transform.position - TargetB.transform.position) / 2;   // Center area
         }
-
         transform.position = objectPosDelta;
-        return objectPosDelta;
     }
+
 }
