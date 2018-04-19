@@ -10,6 +10,9 @@ public class CharacterBehaviour : MonoBehaviour
     public float leftDamage;
     public float rightDamage;
 
+    [HideInInspector]
+    public GameObject firedProjectile;
+
     void Start()
     {
         if (characterHealth <= 0)
@@ -57,5 +60,14 @@ public class CharacterBehaviour : MonoBehaviour
         {
             character.Damage = leftDamage;
         }
+    }
+
+    public void ShootProjectile(IShootable shootable)
+    {
+        firedProjectile = Instantiate(character.projectile, character.projectileSpawn.position, character.projectileSpawn.rotation);
+        firedProjectile.transform.forward = character.projectileSpawn.forward;
+        firedProjectile.AddComponent<ProjectileBehavior>();
+        firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(character);
+        Destroy(firedProjectile, 2f);
     }
 }

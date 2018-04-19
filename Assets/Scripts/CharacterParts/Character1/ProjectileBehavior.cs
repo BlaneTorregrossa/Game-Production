@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-    public Projectile projectileConfig;
+    public IShootable projectileConfig;
     
     private Character _shooter;
     
