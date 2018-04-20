@@ -26,9 +26,6 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
     public float projectileSpeed { get; set; }
     public Transform projectileSpawn { get; set; }
 
-    public ArmBehaviour LeftArmBehaviour;
-    public ArmBehaviour RightArmBehaviour;
-    public HeadBehaviour HeadBehaviour;
     
     public void DoDamage(IDamageable damageable)
     {

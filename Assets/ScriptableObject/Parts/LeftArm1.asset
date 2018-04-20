@@ -24,5 +24,6 @@ MonoBehaviour:
   meleeAttackSpeed: 1
   projectileSpeed: 0
   isExplosive: 0
-  projectileObject: {fileID: 0}
+  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
+    type: 2}
   attackType: 0
