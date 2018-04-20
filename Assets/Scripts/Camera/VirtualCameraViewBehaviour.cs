@@ -17,17 +17,13 @@ public class VirtualCameraViewBehaviour : MonoBehaviour
     private float CamYModifier, CamZModifier;
     [SerializeField]
     private float CloseViewY, CloseViewZ;
-
-    // To not be changed in inspector    ***
     [SerializeField]
+    private float CameraMovementUp;
     private float YMovement, ZMovement;
-
-    private Vector3 CameraPosStart;
 
     void Start()
     {
         Center = CenterObject.GetComponent<PlayerCenterBehaviour>();
-        CameraPosStart = CameraPos.transform.position;
     }
 
     //  For updating Camrea Position Object
@@ -38,7 +34,7 @@ public class VirtualCameraViewBehaviour : MonoBehaviour
     }
 
     //  Set Boundry for camera follow object on x y and z axis
-    //  Can be simplified
+    //  Can be simplified   *
     public Vector3 BoundryCheck()
     {
         Vector3 ReturnVector;
@@ -64,17 +60,18 @@ public class VirtualCameraViewBehaviour : MonoBehaviour
         return ReturnVector = new Vector3(NewPosX, NewPosY, NewPosZ);
     }
 
+    //  Issue: If CameraMovementUp is set above a certain value, one of the characters can go offscreen
+    //  Causes unnessecary rotation + can be improved   ***
     public Vector3 CameraPositioning()
     {
         Vector3 ReturnVector = transform.position;
 
         YMovement = Center.CharacterToCharacterDistance / CamYModifier;
-
         ZMovement = -Center.CharacterToCharacterDistance / CamZModifier;
 
         if (Center.CharacterToCharacterDistance > 10)
             ReturnVector = new Vector3(Center.transform.position.x,
-                Center.CharacterToCharacterDistance * (YMovement / 2),
+                Center.CharacterToCharacterDistance * (YMovement / CameraMovementUp),
                 Center.CharacterToCharacterDistance * (ZMovement));
         else
             ReturnVector = new Vector3(CenterObject.transform.position.x, CloseViewY, CloseViewZ);

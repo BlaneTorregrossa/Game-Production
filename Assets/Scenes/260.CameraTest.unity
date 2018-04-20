@@ -1520,7 +1520,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3
+      value: 14.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2745,9 +2745,8 @@ MonoBehaviour:
   CamYModifier: 3
   CamZModifier: 2
   CloseViewY: 10
-  CloseViewZ: -5
-  YMovement: 0
-  ZMovement: 0
+  CloseViewZ: 1
+  CameraMovementUp: 6
 --- !u!1 &2013805721
 GameObject:
   m_ObjectHideFlags: 0
