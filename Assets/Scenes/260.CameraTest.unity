@@ -440,14 +440,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 453035139}
-  m_LocalRotation: {x: 0.4040851, y: -0.059202272, z: 0.026218817, w: 0.912427}
-  m_LocalPosition: {x: 0, y: 30, z: -30}
+  m_LocalRotation: {x: 0.44721362, y: 0, z: 0, w: 0.8944272}
+  m_LocalPosition: {x: 0, y: 40, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1209722638}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49, y: 0, z: 0}
 --- !u!1 &604829930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,16 +1074,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowGuides: 0
+  m_ShowGuides: 1
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.1
-  m_DeadZoneHeight: 0.1
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_DeadZoneWidth: 0.25
+  m_DeadZoneHeight: 0.25
+  m_SoftZoneWidth: 0.75
+  m_SoftZoneHeight: 0.75
   m_BiasX: 0
   m_BiasY: 0
 --- !u!114 &1209722641
@@ -1520,7 +1520,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1619,6 +1619,10 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1435165787 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
+  m_PrefabInternal: {fileID: 1435165780}
 --- !u!1 &1449803445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,9 +1723,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed6f0b1ebd056d448a2c5a76249bc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetA: {fileID: 1223555342}
-  TargetB: {fileID: 1435165782}
-  Distance: 0
+  TargetA: {fileID: 1223555347}
+  TargetB: {fileID: 1435165787}
+  Camera: {fileID: 1955669737}
+  CharacterToCharacterDistance: 0
+  CharacterAToCameraDistance: 0
+  CharacterBToCameraDistacne: 0
 --- !u!4 &1451234461
 Transform:
   m_ObjectHideFlags: 0
@@ -1729,7 +1736,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1451234459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.86, y: -3, z: -0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2615,13 +2622,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1955669733}
-  m_LocalRotation: {x: 0.4040851, y: -0.059202272, z: 0.026218817, w: 0.912427}
-  m_LocalPosition: {x: 0, y: 30, z: -30}
+  m_LocalRotation: {x: 0.44721362, y: 0, z: 0, w: 0.8944272}
+  m_LocalPosition: {x: 0, y: 40, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 48.84, y: 0, z: 0}
 --- !u!114 &1955669739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2715,7 +2722,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1961504415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: -20}
+  m_LocalPosition: {x: 0, y: 40, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2732,10 +2739,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3e29bda25a6214c8bea3ceccb6ef18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CenterObject: {fileID: 1451234459}
   CameraPos: {fileID: 1955669737}
-  YModifier: 3
-  ZModifier: 2
+  CenterObject: {fileID: 1451234459}
+  CamBoundries: {x: 24, y: 40, z: 5}
+  CamYModifier: 3
+  CamZModifier: 2
+  CloseViewY: 10
+  CloseViewZ: -5
+  YMovement: 0
+  ZMovement: 0
 --- !u!1 &2013805721
 GameObject:
   m_ObjectHideFlags: 0

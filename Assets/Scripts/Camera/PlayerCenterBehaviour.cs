@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 
 //  Will need modifications to adjust camera look.
 public class PlayerCenterBehaviour : MonoBehaviour
 {
-    public GameObject TargetA;  //  Object A
-    public GameObject TargetB;  //  Object B
+    public Transform TargetA;  //  Object A
+    public Transform TargetB;  //  Object B
+    public Transform Camera; //  
 
-    public float Distance;      //  Distance of Both Objects from each other
+    public float CharacterToCharacterDistance;      //  Distance of Both Objects from each other
+    public float CharacterAToCameraDistance;    //  Distance from a character to a camera
+    public float CharacterBToCameraDistacne;    //  Distance from a character to a camera
 
     private Vector3 objectPosDelta; //  Position of center object in the world
 
     void Update()
     {
         SetCenter();
-        Distance = Vector3.Distance(TargetA.transform.position, TargetB.transform.position);
+        CharacterToCharacterDistance = Vector3.Distance(TargetA.transform.position, TargetB.transform.position);
+        CharacterAToCameraDistance = Vector3.Distance(TargetA.transform.position, Camera.transform.position);
+        CharacterBToCameraDistacne = Vector3.Distance(TargetB.transform.position, Camera.transform.position);
     }
 
     //  To set the position in the wrold of this gameobject between two other given objects
@@ -27,8 +31,10 @@ public class PlayerCenterBehaviour : MonoBehaviour
         if (Vector3.Distance(TargetA.transform.position, TargetB.transform.position) > 0.5f)
         {
             objectPosDelta = TargetB.transform.position + (TargetA.transform.position - TargetB.transform.position) / 2;   // Center area
+            transform.position = objectPosDelta;
         }
-        transform.position = objectPosDelta;
+        else
+            return;
     }
 
 }
