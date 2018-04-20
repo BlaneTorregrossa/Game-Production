@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IShootable
 {
-    bool explosive { get; set; }
+    GameObject projectile { get; set; }
 }
 
 public interface IShooter

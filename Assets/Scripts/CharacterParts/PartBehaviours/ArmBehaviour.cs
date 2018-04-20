@@ -5,11 +5,10 @@ using UnityEngine;
 public class ArmBehaviour : MonoBehaviour
 {
     public Arm ArmConfig;
-    public FireProjectileBehaviour BulletShooter;
 
     private void Start()
     {
-        SetExplosive();
+        SetShootable();
     }
 
     // Update is called once per frame
@@ -18,15 +17,25 @@ public class ArmBehaviour : MonoBehaviour
 
     }
     
-    private void SetExplosive()
+    private void SetShootable()
+    {
+        ArmConfig.Projectile.projectile = ArmConfig.projectileObject;
+    }
+
+    private void SetToExplode()
     {
         if(ArmConfig.isExplosive)
         {
-            ArmConfig.Projectile.explosive = true;
+            
         }
         else
         {
-            ArmConfig.Projectile.explosive = false;
+            
         }
+    }
+
+    public void PerformAttack()
+    {
+
     }
 }
