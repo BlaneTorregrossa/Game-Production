@@ -33,7 +33,8 @@ public class VirtualCameraViewBehaviour : MonoBehaviour
     //  For updating Camrea Position Object
     void Update()
     {
-        transform.position = CameraPositioning() + BoundryCheck();
+        transform.position = CameraPositioning();
+        transform.position = BoundryCheck();   //  Function to control if camera is in it's current set bounds
     }
 
     //  Set Boundry for camera follow object on x y and z axis
