@@ -26,7 +26,10 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
     public float projectileSpeed { get; set; }
     public Transform projectileSpawn { get; set; }
 
-    
+    public ArmBehaviour LeftArmBehaviour;
+    public ArmBehaviour RightArmBehaviour;
+    public HeadBehaviour HeadBehaviour;
+
     public void DoDamage(IDamageable damageable)
     {
         damageable.TakeDamage(Damage);
@@ -37,4 +40,22 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
         Health -= amount;
     }
 
+
+    public void SetBehaviour()
+    {
+        var go = new GameObject();
+        var la = go.AddComponent<ArmBehaviour>();
+        var ra = go.AddComponent<ArmBehaviour>();
+        var h = go.AddComponent<HeadBehaviour>();
+        LeftArmBehaviour = la;
+        RightArmBehaviour = ra;
+        HeadBehaviour = h;
+    }
+    public void SetArms(GameObject lo, GameObject ro)
+    {
+        LeftArmBehaviour.ArmConfig = Left as Arm;
+        LeftArmBehaviour.SetProjectile(lo);
+        RightArmBehaviour.ArmConfig = Right as Arm;
+        RightArmBehaviour.SetProjectile(ro);
+    }
 }

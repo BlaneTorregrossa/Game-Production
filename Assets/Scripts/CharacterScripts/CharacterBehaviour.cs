@@ -10,17 +10,17 @@ public class CharacterBehaviour : MonoBehaviour
     public float leftDamage;
     public float rightDamage;
 
-    public ArmBehaviour LeftArmBehaviour;
-    public ArmBehaviour RightArmBehaviour;
-    public HeadBehaviour HeadBehaviour;
+    public GameObject leftObject;
+    public GameObject rightObject;
 
     [HideInInspector]
     public GameObject firedProjectile;
 
     void Start()
     {
+        character.SetBehaviour();
+        character.SetArms(leftObject, rightObject);
 
-        SetBehaviour();
         if (characterHealth <= 0)
         {
             characterHealth = 100;
@@ -32,10 +32,14 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButton("LeftArm"))
-        {
-            ShootProjectile(LeftArmBehaviour.ArmConfig.Projectile);
-        }
+        //if(Input.GetButton("LeftArm"))
+        //{
+        //    ShootProjectile(LeftArmBehaviour.ArmConfig.Projectile);
+        //}
+        //if(Input.GetButton("RightArm"))
+        //{
+        //    ShootProjectile(RightArmBehaviour.ArmConfig.Projectile);
+        //}
 
         if (character.Health <= 0)
             character.isDead = true;
@@ -46,21 +50,6 @@ public class CharacterBehaviour : MonoBehaviour
             gameObject.SetActive(false);
         else if (character.isDead == false)
             gameObject.SetActive(true);
-    }
-
-    public void SetBehaviour()
-    {
-        var la = gameObject.AddComponent<ArmBehaviour>();
-        var ra = gameObject.AddComponent<ArmBehaviour>();
-        var h = gameObject.AddComponent<HeadBehaviour>();
-        la.ArmConfig = character.Left as Arm;
-        ra.ArmConfig = character.Right as Arm;
-        h.HeadConfig = character.HeadPiece as Head;
-        LeftArmBehaviour = la;
-        RightArmBehaviour = ra;
-        HeadBehaviour = h;
-        leftDamage = LeftArmBehaviour.ArmConfig.damageNum;
-        rightDamage = RightArmBehaviour.ArmConfig.damageNum;
     }
     
     public void SetcurrentDamage(bool isright)

@@ -8,18 +8,13 @@ public class ArmBehaviour : MonoBehaviour
 
     private void Start()
     {
-        SetShootable();
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
 
-    }
-    
-    private void SetShootable()
-    {
-        ArmConfig.Projectile.projectile = ArmConfig.projectileObject;
     }
 
     private void SetToExplode()
@@ -37,5 +32,9 @@ public class ArmBehaviour : MonoBehaviour
     public void PerformAttack()
     {
 
+    }
+    public void SetProjectile(GameObject po)
+    {
+        ArmConfig.Projectile.projectile = po;
     }
 }
