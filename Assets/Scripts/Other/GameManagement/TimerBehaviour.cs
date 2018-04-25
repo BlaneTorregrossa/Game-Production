@@ -1,11 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AIEFramework;
 
 public class TimerBehaviour : MonoBehaviour
 {
 
     public Timer TimerObject;   //  To use the variables needed for a timer
+    public GameEventArgsListener PrimaryTimeResetListener;  //  Listener for the Primary Timer Reset    ***
+
+    private GameLoopBehaviour GLB;  //  For GameEvebts
+
+    void Start()
+    {
+        GLB = gameObject.GetComponent<GameLoopBehaviour>(); //  ***
+        PrimaryTimeResetListener = gameObject.GetComponent<GameEventArgsListener>();    //  ***
+        PrimaryTimeResetListener.Event = GLB.ActivatePrimaryTimeReset;    //  ***
+        PrimaryTimeResetListener.Sender = this;    //  ***
+        PrimaryTimeResetListener.Sender.name = "Timer"; //  ***
+    }
 
     public void UpdateTime()
     {

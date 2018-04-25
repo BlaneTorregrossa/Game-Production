@@ -13,7 +13,8 @@ public class GameLoopBehaviour : MonoBehaviour
     public CharacterBehaviour PlayerCharacter;   //  Character Behaviour for Player
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
     public TimerBehaviour Clock;    //  Where everything related to time is used from
-    //public CharacterBehaviour TargetCharacter;  //  List of targets in the Target Range
+
+    public GameEventArgs ActivatePrimaryTimeReset;   //  Game Event for the timer  ***
 
     public List<Round> Rounds;  //  List of results for each individual round
     private bool MenuReturn;    //  When the game is over and we are set to return to the menu
@@ -39,14 +40,18 @@ public class GameLoopBehaviour : MonoBehaviour
     {
         #region Timer
         Paused = false; //  Game Should Not be puased at the start of the scene
+        Clock = gameObject.GetComponent<TimerBehaviour>();  //  Assigning TimerBehaviour
         Clock.TimerObject.Wait = true;  //  Secondary Timer is used first so Wait has to be enabled
         Clock.TimerObject.MainTime = Clock.TimerObject.MainTimeMax; //  Setting Main Time
         Clock.TimerObject.SecondaryTime = Clock.TimerObject.SecondaryTimeMax;   //  Setting Secondary Time
         Clock.TimerObject.TimeReset = 0;    //  Reseting Total time removed
         Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
+
+        ActivatePrimaryTimeReset = ScriptableObject.CreateInstance<GameEventArgs>();    //  ***
+        ActivatePrimaryTimeReset.name = "Primary Time Reset";   //  ***
         #endregion
 
-        GGM = new GlobalGameManager();  //  New Global Game Manager for scene transition
+        GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
         if (CurrentGameMode == GameType.GameMode.PVP)
             OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
@@ -98,7 +103,7 @@ public class GameLoopBehaviour : MonoBehaviour
                     Clock.TimerObject.TimeReset += Clock.TimerObject.MainTimeMax - Clock.TimerObject.MainTime;   //  Set time reset since round ended
                 }
 
-                else if (PlayerCharacter.character.Health == OpponentCharacter.characterHealth)    // if Both PlayerCharacter and OpponnetCharacter havethe same health
+                else if (PlayerCharacter.character.Health == OpponentCharacter.character.Health)    // if Both PlayerCharacter and OpponnetCharacter havethe same health
                 {
                     rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
                     Debug.Log("Player Health " + PlayerCharacter.character.Health + " Opponent Health " + OpponentCharacter.character.Health);
@@ -140,14 +145,7 @@ public class GameLoopBehaviour : MonoBehaviour
             else
                 FreezeControl = false;
         }
-
-        //else if (CurrentGameMode == GameType.GameMode.TARGETRANGE)
-        //{
-        //    if (TargetCharacter.character.isDead)
-        //    {
-        //        ResultScreen.SetActive(true);
-        //    }
-        //}
+        
     }
 
     //  Setup Characters for the next round without reseting the scene
