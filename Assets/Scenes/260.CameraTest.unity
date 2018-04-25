@@ -2747,6 +2747,7 @@ MonoBehaviour:
   CloseViewY: 10
   CloseViewZ: 1
   CameraMovementUp: 6
+  CharacterDistanceThreshold: 10
 --- !u!1 &2013805721
 GameObject:
   m_ObjectHideFlags: 0
