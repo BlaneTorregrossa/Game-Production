@@ -912,7 +912,6 @@ GameObject:
   - component: {fileID: 1003552417}
   - component: {fileID: 1003552416}
   - component: {fileID: 1003552418}
-  - component: {fileID: 1003552419}
   m_Layer: 0
   m_Name: SceneManagement
   m_TagString: Untagged
@@ -937,8 +936,6 @@ MonoBehaviour:
   OpponentCharacter: {fileID: 1035261771}
   Clock: {fileID: 0}
   PrimaryTimeResetEvent: {fileID: 0}
-  SecondaryTimeResetEvent: {fileID: 0}
-  GameEventListenerA: {fileID: 0}
   Rounds: []
   RoundMax: 3
   PauseUI: {fileID: 492444110}
@@ -971,35 +968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerObject: {fileID: 11400000, guid: aa4b94367b73a8048a1b871121948050, type: 2}
---- !u!114 &1003552419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1003552415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c001d65802716194bb763b6d0760d496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 0}
-  Sender: {fileID: 0}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1003552418}
-        m_MethodName: AddResetTimeMain
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: This Worked????
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: AIEFramework.GameEventArgsResponse, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1035261770 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b5ca32bc2b3cfa54497414bfb0011fc8, type: 3}
