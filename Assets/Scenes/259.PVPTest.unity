@@ -918,7 +918,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1003552416
 MonoBehaviour:
@@ -936,7 +936,9 @@ MonoBehaviour:
   PlayerCharacter: {fileID: 109607}
   OpponentCharacter: {fileID: 1035261771}
   Clock: {fileID: 0}
-  ActivatePrimaryTimeReset: {fileID: 0}
+  PrimaryTimeResetEvent: {fileID: 0}
+  SecondaryTimeResetEvent: {fileID: 0}
+  GameEventListenerA: {fileID: 0}
   Rounds: []
   RoundMax: 3
   PauseUI: {fileID: 492444110}
@@ -969,7 +971,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerObject: {fileID: 11400000, guid: aa4b94367b73a8048a1b871121948050, type: 2}
-  PrimaryTimeResetListener: {fileID: 0}
 --- !u!114 &1003552419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,7 +995,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: This Worked????
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: AIEFramework.GameEventArgsResponse, Assembly-CSharp, Version=0.0.0.0,

@@ -14,7 +14,11 @@ public class GameLoopBehaviour : MonoBehaviour
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
     public TimerBehaviour Clock;    //  Where everything related to time is used from
 
-    public GameEventArgs ActivatePrimaryTimeReset;   //  Game Event for the timer  ***
+    #region Events
+    public GameEventArgs PrimaryTimeResetEvent;   //  Game Event for the timer  ***
+    public GameEventArgs SecondaryTimeResetEvent;    //  Game Event for the timer   ***
+    public GameEventArgsListener GameEventListenerA; //  ***
+    #endregion
 
     public List<Round> Rounds;  //  List of results for each individual round
     private bool MenuReturn;    //  When the game is over and we are set to return to the menu
@@ -35,7 +39,6 @@ public class GameLoopBehaviour : MonoBehaviour
 
     private GlobalGameManager GGM;  //  Used for a timed scene switch
 
-
     void Start()
     {
         #region Timer
@@ -46,9 +49,16 @@ public class GameLoopBehaviour : MonoBehaviour
         Clock.TimerObject.SecondaryTime = Clock.TimerObject.SecondaryTimeMax;   //  Setting Secondary Time
         Clock.TimerObject.TimeReset = 0;    //  Reseting Total time removed
         Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
+        #endregion
 
-        ActivatePrimaryTimeReset = ScriptableObject.CreateInstance<GameEventArgs>();    //  ***
-        ActivatePrimaryTimeReset.name = "Primary Time Reset";   //  ***
+        #region Events
+        PrimaryTimeResetEvent = ScriptableObject.CreateInstance<GameEventArgs>();   //  ***
+        SecondaryTimeResetEvent = ScriptableObject.CreateInstance<GameEventArgs>(); //  ***
+        GameEventListenerA = GetComponent<GameEventArgsListener>(); //  ***
+        PrimaryTimeResetEvent.name = "Primary Time Reset Event";
+        SecondaryTimeResetEvent.name = "Secondary Time Reset Event";
+        GameEventListenerA.Event = PrimaryTimeResetEvent;
+        GameEventListenerA.Sender = gameObject;
         #endregion
 
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
@@ -67,7 +77,6 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Update()
     {
-
         #region Temp Inputs
         //  In place of the lack of a pause button being set on the controller  *
         //  NOTE:  Remove once Controller is able to call pause function
@@ -99,30 +108,28 @@ public class GameLoopBehaviour : MonoBehaviour
 
                 if (PlayerCharacter.character.Health > OpponentCharacter.character.Health || OpponentCharacter.character.Health > PlayerCharacter.character.Health)
                 {
+                    var TimerCopy = Clock.TimerObject;
                     rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
-                    Clock.TimerObject.TimeReset += Clock.TimerObject.MainTimeMax - Clock.TimerObject.MainTime;   //  Set time reset since round ended
+                    PrimaryTimeResetEvent.Raise(gameObject);   //  ***
+                    //Clock.AddResetTimeMain();   //  Time passed on main timer added to TimeReset
                 }
 
                 else if (PlayerCharacter.character.Health == OpponentCharacter.character.Health)    // if Both PlayerCharacter and OpponnetCharacter havethe same health
                 {
-                    rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Adjust round list
+                    rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Give a draw
                     Debug.Log("Player Health " + PlayerCharacter.character.Health + " Opponent Health " + OpponentCharacter.character.Health);
-                    Clock.TimerObject.TimeReset += Clock.TimerObject.MainTimeMax - Clock.TimerObject.MainTime;  //  Set time reset since round ended
+                    PrimaryTimeResetEvent.Raise(gameObject);   //  ***
+                    //Clock.AddResetTimeMain();   //  Time passed on main timer added to TimeReset
                 }
 
                 ResetCharacters(PlayerCharacter);   //  Reset Player 1
                 ResetCharacters(OpponentCharacter); //  Reset Player 2
                 Destroy(rb);    //  Destroys Commponent for Round Behaviour object
 
-                #region Time
-                Clock.TimerObject.MainTime = 0;  //  Reset Main Timer
-                Clock.TimerObject.Wait = true;    //  For Secondary Timer
-                #endregion
             }
 
             if (Rounds.Count >= 3)
             {
-                Clock.TimerObject.Wait = true;  //  For Secondary Timer
                 MenuReturn = true;  //  Enabled if a return to the main menu is needed
                 ResultScreen.SetActive(true);   //  Results Screen Displayed
                 CombatUI.SetActive(false);  //  Timer is no longer shown
@@ -130,9 +137,8 @@ public class GameLoopBehaviour : MonoBehaviour
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
             {
-                Clock.TimerObject.Wait = false; //  For Main Timer to start
-                Clock.TimerObject.TimeReset += Clock.TimerObject.SecondaryTimeMax - Clock.TimerObject.SecondaryTime;    //  Set time reset since the secondary timer reached 0
-                Clock.TimerObject.SecondaryTime = 0;
+                //SecondaryTimeResetEvent.Raise(); //    ***
+                Clock.AddResetTimeSecondary();  //  Time passed from secondary Tiemr added to time reset
             }
 
             //  Switch to menu after set amount of time
@@ -145,7 +151,6 @@ public class GameLoopBehaviour : MonoBehaviour
             else
                 FreezeControl = false;
         }
-        
     }
 
     //  Setup Characters for the next round without reseting the scene

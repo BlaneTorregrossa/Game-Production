@@ -7,18 +7,6 @@ public class TimerBehaviour : MonoBehaviour
 {
 
     public Timer TimerObject;   //  To use the variables needed for a timer
-    public GameEventArgsListener PrimaryTimeResetListener;  //  Listener for the Primary Timer Reset    ***
-
-    private GameLoopBehaviour GLB;  //  For GameEvebts
-
-    void Start()
-    {
-        GLB = gameObject.GetComponent<GameLoopBehaviour>(); //  ***
-        PrimaryTimeResetListener = gameObject.GetComponent<GameEventArgsListener>();    //  ***
-        PrimaryTimeResetListener.Event = GLB.ActivatePrimaryTimeReset;    //  ***
-        PrimaryTimeResetListener.Sender = this;    //  ***
-        PrimaryTimeResetListener.Sender.name = "Timer"; //  ***
-    }
 
     public void UpdateTime()
     {
@@ -39,14 +27,16 @@ public class TimerBehaviour : MonoBehaviour
     //  Increasing Time difference bassed on Main Timer
     public void AddResetTimeMain()
     {
-        TimerObject.TimeReset += TimerObject.MainTimeMax - TimerObject.MainTime;
-        TimerObject.MainTime = 0;
+        TimerObject.TimeReset += TimerObject.MainTimeMax - TimerObject.MainTime;    //  Sets reset time based on difference from MainTimeMax and the MainTime at the moment the function is called
+        TimerObject.MainTime = 0;   //  Safety
+        TimerObject.Wait = true;    //  Enable Wait for secondary timer
     }
 
     //  Incraeasing Time difference based on Secondary Timer
     public void AddResetTimeSecondary()
     {
-        TimerObject.TimeReset += TimerObject.SecondaryTimeMax - TimerObject.SecondaryTime;
-        TimerObject.SecondaryTime = 0;
+        TimerObject.TimeReset += TimerObject.SecondaryTimeMax - TimerObject.SecondaryTime;//  Sets reset time based on difference from SeondaryTimeMax and the SecondaryTime at the moment the function is called
+        TimerObject.SecondaryTime = 0;  //  Saftey
+        TimerObject.Wait = false;   //  Disable Wait for Secondary Timer
     }
 }
