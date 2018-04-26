@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IShootable
 {
-    GameObject projectile { get; set; }
+    GameObject shootableObject { get; set; }
 }
 
 public interface IShooter

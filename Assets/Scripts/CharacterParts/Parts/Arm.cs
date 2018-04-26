@@ -13,7 +13,7 @@ public class Arm : Part
     public float meleeAttackSpeed;  //  Melee Attack Speed Modifier
     public float projectileSpeed;   //  Projectile Speed Modifier
     public bool isExplosive;
-    public IShootable Projectile;
+    public Projectile projectile;
 
     public enum AttackType
     {

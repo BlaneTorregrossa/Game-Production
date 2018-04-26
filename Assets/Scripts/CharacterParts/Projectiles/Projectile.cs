@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Projectile : ScriptableObject, IShootable
 {
-    public GameObject projectile { get; set; }
+    public GameObject shootableObject { get; set; }
     //public bool explosive { get; set; }
 }

@@ -47,15 +47,17 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
         var la = go.AddComponent<ArmBehaviour>();
         var ra = go.AddComponent<ArmBehaviour>();
         var h = go.AddComponent<HeadBehaviour>();
+        la.ArmConfig = Left as Arm;
+        ra.ArmConfig = Right as Arm;
+        h.HeadConfig = HeadPiece as Head;
         LeftArmBehaviour = la;
         RightArmBehaviour = ra;
         HeadBehaviour = h;
     }
-    public void SetArms(GameObject lo, GameObject ro)
-    {
-        LeftArmBehaviour.ArmConfig = Left as Arm;
-        LeftArmBehaviour.SetProjectile(lo);
-        RightArmBehaviour.ArmConfig = Right as Arm;
-        RightArmBehaviour.SetProjectile(ro);
-    }
+
+    //public void SetArm(GameObject go, ArmBehaviour ab, Arm a)
+    //{
+    //    a.Projectile.projectile = go;
+    //    ab.ArmConfig = a;
+    //}
 }

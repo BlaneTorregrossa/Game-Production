@@ -12,15 +12,20 @@ public class CharacterBehaviour : MonoBehaviour
 
     public GameObject leftObject;
     public GameObject rightObject;
+    public Transform leftSpawn;
+    public Transform rightSpawn;
 
     [HideInInspector]
     public GameObject firedProjectile;
+    public IShootable leftBullet;
+    public IShootable rightBullet;
 
-    void Start()
+    private void Awake()
     {
         character.SetBehaviour();
-        character.SetArms(leftObject, rightObject);
-
+    }
+    void Start()
+    {
         if (characterHealth <= 0)
         {
             characterHealth = 100;
@@ -32,14 +37,14 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Update()
     {
-        //if(Input.GetButton("LeftArm"))
-        //{
-        //    ShootProjectile(LeftArmBehaviour.ArmConfig.Projectile);
-        //}
-        //if(Input.GetButton("RightArm"))
-        //{
-        //    ShootProjectile(RightArmBehaviour.ArmConfig.Projectile);
-        //}
+        if (Input.GetButton("LeftArm"))
+        {
+            ShootProjectile(leftBullet, leftSpawn);
+        }
+        if (Input.GetButton("RightArm"))
+        {
+            ShootProjectile(rightBullet, rightSpawn);
+        }
 
         if (character.Health <= 0)
             character.isDead = true;
@@ -64,13 +69,18 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    public void ShootProjectile(IShootable shootable)
+    public void ShootProjectile(IShootable shootable, Transform t)
     {
-        firedProjectile = Instantiate(shootable.projectile, character.projectileSpawn.position, character.projectileSpawn.rotation);
+        character.projectileSpawn = t;
+        firedProjectile = Instantiate(shootable.shootableObject, character.projectileSpawn.position, character.projectileSpawn.rotation);
         firedProjectile.transform.forward = character.projectileSpawn.forward;
         firedProjectile.AddComponent<ProjectileBehavior>();
         firedProjectile.GetComponent<ProjectileBehavior>().SetOwner(character);
         firedProjectile.AddComponent<Rigidbody>().velocity += gameObject.transform.forward * character.projectileSpeed;
         Destroy(firedProjectile, 2f);
+    }
+    public Setnums()
+    {
+
     }
 }

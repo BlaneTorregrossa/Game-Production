@@ -35,6 +35,6 @@ public class ArmBehaviour : MonoBehaviour
     }
     public void SetProjectile(GameObject po)
     {
-        ArmConfig.Projectile.projectile = po;
+        ArmConfig.projectile.shootableObject = po;
     }
 }
