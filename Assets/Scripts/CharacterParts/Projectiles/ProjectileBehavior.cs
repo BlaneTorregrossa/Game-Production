@@ -6,9 +6,9 @@ public class ProjectileBehavior : MonoBehaviour
 {
     public IShootable projectileConfig;
     
-    private Character _shooter;
+    private IDamager _shooter;
     
-    public void SetOwner(Character owner)
+    public void SetOwner(IDamager owner)
     {
         _shooter = owner;
     }

@@ -39,8 +39,7 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
     {
         Health -= amount;
     }
-
-
+    
     public void SetBehaviour()
     {
         var go = new GameObject();
@@ -54,10 +53,5 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
         RightArmBehaviour = ra;
         HeadBehaviour = h;
     }
-
-    //public void SetArm(GameObject go, ArmBehaviour ab, Arm a)
-    //{
-    //    a.Projectile.projectile = go;
-    //    ab.ArmConfig = a;
-    //}
+    
 }

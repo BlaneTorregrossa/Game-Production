@@ -23,6 +23,8 @@ public class CharacterBehaviour : MonoBehaviour
     private void Awake()
     {
         character.SetBehaviour();
+        SetBullet(leftBullet, character.Left as Arm);
+        SetBullet(rightBullet, character.Right as Arm);
     }
     void Start()
     {
@@ -73,5 +75,9 @@ public class CharacterBehaviour : MonoBehaviour
     {
         character.Damage = arm.damageNum * 1;
         character.projectileSpeed = arm.projectileSpeed;
+    }
+    public void SetBullet(IShootable bullet, Arm arm)
+    {
+        bullet = arm.projectile;
     }
 }
