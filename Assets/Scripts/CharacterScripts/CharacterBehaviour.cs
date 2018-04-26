@@ -39,10 +39,12 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if (Input.GetButton("LeftArm"))
         {
+            SetSpeedandDamage(character.Left as Arm);
             ShootProjectile(leftBullet, leftSpawn);
         }
         if (Input.GetButton("RightArm"))
         {
+            SetSpeedandDamage(character.Right as Arm);
             ShootProjectile(rightBullet, rightSpawn);
         }
 
@@ -57,18 +59,6 @@ public class CharacterBehaviour : MonoBehaviour
             gameObject.SetActive(true);
     }
     
-    public void SetcurrentDamage(bool isright)
-    {
-        if(isright)
-        {
-            character.Damage = rightDamage;
-        }
-        else
-        {
-            character.Damage = leftDamage;
-        }
-    }
-
     public void ShootProjectile(IShootable shootable, Transform t)
     {
         character.projectileSpawn = t;
@@ -79,8 +69,9 @@ public class CharacterBehaviour : MonoBehaviour
         firedProjectile.AddComponent<Rigidbody>().velocity += gameObject.transform.forward * character.projectileSpeed;
         Destroy(firedProjectile, 2f);
     }
-    public Setnums()
+    public void SetSpeedandDamage(Arm arm)
     {
-
+        character.Damage = arm.damageNum * 1;
+        character.projectileSpeed = arm.projectileSpeed;
     }
 }
