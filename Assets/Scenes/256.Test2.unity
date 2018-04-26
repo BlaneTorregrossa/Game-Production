@@ -108,6 +108,11 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &82199314 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4321899822140716, guid: 7a22cc42219d4354596e4e87539986f2,
+    type: 2}
+  m_PrefabInternal: {fileID: 998016390}
 --- !u!1001 &536165556
 Prefab:
   m_ObjectHideFlags: 0
@@ -162,6 +167,18 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 864382cb6bd190f49bad135a9d41b90d,
         type: 2}
+    - target: {fileID: 114064331713837306, guid: f035cebd065c05c4d8e7db8886c00981,
+        type: 2}
+      propertyPath: leftObject
+      value: 
+      objectReference: {fileID: 1710238305023194, guid: b18ac9e667718ab4c8d10e69779b9afb,
+        type: 2}
+    - target: {fileID: 114064331713837306, guid: f035cebd065c05c4d8e7db8886c00981,
+        type: 2}
+      propertyPath: rightObject
+      value: 
+      objectReference: {fileID: 1710238305023194, guid: b18ac9e667718ab4c8d10e69779b9afb,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f035cebd065c05c4d8e7db8886c00981, type: 2}
   m_IsPrefabParent: 0
@@ -204,44 +221,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
+    - target: {fileID: 4321899822140716, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937836255522276, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114818509320977810, guid: 7a22cc42219d4354596e4e87539986f2,
         type: 2}
-      propertyPath: characterConfig
+      propertyPath: leftSpawn
       value: 
-      objectReference: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e,
+      objectReference: {fileID: 82199314}
+    - target: {fileID: 114818509320977810, guid: 7a22cc42219d4354596e4e87539986f2,
         type: 2}
-    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
-        type: 2}
-      propertyPath: shotTimer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
-        type: 2}
-      propertyPath: rapidFire
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
-        type: 2}
-      propertyPath: _gapTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
-        type: 2}
-      propertyPath: _reloadStart
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2,
-        type: 2}
-      propertyPath: projectileObject
+      propertyPath: rightSpawn
       value: 
-      objectReference: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-        type: 2}
-    - target: {fileID: 65028153372986808, guid: 7a22cc42219d4354596e4e87539986f2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+      objectReference: {fileID: 1876241553}
+    m_RemovedComponents:
+    - {fileID: 114578895054397156, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7a22cc42219d4354596e4e87539986f2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1390394899
@@ -294,6 +293,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 602ae3ef53b8a3040adf0289b0732280, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1876241553 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4937836255522276, guid: 7a22cc42219d4354596e4e87539986f2,
+    type: 2}
+  m_PrefabInternal: {fileID: 998016390}
 --- !u!1 &1955669733
 GameObject:
   m_ObjectHideFlags: 0
