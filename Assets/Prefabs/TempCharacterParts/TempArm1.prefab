@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33636019225159958}
   - component: {fileID: 136182694205157852}
   - component: {fileID: 23780695016592958}
+  - component: {fileID: 114278541605850348}
   m_Layer: 0
   m_Name: TempArm1
   m_TagString: Character Part
@@ -81,6 +82,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1408647308746066}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114278541605850348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1408647308746066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dadabdd21ef9934a90acadcae4b6711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArmConfig: {fileID: 0}
 --- !u!136 &136182694205157852
 CapsuleCollider:
   m_ObjectHideFlags: 1

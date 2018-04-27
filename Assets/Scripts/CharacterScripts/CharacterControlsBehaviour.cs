@@ -45,20 +45,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //May want to make a Switch case for all these 
-        if (Input.GetAxis("LeftArm") > 0)
-        {
-            LeftArmAttack();
-        }
-        if (Input.GetAxis("RightArm") > 0)
-        {
-            RightArmAttack();
-        }
-        if (Input.GetButtonDown("Head"))
-        {
-            HeadActivate();
-        }
+    {      
         if (Input.GetButtonDown("Dash") && _dashing == false)
         {
             if (_charges >= 0)
@@ -116,25 +103,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         //var m = new Vector3(x, 0, z);
         //return m.normalized;
     }
-
-    //Performs the Left Arm Attack when called
-    void LeftArmAttack()
-    {
-        Characterconfig.LeftArmBehaviour.PerformAttack();
-    }
-
-    //Performs the Right Arm Attack when called
-    void RightArmAttack()
-    {
-        Characterconfig.RightArmBehaviour.PerformAttack();
-    }
-
-    //Performs the Head ability when called
-    void HeadActivate()
-    {
-        Characterconfig.HeadBehaviour.PerformHeadAbility();
-    }
-
+    
     void DashRecharge(int rechargenum, int limit)
     {
         if (_recharge >= rechargenum && _charges != limit)
