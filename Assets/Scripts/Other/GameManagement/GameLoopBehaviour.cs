@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.Events;
-using AIEFramework;
+using UnityEngine.Events;   //  ***
+using AIEFramework; //  ***
 
 //  Issue: Everything should work without clock unless in an if statement or the start funtion
 public class GameLoopBehaviour : MonoBehaviour
@@ -17,7 +17,9 @@ public class GameLoopBehaviour : MonoBehaviour
     public TimerBehaviour Clock;    //  Where everything related to time is used from
 
     #region Events
-    public GameEventArgs PrimaryTimeResetEvent;   //  Game Event for the timer  ***
+    //public GameEventArgs PrimaryTimeResetEvent;   //  Game Event for the timer  ***
+    public UnityEvent TestEvent;
+    public UnityEvent AltTestEvent;
     #endregion
 
     public List<Round> Rounds;  //  List of results for each individual round
@@ -52,8 +54,12 @@ public class GameLoopBehaviour : MonoBehaviour
         #endregion
 
         #region Events
-        PrimaryTimeResetEvent = ScriptableObject.CreateInstance<GameEventArgs>();   //  ***
-        PrimaryTimeResetEvent.name = "Primary Time Reset Event";    //  ***
+        //PrimaryTimeResetEvent = ScriptableObject.CreateInstance<GameEventArgs>();   //  ***
+        //PrimaryTimeResetEvent.name = "Primary Time Reset Event";    //  ***
+        TestEvent = new UnityEvent();
+        TestEvent.AddListener(Clock.AddResetTimeMain);
+        AltTestEvent = new UnityEvent();
+        AltTestEvent.AddListener(Clock.AddResetTimeSecondary);
         #endregion
 
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
@@ -103,7 +109,8 @@ public class GameLoopBehaviour : MonoBehaviour
                 if (PlayerCharacter.character.Health > OpponentCharacter.character.Health || OpponentCharacter.character.Health > PlayerCharacter.character.Health)
                 {
                     rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
-                    PrimaryTimeResetEvent.Raise(); //  ***
+                    //PrimaryTimeResetEvent.Raise(); //  ***
+                    TestEvent.Invoke();
                     //Clock.AddResetTimeMain();   //  Time passed on main timer added to TimeReset
                 }
 
@@ -111,7 +118,8 @@ public class GameLoopBehaviour : MonoBehaviour
                 {
                     rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Give a draw
                     Debug.Log("Player Health " + PlayerCharacter.character.Health + " Opponent Health " + OpponentCharacter.character.Health);
-                    PrimaryTimeResetEvent.Raise();  //  ***
+                    //PrimaryTimeResetEvent.Raise();  //  ***
+                    TestEvent.Invoke();
                     //Clock.AddResetTimeMain();   //  Time passed on main timer added to TimeReset
                 }
 
@@ -129,8 +137,9 @@ public class GameLoopBehaviour : MonoBehaviour
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
             {
-                PrimaryTimeResetEvent.Raise();  //  ***
-                //Clock.AddResetTimeSecondary();  //  Time passed from secondary Tiemr added to time reset
+                //PrimaryTimeResetEvent.Raise();  //  ***
+                Clock.AddResetTimeSecondary();  //  Time passed from secondary Tiemr added to time reset
+                AltTestEvent.Invoke();
             }
 
             //  Switch to menu after set amount of time
