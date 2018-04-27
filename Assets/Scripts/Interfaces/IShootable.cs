@@ -4,11 +4,6 @@ using UnityEngine;
 
 public interface IShootable
 {
-    GameObject shootableObject { get; set; }
-}
-
-public interface IShooter
-{
-    Transform projectileSpawn { get; set; }
-    float projectileSpeed { get; set; }
+    GameObject Prefab { get;}
+    void Shoot(Transform ownerTransform, float projectileSpeed);
 }

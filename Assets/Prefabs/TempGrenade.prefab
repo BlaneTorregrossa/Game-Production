@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33875463810469788}
   - component: {fileID: 136973232370422118}
   - component: {fileID: 23708500675619478}
+  - component: {fileID: 114181489414846722}
   m_Layer: 0
   m_Name: TempGrenade
   m_TagString: Untagged
@@ -81,6 +82,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1710238305023194}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114181489414846722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710238305023194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653db3aab12e28649aa4371b3da7ea5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136973232370422118
 CapsuleCollider:
   m_ObjectHideFlags: 1

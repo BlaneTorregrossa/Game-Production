@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [CreateAssetMenu(menuName ="Character")]
-public class Character : ScriptableObject, IDamageable, IDamager, IShooter
+public class Character : ScriptableObject, IDamageable, IDamager
 {
     public List<Part> parts;    //  List of Character Parts
     void OnEnable() 
@@ -22,13 +21,8 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
     public float DashSpeed; //  Default dash speed for the character
     public float Damage { get; set; } // Damage that will be inflicted to another character
     public Vector3 StartingPos; //  Position Character Starts in a given scene
-    public bool isDead; // Boolean that determines whether the player is "Dead".
-    public float projectileSpeed { get; set; }
-    public Transform projectileSpawn { get; set; }
-
-    public ArmBehaviour LeftArmBehaviour;
-    public ArmBehaviour RightArmBehaviour;
-    public HeadBehaviour HeadBehaviour;
+    public bool isDead; // Boolean that determines whether the player is "Dead".   
+    
 
     public void DoDamage(IDamageable damageable)
     {
@@ -40,18 +34,6 @@ public class Character : ScriptableObject, IDamageable, IDamager, IShooter
         Health -= amount;
     }
     
-    public void SetBehaviour()
-    {
-        var go = new GameObject();
-        var la = go.AddComponent<ArmBehaviour>();
-        var ra = go.AddComponent<ArmBehaviour>();
-        var h = go.AddComponent<HeadBehaviour>();
-        la.ArmConfig = Left as Arm;
-        ra.ArmConfig = Right as Arm;
-        h.HeadConfig = HeadPiece as Head;
-        LeftArmBehaviour = la;
-        RightArmBehaviour = ra;
-        HeadBehaviour = h;
-    }
+  
     
 }

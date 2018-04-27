@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmBehaviour : MonoBehaviour
+public class ArmBehaviour : MonoBehaviour, IFireable
 {
+    private IFireable Fireable { get { return ArmConfig; } }
+
     public Arm ArmConfig;
-
-    private void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
-    }
 
     private void SetToExplode()
     {
-        if(ArmConfig.isExplosive)
+        if (ArmConfig.isExplosive)
         {
-            
+
         }
         else
         {
-            
+
         }
     }
 
@@ -33,8 +24,14 @@ public class ArmBehaviour : MonoBehaviour
     {
 
     }
-    public void SetProjectile(GameObject po)
+
+    public void SetProjectileObject(GameObject o)
     {
-        ArmConfig.projectile.shootableObject = po;
+        ArmConfig.projectile.Prefab = o;
+    }
+
+    public void Fire(Transform owner)
+    {
+        Fireable.Fire(owner);
     }
 }

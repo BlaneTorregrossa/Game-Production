@@ -1,18 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿ 
 using UnityEngine;
 
-public class ProjectileBehavior : MonoBehaviour
+public class ProjectileBehaviour : MonoBehaviour
 {
-    public IShootable projectileConfig;
-    
     private IDamager _shooter;
-    
-    public void SetOwner(IDamager owner)
-    {
-        _shooter = owner;
-    }
-
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (_shooter == null)

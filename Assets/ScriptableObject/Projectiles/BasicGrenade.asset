@@ -11,9 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa1618a699ef75478f900baa989ba32, type: 3}
   m_Name: BasicGrenade
   m_EditorClassIdentifier: 
-  speed: 8
-  tag: 
-  force: {x: 0, y: 0, z: 0}
-  position: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 1710238305023194, guid: b18ac9e667718ab4c8d10e69779b9afb, type: 2}
   Distance: 2
   Radius: 5
