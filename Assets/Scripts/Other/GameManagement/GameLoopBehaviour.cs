@@ -29,7 +29,7 @@ public class GameLoopBehaviour : MonoBehaviour
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
     [SerializeField]
-    private GameObject PauseUI; //  Menu based UI that is made avalible once certain conditions are met
+    private GameObject PauseUI; //  Menu based UI  that is made avalible once certain conditions are met
     [SerializeField]
     private GameObject ResultScreen;    //  Results screens for after all rounds have occurred
     [SerializeField]
@@ -42,26 +42,23 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Start()
     {
-        #region Timer
-        Paused = false; //  Game Should Not be puased at the start of the scene
-        Clock = gameObject.GetComponent<TimerBehaviour>();  //  Assigning TimerBehaviour
-        Clock.TimerObject.Wait = true;  //  Secondary Timer is used first so Wait has to be enabled
-        Clock.TimerObject.MainTime = Clock.TimerObject.MainTimeMax; //  Setting Main Time
-        Clock.TimerObject.SecondaryTime = Clock.TimerObject.SecondaryTimeMax;   //  Setting Secondary Time
-        Clock.TimerObject.TimeReset = 0;    //  Reseting Total time removed
-        Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
-        #endregion
+        if (CurrentGameMode == GameType.GameMode.PVP)
+        {
+            #region Timer
+            Paused = false; //  Game Should Not be puased at the start of the scene
+            Clock = gameObject.GetComponent<TimerBehaviour>();  //  Assigning TimerBehaviour
+            Clock.TimerObject.Wait = true;  //  Secondary Timer is used first so Wait has to be enabled
+            Clock.TimerObject.MainTime = Clock.TimerObject.MainTimeMax; //  Setting Main Time
+            Clock.TimerObject.SecondaryTime = Clock.TimerObject.SecondaryTimeMax;   //  Setting Secondary Time
+            Clock.TimerObject.TimeReset = 0;    //  Reseting Total time removed
+            Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
+            #endregion
 
-        #region Event Listeners
-        MainTimeEvent.AddListener(Clock.AddResetTimeMain);
-        SecondaryTimeEvent.AddListener(Clock.AddResetTimeSecondary);
-        TimeUpdateEvent.AddListener(Clock.UpdateTime);
-        #endregion
+        }
 
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
-        if (CurrentGameMode == GameType.GameMode.PVP)
-            OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
+        OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
 
         PauseUI.SetActive(false);   //  Pause UI
         ResultScreen.SetActive(false);  //  End of game UI/ Results UI
@@ -82,21 +79,21 @@ public class GameLoopBehaviour : MonoBehaviour
         }
         #endregion
 
-        #region Timer
-        if (Paused == false)
-            TimeUpdateEvent.Invoke(); //  Update Time passed
-
-        RoundTimerText.text = Clock.TimerObject.MainTime.ToString(); //  Round Timer displayed as text
-
-        //  PreRoundTimer is not displayed if player control is enabled
-        if (FreezeControl == false && Clock.TimerObject.Wait == false)
-            PreRoundTimerText.text = "";
-        else
-            PreRoundTimerText.text = Clock.TimerObject.SecondaryTime.ToString();
-        #endregion
-
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
+            #region Timer
+            if (Paused == false)
+                TimeUpdateEvent.Invoke(); //  Update Time passed
+
+            RoundTimerText.text = Clock.TimerObject.MainTime.ToString(); //  Round Timer displayed as text
+
+            //  PreRoundTimer is not displayed if player control is enabled
+            if (FreezeControl == false && Clock.TimerObject.Wait == false)
+                PreRoundTimerText.text = "";
+            else
+                PreRoundTimerText.text = Clock.TimerObject.SecondaryTime.ToString();
+            #endregion
+
             //  For if either character isDead
             if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || Clock.TimerObject.MainTime < 0)
             {
@@ -105,14 +102,14 @@ public class GameLoopBehaviour : MonoBehaviour
                 if (PlayerCharacter.character.Health > OpponentCharacter.character.Health || OpponentCharacter.character.Health > PlayerCharacter.character.Health)
                 {
                     rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
-                    MainTimeEvent.Invoke(); //  Invoke change to TimeReset adding elapsed MainTime
+                    MainTimeEvent.Invoke();
                 }
 
                 else if (PlayerCharacter.character.Health == OpponentCharacter.character.Health)    // if Both PlayerCharacter and OpponnetCharacter havethe same health
                 {
                     rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Give a draw
                     Debug.Log("Player Health " + PlayerCharacter.character.Health + " Opponent Health " + OpponentCharacter.character.Health);
-                    MainTimeEvent.Invoke(); //  Invoke change to TimeReset adding elapsed MainTime
+                    MainTimeEvent.Invoke();
                 }
 
                 ResetCharacters(PlayerCharacter);   //  Reset Player 1
@@ -129,7 +126,7 @@ public class GameLoopBehaviour : MonoBehaviour
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
             {
-                SecondaryTimeEvent.Invoke();  //  invoke change to TimeReset adding elapsed SecondaryTime
+                SecondaryTimeEvent.Invoke();
             }
 
             //  Switch to menu after set amount of time
