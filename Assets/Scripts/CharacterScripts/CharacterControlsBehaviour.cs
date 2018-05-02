@@ -50,31 +50,23 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-
-    {      
+    {
         if (Input.GetButtonDown("Dash") && _dashing == false)
         {
             if (_charges >= 0)
             {
-                HeadActivate();
+                _dashing = true;
+                _dashtime = _dashduration;
+                _canmove = false;
+                _charges -= 1;
+                Debug.Log("Started Dash, -1 Dash Charge");
             }
-            if (Input.GetButtonDown("Dash") && _dashing == false)
+            else
             {
-                if (_charges >= 0)
-                {
-                    _dashing = true;
-                    _dashtime = _dashduration;
-                    _canmove = false;
-                    _charges -= 1;
-                    Debug.Log("Started Dash, -1 Dash Charge");
-                }
-                else
-                {
-                    Debug.Log("Not enough charges");
-                }
+                Debug.Log("Not enough charges");
             }
-            DashRecharge(200, Characterconfig.DashCharges);
         }
+        DashRecharge(200, Characterconfig.DashCharges);
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
@@ -116,7 +108,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         //var m = new Vector3(x, 0, z);
         //return m.normalized;
     }
-    
+
     void DashRecharge(int rechargenum, int limit)
     {
         if (_recharge >= rechargenum && _charges != limit)
