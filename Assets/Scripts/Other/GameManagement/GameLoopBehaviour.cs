@@ -29,7 +29,7 @@ public class GameLoopBehaviour : MonoBehaviour
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
     [SerializeField]
-    private GameObject PauseUI; //  Menu based UI that is made avalible once certain conditions are met
+    private GameObject PauseUI; //  Menu based UI  that is made avalible once certain conditions are met
     [SerializeField]
     private GameObject ResultScreen;    //  Results screens for after all rounds have occurred
     [SerializeField]
@@ -54,11 +54,6 @@ public class GameLoopBehaviour : MonoBehaviour
             Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
             #endregion
 
-            #region Event Listeners
-            MainTimeEvent.AddListener(Clock.AddResetTimeMain);
-            SecondaryTimeEvent.AddListener(Clock.AddResetTimeSecondary);
-            TimeUpdateEvent.AddListener(Clock.UpdateTime);
-            #endregion
         }
 
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
@@ -88,7 +83,7 @@ public class GameLoopBehaviour : MonoBehaviour
         {
             #region Timer
             if (Paused == false)
-                Clock.UpdateTime(); //  Update Time passed
+                TimeUpdateEvent.Invoke(); //  Update Time passed
 
             RoundTimerText.text = Clock.TimerObject.MainTime.ToString(); //  Round Timer displayed as text
 
@@ -107,14 +102,14 @@ public class GameLoopBehaviour : MonoBehaviour
                 if (PlayerCharacter.character.Health > OpponentCharacter.character.Health || OpponentCharacter.character.Health > PlayerCharacter.character.Health)
                 {
                     rb.GiveRound(PlayerCharacter, OpponentCharacter, Rounds, RoundMax); //  Decide a winner between the two characters
-                    Clock.AddResetTimeMain();
+                    MainTimeEvent.Invoke();
                 }
 
                 else if (PlayerCharacter.character.Health == OpponentCharacter.character.Health)    // if Both PlayerCharacter and OpponnetCharacter havethe same health
                 {
                     rb.Tie(PlayerCharacter, OpponentCharacter, Rounds, RoundMax);   //  Give a draw
                     Debug.Log("Player Health " + PlayerCharacter.character.Health + " Opponent Health " + OpponentCharacter.character.Health);
-                    Clock.AddResetTimeMain();
+                    MainTimeEvent.Invoke();
                 }
 
                 ResetCharacters(PlayerCharacter);   //  Reset Player 1
@@ -131,7 +126,7 @@ public class GameLoopBehaviour : MonoBehaviour
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
             {
-                Clock.AddResetTimeSecondary();
+                SecondaryTimeEvent.Invoke();
             }
 
             //  Switch to menu after set amount of time
