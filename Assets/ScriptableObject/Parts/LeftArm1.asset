@@ -17,10 +17,12 @@ MonoBehaviour:
   partPos: {x: -1, y: 0, z: 0}
   partType: 1
   isLeft: 1
-  isRight: 0
+  isRight: 1
   isMelee: 1
   isRanged: 0
-  meleeDamage: 1
+  damageNum: 0
   meleeAttackSpeed: 1
-  projectileDamage: 0
-  projectileSpeed: 0
+  projectileSpeed: 3
+  isExplosive: 0
+  projectile: {fileID: 11400000, guid: b9a2ba578447f1843a14451f1e4ec3ea, type: 2}
+  attackType: 0
