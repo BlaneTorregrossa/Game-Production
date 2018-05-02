@@ -32,7 +32,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameLoopInstance.FreezeControl == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP || GameLoopInstance.CurrentGameMode == GameType.GameMode.TARGETRANGE)
+        if (GameLoopInstance.FreezeControl == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP
+            || GameLoopInstance.CurrentGameMode == GameType.GameMode.TESTING)
         {
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
             if (_dashing)

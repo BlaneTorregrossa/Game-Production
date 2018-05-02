@@ -10,7 +10,7 @@ public class GameType : ScriptableObject
     public enum GameMode
     {
         MENU = 0,           //  Main Menu
-        TARGETRANGE = 1,    //  Single Playable Character Range
+        TESTING = 1,    //  For Testing
         PVP = 2,            //  For Character Vs Character Scene
     }
 
