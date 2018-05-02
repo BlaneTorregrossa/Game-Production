@@ -11,6 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df84de6f299b1514080a237dd0650071, type: 3}
   m_Name: Projectile
   m_EditorClassIdentifier: 
-  speed: 1
-  force: {x: 0, y: 0, z: 0}
-  position: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 1910747087695222, guid: 69d74505edf258445a905380e31a796d, type: 2}

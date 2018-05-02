@@ -16,3 +16,4 @@ MonoBehaviour:
   prefab: {fileID: 1318892551593166, guid: ba60dc34fa6e4244a8758d50f5e7dc85, type: 2}
   partPos: {x: 0, y: 1, z: 0}
   partType: 0
+  abilityType: 0

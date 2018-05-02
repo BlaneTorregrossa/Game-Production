@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [CreateAssetMenu(menuName ="Character")]
 public class Character : ScriptableObject, IDamageable, IDamager
 {
@@ -22,18 +21,19 @@ public class Character : ScriptableObject, IDamageable, IDamager
     public float DashSpeed; //  Default dash speed for the character
     public float Damage { get; set; } // Damage that will be inflicted to another character
     public Vector3 StartingPos; //  Position Character Starts in a given scene
-    public bool isDead; // Boolean that determines whether the player is "Dead".
-
-    public ArmBehaviour LeftArmBehaviour;
-    public ArmBehaviour RightArmBehaviour;
-    public HeadBehaviour HeadBehaviour;
+    public bool isDead; // Boolean that determines whether the player is "Dead".   
+    
 
     public void DoDamage(IDamageable damageable)
     {
-        damageable.Health -= Damage;
-        if(damageable.Health <= 0)
-        {
-            Debug.Log("Killshot!");
-        }
+        damageable.TakeDamage(Damage);
     }
+
+    public void TakeDamage(float amount)
+    {
+        Health -= amount;
+    }
+    
+  
+    
 }
