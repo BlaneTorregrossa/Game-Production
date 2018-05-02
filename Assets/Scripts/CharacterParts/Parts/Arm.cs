@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Parts/Arm")]
-public class Arm : Part
+public class Arm : Part, IFireable
 {
     public bool isLeft; //  Check fir if arm belongs on left side of character
     public bool isRight;    //  Check for if arm belongs on right side of character
@@ -12,12 +12,23 @@ public class Arm : Part
     public float damageNum; //  Base Damage of the arm
     public float meleeAttackSpeed;  //  Melee Attack Speed Modifier
     public float projectileSpeed;   //  Projectile Speed Modifier
+    public bool isExplosive;
+    public Projectile projectile;
+    public IShootable Shootable { get { return projectile; } }
+
+    public ArmBehaviour ArmBehaviour { get { return prefab.GetComponent<ArmBehaviour>(); } }
 
     public enum AttackType
     {
-        FASTMELEE = 0,
-        BULLET = 1,
-        GRENADE = 2
+        BULLET = 0,
+        GRENADE = 1
     }
     public AttackType attackType;
+
+    public void Fire(Transform owner)
+    {
+        Shootable.Shoot(owner, projectileSpeed);
+    }
+
+
 }
