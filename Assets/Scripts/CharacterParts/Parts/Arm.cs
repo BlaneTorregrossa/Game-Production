@@ -23,6 +23,7 @@ public class Arm : Part, IFireable
         BULLET = 0,
         GRENADE = 1
     }
+
     public AttackType attackType;
 
     public void Fire(Transform owner)
