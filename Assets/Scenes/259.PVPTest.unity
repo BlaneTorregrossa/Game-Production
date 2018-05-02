@@ -149,6 +149,7 @@ MonoBehaviour:
   _dashing: 0
   _dashtime: 0
   _dashduration: 0
+  _paused: 0
   GameLoopInstance: {fileID: 1003552416}
 --- !u!23 &109603
 MeshRenderer:
@@ -244,14 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterConfig: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
-  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-    type: 2}
-  location: {fileID: 884571387}
-  rapidFire: 1
-  _gapTime: 10
-  _reloadStart: 100
-  firedProjectile: {fileID: 0}
 --- !u!1 &177704322
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +930,8 @@ MonoBehaviour:
   CurrentGameMode: 2
   PlayerCharacter: {fileID: 109607}
   OpponentCharacter: {fileID: 1035261771}
+  PlayerController: {fileID: 109602}
+  OpponentController: {fileID: 1035261772}
   Clock: {fileID: 0}
   Rounds: []
   MainTimeEvent:
@@ -1059,6 +1054,7 @@ MonoBehaviour:
   _dashing: 0
   _dashtime: 0
   _dashduration: 0
+  _paused: 0
   GameLoopInstance: {fileID: 1003552416}
 --- !u!4 &1035261773 stripped
 Transform:
@@ -1087,14 +1083,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterConfig: {fileID: 11400000, guid: 0debceb8b6dcdf943bd2600e669de115, type: 2}
-  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-    type: 2}
-  location: {fileID: 1069249911}
-  rapidFire: 1
-  _gapTime: 10
-  _reloadStart: 100
-  firedProjectile: {fileID: 0}
 --- !u!1 &1069249910
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  *** Issue: Needs to be ready for multiple controllers + needs Menu navigation controls (Pause and Character Customization)
 public class CharacterControlsBehaviour : MonoBehaviour
 {
     public Character Characterconfig;
@@ -12,9 +13,10 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public bool _dashing;
     public int _dashtime;
     public int _dashduration;
+    public bool _paused;    //  if game is "Paused"
 
     [SerializeField]
-    GameLoopBehaviour GameLoopInstance;
+    GameLoopBehaviour GameLoopInstance; //  For a boolen to disable controls while wait timer is running if in PVP mode
     private Vector3 _movedirection;
     private Vector3 _lookdirection;
     private Vector3 _dashdirection;
@@ -26,13 +28,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
     {
         _canmove = true;
         _dashing = false;
+        _paused = false;    //  paused must always start disabled
         _dashtime = 0;
         _charges = Characterconfig.DashCharges;
     }
 
     private void FixedUpdate()
     {
-        if (GameLoopInstance.FreezeControl == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP
+        if (GameLoopInstance.WaitForTimer == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP
             || GameLoopInstance.CurrentGameMode == GameType.GameMode.TESTING)
         {
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
@@ -47,27 +50,67 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
         }
+
+        if (GameLoopInstance.CurrentGameMode == GameType.GameMode.MENU)
+        {
+            //   For Menu Controls
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Dash") && _dashing == false)
+        if (GameLoopInstance.WaitForTimer == false && GameLoopInstance.CurrentGameMode == GameType.GameMode.PVP
+            || GameLoopInstance.CurrentGameMode == GameType.GameMode.TESTING)
         {
-            if (_charges >= 0)
+
+            if (Input.GetButtonDown("Pause"))   //  Pause button
             {
-                _dashing = true;
-                _dashtime = _dashduration;
-                _canmove = false;
-                _charges -= 1;
-                Debug.Log("Started Dash, -1 Dash Charge");
+                if (_paused == false)
+                    _paused = true;
+                else if (_paused == true)
+                    _paused = false;
             }
-            else
+
+            if (Input.GetAxis("LeftArm") >= 1 && _paused == false)
             {
-                Debug.Log("Not enough charges");
+                Debug.Log("Left Arm Attack not present!");
             }
+
+            if (Input.GetAxis("RightArm") >= 1 && _paused == false)
+            {
+                Debug.Log("Right Arm Attack not present!");
+            }
+
+            if (Input.GetButtonDown("Head") && _paused == false)
+            {
+                Debug.Log("Head Abillity not present!");
+            }
+
+            if (Input.GetButtonDown("Dash") && _dashing == false && _paused == false)   //  Dash Button
+            {
+                if (_charges >= 0)
+                {
+                    _dashing = true;
+                    _dashtime = _dashduration;
+                    _canmove = false;
+                    _charges -= 1;
+                    Debug.Log("Started Dash, -1 Dash Charge");
+                }
+                else
+                {
+                    Debug.Log("Not enough charges");
+                }
+            }
+            DashRecharge(200, Characterconfig.DashCharges);
         }
-        DashRecharge(200, Characterconfig.DashCharges);
+
+        if (GameLoopInstance.CurrentGameMode == GameType.GameMode.MENU)
+        {
+            //   For Menu Controls
+        }
+
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
