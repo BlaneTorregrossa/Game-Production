@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 33957926673533346}
   - component: {fileID: 136308719700701264}
   - component: {fileID: 23207014713657798}
-  - component: {fileID: 114064331713837306}
+  - component: {fileID: 114412789074154304}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +82,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226738606112390}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114064331713837306
+--- !u!114 &114412789074154304
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -90,13 +90,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1226738606112390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53c8caa02799714ea1c30249cba0211, type: 3}
+  m_Script: {fileID: 11500000, guid: 76d44c6158418744888e7433bc6943cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: f7f549ade651d964781660a0c3e2aa5c, type: 2}
-  characterHealth: 30
-  leftDamage: 0
-  rightDamage: 0
+  TargetConfig: {fileID: 0}
 --- !u!136 &136308719700701264
 CapsuleCollider:
   m_ObjectHideFlags: 1
