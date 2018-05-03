@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmBehaviour : MonoBehaviour, IFireable
+public class ArmBehaviour : MonoBehaviour, IFireable, IDamager
 {
     private IFireable Fireable { get { return ArmConfig; } }
+    private IDamager Damager { get { return ArmConfig; } }
 
     public Arm ArmConfig;
 
@@ -29,9 +30,14 @@ public class ArmBehaviour : MonoBehaviour, IFireable
     {
         ArmConfig.projectile.Prefab = o;
     }
-
+    
     public void Fire(Transform owner)
     {
         Fireable.Fire(owner);
+    }
+
+    public void DoDamage(IDamageable damageable)
+    {
+        Damager.DoDamage(damageable);
     }
 }

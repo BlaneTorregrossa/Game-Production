@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Parts/Arm")]
-public class Arm : Part, IFireable
+public class Arm : Part, IFireable, IDamager
 {
     public bool isLeft; //  Check fir if arm belongs on left side of character
     public bool isRight;    //  Check for if arm belongs on right side of character
@@ -30,6 +30,9 @@ public class Arm : Part, IFireable
     {
         Shootable.Shoot(owner, projectileSpeed);
     }
-
-
+    
+    public void DoDamage(IDamageable damageable)
+    {
+        damageable.TakeDamage(damageNum);
+    }
 }

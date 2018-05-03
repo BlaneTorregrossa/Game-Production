@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour
 {
     private IDamager _shooter;
+    private float Damage;
  
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +20,12 @@ public class ProjectileBehaviour : MonoBehaviour
         if(other.tag == "Target")
         {
             _shooter.DoDamage(other.GetComponent<TargetBehaviour>().TargetConfig);
+            Destroy(gameObject);
         }
     }
-    
+
+    public void SetDamage(IDamageable d, float a)
+    {
+
+    }
 }

@@ -12,6 +12,7 @@ public abstract class Projectile : ScriptableObject, IShootable
         get { return prefab; }
         set { prefab = value; }
     }
+    public IDamager damager;
 
     public abstract void Shoot(Transform ownerTransform, float projectileSpeed);
 
