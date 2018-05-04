@@ -10,8 +10,7 @@ public class GameType : ScriptableObject
     public enum GameMode
     {
         MENU = 0,           //  Main Menu
-        TESTING = 1,    //  For Testing
-        PVP = 2,            //  For Character Vs Character Scene
+        PVP = 1,            //  For Character Vs Character Scene
     }
 
     public GameMode Mode;   //  If this sciptable object is made into it's own asset    (Not Recomended)
