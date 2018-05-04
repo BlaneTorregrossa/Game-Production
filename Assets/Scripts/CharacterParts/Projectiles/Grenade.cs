@@ -20,6 +20,7 @@ public class Grenade : Projectile, IExplode
         var firedProjectile = Instantiate(prefab, ownerTransform.position, ownerTransform.rotation);
         firedProjectile.transform.forward = ownerTransform.forward;
         var projectileBehaviour = firedProjectile.AddComponent<ProjectileBehaviour>();
+        projectileBehaviour.SetOwner(damager);
         var rb = firedProjectile.GetComponent<Rigidbody>();
         if (rb == null)
             rb = firedProjectile.AddComponent<Rigidbody>();
@@ -28,9 +29,5 @@ public class Grenade : Projectile, IExplode
 
         ownerTransform.GetComponent<MonoBehaviour>().StartCoroutine(StartCountdown());
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Explode(GameObject);
-    }
+    
 }
