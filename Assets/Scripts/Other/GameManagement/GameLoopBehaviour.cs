@@ -9,10 +9,14 @@ public class GameLoopBehaviour : MonoBehaviour
 {
 
     [HideInInspector]
-    public bool FreezeControl;      //  For preveinting character control when true
+    public bool WaitForTimer;      //  For preveinting character control when true
     public GameType.GameMode CurrentGameMode;   //  Current Game mode for given scene
     public CharacterBehaviour PlayerCharacter;   //  Character Behaviour for Player
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
+    public CharacterControlsBehaviour PlayerController;
+    public CharacterControlsBehaviour OpponentController;
+    public CharacterCustomizationBehaviour PlayerCustomization;
+    public CharacterCustomizationBehaviour OpponentCustomization;
     [HideInInspector]
     public TimerBehaviour Clock;    //  Where everything related to time is used from
     public List<Round> Rounds;  //  List of results for each individual round
@@ -56,6 +60,8 @@ public class GameLoopBehaviour : MonoBehaviour
 
         }
 
+        PlayerController._paused = false;
+        OpponentController._paused = false;
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
         OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
@@ -70,17 +76,30 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Update()
     {
-        #region Temp Inputs
-        //  In place of the lack of a pause button being set on the controller  *
-        //  NOTE:  Remove once Controller is able to call pause function
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            EnablePause();
-        }
-        #endregion
+
+        //var JoystickNames = Input.GetJoystickNames();
+        //Debug.Log(JoystickNames[1]);
 
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
+            // Disables pause menu
+            if (PlayerController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false
+                || OpponentController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            {
+                PauseUI.SetActive(false);
+                Time.timeScale = 1.0f;
+                Paused = false;
+            }
+
+            // Enables pause menu
+            else if (PlayerController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false
+                || OpponentController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            {
+                PauseUI.SetActive(true);
+                Time.timeScale = 0.0f;
+                Paused = true;
+            }
+
             #region Timer
             if (Paused == false)
                 TimeUpdateEvent.Invoke(); //  Update Time passed
@@ -88,7 +107,7 @@ public class GameLoopBehaviour : MonoBehaviour
             RoundTimerText.text = Clock.TimerObject.MainTime.ToString(); //  Round Timer displayed as text
 
             //  PreRoundTimer is not displayed if player control is enabled
-            if (FreezeControl == false && Clock.TimerObject.Wait == false)
+            if (WaitForTimer == false && Clock.TimerObject.Wait == false)
                 PreRoundTimerText.text = "";
             else
                 PreRoundTimerText.text = Clock.TimerObject.SecondaryTime.ToString();
@@ -126,6 +145,8 @@ public class GameLoopBehaviour : MonoBehaviour
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
             {
+                PlayerController._paused = false;
+                OpponentController._paused = false;
                 SecondaryTimeEvent.Invoke();
             }
 
@@ -135,9 +156,9 @@ public class GameLoopBehaviour : MonoBehaviour
 
             //  Setting FreezeControl to the same of Wait
             if (Clock.TimerObject.Wait == true)
-                FreezeControl = true;
+                WaitForTimer = true;
             else
-                FreezeControl = false;
+                WaitForTimer = false;
         }
     }
 
@@ -148,28 +169,6 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.character.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
-    }
-
-
-    //  Replace when controller function for pausing is added
-    //  Temporary    *
-    public void EnablePause()
-    {
-        // Enables pause menu
-        if (Paused == false && FreezeControl == false && Clock.TimerObject.Wait == false)
-        {
-            PauseUI.SetActive(true);
-            Paused = true;
-            Time.timeScale = 0.0f;
-        }
-
-        // Disables pause menu
-        else if (Paused == true && FreezeControl == false && Clock.TimerObject.Wait == false)
-        {
-            PauseUI.SetActive(false);
-            Paused = false;
-            Time.timeScale = 1.0f;
-        }
     }
 
 }
