@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 109603}
   - component: {fileID: 109602}
   - component: {fileID: 109607}
-  - component: {fileID: 109608}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Character
@@ -234,17 +233,6 @@ MonoBehaviour:
   leftSpawn: {fileID: 0}
   rightSpawn: {fileID: 0}
   firedProjectile: {fileID: 0}
---- !u!114 &109608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 109601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &177704322
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,12 +914,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf615cd7b11538643b6307ec95029850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FreezeControl: 0
-  CurrentGameMode: 2
+  WaitForTimer: 0
+  CurrentGameMode: 1
   PlayerCharacter: {fileID: 109607}
   OpponentCharacter: {fileID: 1035261771}
   PlayerController: {fileID: 109602}
   OpponentController: {fileID: 1035261772}
+  PlayerCustomization: {fileID: 0}
+  OpponentCustomization: {fileID: 0}
   Clock: {fileID: 0}
   Rounds: []
   MainTimeEvent:
@@ -1072,17 +1062,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 1.2, z: 0.5}
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &1035261775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1035261770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1069249910
 GameObject:
   m_ObjectHideFlags: 0

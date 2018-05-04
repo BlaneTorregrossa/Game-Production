@@ -15,6 +15,8 @@ public class GameLoopBehaviour : MonoBehaviour
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
     public CharacterControlsBehaviour PlayerController;
     public CharacterControlsBehaviour OpponentController;
+    public CharacterCustomizationBehaviour PlayerCustomization;
+    public CharacterCustomizationBehaviour OpponentCustomization;
     [HideInInspector]
     public TimerBehaviour Clock;    //  Where everything related to time is used from
     public List<Round> Rounds;  //  List of results for each individual round
@@ -75,26 +77,29 @@ public class GameLoopBehaviour : MonoBehaviour
     void Update()
     {
 
-        // Disables pause menu
-        if (PlayerController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false
-            || OpponentController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
-        {
-            PauseUI.SetActive(false);
-            Time.timeScale = 1.0f;
-            Paused = false;
-        }
-
-        // Enables pause menu
-        else if (PlayerController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false
-            || OpponentController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
-        {
-            PauseUI.SetActive(true);
-            Time.timeScale = 0.0f;
-            Paused = true;
-        }
+        //var JoystickNames = Input.GetJoystickNames();
+        //Debug.Log(JoystickNames[1]);
 
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
+            // Disables pause menu
+            if (PlayerController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false
+                || OpponentController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            {
+                PauseUI.SetActive(false);
+                Time.timeScale = 1.0f;
+                Paused = false;
+            }
+
+            // Enables pause menu
+            else if (PlayerController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false
+                || OpponentController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            {
+                PauseUI.SetActive(true);
+                Time.timeScale = 0.0f;
+                Paused = true;
+            }
+
             #region Timer
             if (Paused == false)
                 TimeUpdateEvent.Invoke(); //  Update Time passed
