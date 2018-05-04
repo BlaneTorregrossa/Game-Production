@@ -17,8 +17,9 @@ public class CharacterBehaviour : MonoBehaviour
     public GameObject firedProjectile;
 
     public IFireable leftArm { get { return character.Left as Arm; } }
+    public IDamager leftdamager { get { return character.Left as Arm; } }
     public IFireable rightArm { get { return character.Right as Arm; } }
-     
+    public IDamager rightdamager { get { return character.Right as Arm; } }
 
     void Start()
     {         
@@ -32,12 +33,12 @@ public class CharacterBehaviour : MonoBehaviour
     {
         if (Input.GetButton("LeftArm"))
         {
-            leftArm.Fire(transform);
+            leftArm.Fire(transform, leftdamager);
 
         }
         if (Input.GetButton("RightArm"))
         {
-            rightArm.Fire(transform);
+            rightArm.Fire(transform, rightdamager);
         }
 
 

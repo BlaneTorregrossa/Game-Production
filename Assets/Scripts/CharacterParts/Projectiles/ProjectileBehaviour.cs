@@ -4,8 +4,7 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour
 {
     private IDamager _shooter;
-    private float Damage;
- 
+
     private void OnTriggerEnter(Collider other)
     {
         if (_shooter == null)
@@ -24,8 +23,8 @@ public class ProjectileBehaviour : MonoBehaviour
         }
     }
 
-    public void SetDamage(IDamageable d, float a)
+    public void SetOwner(IDamager d)
     {
-
+        _shooter = d;
     }
 }

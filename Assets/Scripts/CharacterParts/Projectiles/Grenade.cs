@@ -8,7 +8,7 @@ public class Grenade : Projectile
     public float Distance;
     public float Radius;
 
-    public override void Shoot(Transform ownerTransform, float projectileSpeed)
+    public override void Shoot(Transform ownerTransform, IDamager damager,float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
             return;
