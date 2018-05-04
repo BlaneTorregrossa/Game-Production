@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetConfig: {fileID: 11400000, guid: 033f5018f1a948448829bdaf141c86e0, type: 2}
+  StartingHealth: 0
 --- !u!114 &114557300459166298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetConfig: {fileID: 11400000, guid: 033f5018f1a948448829bdaf141c86e0, type: 2}
+  StartingHealth: 50
 --- !u!136 &136308719700701264
 CapsuleCollider:
   m_ObjectHideFlags: 1

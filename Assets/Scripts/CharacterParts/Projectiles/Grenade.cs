@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Projectile/Grenade")]
-public class Grenade : Projectile
+public class Grenade : Projectile, IExplode
 {
-    public float Distance;
-    public float Radius;
+    public GameObject GameObject;
 
-    public override void Shoot(Transform ownerTransform, IDamager damager,float projectileSpeed)
+    //creates the explosion which needs an IDamager to calculate the damage of the explosion
+    public void Explode(GameObject Object)
+    {
+        var explosion = Instantiate(Object);
+    }
+
+    public override void Shoot(Transform ownerTransform, IDamager damager, float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
             return;
@@ -19,8 +24,13 @@ public class Grenade : Projectile
         if (rb == null)
             rb = firedProjectile.AddComponent<Rigidbody>();
         rb.velocity += ownerTransform.transform.forward * projectileSpeed;
-        Destroy(firedProjectile, 1);
+        Destroy(firedProjectile, 2);
 
         ownerTransform.GetComponent<MonoBehaviour>().StartCoroutine(StartCountdown());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Explode(GameObject);
     }
 }
