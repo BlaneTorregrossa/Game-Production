@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 160481545}
   - component: {fileID: 160481544}
   m_Layer: 5
-  m_Name: Target Range Button
+  m_Name: PVP Scene Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.TargetRange
+          m_StringArgument: 259.PVPTest
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1936575175}
@@ -1707,7 +1707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Target Range
+  m_Text: Fight
 --- !u!222 &1058850294
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2378,19 +2378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c960ce66019e04cb16a3e0596ae8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetArmLeft: {fileID: 0}
-  SetArmRight: {fileID: 0}
-  SetLegs: {fileID: 0}
-  SetHead: {fileID: 0}
   ArmAttachLeft: {fileID: 0}
   ArmAttachRight: {fileID: 0}
   LegsAttach: {fileID: 0}
   HeadAttach: {fileID: 0}
-  RobotPartList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   RobotPartObjectList:
   - {fileID: 0}
   - {fileID: 0}

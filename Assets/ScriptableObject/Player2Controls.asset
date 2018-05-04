@@ -11,5 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85c8209fccf30a47a77e6a0dfc4c349, type: 3}
   m_Name: Player2Controls
   m_EditorClassIdentifier: 
-  CharacterConfig: {fileID: 0}
-  _movement: {fileID: 0}
+  gamePadNum: 1
