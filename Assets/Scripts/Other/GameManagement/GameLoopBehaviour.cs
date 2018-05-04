@@ -4,22 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-//  Issue: Everything should work without clock unless in an if statement or the start funtion
 public class GameLoopBehaviour : MonoBehaviour
 {
 
     [HideInInspector]
     public bool WaitForTimer;      //  For preveinting character control when true
+    public bool GamePause;
     public GameType.GameMode CurrentGameMode;   //  Current Game mode for given scene
     public CharacterBehaviour PlayerCharacter;   //  Character Behaviour for Player
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
-    public CharacterControlsBehaviour PlayerController;
-    public CharacterControlsBehaviour OpponentController;
-    public CharacterCustomizationBehaviour PlayerCustomization;
-    public CharacterCustomizationBehaviour OpponentCustomization;
+    public Menu ActiveMenu;    //  ***
     [HideInInspector]
     public TimerBehaviour Clock;    //  Where everything related to time is used from
     public List<Round> Rounds;  //  List of results for each individual round
+    public List<Menu> Menus;    //  List of all different types of menus that are avalible in current scene
 
     #region Events
     public UnityEvent MainTimeEvent;
@@ -27,8 +25,7 @@ public class GameLoopBehaviour : MonoBehaviour
     public UnityEvent TimeUpdateEvent;
     #endregion
 
-    private bool MenuReturn;    //  When the game is over and we are set to return to the menu
-    private bool Paused;    //  For if the game itself is paused
+    private bool SwitchScene;    //  When the game is over and we are set to return to the menu
 
     [SerializeField]
     private int RoundMax;   //  Max amount of rounds for the match. Might need to move to the Round Scriptable Object.
@@ -46,32 +43,40 @@ public class GameLoopBehaviour : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f; //  Standard timescale
+        GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
+        PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
+        OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
+        GamePause = false;
+
+
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
             #region Timer
-            Paused = false; //  Game Should Not be puased at the start of the scene
             Clock = gameObject.GetComponent<TimerBehaviour>();  //  Assigning TimerBehaviour
             Clock.TimerObject.Wait = true;  //  Secondary Timer is used first so Wait has to be enabled
             Clock.TimerObject.MainTime = Clock.TimerObject.MainTimeMax; //  Setting Main Time
             Clock.TimerObject.SecondaryTime = Clock.TimerObject.SecondaryTimeMax;   //  Setting Secondary Time
             Clock.TimerObject.TimeReset = 0;    //  Reseting Total time removed
-            Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
             #endregion
+
+            PauseUI.SetActive(false);   //  Pause UI
+            ResultScreen.SetActive(false);  //  End of game UI/ Results UI
+            CombatUI.SetActive(true);   //  Timer and Health UI
 
         }
 
-        PlayerController._paused = false;
-        OpponentController._paused = false;
-        GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
-        PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
-        OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
-
-        PauseUI.SetActive(false);   //  Pause UI
-        ResultScreen.SetActive(false);  //  End of game UI/ Results UI
+        //  ***
         if (CurrentGameMode == GameType.GameMode.PVP)
-            CombatUI.SetActive(true);   //  Timer and Health UI
-        else
-            CombatUI.SetActive(false);  //  Timer and Health UI
+        {
+            ActiveMenu = GetMenuType(Menus, Menu.MenuType.PAUSEMENU);
+        }
+
+        //  ***
+        else if (CurrentGameMode == GameType.GameMode.MENU)
+        {
+            ActiveMenu = GetMenuType(Menus, Menu.MenuType.MAINMENU);
+        }
     }
 
     void Update()
@@ -82,26 +87,24 @@ public class GameLoopBehaviour : MonoBehaviour
 
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
-            // Disables pause menu
-            if (PlayerController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false
-                || OpponentController._paused == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            // Disables pause screen
+            if (GamePause == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(false);
                 Time.timeScale = 1.0f;
-                Paused = false;
+                CurrentGameMode = GameType.GameMode.PVP;
             }
 
-            // Enables pause menu
-            else if (PlayerController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false
-                || OpponentController._paused == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            // Enables pause screen
+            else if (GamePause == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(true);
                 Time.timeScale = 0.0f;
-                Paused = true;
+                CurrentGameMode = GameType.GameMode.MENU;
             }
 
             #region Timer
-            if (Paused == false)
+            if (GamePause == false)
                 TimeUpdateEvent.Invoke(); //  Update Time passed
 
             RoundTimerText.text = Clock.TimerObject.MainTime.ToString(); //  Round Timer displayed as text
@@ -138,20 +141,18 @@ public class GameLoopBehaviour : MonoBehaviour
 
             if (Rounds.Count >= 3)
             {
-                MenuReturn = true;  //  Enabled if a return to the main menu is needed
+                SwitchScene = true;  //  Enabled if a return to the main menu is needed
                 ResultScreen.SetActive(true);   //  Results Screen Displayed
                 CombatUI.SetActive(false);  //  Timer is no longer shown
             }
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
             {
-                PlayerController._paused = false;
-                OpponentController._paused = false;
                 SecondaryTimeEvent.Invoke();
             }
 
-            //  Switch to menu after set amount of time
-            if (MenuReturn == true && Clock.TimerObject.SecondaryTime <= 0)
+            //  Switch to Customization Menu after set amount of time
+            if (SwitchScene == true && Clock.TimerObject.SecondaryTime <= 0)
                 GGM.GoToScene("257.CharacterSelectTest");   //  Not the main Menu due to lack of Main Menu  *
 
             //  Setting FreezeControl to the same of Wait
@@ -160,6 +161,27 @@ public class GameLoopBehaviour : MonoBehaviour
             else
                 WaitForTimer = false;
         }
+
+        //  Switch from PVP to Menu on Pause  ***
+        if (CurrentGameMode == GameType.GameMode.MENU)
+        {
+            // Disables pause screen
+            if (GamePause == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            {
+                PauseUI.SetActive(false);
+                Time.timeScale = 1.0f;
+                CurrentGameMode = GameType.GameMode.PVP;
+            } 
+
+            // Enables pause screen
+            else if (GamePause == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
+            {
+                PauseUI.SetActive(true);
+                Time.timeScale = 0.0f;
+                CurrentGameMode = GameType.GameMode.MENU;
+            }
+        }
+
     }
 
     //  Setup Characters for the next round without reseting the scene
@@ -169,6 +191,20 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.character.isDead = false;  //  Character Death check undone
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
+    }
+
+    //  To get desired menu type    ***
+    public Menu GetMenuType(List<Menu> givenMenus, Menu.MenuType targetType)
+    {
+        Menu returnType = new Menu();
+
+        for (int i = 0; i < givenMenus.Count; i++)
+        {
+            if (givenMenus[i].Type == targetType)
+                returnType = givenMenus[i];
+        }
+
+        return returnType;
     }
 
 }

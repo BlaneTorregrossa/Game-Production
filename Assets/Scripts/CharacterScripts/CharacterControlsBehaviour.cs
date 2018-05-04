@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//  *** Issue: Needs to be ready for multiple controllers + needs Menu navigation controls (Pause and Character Customization)
 public class CharacterControlsBehaviour : MonoBehaviour
 {
     public Character Characterconfig;
@@ -21,23 +20,33 @@ public class CharacterControlsBehaviour : MonoBehaviour
     private Vector3 _lookdirection;
     private Vector3 _dashdirection;
     private Quaternion _currentrot;
-    private GameObject _object;
+    private GameObject _object; //  ???
+    private Menu _menu; //  ***
     private GameType.GameMode _mode;
+    private Menu.MenuType _menuType;    //  ***
     private bool _wait;
+    private bool _lock;
 
     // Use this for initialization
     void Start()
     {
+        _lock = false;
         _canmove = true;
         _dashing = false;
         _paused = false;    //  paused must always start disabled
         _dashtime = 0;
+        _mode = GameLoopInstance.CurrentGameMode;
+        _menu = GameLoopInstance.ActiveMenu;
+        _menuType = _menu.Type;
+        _wait = GameLoopInstance.WaitForTimer;
         _charges = Characterconfig.DashCharges;
     }
 
     private void FixedUpdate()
     {
         _mode = GameLoopInstance.CurrentGameMode;
+        _menu = GameLoopInstance.ActiveMenu;
+        _menuType = _menu.Type;
         _wait = GameLoopInstance.WaitForTimer;
 
         #region Joystick1
@@ -54,11 +63,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
-        }
-
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0)
-        {
-            //   For Menu Controls
         }
         #endregion
 
@@ -77,11 +81,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
         }
-
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 1)
-        {
-            //   For Menu Controls
-        }
         #endregion
 
     }
@@ -89,20 +88,27 @@ public class CharacterControlsBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         _mode = GameLoopInstance.CurrentGameMode;
+        _menu = GameLoopInstance.ActiveMenu;
+        _menuType = _menu.Type;
         _wait = GameLoopInstance.WaitForTimer;
-        
+
         #region Joystick 1
+        #region PVP
         if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
         {
-
-            if (Input.GetButtonDown("Pause"))   //  Pause button
+            if (Input.GetButtonDown("Pause"))
             {
                 if (_paused == false)
+                {
                     _paused = true;
+                    GameLoopInstance.GamePause = true;
+                }
                 else if (_paused == true)
+                {
                     _paused = false;
+                    GameLoopInstance.GamePause = false;
+                }
             }
 
             if (Input.GetAxis("LeftArm") >= 1 && _paused == false)
@@ -137,23 +143,46 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
             DashRecharge(200, Characterconfig.DashCharges);
         }
+        #endregion
 
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0)
+        #region Menu
+        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0 
+            && _menuType == Menu.MenuType.PAUSEMENU)
         {
-            //   For Menu Controls
+
+            if (Input.GetButtonDown("Pause"))
+            {
+                if (_paused == false)
+                {
+                    _paused = true;
+                    GameLoopInstance.GamePause = true;
+                }
+                else if (_paused == true)
+                {
+                    _paused = false;
+                    GameLoopInstance.GamePause = false;
+                };
+            }
         }
+        #endregion
         #endregion
 
         #region Joystick2
-        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
+        #region PVP
+        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 1)
         {
-
             if (Input.GetButtonDown("PauseB"))   //  Pause button
             {
                 if (_paused == false)
+                {
                     _paused = true;
+                    GameLoopInstance.GamePause = true;
+                }
                 else if (_paused == true)
+                {
                     _paused = false;
+                    GameLoopInstance.GamePause = false;
+                }
             }
 
             if (Input.GetAxis("LeftArmB") >= 1 && _paused == false)
@@ -188,11 +217,27 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
             DashRecharge(200, Characterconfig.DashCharges);
         }
+        #endregion
 
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0)
+        #region MENU
+        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 1
+            && _menuType == Menu.MenuType.PAUSEMENU)
         {
-            //   For Menu Controls
+            if (Input.GetButtonDown("PauseB"))
+            {
+                if (_paused == false)
+                {
+                    _paused = true;
+                    GameLoopInstance.GamePause = true;
+                }
+                else if (_paused == true)
+                {
+                    _paused = false;
+                    GameLoopInstance.GamePause = false;
+                }
+            }
         }
+        #endregion
         #endregion
     }
 
