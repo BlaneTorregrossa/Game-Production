@@ -8,17 +8,19 @@ public class GameLoopBehaviour : MonoBehaviour
 {
 
     [HideInInspector]
-    public bool WaitForTimer;      //  For preveinting character control when true
+    public bool WaitForTimer;      //  if true player shouldn't move
     public bool GamePause;  //  For if the game is currentlly paused (used for changing timescale or changing gamemode)
-    public GameType.GameMode CurrentGameMode;   //  Current Game mode for given scene
+    public GameType.GameMode CurrentGameMode;   //  Current Game mode
     public CharacterBehaviour PlayerCharacter;   //  Character Behaviour for Player
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
-    public Menu ActiveMenu;    //  ***  For the Menu object that is currentlly being used
+    [HideInInspector]
+    public GlobalGameManager GGM;  //  Used for a timed scene switch
     [HideInInspector]
     public TimerBehaviour Clock;    //  Where everything related to time is used from
     [HideInInspector]
     public List<Round> Rounds;  //  List of results for each individual round
-    public List<Menu> Menus;    //  List of all different types of menus that are avalible in current scene
+    public List<Menu> Menus;    //  List of all different types of menus that are avalible in current scene ***
+    public Menu ActiveMenu;    //  For the Menu object that is currentlly being used, to be assigned and used for if statements    ***
 
     #region Events
     public UnityEvent MainTimeEvent;
@@ -40,7 +42,6 @@ public class GameLoopBehaviour : MonoBehaviour
     private Text RoundTimerText; // Timer for Round
     [SerializeField]
     private Text PreRoundTimerText; //  Timer for Preround
-    private GlobalGameManager GGM;  //  Used for a timed scene switch
 
     void Start()
     {
@@ -48,7 +49,7 @@ public class GameLoopBehaviour : MonoBehaviour
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
         OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
-        GamePause = false;
+        GamePause = false;  //  Prevent game starting off paused
 
 
         if (CurrentGameMode == GameType.GameMode.PVP)
@@ -67,16 +68,15 @@ public class GameLoopBehaviour : MonoBehaviour
 
         }
 
-        //  *** 
-        if (CurrentGameMode == GameType.GameMode.PVP)
-        {
-            ActiveMenu = GetMenuType(Menus, Menu.MenuType.PAUSEMENU);   //  To get menu of specific type
-        }
-
         //  ***
-        else if (CurrentGameMode == GameType.GameMode.MENU)
+        //  Issue: This is the only scene where I know for sure how which menu should be the activeMenu from the start
+        //  Issue: For something like PVP the first Menu you can see can end up being The Pause or Result which are two different menu types
+        //  Since scene starts off with a menu it assigns what type of menu should start that scene
+        //  In this case, standard for the main menu
+        //  GetMenuType takes in a list of Menus and what type of menu is needed and returns that menu
+        if (CurrentGameMode == GameType.GameMode.MENU)
         {
-            ActiveMenu = GetMenuType(Menus, Menu.MenuType.MAINMENU);    //  To get menu of specific type
+            ActiveMenu = GetMenuType(Menus, Menu.MenuType.STANDARD);    //  To get menu of specific type
         }
 
     }
@@ -84,25 +84,28 @@ public class GameLoopBehaviour : MonoBehaviour
     void Update()
     {
 
-        //var JoystickNames = Input.GetJoystickNames();
+        //var JoystickNames = Input.GetJoystickNames(); //  Assign Current Joystick names
         //Debug.Log(JoystickNames[1]);  //  Joystick Check
 
+        //  If the currentgame mode is the PVP Game Mode then:
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
-            // Disables pause screen
+            // Disables pause screen and switch back to PVP game Mode
             if (GamePause == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(false);
                 Time.timeScale = 1.0f;
                 CurrentGameMode = GameType.GameMode.PVP;
+                ActiveMenu = GetMenuType(Menus, Menu.MenuType.NOMENU);
             }
 
-            // Enables pause screen
+            // Enables pause screen and switch to the Menu game mode
             else if (GamePause == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(true);
                 Time.timeScale = 0.0f;
                 CurrentGameMode = GameType.GameMode.MENU;
+                ActiveMenu = GetMenuType(Menus, Menu.MenuType.PAUSEMENU);
             }
 
             #region Timer
@@ -118,7 +121,13 @@ public class GameLoopBehaviour : MonoBehaviour
                 PreRoundTimerText.text = Clock.TimerObject.SecondaryTime.ToString();
             #endregion
 
-            //  For if either character isDead
+            //  For if either character isDead or if time ran out:
+            //  Create a new RoundBehaviour
+            //  Check characters health and call either a tie or a winner and then update the time accorrdigally
+            //  Thene reset both characters and destroy the new RoundBehaviour
+            //  If the rounds excede the max round count then the prep for switching back to the main menu is set up
+            //  If the secondary timer runs out and round max has not been hit yet then a new round starts else when the timer runs out the scenes are swapped
+            //  IF timer is set to wait than certain functions would not be called
             if (PlayerCharacter.character.isDead == true || OpponentCharacter.character.isDead == true || Clock.TimerObject.MainTime < 0)
             {
                 RoundBehaviour rb = gameObject.AddComponent<RoundBehaviour>();   // Round Behaviour added as a component
@@ -146,6 +155,8 @@ public class GameLoopBehaviour : MonoBehaviour
                 SwitchScene = true;  //  Enabled if a return to the main menu is needed
                 ResultScreen.SetActive(true);   //  Results Screen Displayed
                 CombatUI.SetActive(false);  //  Timer is no longer shown
+                //CurrentGameMode = GameType.GameMode.MENU; //  Prevents timer  ***
+                ActiveMenu = GetMenuType(Menus, Menu.MenuType.ENDGAME);    //  The type of menu to be made avalible for controllers to navigate    ***
             }
 
             else if (Rounds.Count < RoundMax && Clock.TimerObject.SecondaryTime < 0)
@@ -164,24 +175,26 @@ public class GameLoopBehaviour : MonoBehaviour
                 WaitForTimer = false;
         }
 
-        //  Switch from PVP to Menu on Pause  ***
+        //  Switch from PVP to Menu on Pause
         if (CurrentGameMode == GameType.GameMode.MENU && ActiveMenu.Type == Menu.MenuType.PAUSEMENU)
         {
 
-            // Disables pause screen
+            // Disables pause screen and switch back to PVP game Mode
             if (GamePause == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(false);
                 Time.timeScale = 1.0f;
                 CurrentGameMode = GameType.GameMode.PVP;
+                ActiveMenu = GetMenuType(Menus, Menu.MenuType.NOMENU);
             }
 
-            // Enables pause screen
+            // Enables pause screen and switch  to MENU game Mode
             else if (GamePause == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(true);
                 Time.timeScale = 0.0f;
                 CurrentGameMode = GameType.GameMode.MENU;
+                ActiveMenu = GetMenuType(Menus, Menu.MenuType.PAUSEMENU);
             }
         }
 
@@ -196,10 +209,10 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
     }
 
-    //  To return Menu in list that is of the correct type
+    //  To return Menu in list based on type
     public Menu GetMenuType(List<Menu> givenMenus, Menu.MenuType targetType)
     {
-        Menu returnType = new Menu();
+        Menu returnType = null;
 
         for (int i = 0; i < givenMenus.Count; i++)
         {

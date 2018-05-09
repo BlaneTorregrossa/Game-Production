@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f1f9dc400badc40a69434d7cf14f0c, type: 3}
   m_Name: PauseMenu
   m_EditorClassIdentifier: 
+  AssignedObject: {fileID: 1481089209941274, guid: 08d4b6671fffc2f4191f96204c8f7422,
+    type: 2}
   ElementList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1836026457965108, guid: 6cece2fc95f314d4ab1634f1c7c2d153, type: 2}
+  - {fileID: 1133993444829578, guid: a4af5797b46626b4aa008c49da630963, type: 2}
   Type: 1
