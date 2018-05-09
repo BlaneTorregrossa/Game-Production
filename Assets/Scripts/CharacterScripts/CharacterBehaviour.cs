@@ -6,47 +6,43 @@ using UnityEngine;
 public class CharacterBehaviour : MonoBehaviour
 {
     public Character character;
-    public float Health;
-    public bool isDead;
+    public float characterHealth;
+    public float leftDamage;
+    public float rightDamage;
+    IPartsProperties Parts;
+    public Transform leftSpawn;
+    public Transform rightSpawn;
+
+    [HideInInspector]
+    public GameObject firedProjectile;
+
+    public IFireable leftArm { get { return character.Left as Arm; } }
+    public IFireable rightArm { get { return character.Right as Arm; } }
+     
 
     void Start()
-    {
-        Health = character.Health;
-        isDead = false;
-        SetBehaviour();
+    {         
+        characterHealth = 100;
+        character.Health = characterHealth;
+        character.isDead = (character.Health <= 0);
+        character.Damage = 5;
     }
 
     void Update()
     {
-        if (Health <= 0)
-            isDead = true;
-        else if (Health > 0)
-            isDead = false;
-
-        if (isDead == true)
-            gameObject.SetActive(false);
-        else if (isDead == false)
-            gameObject.SetActive(true);
-
-        // Temporary Since no proper attacks are added
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetButton("LeftArm"))
         {
-            TakeDamage(1);
+            leftArm.Fire(transform);
+
         }
+        if (Input.GetButton("RightArm"))
+        {
+            rightArm.Fire(transform);
+        }
+
+
+        character.isDead = (character.Health <= 0);
+        gameObject.SetActive(!character.isDead);
     }
 
-    public void TakeDamage(float moddifier)
-    {
-        Health -= 5f * moddifier;
-    }
-
-    public void SetBehaviour()
-    {
-        character.LeftArmBehaviour = gameObject.AddComponent<ArmBehaviour>();
-        character.RightArmBehaviour = gameObject.AddComponent<ArmBehaviour>();
-        character.HeadBehaviour = gameObject.AddComponent<HeadBehaviour>();
-        character.LeftArmBehaviour.ArmConfig = character.Left as Arm;
-        character.RightArmBehaviour.ArmConfig = character.Right as Arm;
-        character.HeadBehaviour.HeadConfig = character.HeadPiece as Head;
-    }
 }

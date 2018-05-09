@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IDamageable : MonoBehaviour {
+public interface IDamageable
+{
+    void TakeDamage(float amount);
+}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public interface IDamager
+{
+    void DoDamage(IDamageable damageable);
+    float Damage { get; set; }
 }

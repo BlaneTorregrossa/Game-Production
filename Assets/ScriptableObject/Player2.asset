@@ -11,10 +11,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e52fa15540cb546bd39045380fcc79, type: 3}
   m_Name: Player2
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  Right: {fileID: 0}
+  parts:
+  - {fileID: 11400000, guid: 78652edb78fed194fa7970d760e11a47, type: 2}
+  - {fileID: 11400000, guid: 54e142c7826828740b802b78fdbb73be, type: 2}
+  - {fileID: 11400000, guid: a7b864223d4a56e46ba42e46467bca80, type: 2}
+  - {fileID: 11400000, guid: 0ba880678c2255b42a53e4ba9064daec, type: 2}
+  Left: {fileID: 11400000, guid: 78652edb78fed194fa7970d760e11a47, type: 2}
+  Right: {fileID: 11400000, guid: 54e142c7826828740b802b78fdbb73be, type: 2}
+  LegSet: {fileID: 11400000, guid: a7b864223d4a56e46ba42e46467bca80, type: 2}
+  HeadPiece: {fileID: 11400000, guid: 0ba880678c2255b42a53e4ba9064daec, type: 2}
   Name: 
-  Heath: 0
   DashCharges: 0
   Speed: 0
   DashSpeed: 0
+  StartingPos: {x: -0.000030517578, y: 0.00000500679, z: -35}
+  isDead: 0
+  LeftArmBehaviour: {fileID: 0}
+  RightArmBehaviour: {fileID: 0}
+  HeadBehaviour: {fileID: 0}

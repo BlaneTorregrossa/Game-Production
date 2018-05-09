@@ -11,8 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1942c461ab67a8b4aaefaf881271507a, type: 3}
   m_Name: BasicMachineGunBullet
   m_EditorClassIdentifier: 
-  speed: 3
-  damage: 5
-  tag: 
-  force: {x: 0, y: 0, z: 0}
-  position: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd, type: 2}
