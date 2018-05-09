@@ -150,6 +150,7 @@ MonoBehaviour:
   _dashduration: 0
   _paused: 0
   GameLoopInstance: {fileID: 1003552416}
+  _menu: {fileID: 0}
 --- !u!23 &109603
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -910,6 +911,7 @@ GameObject:
   - component: {fileID: 1003552417}
   - component: {fileID: 1003552416}
   - component: {fileID: 1003552418}
+  - component: {fileID: 1003552419}
   m_Layer: 0
   m_Name: SceneManagement
   m_TagString: Untagged
@@ -935,6 +937,7 @@ MonoBehaviour:
   OpponentCharacter: {fileID: 1380886431}
   ActiveMenu: {fileID: 0}
   Clock: {fileID: 0}
+  MenuControl: {fileID: 0}
   Rounds: []
   Menus:
   - {fileID: 11400000, guid: c4f584166ddd28d4bbb1ffbdd19a494f, type: 2}
@@ -1017,6 +1020,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerObject: {fileID: 11400000, guid: aa4b94367b73a8048a1b871121948050, type: 2}
+--- !u!114 &1003552419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003552415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9e57b562030ab489cb38d4d0a2ccc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1100715345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1192,7 @@ GameObject:
   - component: {fileID: 1216000906}
   - component: {fileID: 1216000905}
   - component: {fileID: 1216000904}
+  - component: {fileID: 1216000908}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1262,6 +1277,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1216000908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1216000903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb525bedb1b775498181ed024986445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentElement: {fileID: 11400000, guid: 01e976bda8e230d47a051cdda8196f36, type: 2}
 --- !u!1 &1229765674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1362,7 @@ GameObject:
   - component: {fileID: 1252007182}
   - component: {fileID: 1252007181}
   - component: {fileID: 1252007180}
+  - component: {fileID: 1252007183}
   m_Layer: 5
   m_Name: Change Character
   m_TagString: Untagged
@@ -1446,6 +1474,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1252007178}
+--- !u!114 &1252007183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252007178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb525bedb1b775498181ed024986445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentElement: {fileID: 11400000, guid: ab8ac5a050d0bd248bb2f93b05689481, type: 2}
 --- !u!1 &1380886430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1545,7 @@ MonoBehaviour:
   _dashduration: 0
   _paused: 0
   GameLoopInstance: {fileID: 1003552416}
+  _menu: {fileID: 0}
 --- !u!23 &1380886433
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1631,6 +1672,7 @@ GameObject:
   - component: {fileID: 1671224871}
   - component: {fileID: 1671224870}
   - component: {fileID: 1671224869}
+  - component: {fileID: 1671224872}
   m_Layer: 5
   m_Name: Quit Game
   m_TagString: Untagged
@@ -1742,6 +1784,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1671224867}
+--- !u!114 &1671224872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671224867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb525bedb1b775498181ed024986445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentElement: {fileID: 11400000, guid: ab8ac5a050d0bd248bb2f93b05689481, type: 2}
 --- !u!1 &1955669733
 GameObject:
   m_ObjectHideFlags: 0

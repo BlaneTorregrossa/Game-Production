@@ -12,7 +12,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public bool _dashing;
     public int _dashtime;
     public int _dashduration;
-    public bool _paused;    //  if game is "Paused"
+    public bool _paused;    //  if game is "Paused" based on controller input
 
     [SerializeField]
     GameLoopBehaviour GameLoopInstance; //  For a boolen to disable controls while wait timer is running if in PVP mode
@@ -20,26 +20,23 @@ public class CharacterControlsBehaviour : MonoBehaviour
     private Vector3 _lookdirection;
     private Vector3 _dashdirection;
     private Quaternion _currentrot;
-    private GameObject _object; //  ???
-    private Menu _menu; //  ***
-    private GameType.GameMode _mode;
-    private Menu.MenuType _menuType;    //  ***
-    private bool _wait;
-    private bool _lock;
+    private GameObject _object; //  useless variable. Ask cjwalle97
+    [SerializeField]
+    private Menu _menu; //  *** Menu object information
+    private GameType.GameMode _mode;    //  *** Game Mode information
+    private Menu.MenuType _menuType;    //  *** Menu Type information
+    private bool _wait; //  waiting for timer
 
     // Use this for initialization
     void Start()
     {
-        _lock = false;
-        _canmove = true;
-        _dashing = false;
-        _paused = false;    //  paused must always start disabled
-        _dashtime = 0;
-        _mode = GameLoopInstance.CurrentGameMode;
-        _menu = GameLoopInstance.ActiveMenu;
-        _menuType = _menu.Type;
-        _wait = GameLoopInstance.WaitForTimer;
-        _charges = Characterconfig.DashCharges;
+        _canmove = true;    //  Disable movement while dashing
+        _dashing = false;   //  if character is dashing
+        _paused = false;    //  if pause input is given
+        _dashtime = 0;  //  amount of time passed until a new dash charge is given
+        _mode = GameLoopInstance.CurrentGameMode;   //  Assigning game mode
+        _wait = GameLoopInstance.WaitForTimer;  //  Assigning boolen for if secondary timer is running
+        _charges = Characterconfig.DashCharges; //  Setting charge amount
     }
 
     private void FixedUpdate()
@@ -145,7 +142,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         }
         #endregion
 
-        #region Menu
+        #region PauseMenu
         if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0 
             && _menuType == Menu.MenuType.PAUSEMENU)
         {
@@ -163,6 +160,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
                     GameLoopInstance.GamePause = false;
                 };
             }
+        }
+        #endregion
+
+        #region MainMenu
+        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0
+            && _menuType == Menu.MenuType.MAINMENU)
+        {
+
         }
         #endregion
         #endregion
@@ -219,7 +224,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         }
         #endregion
 
-        #region MENU
+        #region PauseMENU
         if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 1
             && _menuType == Menu.MenuType.PAUSEMENU)
         {
@@ -238,6 +243,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
         }
         #endregion
+        #region MainMenu
+        if(_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 1
+            && _menuType == Menu.MenuType.MAINMENU)
+        {
+
+        }
+        #endregion
+
         #endregion
     }
 

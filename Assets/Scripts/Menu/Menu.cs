@@ -14,6 +14,7 @@ public class Menu : ScriptableObject
     }
 
     //public int MenuElements;    //  the amount of menu elements avalible
+    public GameObject AssignedObject;
     public List<GameObject> ElementList;
     public MenuType Type;   //  The type of menu assigned to object
 }

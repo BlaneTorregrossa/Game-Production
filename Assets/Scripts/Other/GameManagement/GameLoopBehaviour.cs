@@ -9,13 +9,14 @@ public class GameLoopBehaviour : MonoBehaviour
 
     [HideInInspector]
     public bool WaitForTimer;      //  For preveinting character control when true
-    public bool GamePause;
+    public bool GamePause;  //  For if the game is currentlly paused (used for changing timescale or changing gamemode)
     public GameType.GameMode CurrentGameMode;   //  Current Game mode for given scene
     public CharacterBehaviour PlayerCharacter;   //  Character Behaviour for Player
     public CharacterBehaviour OpponentCharacter; //  Character Behaviour for Opponent
-    public Menu ActiveMenu;    //  ***
+    public Menu ActiveMenu;    //  ***  For the Menu object that is currentlly being used
     [HideInInspector]
     public TimerBehaviour Clock;    //  Where everything related to time is used from
+    [HideInInspector]
     public List<Round> Rounds;  //  List of results for each individual round
     public List<Menu> Menus;    //  List of all different types of menus that are avalible in current scene
 
@@ -66,24 +67,25 @@ public class GameLoopBehaviour : MonoBehaviour
 
         }
 
-        //  ***
+        //  *** 
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
-            ActiveMenu = GetMenuType(Menus, Menu.MenuType.PAUSEMENU);
+            ActiveMenu = GetMenuType(Menus, Menu.MenuType.PAUSEMENU);   //  To get menu of specific type
         }
 
         //  ***
         else if (CurrentGameMode == GameType.GameMode.MENU)
         {
-            ActiveMenu = GetMenuType(Menus, Menu.MenuType.MAINMENU);
+            ActiveMenu = GetMenuType(Menus, Menu.MenuType.MAINMENU);    //  To get menu of specific type
         }
+
     }
 
     void Update()
     {
 
         //var JoystickNames = Input.GetJoystickNames();
-        //Debug.Log(JoystickNames[1]);
+        //Debug.Log(JoystickNames[1]);  //  Joystick Check
 
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
@@ -163,15 +165,16 @@ public class GameLoopBehaviour : MonoBehaviour
         }
 
         //  Switch from PVP to Menu on Pause  ***
-        if (CurrentGameMode == GameType.GameMode.MENU)
+        if (CurrentGameMode == GameType.GameMode.MENU && ActiveMenu.Type == Menu.MenuType.PAUSEMENU)
         {
+
             // Disables pause screen
             if (GamePause == false && WaitForTimer == false && Clock.TimerObject.Wait == false)
             {
                 PauseUI.SetActive(false);
                 Time.timeScale = 1.0f;
                 CurrentGameMode = GameType.GameMode.PVP;
-            } 
+            }
 
             // Enables pause screen
             else if (GamePause == true && WaitForTimer == false && Clock.TimerObject.Wait == false)
@@ -193,7 +196,7 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
     }
 
-    //  To get desired menu type    ***
+    //  To return Menu in list that is of the correct type
     public Menu GetMenuType(List<Menu> givenMenus, Menu.MenuType targetType)
     {
         Menu returnType = new Menu();
@@ -206,5 +209,4 @@ public class GameLoopBehaviour : MonoBehaviour
 
         return returnType;
     }
-
 }
