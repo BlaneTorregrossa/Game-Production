@@ -10,7 +10,7 @@ public class MachinegunBullet : Projectile
     {
         _coolDownStart = Cooldown;
     }
-    
+
     public override void Shoot(Transform ownerTransform, IDamager damager, float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
@@ -19,11 +19,15 @@ public class MachinegunBullet : Projectile
         firedProjectile.transform.forward = ownerTransform.forward;
         var pb = firedProjectile.GetComponent<ProjectileBehaviour>();
         if (pb == null)
+        { 
             pb = firedProjectile.AddComponent<ProjectileBehaviour>();
+        }
         pb.SetOwner(damager);
         var rb = firedProjectile.GetComponent<Rigidbody>();
         if (rb == null)
+        {
             rb = firedProjectile.AddComponent<Rigidbody>();
+        }
         rb.velocity += ownerTransform.transform.forward * projectileSpeed;
         Destroy(firedProjectile, 1);
 

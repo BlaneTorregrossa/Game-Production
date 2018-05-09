@@ -7,6 +7,11 @@ public class Grenade : Projectile
 {
     public GameObject ExplosionObject;
 
+    private void OnEnable()
+    {
+        _coolDownStart = Cooldown;
+    }
+
     public override void Shoot(Transform ownerTransform, IDamager damager, float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
@@ -21,11 +26,7 @@ public class Grenade : Projectile
             pb = firedProjectile.AddComponent<ProjectileBehaviour>();
         }
         pb.SetOwner(damager);
-        var rb = firedProjectile.GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            rb = firedProjectile.AddComponent<Rigidbody>();
-        }
+        
         var eb = firedProjectile.GetComponent<ExplodeableBehaviour>();
         if (eb == null)
         {
@@ -33,6 +34,12 @@ public class Grenade : Projectile
         }
         eb.Explosion = ExplosionObject;
         eb.Damager = damager;
+
+        var rb = firedProjectile.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            rb = firedProjectile.AddComponent<Rigidbody>();
+        }
         rb.velocity += ownerTransform.transform.forward * projectileSpeed;
         Destroy(firedProjectile, 2);
 

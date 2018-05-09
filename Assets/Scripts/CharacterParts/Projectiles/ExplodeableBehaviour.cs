@@ -10,12 +10,14 @@ public class ExplodeableBehaviour : MonoBehaviour, IExplodeable
     public void Explode(GameObject Object)
     {
         var go = Instantiate(Object);
+        var cd = go.GetComponent<Collider>();
+        cd.isTrigger = true;
         var ex = go.GetComponent<ExplosionBehaviour>();
         if(ex == null)
         {
             ex = go.AddComponent<ExplosionBehaviour>();
         }
-        ex.Explosion(Damager, 5f);
+        ex.Explosion(Damager, 3f);
         Destroy(gameObject);
     }
 
