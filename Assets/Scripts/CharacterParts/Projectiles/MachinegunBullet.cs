@@ -17,8 +17,10 @@ public class MachinegunBullet : Projectile
             return;
         var firedProjectile = Instantiate(prefab, ownerTransform.position, ownerTransform.rotation);
         firedProjectile.transform.forward = ownerTransform.forward;
-        var projectileBehaviour = firedProjectile.AddComponent<ProjectileBehaviour>();
-        projectileBehaviour.SetOwner(damager);
+        var pb = firedProjectile.GetComponent<ProjectileBehaviour>();
+        if (pb == null)
+            pb = firedProjectile.AddComponent<ProjectileBehaviour>();
+        pb.SetOwner(damager);
         var rb = firedProjectile.GetComponent<Rigidbody>();
         if (rb == null)
             rb = firedProjectile.AddComponent<Rigidbody>();
@@ -27,7 +29,5 @@ public class MachinegunBullet : Projectile
 
         ownerTransform.GetComponent<MonoBehaviour>().StartCoroutine(StartCountdown());
     }
-
-
     
 }
