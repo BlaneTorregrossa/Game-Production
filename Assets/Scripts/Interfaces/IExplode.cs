@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IExplode
 {
-    void Explode(IDamager Damager, float Duration);
+    void Explosion(IDamager Damager, float Duration);
 }

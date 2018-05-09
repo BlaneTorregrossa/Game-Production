@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cooldown: 1
   prefab: {fileID: 1710238305023194, guid: b18ac9e667718ab4c8d10e69779b9afb, type: 2}
-  GameObject: {fileID: 1350390899991598, guid: 02558634c36f1a64c8b203bbdde904b3, type: 2}
+  ExplosionObject: {fileID: 1350390899991598, guid: 02558634c36f1a64c8b203bbdde904b3,
+    type: 2}

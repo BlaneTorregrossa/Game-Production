@@ -15,8 +15,19 @@ public class ExplodeableBehaviour : MonoBehaviour, IExplodeable
         {
             ex = go.AddComponent<ExplosionBehaviour>();
         }
+        ex.Explosion(Damager, 5f);
         Destroy(gameObject);
     }
-    
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(Damager == null)
+        {
+            return;
+        }
+        else
+        {
+            Explode(Explosion);
+        }
+    }
 }

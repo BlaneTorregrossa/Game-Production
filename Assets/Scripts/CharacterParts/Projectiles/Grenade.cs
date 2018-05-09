@@ -27,11 +27,12 @@ public class Grenade : Projectile
             rb = firedProjectile.AddComponent<Rigidbody>();
         }
         var eb = firedProjectile.GetComponent<ExplodeableBehaviour>();
-        if (eb = null)
+        if (eb == null)
         {
             eb = firedProjectile.AddComponent<ExplodeableBehaviour>();
         }
         eb.Explosion = ExplosionObject;
+        eb.Damager = damager;
         rb.velocity += ownerTransform.transform.forward * projectileSpeed;
         Destroy(firedProjectile, 2);
 
