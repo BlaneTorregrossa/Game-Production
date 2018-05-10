@@ -6,6 +6,8 @@ using UnityEngine;
 public class Grenade : Projectile
 {
     public GameObject ExplosionObject;
+    public float Duration;
+    public float Radius;
 
     private void OnEnable()
     {
@@ -33,6 +35,8 @@ public class Grenade : Projectile
             eb = firedProjectile.AddComponent<ExplodeableBehaviour>();
         }
         eb.Explosion = ExplosionObject;
+        eb._radius = Radius;
+        eb._duration = Duration;
         eb.Damager = damager;
 
         var rb = firedProjectile.GetComponent<Rigidbody>();
@@ -42,8 +46,6 @@ public class Grenade : Projectile
         }
         rb.velocity += ownerTransform.transform.forward * projectileSpeed;
         Destroy(firedProjectile, 2);
-
         ownerTransform.GetComponent<MonoBehaviour>().StartCoroutine(StartCountdown());
     }
-    
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
   isRanged: 0
   damageNum: 10
   meleeAttackSpeed: 1
-  projectileSpeed: 5
+  projectileSpeed: 30
   isExplosive: 0
   projectile: {fileID: 11400000, guid: 31db406ee1fe7f44e89c0e9653057963, type: 2}
   attackType: 0

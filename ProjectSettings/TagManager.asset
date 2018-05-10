@@ -12,6 +12,7 @@ TagManager:
   - Melee
   - Character Part
   - Target
+  - Enviornment
   layers:
   - Default
   - TransparentFX

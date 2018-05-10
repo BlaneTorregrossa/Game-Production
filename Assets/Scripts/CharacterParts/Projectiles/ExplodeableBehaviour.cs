@@ -6,10 +6,13 @@ public class ExplodeableBehaviour : MonoBehaviour, IExplodeable
 {
     public GameObject Explosion;
     public IDamager Damager;
+    public float _duration;
+    public float _radius;
 
     public void Explode(GameObject Object)
     {
-        var go = Instantiate(Object);
+        var go = Instantiate(Object, gameObject.transform.position, gameObject.transform.rotation);
+        go.transform.localScale = new Vector3(_radius, _radius, _radius);
         var cd = go.GetComponent<Collider>();
         cd.isTrigger = true;
         var ex = go.GetComponent<ExplosionBehaviour>();
@@ -17,7 +20,7 @@ public class ExplodeableBehaviour : MonoBehaviour, IExplodeable
         {
             ex = go.AddComponent<ExplosionBehaviour>();
         }
-        ex.Explosion(Damager, 3f);
+        ex.Explosion(Damager, _duration);
         Destroy(gameObject);
     }
 
@@ -27,7 +30,15 @@ public class ExplodeableBehaviour : MonoBehaviour, IExplodeable
         {
             return;
         }
-        else
+        if(other.tag == "Target")
+        {
+            Explode(Explosion);
+        }
+        if(other.tag == "Character")
+        {
+            Explode(Explosion);
+        }
+        if(other.tag == "Enviornment")
         {
             Explode(Explosion);
         }
