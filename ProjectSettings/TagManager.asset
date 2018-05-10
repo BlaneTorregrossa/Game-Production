@@ -11,6 +11,11 @@ TagManager:
   - Projectile
   - Melee
   - Character Part
+  - Target
+  - Enviornment
+  - Button
+  - Text
+  - Image
   layers:
   - Default
   - TransparentFX

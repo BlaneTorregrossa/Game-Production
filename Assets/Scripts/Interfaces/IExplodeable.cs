@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IExplode
+public interface IExplodeable
 {
-    void Explosion(IDamager Damager, float Duration);
+    void Explode(GameObject Object);
 }

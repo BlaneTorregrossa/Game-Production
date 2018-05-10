@@ -8,24 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e52fa15540cb546bd39045380fcc79, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b9ec502026f18941a9d929aab59be4f, type: 3}
   m_Name: TestTarget
   m_EditorClassIdentifier: 
-  parts:
-  - {fileID: 11400000, guid: d5b933a9184adf947a581ba066639552, type: 2}
-  - {fileID: 11400000, guid: 074f0434be1576948ac4a4d1e260eb53, type: 2}
-  - {fileID: 11400000, guid: a7b864223d4a56e46ba42e46467bca80, type: 2}
-  - {fileID: 0}
-  Left: {fileID: 11400000, guid: d5b933a9184adf947a581ba066639552, type: 2}
-  Right: {fileID: 11400000, guid: 074f0434be1576948ac4a4d1e260eb53, type: 2}
-  LegSet: {fileID: 11400000, guid: a7b864223d4a56e46ba42e46467bca80, type: 2}
-  HeadPiece: {fileID: 0}
-  Name: 
-  DashCharges: 0
-  Speed: 0
-  DashSpeed: 0
-  StartingPos: {x: 0, y: 0, z: 0}
-  isDead: 0
-  LeftArmBehaviour: {fileID: 0}
-  RightArmBehaviour: {fileID: 0}
-  HeadBehaviour: {fileID: 0}
+  Health: 50
+  Dead: 0

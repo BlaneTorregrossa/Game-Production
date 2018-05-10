@@ -2,24 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionBehaviour : MonoBehaviour
+public class ExplosionBehaviour : MonoBehaviour, IExplode
 {
-    private Character _shooter;
+    public IDamager _owner;
 
-    public void OnTriggerEnter(Collider other)
+    public void Explosion(IDamager Damager, float Duration)
     {
-        if(_shooter == null)
+        _owner = Damager;
+        Destroy(gameObject, Duration);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(_owner == null)
         {
             return;
         }
-        if(other.tag == "Character")
+        if(other.tag == "Target")
         {
-            _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
-            Destroy(gameObject);
+            _owner.DoDamage(other.GetComponent<TargetBehaviour>().TargetConfig);
         }
-    }
-    public void SetOwner(Character owner)
-    {
-        _shooter = owner;
+        if (other.tag == "Character")
+        {
+            _owner.DoDamage(other.GetComponent<CharacterBehaviour>().character);
+        }
     }
 }
