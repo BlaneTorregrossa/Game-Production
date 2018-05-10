@@ -10,5 +10,4 @@ public interface IDamageable
 public interface IDamager
 {
     void DoDamage(IDamageable damageable);
-    float Damage { get; set; }
 }

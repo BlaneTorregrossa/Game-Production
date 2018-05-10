@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArmBehaviour : MonoBehaviour, IFireable
 {
     private IFireable Fireable { get { return ArmConfig; } }
+    private IDamager Damager { get { return ArmConfig; } }
 
     public Arm ArmConfig;
 
@@ -29,9 +30,10 @@ public class ArmBehaviour : MonoBehaviour, IFireable
     {
         ArmConfig.projectile.Prefab = o;
     }
-
-    public void Fire(Transform owner)
+    
+    public void Fire(Transform owner, Transform position, IDamager damager)
     {
-        Fireable.Fire(owner);
+        Fireable.Fire(owner, position, damager);
     }
+    
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(menuName ="Character")]
-public class Character : ScriptableObject, IDamageable, IDamager
+public class Character : ScriptableObject, IDamageable
 {
     public List<Part> parts;    //  List of Character Parts
     void OnEnable() 
@@ -23,17 +23,9 @@ public class Character : ScriptableObject, IDamageable, IDamager
     public Vector3 StartingPos; //  Position Character Starts in a given scene
     public bool isDead; // Boolean that determines whether the player is "Dead".   
     
-
-    public void DoDamage(IDamageable damageable)
-    {
-        damageable.TakeDamage(Damage);
-    }
-
     public void TakeDamage(float amount)
     {
         Health -= amount;
     }
-    
-  
     
 }

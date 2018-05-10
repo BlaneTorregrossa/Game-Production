@@ -10,23 +10,28 @@ public class MachinegunBullet : Projectile
     {
         _coolDownStart = Cooldown;
     }
-    
-    public override void Shoot(Transform ownerTransform, float projectileSpeed)
+
+    public override void Shoot(Transform ownerTransform, Transform positionTransform, IDamager damager, float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
             return;
-        var firedProjectile = Instantiate(prefab, ownerTransform.position, ownerTransform.rotation);
-        firedProjectile.transform.forward = ownerTransform.forward;
-        var projectileBehaviour = firedProjectile.AddComponent<ProjectileBehaviour>();
+        var firedProjectile = Instantiate(prefab, positionTransform.position, positionTransform.rotation);
+        firedProjectile.transform.forward = positionTransform.forward;
+        var pb = firedProjectile.GetComponent<ProjectileBehaviour>();
+        if (pb == null)
+        { 
+            pb = firedProjectile.AddComponent<ProjectileBehaviour>();
+        }
+        pb.SetOwner(damager);
         var rb = firedProjectile.GetComponent<Rigidbody>();
         if (rb == null)
+        {
             rb = firedProjectile.AddComponent<Rigidbody>();
+        }
         rb.velocity += ownerTransform.transform.forward * projectileSpeed;
         Destroy(firedProjectile, 1);
 
         ownerTransform.GetComponent<MonoBehaviour>().StartCoroutine(StartCountdown());
     }
-
-
     
 }
