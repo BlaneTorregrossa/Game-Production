@@ -11,7 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f1f9dc400badc40a69434d7cf14f0c, type: 3}
   m_Name: EndGameMenu
   m_EditorClassIdentifier: 
-  AssignedObject: {fileID: 0}
-  ElementList:
-  - {fileID: 1885507112366524, guid: a69edca7a8c740f4a9eb2d43ddc11927, type: 2}
+  AssignedObject: {fileID: 1565798699646728, guid: 5be6e6fe14a44154ea1dfe68323fa051,
+    type: 2}
+  MenuElementGameObjects:
+  - {fileID: 1286151203306246, guid: 5be6e6fe14a44154ea1dfe68323fa051, type: 2}
+  - {fileID: 1905961420933010, guid: 5be6e6fe14a44154ea1dfe68323fa051, type: 2}
+  MenuElements: []
+  ButtonList:
+  - {fileID: 0}
+  TextList:
+  - {fileID: 0}
+  ImageList: []
   Type: 3

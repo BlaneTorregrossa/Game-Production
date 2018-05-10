@@ -11,9 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f1f9dc400badc40a69434d7cf14f0c, type: 3}
   m_Name: PauseMenu
   m_EditorClassIdentifier: 
-  AssignedObject: {fileID: 1481089209941274, guid: 08d4b6671fffc2f4191f96204c8f7422,
+  AssignedObject: {fileID: 1710434196686690, guid: 1de15a496ec86744ab54986ef4a728ec,
     type: 2}
-  ElementList:
-  - {fileID: 1836026457965108, guid: 6cece2fc95f314d4ab1634f1c7c2d153, type: 2}
-  - {fileID: 1133993444829578, guid: a4af5797b46626b4aa008c49da630963, type: 2}
+  MenuElementGameObjects:
+  - {fileID: 1295993731864126, guid: 1de15a496ec86744ab54986ef4a728ec, type: 2}
+  - {fileID: 1445755278663814, guid: 1de15a496ec86744ab54986ef4a728ec, type: 2}
+  - {fileID: 1505841051578888, guid: 1de15a496ec86744ab54986ef4a728ec, type: 2}
+  MenuElements: []
+  ButtonList:
+  - {fileID: 114314603056221272, guid: 1de15a496ec86744ab54986ef4a728ec, type: 2}
+  - {fileID: 114909752298144068, guid: 1de15a496ec86744ab54986ef4a728ec, type: 2}
+  TextList:
+  - {fileID: 114915604142544082, guid: 1de15a496ec86744ab54986ef4a728ec, type: 2}
+  ImageList: []
   Type: 1

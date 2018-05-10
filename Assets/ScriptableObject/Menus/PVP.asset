@@ -9,8 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1f1f9dc400badc40a69434d7cf14f0c, type: 3}
-  m_Name: NoMenu
+  m_Name: PVP
   m_EditorClassIdentifier: 
-  AssignedObject: {fileID: 0}
-  ElementList: []
+  AssignedObject: {fileID: 1154486842564230, guid: a9f737459fbcfd043bc4176d851be707,
+    type: 2}
+  MenuElementGameObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MenuElements: []
+  ButtonList: []
+  TextList: []
+  ImageList: []
   Type: 255
