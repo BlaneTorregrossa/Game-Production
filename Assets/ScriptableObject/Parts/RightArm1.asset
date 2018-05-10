@@ -20,7 +20,7 @@ MonoBehaviour:
   isRight: 0
   isMelee: 1
   isRanged: 0
-  damageNum: 10
+  damageNum: 5
   meleeAttackSpeed: 1
   projectileSpeed: 30
   isExplosive: 0
