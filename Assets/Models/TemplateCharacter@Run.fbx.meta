@@ -1,0 +1,246 @@
+fileFormatVersion: 2
+guid: d7df2d1d6a0a210408104a0df17c647c
+timeCreated: 1524864086
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: ModularFighterRigComplete:group1
+    100002: ModularFighterRigComplete:polySurface450
+    100004: ModularFighterRigComplete:polySurface451
+    100006: ModularFighterRigComplete:polySurface452
+    100008: ModularFighterRigComplete:polySurface455
+    100010: ModularFighterRigComplete:polySurface456
+    100012: ModularFighterRigComplete:polySurface457
+    100014: ModularFighterRigComplete:polySurface458
+    100016: ModularFighterRigComplete:polySurface459
+    100018: ModularFighterRigComplete:polySurface460
+    100020: ModularFighterRigComplete:TempAbdomen
+    100022: ModularFighterRigComplete:TempBicep_L
+    100024: ModularFighterRigComplete:TempBicep_R
+    100026: ModularFighterRigComplete:TempChest
+    100028: ModularFighterRigComplete:TempCollar
+    100030: ModularFighterRigComplete:TempElbow_R1
+    100032: ModularFighterRigComplete:TempFoot_L
+    100034: ModularFighterRigComplete:TempForearm_L
+    100036: ModularFighterRigComplete:TempForearm_R
+    100038: ModularFighterRigComplete:TempGroin
+    100040: ModularFighterRigComplete:TempHead
+    100042: ModularFighterRigComplete:TempHip_L
+    100044: ModularFighterRigComplete:TempHip_R
+    100046: ModularFighterRigComplete:TempHip_R2
+    100048: ModularFighterRigComplete:TemplateRig
+    100050: ModularFighterRigComplete:TemplateRig_l_Leg_AnkleSHJnt
+    100052: ModularFighterRigComplete:TemplateRig_l_Leg_BallSHJnt
+    100054: ModularFighterRigComplete:TemplateRig_l_Leg_HipSHJnt
+    100056: ModularFighterRigComplete:TemplateRig_l_Leg_KneeSHJnt
+    100058: ModularFighterRigComplete:TemplateRig_l_Leg_ToeSHJnt
+    100060: ModularFighterRigComplete:TemplateRig_l_RobotArm_ClavicleSHJnt
+    100062: ModularFighterRigComplete:TemplateRig_l_RobotArm_ElbowSHJnt
+    100064: ModularFighterRigComplete:TemplateRig_l_RobotArm_ShoulderSHJnt
+    100066: ModularFighterRigComplete:TemplateRig_l_RobotArm_WristSHJnt
+    100068: ModularFighterRigComplete:TemplateRig_r_Leg_AnkleSHJnt
+    100070: ModularFighterRigComplete:TemplateRig_r_Leg_BallSHJnt
+    100072: ModularFighterRigComplete:TemplateRig_r_Leg_HipSHJnt
+    100074: ModularFighterRigComplete:TemplateRig_r_Leg_KneeSHJnt
+    100076: ModularFighterRigComplete:TemplateRig_r_Leg_ToeSHJnt
+    100078: ModularFighterRigComplete:TemplateRig_r_RobotArm_ClavicleSHJnt
+    100080: ModularFighterRigComplete:TemplateRig_r_RobotArm_ElbowSHJnt
+    100082: ModularFighterRigComplete:TemplateRig_r_RobotArm_ShoulderSHJnt
+    100084: ModularFighterRigComplete:TemplateRig_r_RobotArm_WristSHJnt
+    100086: ModularFighterRigComplete:TemplateRig_RobotHead_TopSHJnt
+    100088: ModularFighterRigComplete:TemplateRig_RobotSpine_01SHJnt
+    100090: ModularFighterRigComplete:TemplateRig_RobotSpine_02SHJnt
+    100092: ModularFighterRigComplete:TemplateRig_RobotSpine_03SHJnt
+    100094: ModularFighterRigComplete:TemplateRig_RobotSpine_TopSHJnt
+    100096: ModularFighterRigComplete:TemplateRig_ROOTSHJnt
+    100098: ModularFighterRigComplete:TemplateRig_SHJntGrp
+    100100: ModularFighterRigComplete:TempNeck
+    100102: ModularFighterRigComplete:TempPauldron_L
+    100104: ModularFighterRigComplete:TempPauldron_R
+    100106: ModularFighterRigComplete:TempPelvis
+    100108: ModularFighterRigComplete:TempShin_L
+    100110: ModularFighterRigComplete:TempThigh_L
+    100112: ModularFighterRigComplete:TempThigh_R
+    100114: //RootNode
+    400000: ModularFighterRigComplete:group1
+    400002: ModularFighterRigComplete:polySurface450
+    400004: ModularFighterRigComplete:polySurface451
+    400006: ModularFighterRigComplete:polySurface452
+    400008: ModularFighterRigComplete:polySurface455
+    400010: ModularFighterRigComplete:polySurface456
+    400012: ModularFighterRigComplete:polySurface457
+    400014: ModularFighterRigComplete:polySurface458
+    400016: ModularFighterRigComplete:polySurface459
+    400018: ModularFighterRigComplete:polySurface460
+    400020: ModularFighterRigComplete:TempAbdomen
+    400022: ModularFighterRigComplete:TempBicep_L
+    400024: ModularFighterRigComplete:TempBicep_R
+    400026: ModularFighterRigComplete:TempChest
+    400028: ModularFighterRigComplete:TempCollar
+    400030: ModularFighterRigComplete:TempElbow_R1
+    400032: ModularFighterRigComplete:TempFoot_L
+    400034: ModularFighterRigComplete:TempForearm_L
+    400036: ModularFighterRigComplete:TempForearm_R
+    400038: ModularFighterRigComplete:TempGroin
+    400040: ModularFighterRigComplete:TempHead
+    400042: ModularFighterRigComplete:TempHip_L
+    400044: ModularFighterRigComplete:TempHip_R
+    400046: ModularFighterRigComplete:TempHip_R2
+    400048: ModularFighterRigComplete:TemplateRig
+    400050: ModularFighterRigComplete:TemplateRig_l_Leg_AnkleSHJnt
+    400052: ModularFighterRigComplete:TemplateRig_l_Leg_BallSHJnt
+    400054: ModularFighterRigComplete:TemplateRig_l_Leg_HipSHJnt
+    400056: ModularFighterRigComplete:TemplateRig_l_Leg_KneeSHJnt
+    400058: ModularFighterRigComplete:TemplateRig_l_Leg_ToeSHJnt
+    400060: ModularFighterRigComplete:TemplateRig_l_RobotArm_ClavicleSHJnt
+    400062: ModularFighterRigComplete:TemplateRig_l_RobotArm_ElbowSHJnt
+    400064: ModularFighterRigComplete:TemplateRig_l_RobotArm_ShoulderSHJnt
+    400066: ModularFighterRigComplete:TemplateRig_l_RobotArm_WristSHJnt
+    400068: ModularFighterRigComplete:TemplateRig_r_Leg_AnkleSHJnt
+    400070: ModularFighterRigComplete:TemplateRig_r_Leg_BallSHJnt
+    400072: ModularFighterRigComplete:TemplateRig_r_Leg_HipSHJnt
+    400074: ModularFighterRigComplete:TemplateRig_r_Leg_KneeSHJnt
+    400076: ModularFighterRigComplete:TemplateRig_r_Leg_ToeSHJnt
+    400078: ModularFighterRigComplete:TemplateRig_r_RobotArm_ClavicleSHJnt
+    400080: ModularFighterRigComplete:TemplateRig_r_RobotArm_ElbowSHJnt
+    400082: ModularFighterRigComplete:TemplateRig_r_RobotArm_ShoulderSHJnt
+    400084: ModularFighterRigComplete:TemplateRig_r_RobotArm_WristSHJnt
+    400086: ModularFighterRigComplete:TemplateRig_RobotHead_TopSHJnt
+    400088: ModularFighterRigComplete:TemplateRig_RobotSpine_01SHJnt
+    400090: ModularFighterRigComplete:TemplateRig_RobotSpine_02SHJnt
+    400092: ModularFighterRigComplete:TemplateRig_RobotSpine_03SHJnt
+    400094: ModularFighterRigComplete:TemplateRig_RobotSpine_TopSHJnt
+    400096: ModularFighterRigComplete:TemplateRig_ROOTSHJnt
+    400098: ModularFighterRigComplete:TemplateRig_SHJntGrp
+    400100: ModularFighterRigComplete:TempNeck
+    400102: ModularFighterRigComplete:TempPauldron_L
+    400104: ModularFighterRigComplete:TempPauldron_R
+    400106: ModularFighterRigComplete:TempPelvis
+    400108: ModularFighterRigComplete:TempShin_L
+    400110: ModularFighterRigComplete:TempThigh_L
+    400112: ModularFighterRigComplete:TempThigh_R
+    400114: //RootNode
+    4300000: ModularFighterRigComplete:TempBicep_L
+    4300002: ModularFighterRigComplete:TempAbdomen
+    4300004: ModularFighterRigComplete:TempChest
+    4300006: ModularFighterRigComplete:TempThigh_R
+    4300008: ModularFighterRigComplete:TempPauldron_L
+    4300010: ModularFighterRigComplete:TempHip_L
+    4300012: ModularFighterRigComplete:TempHip_R
+    4300014: ModularFighterRigComplete:TempHead
+    4300016: ModularFighterRigComplete:TempCollar
+    4300018: ModularFighterRigComplete:TempThigh_L
+    4300020: ModularFighterRigComplete:TempForearm_R
+    4300022: ModularFighterRigComplete:TempPauldron_R
+    4300024: ModularFighterRigComplete:TempNeck
+    4300026: ModularFighterRigComplete:TempBicep_R
+    4300028: ModularFighterRigComplete:TempPelvis
+    4300030: ModularFighterRigComplete:polySurface450
+    4300032: ModularFighterRigComplete:polySurface451
+    4300034: ModularFighterRigComplete:polySurface452
+    4300036: ModularFighterRigComplete:polySurface459
+    4300038: ModularFighterRigComplete:polySurface460
+    4300040: ModularFighterRigComplete:polySurface458
+    4300042: ModularFighterRigComplete:polySurface455
+    4300044: ModularFighterRigComplete:polySurface456
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: ModularFighterRigComplete:polySurface450
+    13700002: ModularFighterRigComplete:polySurface451
+    13700004: ModularFighterRigComplete:polySurface452
+    13700006: ModularFighterRigComplete:polySurface455
+    13700008: ModularFighterRigComplete:polySurface456
+    13700010: ModularFighterRigComplete:polySurface458
+    13700012: ModularFighterRigComplete:polySurface459
+    13700014: ModularFighterRigComplete:polySurface460
+    13700016: ModularFighterRigComplete:TempAbdomen
+    13700018: ModularFighterRigComplete:TempBicep_L
+    13700020: ModularFighterRigComplete:TempBicep_R
+    13700022: ModularFighterRigComplete:TempChest
+    13700024: ModularFighterRigComplete:TempCollar
+    13700026: ModularFighterRigComplete:TempForearm_R
+    13700028: ModularFighterRigComplete:TempHead
+    13700030: ModularFighterRigComplete:TempHip_L
+    13700032: ModularFighterRigComplete:TempHip_R
+    13700034: ModularFighterRigComplete:TempNeck
+    13700036: ModularFighterRigComplete:TempPauldron_L
+    13700038: ModularFighterRigComplete:TempPauldron_R
+    13700040: ModularFighterRigComplete:TempPelvis
+    13700042: ModularFighterRigComplete:TempThigh_L
+    13700044: ModularFighterRigComplete:TempThigh_R
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
