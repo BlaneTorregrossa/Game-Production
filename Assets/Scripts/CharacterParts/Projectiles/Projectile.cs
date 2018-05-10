@@ -14,7 +14,7 @@ public abstract class Projectile : ScriptableObject, IShootable
     }
     public IDamager damager;
 
-    public abstract void Shoot(Transform ownerTransform, IDamager damager, float projectileSpeed);
+    public abstract void Shoot(Transform ownerTransform, Transform positionTransform, IDamager damager, float projectileSpeed);
 
     public IEnumerator StartCountdown()
     {

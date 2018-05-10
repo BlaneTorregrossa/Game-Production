@@ -31,9 +31,9 @@ public class ArmBehaviour : MonoBehaviour, IFireable
         ArmConfig.projectile.Prefab = o;
     }
     
-    public void Fire(Transform owner, IDamager damager)
+    public void Fire(Transform owner, Transform position, IDamager damager)
     {
-        Fireable.Fire(owner, damager);
+        Fireable.Fire(owner, position, damager);
     }
     
 }

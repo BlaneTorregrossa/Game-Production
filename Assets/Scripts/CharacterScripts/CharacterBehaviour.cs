@@ -26,24 +26,27 @@ public class CharacterBehaviour : MonoBehaviour
         characterHealth = 100;
         character.Health = characterHealth;
         character.isDead = (character.Health <= 0);
-        character.Damage = 5;
+        SetCharacterSpeed(character.LegSet as Legs);
     }
 
     void Update()
     {
         if (Input.GetButton("LeftArm"))
         {
-            leftArm.Fire(transform, leftdamager);
+            leftArm.Fire(transform, leftSpawn, leftdamager);
 
         }
         if (Input.GetButton("RightArm"))
         {
-            rightArm.Fire(transform, rightdamager);
+            rightArm.Fire(transform, rightSpawn, rightdamager);
         }
-
-
         character.isDead = (character.Health <= 0);
         gameObject.SetActive(!character.isDead);
     }
-
+    public void SetCharacterSpeed(Legs legs)
+    {
+        character.Speed = legs.Speed;
+        character.DashSpeed = legs.DashSpeed;
+        character.DashCharges = legs.DashCharges;
+    }
 }

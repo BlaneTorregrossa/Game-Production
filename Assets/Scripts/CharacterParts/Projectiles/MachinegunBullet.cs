@@ -11,12 +11,12 @@ public class MachinegunBullet : Projectile
         _coolDownStart = Cooldown;
     }
 
-    public override void Shoot(Transform ownerTransform, IDamager damager, float projectileSpeed)
+    public override void Shoot(Transform ownerTransform, Transform positionTransform, IDamager damager, float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
             return;
-        var firedProjectile = Instantiate(prefab, ownerTransform.position, ownerTransform.rotation);
-        firedProjectile.transform.forward = ownerTransform.forward;
+        var firedProjectile = Instantiate(prefab, positionTransform.position, positionTransform.rotation);
+        firedProjectile.transform.forward = positionTransform.forward;
         var pb = firedProjectile.GetComponent<ProjectileBehaviour>();
         if (pb == null)
         { 

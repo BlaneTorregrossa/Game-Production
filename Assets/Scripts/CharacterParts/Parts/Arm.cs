@@ -26,9 +26,9 @@ public class Arm : Part, IFireable, IDamager
 
     public AttackType attackType;
 
-    public void Fire(Transform owner, IDamager damager)
+    public void Fire(Transform owner, Transform position, IDamager damager)
     {
-        Shootable.Shoot(owner, damager, projectileSpeed);
+        Shootable.Shoot(owner, position, damager, projectileSpeed);
     }
     
     public void DoDamage(IDamageable damageable)
