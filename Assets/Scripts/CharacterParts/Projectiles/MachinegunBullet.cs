@@ -22,7 +22,9 @@ public class MachinegunBullet : Projectile
         { 
             pb = firedProjectile.AddComponent<ProjectileBehaviour>();
         }
-        pb.SetOwner(damager);
+        pb.SetShooter(damager);
+        pb.SetOwner(ownerTransform.GetComponent<CharacterBehaviour>());
+
         var rb = firedProjectile.GetComponent<Rigidbody>();
         if (rb == null)
         {

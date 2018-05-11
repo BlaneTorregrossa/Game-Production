@@ -1,9 +1,10 @@
-﻿ 
+﻿
 using UnityEngine;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
     private IDamager _shooter;
+    private CharacterBehaviour _owner;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,27 +12,38 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             return;
         }
+
         if (other.CompareTag("Character Part"))
         {
-            Debug.Log("touch");
-            Destroy(other.gameObject);
+            if (other.transform.GetComponentInParent<CharacterBehaviour>() != _owner)
+            {
+                Destroy(other.gameObject);
+            }
 
         }
         if (other.tag == "Character")
         {
-            _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
-            Destroy(gameObject);
+            if (other.transform.GetComponentInParent<CharacterBehaviour>() != _owner)
+            {
+                _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
+                Destroy(gameObject);
+            }
         }
-        if(other.tag == "Target")
+        if (other.tag == "Target")
         {
             _shooter.DoDamage(other.GetComponent<TargetBehaviour>().TargetConfig);
             Destroy(gameObject);
         }
-  
+
     }
-   
-    public void SetOwner(IDamager d)
+
+    public void SetShooter(IDamager d)
     {
         _shooter = d;
+    }
+
+    public void SetOwner(CharacterBehaviour cb)
+    {
+        _owner = cb;
     }
 }
