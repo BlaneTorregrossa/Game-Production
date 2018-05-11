@@ -31,15 +31,6 @@ public class CharacterBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("LeftArm"))
-        {
-            leftArm.Fire(transform, leftSpawn, leftdamager);
-
-        }
-        if (Input.GetButton("RightArm"))
-        {
-            rightArm.Fire(transform, rightSpawn, rightdamager);
-        }
         character.isDead = (character.Health <= 0);
         gameObject.SetActive(!character.isDead);
     }

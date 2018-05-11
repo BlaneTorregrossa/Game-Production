@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//  *** Issue: Needs to be ready for multiple controllers + needs Menu navigation controls (Pause and Character Customization)
 public class CharacterControlsBehaviour : MonoBehaviour
 {
     public Character Characterconfig;
+    public CharacterBehaviour Characterbehaviourconfig;
     public CharacterControls Controllerconfig;
     public int _charges;
     public int _recharge;
@@ -13,7 +13,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public bool _dashing;
     public int _dashtime;
     public int _dashduration;
-    public bool _paused;    //  if game is "Paused"
 
     [SerializeField]
     GameLoopBehaviour GameLoopInstance; //  For a boolen to disable controls while wait timer is running if in PVP mode
@@ -24,13 +23,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
     private GameObject _object;
     private GameType.GameMode _mode;
     private bool _wait;
+    public string DashButtonValue = "Dash";
+    public string DashBButtonValue = "DashB";
 
     // Use this for initialization
     void Start()
     {
         _canmove = true;
         _dashing = false;
-        _paused = false;    //  paused must always start disabled
         _dashtime = 0;
         _charges = Characterconfig.DashCharges;
     }
@@ -56,10 +56,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
         }
 
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0)
-        {
-            //   For Menu Controls
-        }
+        
         #endregion
 
         #region Joystick2
@@ -78,10 +75,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
         }
 
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 1)
-        {
-            //   For Menu Controls
-        }
         #endregion
 
     }
@@ -97,30 +90,22 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
         {
 
-            if (Input.GetButtonDown("Pause"))   //  Pause button
+            if (Input.GetAxis("LeftArm") >= 1)
             {
-                if (_paused == false)
-                    _paused = true;
-                else if (_paused == true)
-                    _paused = false;
+                Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
 
-            if (Input.GetAxis("LeftArm") >= 1 && _paused == false)
+            if (Input.GetAxis("RightArm") >= 1)
             {
-                Debug.Log("Left Arm Attack not present!");
+                Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
 
-            if (Input.GetAxis("RightArm") >= 1 && _paused == false)
-            {
-                Debug.Log("Right Arm Attack not present!");
-            }
-
-            if (Input.GetButtonDown("Head") && _paused == false)
+            if (Input.GetButtonDown("Head"))
             {
                 Debug.Log("Head Abillity not present!");
             }
 
-            if (Input.GetButtonDown("Dash") && _dashing == false && _paused == false)   //  Dash Button
+            if (Input.GetButtonDown(DashButtonValue) && _dashing == false)   //  Dash Button
             {
                 if (_charges >= 0)
                 {
@@ -138,40 +123,29 @@ public class CharacterControlsBehaviour : MonoBehaviour
             DashRecharge(200, Characterconfig.DashCharges);
         }
 
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0)
-        {
-            //   For Menu Controls
-        }
+        
         #endregion
 
         #region Joystick2
-        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
+        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 1)
         {
 
-            if (Input.GetButtonDown("PauseB"))   //  Pause button
+            if (Input.GetAxis("LeftArmB") >= 1)
             {
-                if (_paused == false)
-                    _paused = true;
-                else if (_paused == true)
-                    _paused = false;
+                Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
 
-            if (Input.GetAxis("LeftArmB") >= 1 && _paused == false)
+            if (Input.GetAxis("RightArmB") >= 1)
             {
-                Debug.Log("Left Arm Attack not present!");
+                Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
 
-            if (Input.GetAxis("RightArmB") >= 1 && _paused == false)
-            {
-                Debug.Log("Right Arm Attack not present!");
-            }
-
-            if (Input.GetButtonDown("HeadB") && _paused == false)
+            if (Input.GetButtonDown("HeadB"))
             {
                 Debug.Log("Head Abillity not present!");
             }
 
-            if (Input.GetButtonDown("DashB") && _dashing == false && _paused == false)   //  Dash Button
+            if (Input.GetButtonDown(DashBButtonValue) && _dashing == false)   //  Dash Button
             {
                 if (_charges >= 0)
                 {
@@ -189,10 +163,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
             DashRecharge(200, Characterconfig.DashCharges);
         }
 
-        if (_mode == GameType.GameMode.MENU && Controllerconfig.gamePadNum == 0)
-        {
-            //   For Menu Controls
-        }
         #endregion
     }
 
@@ -207,6 +177,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
         }
+
         if (Controllerconfig.gamePadNum == 1)
         {
             x = Input.GetAxis("HorizontalB");

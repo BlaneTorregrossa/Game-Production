@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fa1618a699ef75478f900baa989ba32, type: 3}
-  m_Name: BasicGrenade
+  m_Name: BasicGrenade P1
   m_EditorClassIdentifier: 
-  Cooldown: 0.5
-  prefab: {fileID: 1710238305023194, guid: b18ac9e667718ab4c8d10e69779b9afb, type: 2}
-  ExplosionObject: {fileID: 1350390899991598, guid: 02558634c36f1a64c8b203bbdde904b3,
+  Cooldown: 0.41716668
+  prefab: {fileID: 1801615030364334, guid: 3fa4e57017d122449a01e49a96e86d05, type: 2}
+  ExplosionObject: {fileID: 1240619411930836, guid: 19fc190003c185643aec8a224065971f,
     type: 2}
   Duration: 0.3
-  Radius: 3
+  Radius: 100
