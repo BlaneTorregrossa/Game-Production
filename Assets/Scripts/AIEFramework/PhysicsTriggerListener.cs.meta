@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: abc0508270078044785a644690262cfb
-timeCreated: 1522363391
-licenseType: Pro
+timeCreated: 1526062034
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - onEnter: {fileID: 11400000, guid: d4c779034961f7a408003d755127eb05, type: 2}
+  - onExit: {fileID: 11400000, guid: e2d392a9c11f60043bd53a79fac153d7, type: 2}
+  - onStay: {fileID: 11400000, guid: 964fdf44b9e422e44bd10b4d6629bc09, type: 2}
+  - ListenerTag: {fileID: 11400000, guid: e0f7dbf6cc210474d9c5e1694c16494d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

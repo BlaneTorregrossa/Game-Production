@@ -16,6 +16,7 @@ TagManager:
   - Button
   - Text
   - Image
+  - PreRound Timer
   layers:
   - Default
   - TransparentFX

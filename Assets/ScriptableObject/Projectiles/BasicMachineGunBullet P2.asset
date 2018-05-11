@@ -8,12 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd6c08813c3fb245bd3f648c65e891e, type: 3}
-  m_Name: Timer
+  m_Script: {fileID: 11500000, guid: 1942c461ab67a8b4aaefaf881271507a, type: 3}
+  m_Name: BasicMachineGunBullet P2
   m_EditorClassIdentifier: 
-  TimeReset: 43.89477
-  MainTime: 15
-  SecondaryTime: -7.345478
-  MainTimeMax: 99
-  SecondaryTimeMax: 5
-  Wait: 1
+  Cooldown: 0.2
+  prefab: {fileID: 1745033468637824, guid: ff57f5a955c574540b08f5c6a659fd95, type: 2}

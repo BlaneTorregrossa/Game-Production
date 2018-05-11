@@ -8,12 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd6c08813c3fb245bd3f648c65e891e, type: 3}
-  m_Name: Timer
+  m_Script: {fileID: 11500000, guid: ad25c811428c1bc4d86fc18750ef8c25, type: 3}
+  m_Name: PhysicsTriggerExit
   m_EditorClassIdentifier: 
-  TimeReset: 43.89477
-  MainTime: 15
-  SecondaryTime: -7.345478
-  MainTimeMax: 99
-  SecondaryTimeMax: 5
-  Wait: 1
+  listeners: []

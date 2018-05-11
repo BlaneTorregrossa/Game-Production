@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Name: Player2
   m_EditorClassIdentifier: 
   parts:
-  - {fileID: 11400000, guid: d5b933a9184adf947a581ba066639552, type: 2}
-  - {fileID: 11400000, guid: 074f0434be1576948ac4a4d1e260eb53, type: 2}
+  - {fileID: 11400000, guid: a9803625a06a9e84880b4b87857e05ac, type: 2}
+  - {fileID: 11400000, guid: 10b4dae689c90de48a2ec70fa4fc03d4, type: 2}
   - {fileID: 11400000, guid: b7f4553133ec49c43a39b9e355521f27, type: 2}
   - {fileID: 11400000, guid: cc5fff2f19c6d744a96c196888c57611, type: 2}
-  Left: {fileID: 11400000, guid: d5b933a9184adf947a581ba066639552, type: 2}
-  Right: {fileID: 11400000, guid: 074f0434be1576948ac4a4d1e260eb53, type: 2}
+  Left: {fileID: 11400000, guid: a9803625a06a9e84880b4b87857e05ac, type: 2}
+  Right: {fileID: 11400000, guid: 10b4dae689c90de48a2ec70fa4fc03d4, type: 2}
   LegSet: {fileID: 11400000, guid: b7f4553133ec49c43a39b9e355521f27, type: 2}
   HeadPiece: {fileID: 11400000, guid: cc5fff2f19c6d744a96c196888c57611, type: 2}
-  Name: 
+  Name: Player  2
   DashCharges: 5
   Speed: 0.2
-  DashSpeed: 1.5
-  StartingPos: {x: 0, y: 0.5, z: 0.338}
+  DashSpeed: 3
+  StartingPos: {x: 0, y: 0, z: -3.69}
   isDead: 0

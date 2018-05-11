@@ -25,4 +25,5 @@ public class GlobalGameManager : ScriptableObject
         Application.Quit();
         Debug.Log("Game Quit");
     }
+    
 }

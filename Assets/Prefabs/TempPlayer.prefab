@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 23401823882721982}
   - component: {fileID: 114185924366421262}
   - component: {fileID: 114818509320977810}
-  - component: {fileID: 114578895054397156}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Player
@@ -266,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Characterconfig: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
+  Characterbehaviourconfig: {fileID: 0}
   Controllerconfig: {fileID: 11400000, guid: 81eea18735449e84093e815a87a566f9, type: 2}
   _charges: 0
   _recharge: 0
@@ -273,25 +273,8 @@ MonoBehaviour:
   _dashing: 0
   _dashtime: 0
   _dashduration: 3
---- !u!114 &114578895054397156
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798428227115628}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282603647f763ed40a47fdfbbe233289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterConfig: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
-  projectileObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-    type: 2}
-  location: {fileID: 4861083243782904}
-  rapidFire: 1
-  _gapTime: 10
-  _reloadStart: 100
-  firedProjectile: {fileID: 0}
+  _paused: 0
+  GameLoopInstance: {fileID: 0}
 --- !u!114 &114818509320977810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -307,9 +290,6 @@ MonoBehaviour:
   characterHealth: 100
   leftDamage: 0
   rightDamage: 0
-  leftObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd, type: 2}
-  rightObject: {fileID: 1212634632832696, guid: f923dad62a4b497448403eeb5fcb6ecd,
-    type: 2}
   leftSpawn: {fileID: 0}
   rightSpawn: {fileID: 0}
   firedProjectile: {fileID: 0}
