@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1942c461ab67a8b4aaefaf881271507a, type: 3}
   m_Name: BasicMachineGunBullet P2
   m_EditorClassIdentifier: 
-  Cooldown: 0.1
+  Cooldown: 0.8343379
   prefab: {fileID: 1745033468637824, guid: ff57f5a955c574540b08f5c6a659fd95, type: 2}

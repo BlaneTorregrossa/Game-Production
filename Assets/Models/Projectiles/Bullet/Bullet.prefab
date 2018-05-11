@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4827130199652020}
-  - component: {fileID: 95443593442808678}
+  - component: {fileID: 65730736364874084}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -178,8 +178,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1745033468637824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.41109967, y: 0, z: -4.2233696}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4261885984643064}
   - {fileID: 4162979548899578}
@@ -226,20 +226,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958111562544862}
   m_Mesh: {fileID: 4300000, guid: 4767c315a6337674193c92a402e49af3, type: 3}
---- !u!95 &95443593442808678
-Animator:
-  serializedVersion: 3
+--- !u!65 &65730736364874084
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1745033468637824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4767c315a6337674193c92a402e49af3, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.33}
+  m_Center: {x: -0.01, y: -0.03, z: -0.09}

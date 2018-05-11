@@ -11,6 +11,12 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             return;
         }
+        if (other.CompareTag("Character Part"))
+        {
+            Debug.Log("touch");
+            Destroy(other.gameObject);
+
+        }
         if (other.tag == "Character")
         {
             _shooter.DoDamage(other.GetComponent<CharacterBehaviour>().character);
@@ -21,8 +27,9 @@ public class ProjectileBehaviour : MonoBehaviour
             _shooter.DoDamage(other.GetComponent<TargetBehaviour>().TargetConfig);
             Destroy(gameObject);
         }
+  
     }
-
+   
     public void SetOwner(IDamager d)
     {
         _shooter = d;
