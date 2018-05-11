@@ -36,6 +36,10 @@ public class GameLoopBehaviour : MonoBehaviour
     [SerializeField]
     private Text PreRoundTimerText; //  Timer for Preround
     private GlobalGameManager GGM;  //  Used for a timed scene switch
+    [SerializeField]
+    private GameObject Results;
+    [SerializeField]
+    private Text WinnerText;
 
     void Start()
     {
@@ -50,10 +54,9 @@ public class GameLoopBehaviour : MonoBehaviour
             Clock.TimerObject.TimeReset = 0;    //  Reseting Total time removed
             Time.timeScale = 1.0f;  //  To make sure the scale for time is running at it's standard rate
             #endregion
-
         }
 
-        
+        Results.SetActive(false);
         GGM = ScriptableObject.CreateInstance<GlobalGameManager>();  //  New Global Game Manager for scene transition
         PlayerCharacter.character.StartingPos = PlayerCharacter.transform.position; //  Position Player started in
         OpponentCharacter.character.StartingPos = OpponentCharacter.transform.position; //  Position Opponnent started in
@@ -121,8 +124,17 @@ public class GameLoopBehaviour : MonoBehaviour
             }
 
             //  Switch to menu after set amount of time
-            if (MenuReturn == true && Clock.TimerObject.SecondaryTime <= 0)
-                GGM.GoToScene(SceneToLoad);   //  Not the main Menu due to lack of Main Menu  *
+            if (MenuReturn == true && Clock.TimerObject.SecondaryTime <= 3)
+            {
+                WinnerText.text = DisplayWinner(PlayerCharacter.character, OpponentCharacter.character).Name + "  has  Won!";
+                if (WinnerText.text == "")
+                    WinnerText.text = "It's  a  Draw!";
+                Results.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    GGM.GoToScene(SceneToLoad);   //  Not the main Menu due to lack of Main Menu  *
+                }
+            }
 
             //  Setting FreezeControl to the same of Wait
             if (Clock.TimerObject.Wait == true)
@@ -140,5 +152,31 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.transform.position = resetCharacter.character.StartingPos;   //  Bring Character GameObject to the position of assigned Character object
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
     }
+
+    public Character DisplayWinner(Character characterA, Character characterB)
+    {
+        Character ReturnVar = new Character();
+
+        int PlayerAWins = 0;
+        int PlayerBWins = 0;
+
+        for (int i = 0;  i < Rounds.Count; i++)
+        {
+            if (Rounds[i].Result == Round.RoundResult.CHARACTERAWIN)
+                PlayerAWins += 1;
+            if (Rounds[i].Result == Round.RoundResult.CHARACTERBWIN)
+                PlayerBWins += 1;
+        }
+
+        if (PlayerAWins > PlayerBWins)
+            ReturnVar = characterA;
+        if (PlayerBWins > PlayerAWins)
+            ReturnVar = characterB;
+        if (PlayerAWins == PlayerBWins)
+            ReturnVar.name = "";
+
+        return ReturnVar;
+    }
+
     public string SceneToLoad = "257.CharacterSelectTest";
 }

@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd6c08813c3fb245bd3f648c65e891e, type: 3}
   m_Name: Timer
   m_EditorClassIdentifier: 
-  TimeReset: 0
-  MainTime: 0
-  SecondaryTime: 0
-  MainTimeMax: 15
+  TimeReset: 43.89477
+  MainTime: 15
+  SecondaryTime: -7.345478
+  MainTimeMax: 99
   SecondaryTimeMax: 5
-  Wait: 0
+  Wait: 1
