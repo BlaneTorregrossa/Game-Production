@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4116632845309334}
   - component: {fileID: 33999491229541780}
   - component: {fileID: 23921485913056704}
-  - component: {fileID: 95546525164563902}
   - component: {fileID: 136116790180600792}
   m_Layer: 0
   m_Name: Grenade
@@ -82,23 +81,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1801615030364334}
   m_Mesh: {fileID: 4300000, guid: 799f39cd86d49534c8f58282987d1f57, type: 3}
---- !u!95 &95546525164563902
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1801615030364334}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 799f39cd86d49534c8f58282987d1f57, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!136 &136116790180600792
 CapsuleCollider:
   m_ObjectHideFlags: 1
