@@ -35,6 +35,11 @@ public class ProjectileBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.tag == "Enviornment")
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     public void SetShooter(IDamager d)
