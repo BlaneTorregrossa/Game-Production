@@ -39,6 +39,7 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     public void SetShooter(IDamager d)
