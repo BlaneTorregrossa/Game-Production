@@ -21,13 +21,14 @@ public class Grenade : Projectile
         var firedProjectile = Instantiate(prefab, positionTransform.position, positionTransform.rotation);
         firedProjectile.transform.forward = positionTransform.forward;
         var projectileBehaviour = firedProjectile.AddComponent<ProjectileBehaviour>();
-        projectileBehaviour.SetOwner(damager);
+        projectileBehaviour.SetShooter(damager);
         var pb = firedProjectile.GetComponent<ProjectileBehaviour>();
         if (pb == null)
         {
             pb = firedProjectile.AddComponent<ProjectileBehaviour>();
         }
-        pb.SetOwner(damager);
+        pb.SetShooter(damager);
+        pb.SetOwner(ownerTransform.GetComponent<CharacterBehaviour>());
         
         var eb = firedProjectile.GetComponent<ExplodeableBehaviour>();
         if (eb == null)
