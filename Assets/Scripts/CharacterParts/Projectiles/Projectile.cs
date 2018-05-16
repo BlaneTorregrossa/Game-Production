@@ -23,8 +23,7 @@ public abstract class Projectile : ScriptableObject, IShootable
             Cooldown -= Time.deltaTime;
             yield return null;
         }
-        if (Cooldown < 0)
-            Cooldown = _coolDownStart;
+        Cooldown = _coolDownStart;
     }
 
 }
