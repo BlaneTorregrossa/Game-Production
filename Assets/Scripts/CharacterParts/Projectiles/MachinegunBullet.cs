@@ -14,7 +14,10 @@ public class MachinegunBullet : Projectile
     public override void Shoot(Transform ownerTransform, Transform positionTransform, IDamager damager, float projectileSpeed)
     {
         if (Cooldown < _coolDownStart)
+        {
+            ownerTransform.GetComponent<MonoBehaviour>().StartCoroutine(StartCountdown());
             return;
+        }
         var firedProjectile = Instantiate(prefab, positionTransform.position, positionTransform.rotation);
         firedProjectile.transform.forward = positionTransform.forward;
         var pb = firedProjectile.GetComponent<ProjectileBehaviour>();
