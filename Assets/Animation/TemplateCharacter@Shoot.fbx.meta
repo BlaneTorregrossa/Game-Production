@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 35e647a65f2c5374cabf66ca56581de1
-timeCreated: 1525992357
+guid: d429139be5f722946bc5d610c7d3e9e8
+timeCreated: 1526591860
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -32,41 +32,39 @@ ModelImporter:
     100048: TempHip_R
     100050: TempHip_R2
     100052: //RootNode
-    100054: TemplateRig
-    100056: TemplateRig_l_Leg_AnkleSHJnt
-    100058: TemplateRig_l_Leg_BallSHJnt
-    100060: TemplateRig_l_Leg_HipSHJnt
-    100062: TemplateRig_l_Leg_KneeSHJnt
-    100064: TemplateRig_l_Leg_ToeSHJnt
-    100066: TemplateRig_l_RobotArm_ClavicleSHJnt
-    100068: TemplateRig_l_RobotArm_ElbowSHJnt
-    100070: TemplateRig_l_RobotArm_ShoulderSHJnt
-    100072: TemplateRig_l_RobotArm_WristSHJnt
-    100074: TemplateRig_r_Leg_AnkleSHJnt
-    100076: TemplateRig_r_Leg_BallSHJnt
-    100078: TemplateRig_r_Leg_HipSHJnt
-    100080: TemplateRig_r_Leg_KneeSHJnt
-    100082: TemplateRig_r_Leg_ToeSHJnt
-    100084: TemplateRig_r_RobotArm_ClavicleSHJnt
-    100086: TemplateRig_r_RobotArm_ElbowSHJnt
-    100088: TemplateRig_r_RobotArm_ShoulderSHJnt
-    100090: TemplateRig_r_RobotArm_WristSHJnt
-    100092: TemplateRig_RobotHead_TopSHJnt
-    100094: TemplateRig_RobotSpine_01SHJnt
-    100096: TemplateRig_RobotSpine_02SHJnt
-    100098: TemplateRig_RobotSpine_03SHJnt
-    100100: TemplateRig_RobotSpine_TopSHJnt
-    100102: TemplateRig_ROOTSHJnt
-    100104: TemplateRig_SHJntGrp
-    100106: TempNeck
-    100108: TempPauldron_L
-    100110: TempPauldron_R
-    100112: TempPelvis
-    100114: TempShin_L
-    100116: TempShoulder_L
-    100118: TempShoulder_R
-    100120: TempThigh_L
-    100122: TempThigh_R
+    100054: TemplateRig_l_Leg_AnkleSHJnt
+    100056: TemplateRig_l_Leg_BallSHJnt
+    100058: TemplateRig_l_Leg_HipSHJnt
+    100060: TemplateRig_l_Leg_KneeSHJnt
+    100062: TemplateRig_l_Leg_ToeSHJnt
+    100064: TemplateRig_l_RobotArm_ClavicleSHJnt
+    100066: TemplateRig_l_RobotArm_ElbowSHJnt
+    100068: TemplateRig_l_RobotArm_ShoulderSHJnt
+    100070: TemplateRig_l_RobotArm_WristSHJnt
+    100072: TemplateRig_r_Leg_AnkleSHJnt
+    100074: TemplateRig_r_Leg_BallSHJnt
+    100076: TemplateRig_r_Leg_HipSHJnt
+    100078: TemplateRig_r_Leg_KneeSHJnt
+    100080: TemplateRig_r_Leg_ToeSHJnt
+    100082: TemplateRig_r_RobotArm_ClavicleSHJnt
+    100084: TemplateRig_r_RobotArm_ElbowSHJnt
+    100086: TemplateRig_r_RobotArm_ShoulderSHJnt
+    100088: TemplateRig_r_RobotArm_WristSHJnt
+    100090: TemplateRig_RobotHead_TopSHJnt
+    100092: TemplateRig_RobotSpine_01SHJnt
+    100094: TemplateRig_RobotSpine_02SHJnt
+    100096: TemplateRig_RobotSpine_03SHJnt
+    100098: TemplateRig_RobotSpine_TopSHJnt
+    100100: TemplateRig_ROOTSHJnt
+    100102: TemplateRig_SHJntGrp
+    100104: TempNeck
+    100106: TempPauldron_L
+    100108: TempPauldron_R
+    100110: TempPelvis
+    100112: TempShin_L
+    100114: TempShoulder_L
+    100116: TempThigh_L
+    100118: TempThigh_R
     400000: group1
     400002: polySurface450
     400004: polySurface451
@@ -94,41 +92,39 @@ ModelImporter:
     400048: TempHip_R
     400050: TempHip_R2
     400052: //RootNode
-    400054: TemplateRig
-    400056: TemplateRig_l_Leg_AnkleSHJnt
-    400058: TemplateRig_l_Leg_BallSHJnt
-    400060: TemplateRig_l_Leg_HipSHJnt
-    400062: TemplateRig_l_Leg_KneeSHJnt
-    400064: TemplateRig_l_Leg_ToeSHJnt
-    400066: TemplateRig_l_RobotArm_ClavicleSHJnt
-    400068: TemplateRig_l_RobotArm_ElbowSHJnt
-    400070: TemplateRig_l_RobotArm_ShoulderSHJnt
-    400072: TemplateRig_l_RobotArm_WristSHJnt
-    400074: TemplateRig_r_Leg_AnkleSHJnt
-    400076: TemplateRig_r_Leg_BallSHJnt
-    400078: TemplateRig_r_Leg_HipSHJnt
-    400080: TemplateRig_r_Leg_KneeSHJnt
-    400082: TemplateRig_r_Leg_ToeSHJnt
-    400084: TemplateRig_r_RobotArm_ClavicleSHJnt
-    400086: TemplateRig_r_RobotArm_ElbowSHJnt
-    400088: TemplateRig_r_RobotArm_ShoulderSHJnt
-    400090: TemplateRig_r_RobotArm_WristSHJnt
-    400092: TemplateRig_RobotHead_TopSHJnt
-    400094: TemplateRig_RobotSpine_01SHJnt
-    400096: TemplateRig_RobotSpine_02SHJnt
-    400098: TemplateRig_RobotSpine_03SHJnt
-    400100: TemplateRig_RobotSpine_TopSHJnt
-    400102: TemplateRig_ROOTSHJnt
-    400104: TemplateRig_SHJntGrp
-    400106: TempNeck
-    400108: TempPauldron_L
-    400110: TempPauldron_R
-    400112: TempPelvis
-    400114: TempShin_L
-    400116: TempShoulder_L
-    400118: TempShoulder_R
-    400120: TempThigh_L
-    400122: TempThigh_R
+    400054: TemplateRig_l_Leg_AnkleSHJnt
+    400056: TemplateRig_l_Leg_BallSHJnt
+    400058: TemplateRig_l_Leg_HipSHJnt
+    400060: TemplateRig_l_Leg_KneeSHJnt
+    400062: TemplateRig_l_Leg_ToeSHJnt
+    400064: TemplateRig_l_RobotArm_ClavicleSHJnt
+    400066: TemplateRig_l_RobotArm_ElbowSHJnt
+    400068: TemplateRig_l_RobotArm_ShoulderSHJnt
+    400070: TemplateRig_l_RobotArm_WristSHJnt
+    400072: TemplateRig_r_Leg_AnkleSHJnt
+    400074: TemplateRig_r_Leg_BallSHJnt
+    400076: TemplateRig_r_Leg_HipSHJnt
+    400078: TemplateRig_r_Leg_KneeSHJnt
+    400080: TemplateRig_r_Leg_ToeSHJnt
+    400082: TemplateRig_r_RobotArm_ClavicleSHJnt
+    400084: TemplateRig_r_RobotArm_ElbowSHJnt
+    400086: TemplateRig_r_RobotArm_ShoulderSHJnt
+    400088: TemplateRig_r_RobotArm_WristSHJnt
+    400090: TemplateRig_RobotHead_TopSHJnt
+    400092: TemplateRig_RobotSpine_01SHJnt
+    400094: TemplateRig_RobotSpine_02SHJnt
+    400096: TemplateRig_RobotSpine_03SHJnt
+    400098: TemplateRig_RobotSpine_TopSHJnt
+    400100: TemplateRig_ROOTSHJnt
+    400102: TemplateRig_SHJntGrp
+    400104: TempNeck
+    400106: TempPauldron_L
+    400108: TempPauldron_R
+    400110: TempPelvis
+    400112: TempShin_L
+    400114: TempShoulder_L
+    400116: TempThigh_L
+    400118: TempThigh_R
     4300000: TempBicep_L
     4300002: TempAbdomen
     4300004: TempShoulder_L
@@ -144,19 +140,18 @@ ModelImporter:
     4300024: TempForearm_R
     4300026: TempPauldron_R
     4300028: TempNeck
-    4300030: TempShoulder_R
-    4300032: TempBicep_R
-    4300034: TempPelvis
-    4300036: polySurface450
-    4300038: polySurface451
-    4300040: polySurface452
-    4300042: polySurface453
-    4300044: polySurface459
-    4300046: polySurface460
-    4300048: polySurface458
-    4300050: polySurface455
-    4300052: polySurface456
-    7400000: Take 001
+    4300030: TempBicep_R
+    4300032: TempPelvis
+    4300034: polySurface450
+    4300036: polySurface451
+    4300038: polySurface452
+    4300040: polySurface453
+    4300042: polySurface459
+    4300044: polySurface460
+    4300046: polySurface458
+    4300048: polySurface455
+    4300050: polySurface456
+    7400000: Shoot
     9500000: //RootNode
     13700000: polySurface450
     13700002: polySurface451
@@ -182,11 +177,10 @@ ModelImporter:
     13700042: TempPauldron_R
     13700044: TempPelvis
     13700046: TempShoulder_L
-    13700048: TempShoulder_R
-    13700050: TempThigh_L
-    13700052: TempThigh_R
+    13700048: TempThigh_L
+    13700050: TempThigh_R
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -208,7 +202,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Shoot
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 4
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
