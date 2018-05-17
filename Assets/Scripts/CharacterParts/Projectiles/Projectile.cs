@@ -26,4 +26,8 @@ public abstract class Projectile : ScriptableObject, IShootable
         Cooldown = _coolDownStart;
     }
 
+    public void ResetCountdown()
+    {
+        Cooldown = _coolDownStart;
+    }
 }
