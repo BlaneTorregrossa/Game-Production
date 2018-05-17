@@ -184,7 +184,7 @@ ModelImporter:
     13700050: TempThigh_L
     13700052: TempThigh_R
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
