@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class CharacterControlsBehaviour : MonoBehaviour
 {
     public Character Characterconfig;
@@ -22,6 +21,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
     private Vector3 _movedirection;
     private Vector3 _lookdirection;
     private Vector3 _dashdirection;
+    [SerializeField]
+    private Vector3 _movementboundries;
     private Quaternion _currentrot;
     private GameObject _object;
     private GameType.GameMode _mode;
@@ -57,6 +58,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
+            transform.position = MovementBoundry();
         }
 
         
@@ -76,6 +78,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
+            transform.position = MovementBoundry();
         }
 
         #endregion
@@ -238,5 +241,31 @@ public class CharacterControlsBehaviour : MonoBehaviour
             _recharge += 1;
         }
     }
+    
+    //  Set up very simalar to camera boundry but to work for keeping characters in bounds
+    public Vector3 MovementBoundry()
+    {
+        Vector3 ReturnVector;
+        Vector3 StartingPos = GetComponent<CharacterBehaviour>().character.StartingPos;
+        float ReturnPosX = transform.position.x;
+        float ReturnPosY = transform.position.y;
+        float ReturnPosZ = transform.position.z;
 
+        if (transform.position.x > _movementboundries.x)
+            ReturnPosX = _movementboundries.x;
+        else if (transform.position.x < -_movementboundries.x)
+            ReturnPosX = -_movementboundries.x;
+
+        if (transform.position.y > _movementboundries.y || transform.position.y < -_movementboundries.y)
+            return ReturnVector = StartingPos;
+
+        if (transform.position.z > _movementboundries.z)
+            ReturnPosZ = _movementboundries.z;
+        else if (transform.position.z < -_movementboundries.z)
+            ReturnPosZ = -_movementboundries.z;
+
+        return ReturnVector = new Vector3(ReturnPosX, ReturnPosY, ReturnPosZ);
+    }
+
+    
 }
