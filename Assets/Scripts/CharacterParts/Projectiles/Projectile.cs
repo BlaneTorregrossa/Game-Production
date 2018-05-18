@@ -23,7 +23,11 @@ public abstract class Projectile : ScriptableObject, IShootable
             Cooldown -= Time.deltaTime;
             yield return null;
         }
+        Cooldown = _coolDownStart;
+    }
 
+    public void ResetCountdown()
+    {
         Cooldown = _coolDownStart;
     }
 }

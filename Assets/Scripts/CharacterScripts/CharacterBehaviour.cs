@@ -40,4 +40,17 @@ public class CharacterBehaviour : MonoBehaviour
         character.DashSpeed = legs.DashSpeed;
         character.DashCharges = legs.DashCharges;
     }
+
+    // Resets character Health and the Countdown for both projectiles on both arms
+    public void ResetCharacter()
+    {
+        var left = character.Left as Arm;
+        var right = character.Right as Arm;
+        character.Health = characterHealth;
+        character.isDead = false;
+        left.projectile.ResetCountdown();
+        right.projectile.ResetCountdown();
+        character.Left = left;
+        character.Right = right;
+    }
 }

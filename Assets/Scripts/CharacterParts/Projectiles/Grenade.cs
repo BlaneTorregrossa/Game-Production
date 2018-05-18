@@ -29,7 +29,7 @@ public class Grenade : Projectile
         }
         pb.SetShooter(damager);
         pb.SetOwner(ownerTransform.GetComponent<CharacterBehaviour>());
-        
+
         var eb = firedProjectile.GetComponent<ExplodeableBehaviour>();
         if (eb == null)
         {
