@@ -19,6 +19,16 @@ public class CrateBehaviour : MonoBehaviour, IBreakable
         Destroy(gameObject);
     }
 
+    public void ResetDurability()
+    {
+        CrateConfig.Durability = CrateConfig.MaxDurability;
+    }
+
+    void Start()
+    {
+        ResetDurability();
+    }
+
     // Update is called once per frame
     void Update ()
     {

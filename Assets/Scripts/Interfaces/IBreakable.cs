@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBreakable
 {
-    void Break(GameObject object);
+    void Break(GameObject Object);
 }

@@ -27,11 +27,21 @@ public class BarrelBehaviour : MonoBehaviour, IExplodeable
         ex.Explosion(BarrelConfig, Duration);
         Destroy(gameObject);
     }
-    
-	// Update is called once per frame
-	void Update ()
+
+    public void ResetDurability()
     {
-		if(BarrelConfig.Durrability <= 0)
+        BarrelConfig.Durability = BarrelConfig.MaxDurability;
+    }
+
+    void Start()
+    {
+        ResetDurability();
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+		if(BarrelConfig.Durability <= 0)
         {
             Explode(ExplosionObject);
         }

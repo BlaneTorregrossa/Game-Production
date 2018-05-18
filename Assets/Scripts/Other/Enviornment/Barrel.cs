@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Breakable/Barrel")]
 public class Barrel : ScriptableObject, IDamageable, IDamager
 {
-    public GameObject ExplosionObject;
     public float Damage;
-    public float Durrability;
+    public float Durability;
+    public float MaxDurability;
 
     public void DoDamage(IDamageable damageable)
     {
@@ -15,7 +16,7 @@ public class Barrel : ScriptableObject, IDamageable, IDamager
 
     public void TakeDamage(float amount)
     {
-        Durrability -= amount;
+        Durability -= amount;
     }
     
 }
