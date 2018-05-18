@@ -15,10 +15,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public int _dashduration;
 
     [SerializeField]
+    private Animator _animator;
+    [SerializeField]
     GameLoopBehaviour GameLoopInstance; //  For a boolen to disable controls while wait timer is running if in PVP mode
     private Vector3 _movedirection;
     private Vector3 _lookdirection;
     private Vector3 _dashdirection;
+    [SerializeField]
+    private Vector3 _movementboundries;
     private Quaternion _currentrot;
     private GameObject _object;
     private GameType.GameMode _mode;
@@ -54,6 +58,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
+            transform.position = MovementBoundry();
         }
 
         
@@ -73,6 +78,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
+            transform.position = MovementBoundry();
         }
 
         #endregion
@@ -90,13 +96,15 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
         {
 
-            if (Input.GetAxis("LeftArm") >= 1)
+            if (Input.GetAxis("LeftArm") >= 1 && Input.GetAxis("RightArm") <= 0)
             {
+                _animator.Play("LeftAim");
                 Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
 
-            if (Input.GetAxis("RightArm") >= 1)
+            if (Input.GetAxis("RightArm") >= 1 && Input.GetAxis("LeftArm") <= 0)
             {
+                _animator.Play("RightAim");
                 Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
 
@@ -130,13 +138,15 @@ public class CharacterControlsBehaviour : MonoBehaviour
         if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 1)
         {
 
-            if (Input.GetAxis("LeftArmB") >= 1)
+            if (Input.GetAxis("LeftArmB") >= 1 && Input.GetAxis("RightArmB") <= 0)
             {
+                _animator.Play("LeftAim");
                 Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
 
-            if (Input.GetAxis("RightArmB") >= 1)
+            if (Input.GetAxis("RightArmB") >= 1 && Input.GetAxis("LeftArmB") <= 0)
             {
+                _animator.Play("RightAim");
                 Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
 
@@ -231,4 +241,31 @@ public class CharacterControlsBehaviour : MonoBehaviour
             _recharge += 1;
         }
     }
+    
+    //  Set up very simalar to camera boundry but to work for keeping characters in bounds
+    public Vector3 MovementBoundry()
+    {
+        Vector3 ReturnVector;
+        Vector3 StartingPos = GetComponent<CharacterBehaviour>().character.StartingPos;
+        float ReturnPosX = transform.position.x;
+        float ReturnPosY = transform.position.y;
+        float ReturnPosZ = transform.position.z;
+
+        if (transform.position.x > _movementboundries.x)
+            ReturnPosX = _movementboundries.x;
+        else if (transform.position.x < -_movementboundries.x)
+            ReturnPosX = -_movementboundries.x;
+
+        if (transform.position.y > _movementboundries.y || transform.position.y < -_movementboundries.y)
+            return ReturnVector = StartingPos;
+
+        if (transform.position.z > _movementboundries.z)
+            ReturnPosZ = _movementboundries.z;
+        else if (transform.position.z < -_movementboundries.z)
+            ReturnPosZ = -_movementboundries.z;
+
+        return ReturnVector = new Vector3(ReturnPosX, ReturnPosY, ReturnPosZ);
+    }
+
+    
 }
