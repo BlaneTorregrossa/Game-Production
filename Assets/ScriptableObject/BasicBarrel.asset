@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac74a35d61af894db41083c47f54fc7, type: 3}
   m_Name: BasicBarrel
   m_EditorClassIdentifier: 
-  ExplosionObject: {fileID: 0}
-  Damage: 0
-  Durrability: 0
+  Damage: 10
+  Durability: 0
+  MaxDurability: 0

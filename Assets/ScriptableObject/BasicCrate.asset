@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376f0d0cd52221c48a123155d9490748, type: 3}
   m_Name: BasicCrate
   m_EditorClassIdentifier: 
-  Durability: 0
+  Durability: 10
+  MaxDurability: 0
