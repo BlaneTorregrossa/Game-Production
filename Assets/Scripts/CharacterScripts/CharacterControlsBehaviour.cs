@@ -37,6 +37,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _dashing = false;
         _dashtime = 0;
         _charges = Characterconfig.DashCharges;
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -61,7 +62,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             transform.position = MovementBoundry();
         }
 
-        
+
         #endregion
 
         #region Joystick2
@@ -91,22 +92,25 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
         _mode = GameLoopInstance.CurrentGameMode;
         _wait = GameLoopInstance.WaitForTimer;
-        
+
         #region Joystick 1
         if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
         {
-
             if (Input.GetAxis("LeftArm") >= 1 && Input.GetAxis("RightArm") <= 0)
             {
-                _animator.Play("LeftAim");
+                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArm"));
                 Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
+            else
+                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArm"));
 
             if (Input.GetAxis("RightArm") >= 1 && Input.GetAxis("LeftArm") <= 0)
             {
-                _animator.Play("RightAim");
+                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArm"));
                 Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
+            else
+                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArm"));
 
             if (Input.GetButtonDown("Head"))
             {
@@ -131,7 +135,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             DashRecharge(200, Characterconfig.DashCharges);
         }
 
-        
+
         #endregion
 
         #region Joystick2
@@ -140,15 +144,19 @@ public class CharacterControlsBehaviour : MonoBehaviour
 
             if (Input.GetAxis("LeftArmB") >= 1 && Input.GetAxis("RightArmB") <= 0)
             {
-                _animator.Play("LeftAim");
+                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArmB"));
                 Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
+            else
+                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArmB"));
 
             if (Input.GetAxis("RightArmB") >= 1 && Input.GetAxis("LeftArmB") <= 0)
             {
-                _animator.Play("RightAim");
+                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArmB"));
                 Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
+            else
+                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArmB"));
 
             if (Input.GetButtonDown("HeadB"))
             {
@@ -173,6 +181,48 @@ public class CharacterControlsBehaviour : MonoBehaviour
             DashRecharge(200, Characterconfig.DashCharges);
         }
 
+        #endregion
+
+        #region InputReliantAnimation
+        if (_animator.GetFloat("AimHeldL") > 0)
+            _animator.SetBool("AimDoneL", true);
+        else if (_animator.GetFloat("AimHeldL") <= 0
+            && _animator.GetBool("AimReleaseL") == false
+            && _animator.GetBool("AimDoneL") == true)
+        {
+            _animator.SetBool("AimDoneL", false);
+            _animator.SetBool("AimReleaseL", true);
+        }
+        else if (_animator.GetFloat("AimHeldL") == 0
+            && _animator.GetBool("AimReleaseL") == true)
+        {
+            _animator.SetBool("AimReleaseL", false);
+        }
+        else
+        {
+            _animator.SetBool("AimDoneL", false);
+            _animator.SetBool("AimReleaseL", false);
+        }
+
+        if (_animator.GetFloat("AimHeldR") > 0)
+            _animator.SetBool("AimDoneR", true);
+        else if (_animator.GetFloat("AimHeldR") == 0
+            && _animator.GetBool("AimReleaseR") == false
+            && _animator.GetBool("AimDoneR") == true)
+        {
+            _animator.SetBool("AimDoneR", false);
+            _animator.SetBool("AimReleaseR", true);
+        }
+        else if (_animator.GetFloat("AimHeldR") == 0
+            && _animator.GetBool("AimReleaseR") == true)
+        {
+            _animator.SetBool("AimReleaseR", false);
+        }
+        else
+        {
+            _animator.SetBool("AimDoneR", false);
+            _animator.SetBool("AimReleaseR", false);
+        }
         #endregion
     }
 
@@ -241,7 +291,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             _recharge += 1;
         }
     }
-    
+
     //  Set up very simalar to camera boundry but to work for keeping characters in bounds
     public Vector3 MovementBoundry()
     {
@@ -267,5 +317,5 @@ public class CharacterControlsBehaviour : MonoBehaviour
         return ReturnVector = new Vector3(ReturnPosX, ReturnPosY, ReturnPosZ);
     }
 
-    
+
 }
