@@ -24,7 +24,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
     [SerializeField]
     private Vector3 _movementboundries;
     private Quaternion _currentrot;
-    private GameObject _object;
+    [SerializeField]
+    private GameObject DashProjectionObject;
     private GameType.GameMode _mode;
     private bool _wait;
     public string DashButtonValue = "Dash";
@@ -38,6 +39,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _dashtime = 0;
         _charges = Characterconfig.DashCharges;
         _animator = GetComponent<Animator>();
+        DashProjectionObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -51,7 +53,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
             if (_dashing)
             {
-                Dash(Characterconfig.DashSpeed, _dashtime, _dashdirection);
+                DashProjection(Characterconfig.DashSpeed, _dashtime, _dashdirection);
+                //Dash(Characterconfig.DashSpeed, _dashtime, _dashdirection);
             }
             if (_canmove)
             {
@@ -59,10 +62,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
-            transform.position = MovementBoundry();
         }
-
-
         #endregion
 
         #region Joystick2
@@ -79,7 +79,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
             }
 
             transform.rotation = Look(transform.rotation, _lookdirection, 5);
-            transform.position = MovementBoundry();
         }
 
         #endregion
@@ -121,6 +120,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
             {
                 if (_charges >= 0)
                 {
+                    DashProjectionObject.transform.localPosition = new Vector3(0, 0, 0);
                     _dashing = true;
                     _dashtime = _dashduration;
                     _canmove = false;
@@ -250,11 +250,26 @@ public class CharacterControlsBehaviour : MonoBehaviour
         transform.position += m;
     }
 
+    //  For dashing with the character
     void Dash(float speed, int count, Vector3 Direction)
     {
         Vector3 move = Direction * speed;
         _dashtime -= 1;
         transform.position += move;
+        if (count == 0)
+        {
+            _dashing = false;
+            _canmove = true;
+        }
+    }
+
+    // For moving the projection for the character forward  ***
+    void DashProjection(float speed, int count, Vector3 Direction)
+    {
+        DashProjectionObject.SetActive(true);
+        Vector3 move = Direction * speed;
+        _dashtime -= 1;
+        DashProjectionObject.transform.position += move;
         if (count == 0)
         {
             _dashing = false;
@@ -292,30 +307,14 @@ public class CharacterControlsBehaviour : MonoBehaviour
         }
     }
 
-    //  Set up very simalar to camera boundry but to work for keeping characters in bounds
-    public Vector3 MovementBoundry()
+    //  *** Change order
+    void OnTriggerEnter(Collider other)
     {
-        Vector3 ReturnVector;
-        Vector3 StartingPos = GetComponent<CharacterBehaviour>().character.StartingPos;
-        float ReturnPosX = transform.position.x;
-        float ReturnPosY = transform.position.y;
-        float ReturnPosZ = transform.position.z;
-
-        if (transform.position.x > _movementboundries.x)
-            ReturnPosX = _movementboundries.x;
-        else if (transform.position.x < -_movementboundries.x)
-            ReturnPosX = -_movementboundries.x;
-
-        if (transform.position.y > _movementboundries.y || transform.position.y < -_movementboundries.y)
-            return ReturnVector = StartingPos;
-
-        if (transform.position.z > _movementboundries.z)
-            ReturnPosZ = _movementboundries.z;
-        else if (transform.position.z < -_movementboundries.z)
-            ReturnPosZ = -_movementboundries.z;
-
-        return ReturnVector = new Vector3(ReturnPosX, ReturnPosY, ReturnPosZ);
+        if (other.tag != "Enviorment" || other.tag != "Breakable")
+        {
+            transform.position = DashProjectionObject.transform.position;
+            DashProjectionObject.SetActive(false);
+        }       
     }
-
 
 }
