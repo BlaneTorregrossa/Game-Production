@@ -17,32 +17,40 @@ public class CharacterBehaviour : MonoBehaviour
     public GameObject firedProjectile;
 
     public IFireable leftArm { get { return character.Left as Arm; } }
+    public IDamager leftdamager { get { return character.Left as Arm; } }
     public IFireable rightArm { get { return character.Right as Arm; } }
-     
+    public IDamager rightdamager { get { return character.Right as Arm; } }
 
     void Start()
     {         
         characterHealth = 100;
         character.Health = characterHealth;
         character.isDead = (character.Health <= 0);
-        character.Damage = 5;
+        SetCharacterSpeed(character.LegSet as Legs);
     }
 
     void Update()
     {
-        if (Input.GetButton("LeftArm"))
-        {
-            leftArm.Fire(transform);
-
-        }
-        if (Input.GetButton("RightArm"))
-        {
-            rightArm.Fire(transform);
-        }
-
-
         character.isDead = (character.Health <= 0);
         gameObject.SetActive(!character.isDead);
     }
+    public void SetCharacterSpeed(Legs legs)
+    {
+        character.Speed = legs.Speed;
+        character.DashSpeed = legs.DashSpeed;
+        character.DashCharges = legs.DashCharges;
+    }
 
+    // Resets character Health and the Countdown for both projectiles on both arms
+    public void ResetCharacter()
+    {
+        var left = character.Left as Arm;
+        var right = character.Right as Arm;
+        character.Health = characterHealth;
+        character.isDead = false;
+        left.projectile.ResetCountdown();
+        right.projectile.ResetCountdown();
+        character.Left = left;
+        character.Right = right;
+    }
 }

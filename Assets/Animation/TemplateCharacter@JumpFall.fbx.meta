@@ -1,0 +1,261 @@
+fileFormatVersion: 2
+guid: e236ecfbacd5e1f46a7f50bb0cb4b6ab
+timeCreated: 1525991976
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: group1
+    100002: polySurface450
+    100004: polySurface451
+    100006: polySurface452
+    100008: polySurface453
+    100010: polySurface455
+    100012: polySurface456
+    100014: polySurface457
+    100016: polySurface458
+    100018: polySurface459
+    100020: polySurface460
+    100022: TempAbdomen
+    100024: TempBicep_L
+    100026: TempBicep_R
+    100028: TempChest
+    100030: TempCollar
+    100032: TempElbow_R1
+    100034: TempFist_R
+    100036: TempFoot_L
+    100038: TempForearm_L
+    100040: TempForearm_R
+    100042: TempGroin
+    100044: TempHead
+    100046: TempHip_L
+    100048: TempHip_R
+    100050: TempHip_R2
+    100052: //RootNode
+    100054: TemplateRig_l_Leg_AnkleSHJnt
+    100056: TemplateRig_l_Leg_BallSHJnt
+    100058: TemplateRig_l_Leg_HipSHJnt
+    100060: TemplateRig_l_Leg_KneeSHJnt
+    100062: TemplateRig_l_Leg_ToeSHJnt
+    100064: TemplateRig_l_RobotArm_ClavicleSHJnt
+    100066: TemplateRig_l_RobotArm_ElbowSHJnt
+    100068: TemplateRig_l_RobotArm_ShoulderSHJnt
+    100070: TemplateRig_l_RobotArm_WristSHJnt
+    100072: TemplateRig_r_Leg_AnkleSHJnt
+    100074: TemplateRig_r_Leg_BallSHJnt
+    100076: TemplateRig_r_Leg_HipSHJnt
+    100078: TemplateRig_r_Leg_KneeSHJnt
+    100080: TemplateRig_r_Leg_ToeSHJnt
+    100082: TemplateRig_r_RobotArm_ClavicleSHJnt
+    100084: TemplateRig_r_RobotArm_ElbowSHJnt
+    100086: TemplateRig_r_RobotArm_ShoulderSHJnt
+    100088: TemplateRig_r_RobotArm_WristSHJnt
+    100090: TemplateRig_RobotHead_TopSHJnt
+    100092: TemplateRig_RobotSpine_01SHJnt
+    100094: TemplateRig_RobotSpine_02SHJnt
+    100096: TemplateRig_RobotSpine_03SHJnt
+    100098: TemplateRig_RobotSpine_TopSHJnt
+    100100: TemplateRig_ROOTSHJnt
+    100102: TemplateRig_SHJntGrp
+    100104: TempNeck
+    100106: TempPauldron_L
+    100108: TempPauldron_R
+    100110: TempPelvis
+    100112: TempShin_L
+    100114: TempShoulder_L
+    100116: TempShoulder_R
+    100118: TempThigh_L
+    100120: TempThigh_R
+    400000: group1
+    400002: polySurface450
+    400004: polySurface451
+    400006: polySurface452
+    400008: polySurface453
+    400010: polySurface455
+    400012: polySurface456
+    400014: polySurface457
+    400016: polySurface458
+    400018: polySurface459
+    400020: polySurface460
+    400022: TempAbdomen
+    400024: TempBicep_L
+    400026: TempBicep_R
+    400028: TempChest
+    400030: TempCollar
+    400032: TempElbow_R1
+    400034: TempFist_R
+    400036: TempFoot_L
+    400038: TempForearm_L
+    400040: TempForearm_R
+    400042: TempGroin
+    400044: TempHead
+    400046: TempHip_L
+    400048: TempHip_R
+    400050: TempHip_R2
+    400052: //RootNode
+    400054: TemplateRig_l_Leg_AnkleSHJnt
+    400056: TemplateRig_l_Leg_BallSHJnt
+    400058: TemplateRig_l_Leg_HipSHJnt
+    400060: TemplateRig_l_Leg_KneeSHJnt
+    400062: TemplateRig_l_Leg_ToeSHJnt
+    400064: TemplateRig_l_RobotArm_ClavicleSHJnt
+    400066: TemplateRig_l_RobotArm_ElbowSHJnt
+    400068: TemplateRig_l_RobotArm_ShoulderSHJnt
+    400070: TemplateRig_l_RobotArm_WristSHJnt
+    400072: TemplateRig_r_Leg_AnkleSHJnt
+    400074: TemplateRig_r_Leg_BallSHJnt
+    400076: TemplateRig_r_Leg_HipSHJnt
+    400078: TemplateRig_r_Leg_KneeSHJnt
+    400080: TemplateRig_r_Leg_ToeSHJnt
+    400082: TemplateRig_r_RobotArm_ClavicleSHJnt
+    400084: TemplateRig_r_RobotArm_ElbowSHJnt
+    400086: TemplateRig_r_RobotArm_ShoulderSHJnt
+    400088: TemplateRig_r_RobotArm_WristSHJnt
+    400090: TemplateRig_RobotHead_TopSHJnt
+    400092: TemplateRig_RobotSpine_01SHJnt
+    400094: TemplateRig_RobotSpine_02SHJnt
+    400096: TemplateRig_RobotSpine_03SHJnt
+    400098: TemplateRig_RobotSpine_TopSHJnt
+    400100: TemplateRig_ROOTSHJnt
+    400102: TemplateRig_SHJntGrp
+    400104: TempNeck
+    400106: TempPauldron_L
+    400108: TempPauldron_R
+    400110: TempPelvis
+    400112: TempShin_L
+    400114: TempShoulder_L
+    400116: TempShoulder_R
+    400118: TempThigh_L
+    400120: TempThigh_R
+    4300000: TempBicep_L
+    4300002: TempAbdomen
+    4300004: TempShoulder_L
+    4300006: TempChest
+    4300008: TempThigh_R
+    4300010: TempPauldron_L
+    4300012: TempHip_L
+    4300014: TempHip_R
+    4300016: TempHead
+    4300018: TempCollar
+    4300020: TempFist_R
+    4300022: TempThigh_L
+    4300024: TempForearm_R
+    4300026: TempPauldron_R
+    4300028: TempNeck
+    4300030: TempShoulder_R
+    4300032: TempBicep_R
+    4300034: TempPelvis
+    4300036: polySurface450
+    4300038: polySurface451
+    4300040: polySurface452
+    4300042: polySurface453
+    4300044: polySurface459
+    4300046: polySurface460
+    4300048: polySurface458
+    4300050: polySurface455
+    4300052: polySurface456
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: polySurface450
+    13700002: polySurface451
+    13700004: polySurface452
+    13700006: polySurface453
+    13700008: polySurface455
+    13700010: polySurface456
+    13700012: polySurface458
+    13700014: polySurface459
+    13700016: polySurface460
+    13700018: TempAbdomen
+    13700020: TempBicep_L
+    13700022: TempBicep_R
+    13700024: TempChest
+    13700026: TempCollar
+    13700028: TempFist_R
+    13700030: TempForearm_R
+    13700032: TempHead
+    13700034: TempHip_L
+    13700036: TempHip_R
+    13700038: TempNeck
+    13700040: TempPauldron_L
+    13700042: TempPauldron_R
+    13700044: TempPelvis
+    13700046: TempShoulder_L
+    13700048: TempShoulder_R
+    13700050: TempThigh_L
+    13700052: TempThigh_R
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftFoot' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
