@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1479064713003998}
   m_IsPrefabParent: 1
+--- !u!1 &1007661403250526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4543367404182496}
+  - component: {fileID: 136515999207336520}
+  m_Layer: 0
+  m_Name: DashProjection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1020071863638576
 GameObject:
   m_ObjectHideFlags: 1
@@ -1702,6 +1718,19 @@ Transform:
   m_Father: {fileID: 4426888932305778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4543367404182496
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007661403250526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4945888445604538}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4561370453479148
 Transform:
   m_ObjectHideFlags: 1
@@ -2101,6 +2130,7 @@ Transform:
   - {fileID: 4221441672047110}
   - {fileID: 4584368642965464}
   - {fileID: 4432085719883438}
+  - {fileID: 4543367404182496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2196,8 +2226,10 @@ MonoBehaviour:
   _dashing: 0
   _dashtime: 0
   _dashduration: 0
-  _animator: {fileID: 95520918962455708}
+  _animator: {fileID: 0}
   GameLoopInstance: {fileID: 0}
+  _movementboundries: {x: 10, y: 80, z: 13}
+  DashProjectionObject: {fileID: 1007661403250526}
   DashButtonValue: Dash
   DashBButtonValue: DashB
 --- !u!114 &114762300523048054
@@ -2218,6 +2250,19 @@ MonoBehaviour:
   leftSpawn: {fileID: 4432085719883438}
   rightSpawn: {fileID: 4584368642965464}
   firedProjectile: {fileID: 0}
+--- !u!136 &136515999207336520
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007661403250526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.85
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!136 &136823410353330668
 CapsuleCollider:
   m_ObjectHideFlags: 1

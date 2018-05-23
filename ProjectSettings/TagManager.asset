@@ -17,6 +17,7 @@ TagManager:
   - Text
   - Image
   - PreRound Timer
+  - Ground
   - Breakable
   layers:
   - Default
