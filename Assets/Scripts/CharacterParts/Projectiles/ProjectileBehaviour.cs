@@ -40,6 +40,20 @@ public class ProjectileBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if(other.tag == "Breakable")
+        {
+            var b = other.GetComponent<BarrelBehaviour>();
+            if (b== null)
+            {
+                var c = other.GetComponent<CrateBehaviour>();
+                _shooter.DoDamage(c.CrateConfig);
+            }
+            else
+            {
+                _shooter.DoDamage(b.BarrelConfig);
+            }
+        }
+
     }
 
     public void SetShooter(IDamager d)
