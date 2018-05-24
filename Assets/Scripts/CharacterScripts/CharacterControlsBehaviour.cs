@@ -247,6 +247,12 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _movedirection = new Vector3(x, 0, z);
         _dashdirection = _movedirection;
         var m = _movedirection * s;
+        if (m.x > 0.1f && m.x > m.z && _lookdirection.x > 0.1f)
+            _animator.SetFloat("Movement", m.x);
+        else if (m.y > 0.1f && m.z > m.x && _lookdirection.z > 0.1f)
+            _animator.SetFloat("Movement", m.z);
+        else
+            _animator.SetFloat("Movement", 0);
         transform.position += m;
     }
 
@@ -314,7 +320,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         {
             transform.position = DashProjectionObject.transform.position;
             DashProjectionObject.SetActive(false);
-        }       
+        }
     }
 
 }
