@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: BasicCrate
   m_EditorClassIdentifier: 
   Durability: 10
-  MaxDurability: 0
+  MaxDurability: 10

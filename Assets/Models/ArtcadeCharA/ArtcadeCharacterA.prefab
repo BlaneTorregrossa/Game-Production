@@ -554,22 +554,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1568222210645526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4632893867040406}
-  - component: {fileID: 136956017427899284}
-  m_Layer: 0
-  m_Name: DashProjection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1568493123920406
 GameObject:
   m_ObjectHideFlags: 1
@@ -1175,7 +1159,6 @@ Transform:
   - {fileID: 4600037220574106}
   - {fileID: 4992650424425150}
   - {fileID: 4339934720761176}
-  - {fileID: 4632893867040406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1607,19 +1590,6 @@ Transform:
   m_Father: {fileID: 4992650424425150}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4632893867040406
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568222210645526}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4236122365682044}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4642302226914172
 Transform:
   m_ObjectHideFlags: 1
@@ -2006,19 +1976,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733a0ce972e0d74419a690514c7ecbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DashProjectionObjectA: {fileID: 1115278045365172, guid: b4a44f717460aa2429135cbf8fb5c964,
+    type: 2}
+  DashProjectionObjectB: {fileID: 1115278045365172, guid: 65dbbb9416e170b44ad0062789d98740,
+    type: 2}
   Characterconfig: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
   Characterbehaviourconfig: {fileID: 114441214429023412}
   Controllerconfig: {fileID: 11400000, guid: 81eea18735449e84093e815a87a566f9, type: 2}
-  _charges: 0
-  _recharge: 0
-  _canmove: 0
+  _charges: 5
+  _recharge: 174
+  _canmove: 1
   _dashing: 0
-  _dashtime: 0
+  _dashtime: -1
   _dashduration: 0
-  _animator: {fileID: 0}
+  _checkReady: 0
+  _animator: {fileID: 95722481688153234}
   GameLoopInstance: {fileID: 0}
   _movementboundries: {x: 10, y: 80, z: 13}
-  DashProjectionObject: {fileID: 1568222210645526}
   DashButtonValue: Dash
   DashBButtonValue: DashB
 --- !u!114 &114441214429023412
@@ -2033,7 +2007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: e3bccc86951e6054485fa6523d1af96e, type: 2}
-  characterHealth: 0
+  characterHealth: 100
   leftDamage: 0
   rightDamage: 0
   leftSpawn: {fileID: 4600037220574106}
@@ -2049,19 +2023,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.7
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
---- !u!136 &136956017427899284
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568222210645526}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.85
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}

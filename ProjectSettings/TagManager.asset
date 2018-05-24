@@ -19,6 +19,8 @@ TagManager:
   - PreRound Timer
   - Ground
   - Breakable
+  - Projection
+  - Wall
   layers:
   - Default
   - TransparentFX

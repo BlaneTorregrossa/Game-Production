@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: BasicBarrel
   m_EditorClassIdentifier: 
   Damage: 10
-  Durability: 0
-  MaxDurability: 0
+  Durability: 10
+  MaxDurability: 10

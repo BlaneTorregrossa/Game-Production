@@ -18,4 +18,4 @@ MonoBehaviour:
   partType: 2
   DashCharges: 5
   Speed: 0.2
-  DashSpeed: 3
+  DashSpeed: 1.5

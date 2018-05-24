@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterControlsBehaviour : MonoBehaviour
 {
+    public GameObject DashProjectionObjectA, DashProjectionObjectB;
     public Character Characterconfig;
     public CharacterBehaviour Characterbehaviourconfig;
     public CharacterControls Controllerconfig;
@@ -13,6 +14,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public bool _dashing;
     public int _dashtime;
     public int _dashduration;
+    public bool _checkReady;
 
     [SerializeField]
     private Animator _animator;
@@ -24,8 +26,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
     [SerializeField]
     private Vector3 _movementboundries;
     private Quaternion _currentrot;
-    [SerializeField]
-    private GameObject DashProjectionObject;
     private GameType.GameMode _mode;
     private bool _wait;
     public string DashButtonValue = "Dash";
@@ -36,10 +36,10 @@ public class CharacterControlsBehaviour : MonoBehaviour
     {
         _canmove = true;
         _dashing = false;
+        _checkReady = false;
         _dashtime = 0;
         _charges = Characterconfig.DashCharges;
         _animator = GetComponent<Animator>();
-        DashProjectionObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -50,18 +50,58 @@ public class CharacterControlsBehaviour : MonoBehaviour
         #region Joystick1
         if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
         {
+
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
+
             if (_dashing)
             {
                 DashProjection(Characterconfig.DashSpeed, _dashtime, _dashdirection);
-                //Dash(Characterconfig.DashSpeed, _dashtime, _dashdirection);
             }
             if (_canmove)
             {
                 Move(Characterconfig.Speed);
             }
 
-            transform.rotation = Look(transform.rotation, _lookdirection, 5);
+            if (_lookdirection != new Vector3(0, 0, 0))
+                transform.rotation = Look(transform.rotation, _lookdirection, 15);
+            else
+                transform.rotation = Look(transform.rotation, _movedirection, 15);
+
+            #region Boundries
+            if (transform.position.x > _movementboundries.x)
+            {
+                var XPos = _movementboundries.x - 1;
+                transform.position = new Vector3(XPos, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x < -_movementboundries.x)
+            {
+                var XPos = -_movementboundries.x + 1;
+                transform.position = new Vector3(XPos, transform.position.y, transform.position.z);
+            }
+
+            if (transform.position.y > _movementboundries.y)
+            {
+                var YPos = _movementboundries.y - 1;
+                transform.position = new Vector3(transform.position.x, YPos, transform.position.z);
+            }
+            else if (transform.position.y < -_movementboundries.y)
+            {
+                var YPos = -_movementboundries.y + 1;
+                transform.position = new Vector3(transform.position.x, YPos, transform.position.z);
+            }
+
+            if (transform.position.z > _movementboundries.z)
+            {
+                var ZPos = _movementboundries.z - 1;
+                transform.position = new Vector3(transform.position.x, transform.position.y, ZPos);
+            }
+            else if (transform.position.z < -_movementboundries.z)
+            {
+                var ZPos = -_movementboundries.z + 1;
+                transform.position = new Vector3(transform.position.x, transform.position.y, ZPos);
+            }
+
+            #endregion
         }
         #endregion
 
@@ -71,16 +111,54 @@ public class CharacterControlsBehaviour : MonoBehaviour
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontalB"), 0, Input.GetAxis("LookVerticalB"));
             if (_dashing)
             {
-                Dash(Characterconfig.DashSpeed, _dashtime, _dashdirection);
+                DashProjection(Characterconfig.DashSpeed, _dashtime, _dashdirection);
             }
             if (_canmove)
             {
                 Move(Characterconfig.Speed);
             }
 
-            transform.rotation = Look(transform.rotation, _lookdirection, 5);
-        }
+            if (_lookdirection != new Vector3(0, 0, 0))
+                transform.rotation = Look(transform.rotation, _lookdirection, 15);
+            else
+                transform.rotation = Look(transform.rotation, _movedirection, 15);
 
+            #region Boundries
+            if (transform.position.x > _movementboundries.x)
+            {
+                var XPos = _movementboundries.x - 1;
+                transform.position = new Vector3(XPos, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x < -_movementboundries.x)
+            {
+                var XPos = -_movementboundries.x + 1;
+                transform.position = new Vector3(XPos, transform.position.y, transform.position.z);
+            }
+
+            if (transform.position.y > _movementboundries.y)
+            {
+                var YPos = _movementboundries.y - 1;
+                transform.position = new Vector3(transform.position.x, YPos, transform.position.z);
+            }
+            else if (transform.position.y < -_movementboundries.y)
+            {
+                var YPos = -_movementboundries.y + 1;
+                transform.position = new Vector3(transform.position.x, YPos, transform.position.z);
+            }
+
+            if (transform.position.z > _movementboundries.z)
+            {
+                var ZPos = _movementboundries.z - 1;
+                transform.position = new Vector3(transform.position.x, transform.position.y, ZPos);
+            }
+            else if (transform.position.z < -_movementboundries.z)
+            {
+                var ZPos = -_movementboundries.z + 1;
+                transform.position = new Vector3(transform.position.x, transform.position.y, ZPos);
+            }
+
+            #endregion
+        }
         #endregion
 
     }
@@ -120,7 +198,8 @@ public class CharacterControlsBehaviour : MonoBehaviour
             {
                 if (_charges >= 0)
                 {
-                    DashProjectionObject.transform.localPosition = new Vector3(0, 0, 0);
+                    DashProjectionObjectA.transform.localPosition = new Vector3(0, 0, 0);
+                    DashProjectionObjectB.transform.localPosition = new Vector3(0, 0, 0);
                     _dashing = true;
                     _dashtime = _dashduration;
                     _canmove = false;
@@ -247,40 +326,47 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _movedirection = new Vector3(x, 0, z);
         _dashdirection = _movedirection;
         var m = _movedirection * s;
-        if (m.x > 0.1f && m.x > m.z && _lookdirection.x > 0.1f)
-            _animator.SetFloat("Movement", m.x);
-        else if (m.y > 0.1f && m.z > m.x && _lookdirection.z > 0.1f)
-            _animator.SetFloat("Movement", m.z);
+        if (m.x != 0 || m.z != 0)
+            _animator.SetBool("Movement", true);
         else
-            _animator.SetFloat("Movement", 0);
+            _animator.SetBool("Movement", false);
         transform.position += m;
     }
 
+    #region Old Dash
     //  For dashing with the character
-    void Dash(float speed, int count, Vector3 Direction)
-    {
-        Vector3 move = Direction * speed;
-        _dashtime -= 1;
-        transform.position += move;
-        if (count == 0)
-        {
-            _dashing = false;
-            _canmove = true;
-        }
-    }
+    //void Dash(float speed, int count, Vector3 Direction)
+    //{
+    //    Vector3 move = Direction * speed;
+    //    _dashtime -= 1;
+    //    transform.position += move;
+    //    if (count == 0)
+    //    {
+    //        _dashing = false;
+    //        _canmove = true;
+    //    }
+    //}
+    #endregion
 
     // For moving the projection for the character forward  ***
     void DashProjection(float speed, int count, Vector3 Direction)
     {
-        DashProjectionObject.SetActive(true);
+        var Projection = new GameObject();
+
+        if (Controllerconfig.gamePadNum == 0)
+            Projection = Instantiate(DashProjectionObjectA, gameObject.transform);
+        if (Controllerconfig.gamePadNum == 1)
+            Projection = Instantiate(DashProjectionObjectB, gameObject.transform);
+
         Vector3 move = Direction * speed;
         _dashtime -= 1;
-        DashProjectionObject.transform.position += move;
+        Projection.transform.position += move;
         if (count == 0)
         {
             _dashing = false;
             _canmove = true;
         }
+        _checkReady = true;
     }
 
     Quaternion Look(Quaternion l, Vector3 v, float s)
@@ -312,15 +398,4 @@ public class CharacterControlsBehaviour : MonoBehaviour
             _recharge += 1;
         }
     }
-
-    //  *** Change order
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag != "Enviorment" || other.tag != "Breakable")
-        {
-            transform.position = DashProjectionObject.transform.position;
-            DashProjectionObject.SetActive(false);
-        }
-    }
-
 }
