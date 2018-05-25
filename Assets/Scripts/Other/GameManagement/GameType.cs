@@ -11,6 +11,7 @@ public class GameType : ScriptableObject
     {
         MENU = 0,           //  Main Menu
         PVP = 1,            //  For Character Vs Character Scene
+        TARGETRANGE = 2,
     }
 
     public GameMode Mode;   //  If this sciptable object is made into it's own asset    (Not Recomended)

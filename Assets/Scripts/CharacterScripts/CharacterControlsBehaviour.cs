@@ -16,8 +16,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
     public int _dashduration;
     public bool _checkReady;
 
-    [SerializeField]
-    private Animator _animator;
+
     [SerializeField]
     GameLoopBehaviour GameLoopInstance; //  For a boolen to disable controls while wait timer is running if in PVP mode
     private Vector3 _movedirection;
@@ -26,8 +25,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
     [SerializeField]
     private Vector3 _movementboundries;
     private Quaternion _currentrot;
-    private GameType.GameMode _mode;
-    private bool _wait;
     public string DashButtonValue = "Dash";
     public string DashBButtonValue = "DashB";
 
@@ -39,16 +36,13 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _checkReady = false;
         _dashtime = 0;
         _charges = Characterconfig.DashCharges;
-        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        _mode = GameLoopInstance.CurrentGameMode;
-        _wait = GameLoopInstance.WaitForTimer;
 
         #region Joystick1
-        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
+        if (Controllerconfig.gamePadNum == 0)
         {
 
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontal"), 0, Input.GetAxis("LookVertical"));
@@ -106,7 +100,7 @@ public class CharacterControlsBehaviour : MonoBehaviour
         #endregion
 
         #region Joystick2
-        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 1)
+        if (Controllerconfig.gamePadNum == 1)
         {
             _lookdirection = new Vector3(Input.GetAxis("LookHorizontalB"), 0, Input.GetAxis("LookVerticalB"));
             if (_dashing)
@@ -167,27 +161,19 @@ public class CharacterControlsBehaviour : MonoBehaviour
     void Update()
     {
 
-        _mode = GameLoopInstance.CurrentGameMode;
-        _wait = GameLoopInstance.WaitForTimer;
 
         #region Joystick 1
-        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 0)
+        if (Controllerconfig.gamePadNum == 0)
         {
             if (Input.GetAxis("LeftArm") >= 1 && Input.GetAxis("RightArm") <= 0)
             {
-                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArm"));
                 Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
-            else
-                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArm"));
 
             if (Input.GetAxis("RightArm") >= 1 && Input.GetAxis("LeftArm") <= 0)
             {
-                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArm"));
                 Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
-            else
-                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArm"));
 
             if (Input.GetButtonDown("Head"))
             {
@@ -218,24 +204,18 @@ public class CharacterControlsBehaviour : MonoBehaviour
         #endregion
 
         #region Joystick2
-        if (_wait == false && _mode == GameType.GameMode.PVP && Controllerconfig.gamePadNum == 1)
+        if (Controllerconfig.gamePadNum == 1)
         {
 
             if (Input.GetAxis("LeftArmB") >= 1 && Input.GetAxis("RightArmB") <= 0)
             {
-                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArmB"));
                 Characterbehaviourconfig.leftArm.Fire(transform, Characterbehaviourconfig.leftSpawn, Characterbehaviourconfig.leftdamager);
             }
-            else
-                _animator.SetFloat("AimHeldL", Input.GetAxis("LeftArmB"));
 
             if (Input.GetAxis("RightArmB") >= 1 && Input.GetAxis("LeftArmB") <= 0)
             {
-                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArmB"));
                 Characterbehaviourconfig.rightArm.Fire(transform, Characterbehaviourconfig.rightSpawn, Characterbehaviourconfig.rightdamager);
             }
-            else
-                _animator.SetFloat("AimHeldR", Input.GetAxis("RightArmB"));
 
             if (Input.GetButtonDown("HeadB"))
             {
@@ -261,48 +241,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
         }
 
         #endregion
-
-        #region InputReliantAnimation
-        if (_animator.GetFloat("AimHeldL") > 0)
-            _animator.SetBool("AimDoneL", true);
-        else if (_animator.GetFloat("AimHeldL") <= 0
-            && _animator.GetBool("AimReleaseL") == false
-            && _animator.GetBool("AimDoneL") == true)
-        {
-            _animator.SetBool("AimDoneL", false);
-            _animator.SetBool("AimReleaseL", true);
-        }
-        else if (_animator.GetFloat("AimHeldL") == 0
-            && _animator.GetBool("AimReleaseL") == true)
-        {
-            _animator.SetBool("AimReleaseL", false);
-        }
-        else
-        {
-            _animator.SetBool("AimDoneL", false);
-            _animator.SetBool("AimReleaseL", false);
-        }
-
-        if (_animator.GetFloat("AimHeldR") > 0)
-            _animator.SetBool("AimDoneR", true);
-        else if (_animator.GetFloat("AimHeldR") == 0
-            && _animator.GetBool("AimReleaseR") == false
-            && _animator.GetBool("AimDoneR") == true)
-        {
-            _animator.SetBool("AimDoneR", false);
-            _animator.SetBool("AimReleaseR", true);
-        }
-        else if (_animator.GetFloat("AimHeldR") == 0
-            && _animator.GetBool("AimReleaseR") == true)
-        {
-            _animator.SetBool("AimReleaseR", false);
-        }
-        else
-        {
-            _animator.SetBool("AimDoneR", false);
-            _animator.SetBool("AimReleaseR", false);
-        }
-        #endregion
     }
 
     //Returns a 3D Vector based axis based off the axis produced by the left analog stick/WASD keys
@@ -326,10 +264,6 @@ public class CharacterControlsBehaviour : MonoBehaviour
         _movedirection = new Vector3(x, 0, z);
         _dashdirection = _movedirection;
         var m = _movedirection * s;
-        if (m.x != 0 || m.z != 0)
-            _animator.SetBool("Movement", true);
-        else
-            _animator.SetBool("Movement", false);
         transform.position += m;
     }
 
