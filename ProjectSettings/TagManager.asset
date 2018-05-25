@@ -21,6 +21,8 @@ TagManager:
   - Breakable
   - Projection
   - Wall
+  - Floor
+  - SafeSpot
   layers:
   - Default
   - TransparentFX

@@ -351,16 +351,21 @@ public class CharacterControlsBehaviour : MonoBehaviour
     // For moving the projection for the character forward  ***
     void DashProjection(float speed, int count, Vector3 Direction)
     {
-        var Projection = new GameObject();
+        GameObject Projection = null;
 
         if (Controllerconfig.gamePadNum == 0)
             Projection = Instantiate(DashProjectionObjectA, gameObject.transform);
-        if (Controllerconfig.gamePadNum == 1)
+        else if (Controllerconfig.gamePadNum == 1)
             Projection = Instantiate(DashProjectionObjectB, gameObject.transform);
+        else
+        {
+            Debug.Log("Set GamepadNum for character");
+        }
 
         Vector3 move = Direction * speed;
         _dashtime -= 1;
-        Projection.transform.position += move;
+        if (Projection != null)
+            Projection.transform.position += move;
         if (count == 0)
         {
             _dashing = false;

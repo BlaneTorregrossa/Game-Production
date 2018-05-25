@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9291f4dd9a99443a86fdfdd9afa9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterControlConfig: {fileID: 0}
+  _characterObject: {fileID: 1479064713003998, guid: 36bfede29e30f304eb43dd5a1a525585,
+    type: 2}
 --- !u!136 &136955275144637536
 CapsuleCollider:
   m_ObjectHideFlags: 1
