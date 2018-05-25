@@ -17,6 +17,10 @@ public class GameLoopBehaviour : MonoBehaviour
     [HideInInspector]
     public TimerBehaviour Clock;    //  Where everything related to time is used from
     public List<Round> Rounds;  //  List of results for each individual round
+    public GameObject Round1;
+    public GameObject Round2;
+    public GameObject Round3;
+    public List<GameObject> ReplacementRoundImageObjects;
 
     #region Events
     public UnityEvent MainTimeEvent;
@@ -75,7 +79,7 @@ public class GameLoopBehaviour : MonoBehaviour
 
         if (CurrentGameMode == GameType.GameMode.PVP)
         {
-            
+
             #region Timer
             if (Paused == false)
                 TimeUpdateEvent.Invoke(); //  Update Time passed
@@ -126,7 +130,7 @@ public class GameLoopBehaviour : MonoBehaviour
             //  Switch to menu after set amount of time
             if (MenuReturn == true && Clock.TimerObject.SecondaryTime <= 3)
             {
-                WinnerText.text = DisplayWinner(PlayerCharacter.character, OpponentCharacter.character).Name + "  has  Won!";
+                WinnerText.text = DisplayWinner(PlayerCharacter.character, OpponentCharacter.character) + "  has  Won!";
                 if (WinnerText.text == "")
                     WinnerText.text = "It's  a  Draw!";
                 Results.SetActive(true);
@@ -154,14 +158,14 @@ public class GameLoopBehaviour : MonoBehaviour
         resetCharacter.gameObject.SetActive(true);    //  Reenabling Characters
     }
 
-    public Character DisplayWinner(Character characterA, Character characterB)
+    public string DisplayWinner(Character characterA, Character characterB)
     {
-        Character ReturnVar = new Character();
+        string ReturnVar = "";
 
         int PlayerAWins = 0;
         int PlayerBWins = 0;
 
-        for (int i = 0;  i < Rounds.Count; i++)
+        for (int i = 0; i < Rounds.Count; i++)
         {
             if (Rounds[i].Result == Round.RoundResult.CHARACTERAWIN)
                 PlayerAWins += 1;
@@ -170,14 +174,56 @@ public class GameLoopBehaviour : MonoBehaviour
         }
 
         if (PlayerAWins > PlayerBWins)
-            ReturnVar = characterA;
+            ReturnVar = characterA.name;
         if (PlayerBWins > PlayerAWins)
-            ReturnVar = characterB;
+            ReturnVar = characterB.name;
         if (PlayerAWins == PlayerBWins)
-            ReturnVar.name = "";
+            ReturnVar = "";
 
         return ReturnVar;
     }
 
-    public string SceneToLoad = "257.CharacterSelectTest";
+    //  Super redundent and awful but here just to get things moving
+    public void ChangeRoundObjects(int count)
+    {
+        if (count == 0)
+        {
+            if (Rounds[0].Result == Round.RoundResult.UNDECIDED)
+                Round1 = ReplacementRoundImageObjects[0];
+            if (Rounds[0].Result == Round.RoundResult.DRAW)
+                Round1 = ReplacementRoundImageObjects[1];
+            if (Rounds[0].Result == Round.RoundResult.CHARACTERAWIN)
+                Round1 = ReplacementRoundImageObjects[2];
+            if (Rounds[0].Result == Round.RoundResult.CHARACTERBWIN)
+                Round1 = ReplacementRoundImageObjects[3];
+        }
+
+
+        if (count == 1)
+        {
+            if (Rounds[1].Result == Round.RoundResult.UNDECIDED)
+                Round2 = ReplacementRoundImageObjects[4];
+            if (Rounds[1].Result == Round.RoundResult.DRAW)
+                Round2 = ReplacementRoundImageObjects[5];
+            if (Rounds[1].Result == Round.RoundResult.CHARACTERAWIN)
+                Round2 = ReplacementRoundImageObjects[6];
+            if (Rounds[1].Result == Round.RoundResult.CHARACTERBWIN)
+                Round2 = ReplacementRoundImageObjects[7];
+        }
+
+
+        if (count == 2)
+        {
+            if (Rounds[2].Result == Round.RoundResult.UNDECIDED)
+                Round3 = ReplacementRoundImageObjects[8];
+            if (Rounds[2].Result == Round.RoundResult.DRAW)
+                Round3 = ReplacementRoundImageObjects[9];
+            if (Rounds[2].Result == Round.RoundResult.CHARACTERAWIN)
+                Round3 = ReplacementRoundImageObjects[10];
+            if (Rounds[2].Result == Round.RoundResult.CHARACTERBWIN)
+                Round3 = ReplacementRoundImageObjects[11];
+        }
+    }
+
+    public string SceneToLoad = "0.Main";
 }
